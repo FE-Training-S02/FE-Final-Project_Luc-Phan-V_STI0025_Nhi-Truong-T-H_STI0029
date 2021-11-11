@@ -7,11 +7,11 @@ const FooterLogin = () => {
       <ul className="list-tab">
         <li className="item-tab">
           <i className="fas fa-key"></i>
-          <Link to="/auth/register">Sign in</Link>
+          <Link to="/auth/login">Sign in</Link>
         </li>
         <li className="item-tab">
           <i className="fas fa-pen"></i>
-          <Link to="/auth/login">Signup</Link>
+          <Link to="/auth/register">Signup</Link>
         </li>
       </ul>
       <div className="option-login">
