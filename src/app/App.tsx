@@ -15,7 +15,6 @@ import { RouterOutlet } from '@core/modules/custom-router-dom';
 import appRoutes from './app.routes';
 //import appMiddleware from './app.middleware';
 import appReducer from './app.reducers';
-import { ApiService } from '@app/core/services/api.service';
 
 
 //const middleware = createSagaMiddleware();
