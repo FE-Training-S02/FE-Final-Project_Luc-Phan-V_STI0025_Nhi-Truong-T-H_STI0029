@@ -22,7 +22,7 @@ const authRoutes: PageRoute[] = [
         element: Register
       },
       {
-        path: '/googleloginresolver',
+        path: '/google-login-resolver',
         element: GoogleLoginResolver
       }
     ]
