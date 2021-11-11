@@ -1,10 +1,9 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import ButtonGoogleLogin from '../partials/ButtonGoogleLogin'
-import { Button } from '@app/shared/components/partials/Button';
-import Input from '@app/shared/components/partials/Input';
-import { signIn } from '../auth.actions';
 import { Link } from 'react-router-dom';
+import { signIn } from '../auth.actions';
+import Input from '@app/shared/components/partials/Input';
+import { Button } from '@app/shared/components/partials/Button';
 
 const Login = () => {
 
@@ -39,7 +38,6 @@ const Login = () => {
           <Link to="/" className="title-link txt-capitalize txt-center" >forgot password?</Link>
         </div>
       </div>
-
     </section>
   );
 };
