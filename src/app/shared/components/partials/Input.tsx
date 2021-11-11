@@ -10,6 +10,7 @@ interface PropsInput {
 
 const Input = (props: PropsInput) => {
   const { type, className, placeholder, name, value, validate } = props;
+
   return (
     <input type={type} className={className} placeholder={placeholder} name={name} value={value} {...validate} />
   )
