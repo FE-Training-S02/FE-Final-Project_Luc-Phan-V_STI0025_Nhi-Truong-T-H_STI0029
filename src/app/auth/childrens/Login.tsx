@@ -6,7 +6,6 @@ import Input from '@app/shared/components/partials/Input';
 import { Button } from '@app/shared/components/partials/Button';
 
 const Login = () => {
-
   const dispatch = useDispatch();
   const onLogin = () => {
     const account = { username: 'admin', password: 'admin' };
