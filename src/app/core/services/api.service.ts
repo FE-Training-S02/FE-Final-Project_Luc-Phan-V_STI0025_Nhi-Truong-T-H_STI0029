@@ -9,12 +9,14 @@ export class ApiService {
 
   constructor() {
     this.authHelper = new AuthHelper();
+    const token = localStorage.getItem('token');
     // Init axiosInstance
     this.axiosInstance = axios.create({
       baseURL: environment.apiBaseUrl,
       // Common header
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
         ...this.authHelper.defaultHeader()
       }
     });
