@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ButtonGoogleLogin from './ButtonGoogleLogin';
 
 const FooterLogin = () => {
   return (
@@ -17,7 +18,7 @@ const FooterLogin = () => {
       <div className="option-login">
         <p className="option-login-text txt-capitalize">or</p>
         <p>Login with</p>
-
+        <ButtonGoogleLogin />
       </div>
     </div>
   );

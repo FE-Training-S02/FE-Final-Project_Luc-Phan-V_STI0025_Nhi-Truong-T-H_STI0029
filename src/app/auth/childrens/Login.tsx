@@ -39,7 +39,7 @@ const Login = () => {
           <Link to="/" className="title-link txt-capitalize txt-center" >forgot password?</Link>
         </div>
       </div>
-      <ButtonGoogleLogin />
+
     </section>
   );
 };
