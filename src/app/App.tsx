@@ -28,7 +28,7 @@ ReactDOM.render(
     <BrowserRouter>
       <Header />
       <RouterOutlet routes={appRoutes} />
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')
