@@ -1,6 +1,6 @@
 import React from "react";
 interface PropsInput {
-  type: 'text' | 'select' | 'textarea' | 'submit' | 'email' | 'number' | 'password',
+  type: 'text' | 'select' | 'textarea' | 'submit' | 'email' | 'number' | 'password' | 'date',
   className?: string,
   placeholder?: string,
   name?: string,

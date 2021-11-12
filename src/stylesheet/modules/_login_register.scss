@@ -1,6 +1,6 @@
 .section-register {
   position: relative;
-  height: 600px;
+  height: 650px;
   &::before {
     position: absolute;
     content: "";
@@ -60,16 +60,28 @@
         .fas {
           color: #9d9da9;
         }
+
+        .group-content {
+          padding-right: 5px;
+        }
+      }
+      .text-error {
+        font-size: 12px;
+        color: #f63434;
       }
       select {
         width: 100%;
-        padding: 9px;
+        padding: 11px;
         margin: 10px 10px 0 0;
         border: 1px solid #fff;
         border-style: none none solid;
+        color: #fff;
         background: none;
         &:focus {
           outline: none;
+        }
+        option {
+          color: #333;
         }
       }
       button {
@@ -119,4 +131,7 @@
       font-size: 28px;
     }
   }
+}
+.col-5 {
+  width: 50%;
 }
