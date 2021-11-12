@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ArticleItem = () => {
   return (
-    <li className="article-item">
+    <div className="article-item">
       <img src="./assets/images/image.png" alt="article image" className="article-img"/>
       <div className="article-body">
         <div className="article-author">
@@ -22,7 +22,7 @@ const ArticleItem = () => {
         <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon"/> 1</span>
         <a href="#" className="article-interact-item btn-read-more">Read more...</a>
       </div>
-    </li>
+    </div>
   );
 };
 
