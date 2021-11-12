@@ -1,10 +1,11 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { signIn } from '../auth.actions';
 import Input from '@app/shared/components/partials/Input';
 import { Button } from '@app/shared/components/partials/Button';
+import axios from 'axios';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,10 +21,16 @@ const Login = () => {
     watch,
     formState: { errors }
   } = useForm();
-  const password = useRef({});
-  password.current = watch("password", "");
   const onSubmit = (data: any) => {
     console.log(data);
+    axios.post('https://vast-lowlands-08945.herokuapp.com/api/v1/users/login', data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        error = 'invalid'
+        console.log(error);
+      });
   };
   return (
     <section className="section-register">
@@ -56,8 +63,8 @@ const Login = () => {
                     message: "Password must have at least 8 characters"
                   },
                   pattern: {
-                    value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
-                    message: 'Password must contain at least one number and one uppercase and lowercase letter',
+                    value: /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
+                    message: 'Password must contain at least one number and lowercase letter',
                   }
                 })} />
               <i className="fas fa-lock"></i>

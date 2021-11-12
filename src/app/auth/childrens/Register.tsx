@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Button } from '@app/shared/components/partials/Button';
 import Input from '@app/shared/components/partials/Input';
+import axios from 'axios';
 
 const Register = () => {
   const {
@@ -14,7 +15,24 @@ const Register = () => {
   const password = useRef({});
   password.current = watch("password", "");
   const onSubmit = (data: any) => {
-    console.log(data);
+    const register = {
+      email: data.email,
+      password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      gender: data.gender,
+      dob: data.dob,
+      phone: data.phone,
+      displayName: data.displayName
+    }
+    console.log(register);
+    axios.post('https://vast-lowlands-08945.herokuapp.com/api/v1/users/register', register)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (errors) {
+        console.log(errors);
+      })
   };
   return (
     <section className="section-register">
@@ -30,6 +48,7 @@ const Register = () => {
               <div className="col-5 group-content">
                 <Input type='text' placeholder='First Name' validate={register("firstName",
                   {
+                    required: 'This field is required',
                     maxLength: {
                       value: 20,
                       message: "First name cannot exceed 20 characters"
@@ -39,6 +58,7 @@ const Register = () => {
               <div className="col-5 group-content">
                 <Input type='text' placeholder='Last Name' validate={register("lastName",
                   {
+                    required: 'This field is required',
                     maxLength: {
                       value: 20,
                       message: "Last name cannot exceed 20 characters"
@@ -65,6 +85,7 @@ const Register = () => {
               <div className="col-5 group-content">
                 <Input type='date' placeholder='Birthday' validate={register("dob",
                   {
+                    required: 'This field is required',
                     pattern: {
                       value: /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/,
                       message: 'Date of Birth must be a valid date in the format DD-MM-YYYY',
@@ -75,6 +96,7 @@ const Register = () => {
             </div>
             <div className="input-content">
               <Input type='text' placeholder='Phone' validate={register("phone", {
+                required: 'This field is required',
                 pattern: {
                   value: /[0-9]{3}-[0-9]{3}-[0-9]{4}/,
                   message: 'Phone number is 10 digit with format xxx-xxx-xxxx',
@@ -84,13 +106,13 @@ const Register = () => {
             </div>
             {errors.phone && <p className="text-error">{errors.phone.message}</p>}
             <div className="input-content">
-              <Input type='text' placeholder='User name' validate={register("userName",
+              <Input type='text' placeholder='User name' validate={register("displayName",
                 {
                   required: 'This field is required'
                 })} />
               <i className="far fa-user"></i>
             </div>
-            {errors.userName && <p className="text-error">{errors.userName.message}</p>}
+            {errors.displayName && <p className="text-error">{errors.displayName.message}</p>}
             <div className="input-content">
               <Input type='email' placeholder='Email' validate={register("email",
                 {
@@ -102,7 +124,7 @@ const Register = () => {
                 })} />
               <i className="fas fa-envelope"></i>
             </div>
-            {errors.email && <p className="text-error">{errors.password.message}</p>}
+            {errors.email && <p className="text-error">{errors.email.message}</p>}
             <div className="input-content">
               <Input type='password' placeholder='Password' validate={register("password",
                 {
@@ -112,8 +134,8 @@ const Register = () => {
                     message: "Password must have at least 8 characters"
                   },
                   pattern: {
-                    value: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
-                    message: 'Password must contain at least one number and one uppercase and lowercase letter',
+                    value: /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
+                    message: 'Password must contain at least one number and lowercase letter',
                   }
                 })} />
               <i className="fas fa-lock"></i>
