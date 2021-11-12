@@ -4,11 +4,11 @@ import ArticleItem from './ArticleItem';
 
 const ArticleList = () => {
   return (
-    <div>
+    <ul className="article-list">
       <ArticleItem />
       <ArticleItem />
       <ArticleItem />
-    </div>
+    </ul>
   );
 };
 
