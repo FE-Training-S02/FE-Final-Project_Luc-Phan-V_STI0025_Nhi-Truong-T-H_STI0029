@@ -16,30 +16,44 @@ const Login = () => {
   };
 
   return (
-    <section className="section-register">
-      <div className="section-image">
-        <div className="container-form">
-          <h3 className="form-title txt-capitalize">proceed with your login</h3>
-          <div className="form-title-sign-in">
-            <i className="fas fa-key"></i>
-            <h2>Login</h2>
-          </div>
+    <section className="section-login">
+      <div className="page-heading">
+        <h1 className="page-title">Sign in to</h1>
+      </div>
+      <div className="page-content">
+        <div className="form-wrapper">
           <form>
-            <div className="input-content">
-              <Input type='email' placeholder='Email' />
-              <i className="fas fa-envelope"></i>
+            <div className="form-group">
+              <div className="input-group">
+                <Input type="email" className="form-control" placeholder="Email address" />
+                <label className="form-label">Email address</label>
+                <span className="msg-error">
+                </span>
+              </div>
             </div>
-            <div className="input-content">
-              <Input type='password' placeholder='Password' />
-              <i className="fas fa-lock"></i>
+            <div className="form-group">
+              <div className="input-group">
+                <input type="password" className="form-control" placeholder="Password" />
+                <label className="form-label">Password</label>
+                <span className="msg-error">
+                </span>
+              </div>
             </div>
-            <Button type='submit' onClick={onLogin}>Login</Button>
+            <div className="btn-group">
+              <Button className="btn-block" type='submit' onClick={onLogin}>Login</Button>
+              <p className="my-2">or</p>
+            </div>
           </form>
-          <Link to="/" className="title-link txt-capitalize txt-center" >forgot password?</Link>
+        </div>
+        <div className="tips">
+          <Link to="/" className="text-link">Forgot Password?</Link>
+          <p>
+            Don't have an account?
+            <Link to="/auth/register" className="text-link"> Sign up</Link>
+          </p>
         </div>
       </div>
     </section>
   );
 };
-
 export default Login;

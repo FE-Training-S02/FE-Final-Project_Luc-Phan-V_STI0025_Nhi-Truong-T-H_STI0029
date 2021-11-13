@@ -6,51 +6,103 @@ import Input from '@app/shared/components/partials/Input';
 const Register = () => {
   return (
     <section className="section-register">
-      <div className="section-image">
-        <div className="container-form">
-          <h3 className="form-title txt-capitalize">proceed with your registeration</h3>
-          <div className="form-title-sign-up">
-            <i className="fas fa-lock"></i>
-            <h2>Sign up</h2>
-          </div>
+      <div className="page-heading">
+        <h1 className="page-title">Sign up for your account</h1>
+      </div>
+      <div className="page-content">
+        <div className="form-wrapper">
           <form>
-            <div className="input-content">
-              <Input type='text' placeholder='First Name' />
-              <Input type='text' placeholder='Last Name' />
+            <div className="form-row">
+              <div className="form-group col-6 mr-1">
+                <div className="input-group">
+                  <Input type="text" className="form-control" placeholder="First Name" />
+                  <label className="form-label">First Name</label>
+                  <span className="msg-error">
+                  </span>
+                </div>
+              </div>
+              <div className="form-group col-6">
+                <div className="input-group">
+                  <Input type="text" className="form-control" placeholder="Last Name" />
+                  <label className="form-label">Last Name</label>
+                  <span className="msg-error">
+                  </span>
+                </div>
+              </div>
             </div>
-
-            <div className="input-content">
-              <select>
-                <option value="female">female</option>
-                <option value="male">male</option>
-                <option value="other">other</option>
-              </select>
-              <Input type='text' placeholder='Birthday' />
-              <i className="far fa-calendar-alt"></i>
+            <div className="form-row">
+              <div className="form-group col-6 mr-1">
+                <div className="input-group">
+                  <select className="form-control">
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                    <option value="other">Other</option>
+                  </select>
+                  <label className="form-label">Sex</label>
+                  <span className="msg-error">
+                  </span>
+                </div>
+              </div>
+              <div className="form-group col-6">
+                <div className="input-group">
+                  <Input type="date" className="form-control" placeholder="Birthday" />
+                  <label className="form-label">Birthday</label>
+                  <span className="msg-error">
+                  </span>
+                </div>
+              </div>
             </div>
-            <div className="input-content">
-              <Input type='text' placeholder='Phone' />
-              <i className="fas fa-phone-square"></i>
+            <div className="form-group">
+              <div className="input-group">
+                <input type="text" className="form-control" placeholder="Phone" />
+                <label className="form-label">Phone</label>
+                <span className="msg-error">
+                </span>
+              </div>
             </div>
-            <div className="input-content">
-              <Input type='text' placeholder='User name' />
-              <i className="far fa-user"></i>
+            <div className="form-group">
+              <div className="input-group">
+                <Input type="text" className="form-control" placeholder="User name" />
+                <label className="form-label">User name</label>
+                <span className="msg-error">
+                </span>
+              </div>
             </div>
-            <div className="input-content">
-              <Input type='email' placeholder='Email' />
-              <i className="fas fa-envelope"></i>
+            <div className="form-group">
+              <div className="input-group">
+                <Input type="email" className="form-control" placeholder="Email address" />
+                <label className="form-label">Email address</label>
+                <span className="msg-error">
+                </span>
+              </div>
             </div>
-            <div className="input-content">
-              <Input type='password' placeholder='Password' />
-              <i className="fas fa-lock"></i>
+            <div className="form-group">
+              <div className="input-group">
+                <input type="password" className="form-control" placeholder="Password" />
+                <label className="form-label">Password</label>
+                <span className="msg-error">
+                </span>
+              </div>
             </div>
-            <div className="input-content">
-              <Input type='password' placeholder='Retype Password' />
-              <i className="fas fa-lock"></i>
+            <div className="form-group">
+              <div className="input-group">
+                <input type="password" className="form-control" placeholder="Retype Password" />
+                <label className="form-label">Retype Password</label>
+                <span className="msg-error">
+                </span>
+              </div>
             </div>
-            <Button type='submit'>Signup</Button>
+            <div className="btn-group">
+              <Button className="btn-block" type='submit'>Signup</Button>
+              <p className="my-2">or</p>
+            </div>
           </form>
-          <Link to="/" className="title-link txt-center" >Already have an account?</Link>
+        </div>
+        <div className="tips">
+          <p>
+            Already have an account?
+            <Link to="/auth/login"> Sign in</Link>
+          </p>
         </div>
       </div>
     </section>

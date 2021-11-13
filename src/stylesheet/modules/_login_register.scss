@@ -1,122 +1,85 @@
+.section-login,
 .section-register {
-  position: relative;
-  height: 600px;
-  &::before {
-    position: absolute;
-    content: "";
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 0;
-    background-color: rgba(0, 0, 0, 1.5);
-    opacity: 0.5;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: convertPxToRem(50px);
+  .page-heading {
+    padding-bottom: 24px;
+    .page-title {
+      font-size: map-get($map: $font-size, $key: xxxl);
+      font-weight: bold;
+    }
   }
-  .section-image {
+  .page-content {
+    max-width: 400px;
     width: 100%;
-    height: 100%;
-    background-image: url("../assets/images/login-bg.jpg");
-    background-size: cover;
-    .container-form {
-      max-width: 500px;
+    .form-wrapper {
       width: 100%;
-      display: flex;
-      flex-direction: column;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      margin: 0 auto;
-      color: #fff;
-      .form-title-sign-up,
-      .form-title-sign-in {
+      .form-row {
         display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        font-size: 25px;
-        font-weight: 700;
-        .fas {
-          padding-right: 10px;
-          font-size: 30px;
-        }
       }
-      .input-content {
-        display: flex;
-        align-items: center;
-        input {
-          width: 100%;
-          padding: 15px 0;
-          border: none;
-          border-bottom: 1px solid #ddd;
-          color: #fff;
-          background: none;
-          &:focus {
+      .form-group {
+        position: relative;
+        margin-bottom: 20px;
+        .input-group {
+          .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d8dfee;
+            border-radius: convertPxToRem(5px);
             outline: none;
+            &:focus {
+              border-color: #7269ef;
+            }
+          }
+          .form-label {
+            position: absolute;
+            top: -9px;
+            left: convertPxToRem(20px);
+            font-size: map-get($map: $font-size, $key: xxs);
+            color: #878a92;
+            opacity: 0;
+            background-color: map-get($map: $color, $key: white);
+          }
+          select {
+            &.form-control {
+              padding: calc(12px + 2px);
+            }
+          }
+          .form-control:focus + .form-label {
+            opacity: 1;
+          }
+          .form-control:focus::placeholder {
+            color: transparent;
+          }
+          .msg-error {
+            color: #a83232;
+            background-color: #ffdbdc;
           }
         }
-        .far {
-          color: #9d9da9;
-        }
-        .fas {
-          color: #9d9da9;
-        }
       }
-      select {
-        width: 100%;
-        padding: 9px;
-        margin: 10px 10px 0 0;
-        border: 1px solid #fff;
-        border-style: none none solid;
-        background: none;
-        &:focus {
-          outline: none;
+      .btn-group {
+        margin-bottom: 20px;
+        .btn-block {
+          width: 100%;
+          padding: 10px;
+          border-radius: convertPxToRem(5px);
+          font-size: map-get($map: $font-size, $key: normal);
+          font-weight: bold;
+          color: map-get($map: $color, $key: white);
+          background-color: #ec113b;
+        }
+        p {
+          text-align: center;
         }
       }
-      button {
-        width: 100%;
-        margin: 30px 0 10px;
-        padding: 10px;
-        border-radius: 50px;
-        color: #fff;
-        background-color: #ff2c55;
-      }
     }
-    .title-link {
-      color: #d9d9d9;
-    }
-  }
-}
-.footer-login {
-  position: relative;
-  .list-tab {
-    display: flex;
-    justify-content: space-around;
-    position: absolute;
-    left: 50%;
-    top: -15px;
-    margin: 0 auto;
-    transform: translate(-50%);
-    .item-tab {
-      margin: 0 20px;
-      padding: 2px 15px;
-      border-radius: 20px;
-      background-color: #ff2c55;
-      a {
-        color: #fff;
+    .tips {
+      text-align: center;
+      .text-link {
+        color: #7269ef;
       }
-      .fas {
-        margin-right: 5px;
-        font-size: 12px;
-        color: #fff;
-      }
-    }
-  }
-  .option-login {
-    padding: 30px;
-    text-align: center;
-    line-height: 1.5;
-    .option-login-text {
-      font-size: 28px;
     }
   }
 }

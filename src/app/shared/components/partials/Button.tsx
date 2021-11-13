@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-interface PropsButton {
+interface ButtonProps {
   children: JSX.Element | string,
   type: 'button' | 'submit' | 'reset',
   className?: string,
@@ -8,14 +8,13 @@ interface PropsButton {
   onClick?: () => void
 }
 
-export const Button = (props: PropsButton) => {
-  const { children, type, className, disabled = false, onClick } = props;
+export const Button = ({ children, type, className, disabled = false, onClick }: ButtonProps) => {
   const handleClick = () => {
     if (onClick) {
       onClick();
-    } else return;
+    }
   };
   return (
-    <button type={type} className={className} disabled={disabled} onClick={() => handleClick()}>{children}</button>
+    <button type={type} className={className} disabled={disabled} onClick={handleClick}>{children}</button>
   )
 }
