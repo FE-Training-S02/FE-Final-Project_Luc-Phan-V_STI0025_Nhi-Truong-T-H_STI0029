@@ -1,6 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { environment } from '@config/environment';
 import AuthHelper from '../helpers/authHelper';
+import { AuthStorageService } from '@app/core/services/authStorage.service';
 
 export class ApiService {
 
@@ -9,7 +10,8 @@ export class ApiService {
 
   constructor() {
     this.authHelper = new AuthHelper();
-    const token = localStorage.getItem('token');
+    const authStorage = new AuthStorageService(); 
+    const token = authStorage.getToken();
     // Init axiosInstance
     this.axiosInstance = axios.create({
       baseURL: environment.apiBaseUrl,
