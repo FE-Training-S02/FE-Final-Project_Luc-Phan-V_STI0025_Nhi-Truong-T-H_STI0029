@@ -7,7 +7,7 @@ const Register = () => {
   return (
     <>
       <div className="page-heading">
-        <h1 className="page-title">Sign up for your account</h1>
+        <h2 className="page-title">Sign up for your account</h2>
       </div>
       <div className="page-content">
         <div className="form-wrapper">

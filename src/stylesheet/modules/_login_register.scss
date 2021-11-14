@@ -1,13 +1,3 @@
-.basic-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: convertPxToRem(65px);
-  .header-img {
-    height: convertPxToRem(45px);
-  }
-}
 .basic-main-content {
   display: flex;
   align-items: center;
@@ -21,7 +11,7 @@
     }
   }
   .page-content {
-    max-width: convertPxToRem(400px);
+    @include pxRem(max-width, 400);
     width: 100%;
     .tips {
       text-align: center;

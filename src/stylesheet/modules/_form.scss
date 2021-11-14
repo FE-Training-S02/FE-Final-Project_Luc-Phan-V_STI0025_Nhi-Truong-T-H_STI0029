@@ -28,7 +28,7 @@
           @include pxRem(padding, 14);
         }
       }
-      .form-control:focus + .form-label {
+      .form-control:focus ~ .form-label {
         opacity: 1;
       }
       .form-control:focus::placeholder {
