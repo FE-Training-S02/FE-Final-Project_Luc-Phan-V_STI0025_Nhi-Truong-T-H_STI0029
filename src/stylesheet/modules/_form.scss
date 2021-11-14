@@ -15,9 +15,9 @@
         }
       }
       .form-label {
+        @include pxRem(top, -9);
+        @include pxRem(left, 20);
         position: absolute;
-        top: convertPxToRem(-9px);
-        left: convertPxToRem(20px);
         font-size: map-get($map: $font-size, $key: xxs);
         color: #878a92;
         opacity: 0;
