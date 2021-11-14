@@ -22,5 +22,5 @@ const Input = ({ type, className, placeholder, name, value, validate }: InputPro
       <span className="msg-error"></span>
     </>
   );
-}
+};
 export default Input;
