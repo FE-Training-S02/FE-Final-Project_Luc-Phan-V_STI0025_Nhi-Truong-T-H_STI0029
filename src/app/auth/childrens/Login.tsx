@@ -23,18 +23,8 @@ const Login = () => {
       <div className="page-content">
         <div className="form-wrapper">
           <form>
-            <div className="form-group">
-              <div className="input-group">
-                <Input type="email" className="form-control" placeholder="Email address" />
-                <label className="form-label">Email address</label>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="input-group">
-                <Input type="password" className="form-control" placeholder="Password" />
-                <label className="form-label">Password</label>
-              </div>
-            </div>
+            <Input type="email" className="form-control" placeholder="Email address" />
+            <Input type="password" className="form-control" placeholder="Password" />
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit' onClick={onLogin}>Sign in</Button>
               <p className="my-2">or</p>

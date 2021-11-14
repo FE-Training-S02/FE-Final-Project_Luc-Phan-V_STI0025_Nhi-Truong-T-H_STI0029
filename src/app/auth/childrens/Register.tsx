@@ -13,17 +13,11 @@ const Register = () => {
         <div className="form-wrapper">
           <form>
             <div className="row">
-              <div className="form-group col-6 mr-1">
-                <div className="input-group">
-                  <Input type="text" className="form-control" placeholder="First Name" />
-                  <label className="form-label">First Name</label>
-                </div>
+              <div className="col-6 mr-1">
+                <Input type="text" className="form-control" placeholder="First Name" />
               </div>
-              <div className="form-group col-6">
-                <div className="input-group">
-                  <Input type="text" className="form-control" placeholder="Last Name" />
-                  <label className="form-label">Last Name</label>
-                </div>
+              <div className="col-6">
+                <Input type="text" className="form-control" placeholder="Last Name" />
               </div>
             </div>
             <div className="row">
@@ -37,43 +31,15 @@ const Register = () => {
                   <label className="form-label">Gender</label>
                 </div>
               </div>
-              <div className="form-group col-6">
-                <div className="input-group">
-                  <Input type="date" className="form-control" placeholder="Birthday" />
-                  <label className="form-label">Birthday</label>
-                </div>
+              <div className="col-6">
+                <Input type="date" className="form-control" placeholder="Birthday" />
               </div>
             </div>
-            <div className="form-group">
-              <div className="input-group">
-                <Input type="text" className="form-control" placeholder="Phone" />
-                <label className="form-label">Phone</label>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="input-group">
-                <Input type="text" className="form-control" placeholder="User name" />
-                <label className="form-label">User name</label>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="input-group">
-                <Input type="email" className="form-control" placeholder="Email address" />
-                <label className="form-label">Email address</label>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="input-group">
-                <Input type="password" className="form-control" placeholder="Password" />
-                <label className="form-label">Password</label>
-              </div>
-            </div>
-            <div className="form-group">
-              <div className="input-group">
-                <Input type="password" className="form-control" placeholder="Retype Password" />
-                <label className="form-label">Retype Password</label>
-              </div>
-            </div>
+            <Input type="text" className="form-control" placeholder="Phone" />
+            <Input type="text" className="form-control" placeholder="User name" />
+            <Input type="email" className="form-control" placeholder="Email address" />
+            <Input type="password" className="form-control" placeholder="Password" />
+            <Input type="password" className="form-control" placeholder="Retype Password" />
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit'>Sign up</Button>
               <p className="my-2">or</p>
@@ -90,5 +56,4 @@ const Register = () => {
     </>
   );
 };
-
 export default Register;

@@ -11,16 +11,19 @@ interface InputProps {
 
 const Input = ({ type, className, placeholder, name, value, validate }: InputProps) => {
   return (
-    <>
-      <input
-        type={type}
-        className={className}
-        placeholder={placeholder}
-        name={name}
-        value={value}
-        {...validate} />
-      <span className="msg-error"></span>
-    </>
+    <div className="form-group">
+      <div className="input-group">
+        <input
+          type={type}
+          className={className}
+          placeholder={placeholder}
+          name={name}
+          value={value}
+          {...validate} />
+        <label className="form-label">{placeholder}</label>
+        <span className="msg-error"></span>
+      </div>
+    </div>
   );
 };
 export default Input;
