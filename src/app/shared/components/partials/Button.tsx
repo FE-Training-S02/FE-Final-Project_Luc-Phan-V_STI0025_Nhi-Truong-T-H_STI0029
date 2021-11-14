@@ -1,21 +1,24 @@
-import React from "react";
+import React from 'react';
 
-interface PropsButton {
-  children: JSX.Element | string,
-  type: 'button' | 'submit' | 'reset',
-  className?: string,
-  disabled?: boolean,
+interface ButtonProps {
+  children: JSX.Element | string;
+  type: 'button' | 'submit' | 'reset';
+  className?: string;
+  disabled?: boolean;
   onClick?: () => void
 }
 
-export const Button = (props: PropsButton) => {
-  const { children, type, className, disabled = false, onClick } = props;
+const Button = ({ children, type, className, disabled = false, onClick }: ButtonProps) => {
   const handleClick = () => {
     if (onClick) {
       onClick();
-    } else return;
+    }
   };
   return (
-    <button type={type} className={className} disabled={disabled} onClick={() => handleClick()}>{children}</button>
-  )
+    <button type={type}
+      className={className}
+      disabled={disabled}
+      onClick={handleClick}>{children}</button>
+  );
 }
+export default Button;
