@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import ArticleItem from './ArticleItem';
+import ArticleItem from '../partials/ArticleItem';
 
 const ArticleList = () => {
   return (

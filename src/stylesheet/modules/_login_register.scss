@@ -1,80 +1,28 @@
-.section-login,
-.section-register {
+.basic-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: convertPxToRem(65px);
+  .header-img {
+    height: convertPxToRem(45px);
+  }
+}
+.signup-signin {
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-top: convertPxToRem(50px);
+  width: 100%;
   .page-heading {
-    padding-bottom: 24px;
+    @include pxRem(padding-bottom, 20);
     .page-title {
       font-size: map-get($map: $font-size, $key: xxxl);
       font-weight: bold;
     }
   }
   .page-content {
-    max-width: 400px;
+    max-width: convertPxToRem(400px);
     width: 100%;
-    .form-wrapper {
-      width: 100%;
-      .form-row {
-        display: flex;
-      }
-      .form-group {
-        position: relative;
-        margin-bottom: 20px;
-        .input-group {
-          .form-control {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d8dfee;
-            border-radius: convertPxToRem(5px);
-            outline: none;
-            &:focus {
-              border-color: #7269ef;
-            }
-          }
-          .form-label {
-            position: absolute;
-            top: -9px;
-            left: convertPxToRem(20px);
-            font-size: map-get($map: $font-size, $key: xxs);
-            color: #878a92;
-            opacity: 0;
-            background-color: map-get($map: $color, $key: white);
-          }
-          select {
-            &.form-control {
-              padding: calc(12px + 2px);
-            }
-          }
-          .form-control:focus + .form-label {
-            opacity: 1;
-          }
-          .form-control:focus::placeholder {
-            color: transparent;
-          }
-          .msg-error {
-            color: #a83232;
-            background-color: #ffdbdc;
-          }
-        }
-      }
-      .btn-group {
-        margin-bottom: 20px;
-        .btn-block {
-          width: 100%;
-          padding: 10px;
-          border-radius: convertPxToRem(5px);
-          font-size: map-get($map: $font-size, $key: normal);
-          font-weight: bold;
-          color: map-get($map: $color, $key: white);
-          background-color: #ec113b;
-        }
-        p {
-          text-align: center;
-        }
-      }
-    }
     .tips {
       text-align: center;
       .text-link {

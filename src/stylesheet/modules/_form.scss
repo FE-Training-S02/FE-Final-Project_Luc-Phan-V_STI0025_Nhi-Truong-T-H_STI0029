@@ -1,0 +1,49 @@
+.form-wrapper {
+  width: 100%;
+  .form-group {
+    @include pxRem(margin-bottom, 20);
+    position: relative;
+    .input-group {
+      .form-control {
+        @include pxRem(padding, 12);
+        width: 100%;
+        border: 1px solid #d8dfee;
+        border-radius: 5px;
+        outline: none;
+        &:focus {
+          border-color: #7269ef;
+        }
+      }
+      .form-label {
+        position: absolute;
+        top: convertPxToRem(-9px);
+        left: convertPxToRem(20px);
+        font-size: map-get($map: $font-size, $key: xxs);
+        color: #878a92;
+        opacity: 0;
+        background-color: map-get($map: $color, $key: white);
+      }
+      select {
+        &.form-control {
+          @include pxRem(padding, 14);
+        }
+      }
+      .form-control:focus + .form-label {
+        opacity: 1;
+      }
+      .form-control:focus::placeholder {
+        color: transparent;
+      }
+    }
+  }
+  .btn-group {
+    @include pxRem(margin-bottom, 20);
+    .btn-block {
+      @include pxRem(padding, 10);
+      font-size: map-get($map: $font-size, $key: normal);
+    }
+    p {
+      text-align: center;
+    }
+  }
+}
