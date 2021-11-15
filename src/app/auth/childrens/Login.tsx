@@ -17,7 +17,6 @@ const Login = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors }
   } = useForm();
   const onSubmit = (data: any) => {
@@ -26,12 +25,12 @@ const Login = () => {
   return (
     <>
       <div className="page-heading">
-        <h2 className="page-title">Sign in to ST-Blog</h2>
+        <h2 className="page-title">Sign in to ST Blog</h2>
       </div>
       <div className="page-content">
         <div className="form-wrapper">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input type="email" className="form-control" placeholder="Email address" label="Email address" validate={register("email",
+            <Input type="email" placeholder="Email address" label="Email address" register={register("email",
               {
                 required: 'This field is required',
                 pattern: {
@@ -39,7 +38,7 @@ const Login = () => {
                   message: 'Email is invalid',
                 }
               })} errors={errors.email} />
-            <Input type="password" className="form-control" placeholder="Password" label="Password" validate={register("password",
+            <Input type="password" placeholder="Password" label="Password" register={register("password",
               {
                 required: 'This field is required',
                 minLength: {
