@@ -1,25 +1,17 @@
 .button-google-login {
-  display: flex;
-  justify-content: center;
-  text-decoration: none;
   flex-direction: row;
-  width: 70%;
-  margin: 20px auto 0px;
-  padding: 15px 20px;
-  box-sizing: content-box;
-  border-radius: 24px;
-  border-color: transparent;
+  align-items: center;
+  text-decoration: none;
   background-color: white;
-  box-shadow: 0px 16px 60px rgba(78, 79, 114, 0.08);
-  font-size: 1.3em;
+  border: 1px solid #d8dfee;
   cursor: pointer;
-  .buttonText {
+  .button-title {
     font-weight: bolder;
-    color: #4285f4;
+    color: #161849;
   }
   .icon {
-    height: 35px;
-    width: 35px;
-    margin-right: 25px;
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
   }
 }
