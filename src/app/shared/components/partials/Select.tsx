@@ -14,7 +14,7 @@ const Select = ({ listOptions, className, label }: SelectProps) => {
     <div className="form-group">
       <div className="input-group">
         <select
-          className={className}
+          className={`form-control ${className}`}
         >
           {
             listOptions.map((item) => <option value={item.value}>{item.name}</option>)

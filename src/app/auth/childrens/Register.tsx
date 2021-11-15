@@ -20,25 +20,25 @@ const Register = () => {
           <form>
             <div className="row">
               <div className="col-6 mr-1">
-                <Input type="text" className="form-control" placeholder="First Name" label="First Name" />
+                <Input type="text" placeholder="First Name" />
               </div>
               <div className="col-6">
-                <Input type="text" className="form-control" placeholder="Last Name" label="Last Name" />
+                <Input type="text" placeholder="Last Name" />
               </div>
             </div>
             <div className="row">
               <div className="col-6 mr-1">
-                <Select className="form-control" label="Gender" listOptions={genderOptions} />
+                <Select label="Gender" listOptions={genderOptions} />
               </div>
               <div className="col-6">
-                <Input type="date" className="form-control" placeholder="Birthday" label="Birthday" />
+                <Input type="date" placeholder="Birthday" />
               </div>
             </div>
-            <Input type="text" className="form-control" placeholder="Phone" label="Phone" />
-            <Input type="text" className="form-control" placeholder="User name" label="User name" />
-            <Input type="email" className="form-control" placeholder="Email address" label="Email address" />
-            <Input type="password" className="form-control" placeholder="Password" label="Password" />
-            <Input type="password" className="form-control" placeholder="Retype Password" label="Retype Password" />
+            <Input type="text" placeholder="Phone" />
+            <Input type="text" placeholder="User name" />
+            <Input type="email" placeholder="Email address" />
+            <Input type="password" placeholder="Password" />
+            <Input type="password" placeholder="Retype Password" />
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit'>Sign up</Button>
               <p className="my-2">or</p>
