@@ -21,6 +21,13 @@ const ArticleItem = () => {
         <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon"/> 1</span>
         <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon"/> 1</span>
         <a href="#" className="article-interact-item btn-read-more">Read more...</a>
+        <div className="dropdown">
+          <button className="btn-dropdown">...</button>
+          <div className="sub-dropdown">
+            <a href="#">Delete</a>
+            <a href="#">Update</a>
+          </div>
+        </div>
       </div>
     </div>
   );
