@@ -21,7 +21,6 @@ const Select = ({ listOptions, className, label }: SelectProps) => {
           }
         </select>
         <label className="form-label">{label}</label>
-        <span className="msg-error"></span>
       </div>
     </div>
   );

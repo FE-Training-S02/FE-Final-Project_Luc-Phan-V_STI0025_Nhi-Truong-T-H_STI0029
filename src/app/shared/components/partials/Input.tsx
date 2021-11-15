@@ -6,10 +6,11 @@ interface InputProps {
   onChange?: () => void;
   name?: string;
   value?: string;
+  errors?: any;
   validate?: any
 }
 
-const Input = ({ type, className, placeholder, name, value, validate }: InputProps) => {
+const Input = ({ type, className, placeholder, name, value, errors, validate }: InputProps) => {
   return (
     <div className="form-group">
       <div className="input-group">
@@ -21,7 +22,7 @@ const Input = ({ type, className, placeholder, name, value, validate }: InputPro
           value={value}
           {...validate} />
         <label className="form-label">{placeholder}</label>
-        <span className="msg-error"></span>
+        {errors && <span className="msg-error">{errors.message}</span>}
       </div>
     </div>
   );

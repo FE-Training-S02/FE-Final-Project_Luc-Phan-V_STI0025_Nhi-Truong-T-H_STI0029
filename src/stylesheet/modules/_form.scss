@@ -1,7 +1,7 @@
 .form-wrapper {
   width: 100%;
   .form-group {
-    @include pxRem(margin-bottom, 20);
+    @include pxRem(margin-bottom, 15);
     position: relative;
     .input-group {
       .form-control {
@@ -22,6 +22,27 @@
         color: #878a92;
         opacity: 0;
         background-color: map-get($map: $color, $key: white);
+      }
+      .msg-error {
+        @include pxRem(margin-top, 8);
+        @include pxRem(padding, 0.5 10);
+        position: relative;
+        display: block;
+        border-radius: 5px;
+        font-size: map-get($map: $font-size, $key: xs);
+        color: #a83232;
+        background-color: #ffdbdc;
+        &::after {
+          content: "";
+          position: absolute;
+          left: 5%;
+          bottom: 100%;
+          width: 0;
+          height: 0;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-bottom: 8px solid #ffdbdc;
+        }
       }
       select {
         &.form-control {
