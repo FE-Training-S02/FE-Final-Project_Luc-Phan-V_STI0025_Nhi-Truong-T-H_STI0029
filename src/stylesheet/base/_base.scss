@@ -4,8 +4,7 @@
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
 }
-html,
-body {
+html, body {
   @include pxRem(font-size, 16);
   font-family: $font-body;
   position: relative;
@@ -23,14 +22,4 @@ body {
 image {
   max-width: 100%;
   width: 100%;
-}
-ul {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-}
-button {
-  cursor: pointer;
-  border: none;
 }
