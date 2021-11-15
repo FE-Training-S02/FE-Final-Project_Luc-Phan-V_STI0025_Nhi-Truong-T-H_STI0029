@@ -5,26 +5,31 @@ $breakpoints: (
   wide: 960px,
   large: 1024px,
   largest: 1280px,
-  super-largest: 1441px
+  super-largest: 1441px,
 );
 
 $color: (
-  primary:  #E61E56,
+  primary: #ec113b,
   orange-a: #a17143,
   grey-a: #f3f3f3,
+  grey-b: #8d8d8d,
+  grey-c: #888888,
   black: #000000,
-  white: #FFFFFF
+  white: #FFFFFF,
+  warning: #ff8700,
+  violet: #b97ebb
 );
 
 $font-size: (
-  xs:     11px,
-  sm:     13px,
+  xxs: 10px,
+  xs: 11px,
+  sm: 13px,
   normal: 16px,
-  lg:     18px,
-  xl:     20px,
-  xxl:    24px,
-  xxxl:   30px
+  lg: 18px,
+  xl: 20px,
+  xxl: 24px,
+  xxxl: 30px,
 );
-
+$col-max: 12;
 $font-body: san-serif;
 $font-japan: serif;

@@ -8,7 +8,7 @@ const articleRoutes: PageRoute[] = [
   {
     path: '/articles',
     element: Articles,
-    isProtected: true,
+    //isProtected: true,
     children: [
       {
         path: '/',

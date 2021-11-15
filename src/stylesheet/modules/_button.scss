@@ -1,0 +1,12 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  &.btn-primary {
+    color: map-get($map: $color, $key: white);
+    background-color: map-get($map: $color, $key: primary);
+  }
+}
