@@ -1,5 +1,6 @@
 .article-item {
   display: inline-block;
+  margin-bottom: 10px;
   border-radius: 5px;
   box-shadow: 0 2px 8px map-get($color, grey-c);
   .article-img {
@@ -59,6 +60,45 @@
         width: 24px;
         height: 24px;
         margin-right: 4px;
+      }
+    }
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      &:hover {
+        .sub-dropdown {
+          display: block;
+        }
+        .btn-dropdown {
+          opacity: 0.8;
+        }
+      }
+      .btn-dropdown {
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        background-color: map-get($color, grey-c);
+        color: white;
+      }
+      .sub-dropdown {
+        display: none;
+        position: absolute;
+        top: -50%;
+        left: 100%;
+        border-radius: 5px;
+        background-color: map-get($color, grey-a);
+        z-index: 1;
+        a {
+          display: block;
+          color: map-get($color, black);
+          padding: 8px;
+          text-decoration: none;
+          &:hover {
+            background-color: map-get($color, grey-d);
+            border-radius: 5px;
+          }
+        }
       }
     }
   }

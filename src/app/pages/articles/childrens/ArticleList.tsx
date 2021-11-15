@@ -4,8 +4,8 @@ import ArticleItem from '../partials/ArticleItem';
 
 const ArticleList = () => {
   return (
-    <section className="container article-list">
-      <h3 className="article-list-title">Articles List</h3>
+    <section className="container section-articles-list">
+      <h3 className="articles-list-title">Articles List</h3>
       <ul className="row article-list">
         <li className="col col-4">
           <ArticleItem />
