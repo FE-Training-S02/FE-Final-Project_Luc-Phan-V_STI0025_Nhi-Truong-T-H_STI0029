@@ -6,23 +6,22 @@ interface InputProps {
   onChange?: () => void;
   name?: string;
   value?: string;
-  label?: string;
   errors?: any;
-  validate?: any
+  label?: string;
+  register?: any
 }
 
-const Input = ({ type, className, placeholder, name, value, label, errors, validate }: InputProps) => {
+const Input = ({ type, className, placeholder, name, value, errors, label, register }: InputProps) => {
   return (
     <div className="form-group">
       <div className="input-group">
         <input
           type={type}
-          className={className}
+          className={`form-control ${className}`}
           placeholder={placeholder}
           name={name}
           value={value}
-          label={label}
-          {...validate} />
+          {...register} />
         <label className="form-label">{label}</label>
         {errors && <span className="msg-error">{errors.message}</span>}
       </div>

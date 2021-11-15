@@ -7,17 +7,21 @@ interface SelectProps {
   listOptions: SelectOption[];
   className?: string;
   label?: string;
+  ref: any;
+  defaultValue: any
 }
 
-const Select = ({ listOptions, className, label }: SelectProps) => {
+const Select = ({ listOptions, className, label, ref, defaultValue }: SelectProps) => {
   return (
     <div className="form-group">
       <div className="input-group">
         <select
-          className={className}
+          className={`form-control ${className}`}
+          {...ref}
+          defaultValue={defaultValue}
         >
           {
-            listOptions.map((item) => <option value={item.value}>{item.name}</option>)
+            listOptions.map((item, index) => <option key={index} value={item.value}>{item.name}</option>)
           }
         </select>
         <label className="form-label">{label}</label>

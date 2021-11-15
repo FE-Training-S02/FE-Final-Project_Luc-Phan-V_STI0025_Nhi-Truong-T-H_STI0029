@@ -11,7 +11,10 @@
         border-radius: 5px;
         outline: none;
         &:focus {
-          border-color: #7269ef;
+          border-color: #7f7f81;
+        }
+        &:invalid {
+          border: 1px solid #f4aabd;
         }
       }
       .form-label {
@@ -46,7 +49,7 @@
       }
       select {
         &.form-control {
-          @include pxRem(padding, 14);
+          @include pxRem(padding, 14 12);
         }
       }
       .form-control:focus ~ .form-label {
