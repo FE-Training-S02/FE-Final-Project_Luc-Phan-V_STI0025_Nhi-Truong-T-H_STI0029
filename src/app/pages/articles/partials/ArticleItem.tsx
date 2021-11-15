@@ -5,6 +5,13 @@ const ArticleItem = () => {
   return (
     <div className="article-item">
       <img src="./assets/images/image.png" alt="article image" className="article-img"/>
+      <div className="dropdown">
+        <button className="btn-dropdown">...</button>
+        <div className="sub-dropdown">
+          <a href="#">Delete</a>
+          <a href="#">Update</a>
+        </div>
+      </div>
       <div className="article-body">
         <div className="article-author">
           <img src="./assets/icons/user.png" alt="avatar" className="author-img"/>
@@ -21,13 +28,6 @@ const ArticleItem = () => {
         <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon"/> 1</span>
         <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon"/> 1</span>
         <a href="#" className="article-interact-item btn-read-more">Read more...</a>
-        <div className="dropdown">
-          <button className="btn-dropdown">...</button>
-          <div className="sub-dropdown">
-            <a href="#">Delete</a>
-            <a href="#">Update</a>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -1,32 +1,75 @@
 .article-item {
+  position: relative;
   display: inline-block;
-  margin-bottom: 10px;
-  border-radius: 5px;
+  @include pxRem(margin-bottom, 10);
+  @include pxRem(border-radius, 5);
   box-shadow: 0 2px 8px map-get($color, grey-c);
   .article-img {
     width: 100%;
+  }
+  .dropdown {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    &:hover {
+      .sub-dropdown {
+        display: block;
+      }
+      .btn-dropdown {
+        opacity: 0.8;
+      }
+    }
+    .btn-dropdown {
+      @include pxRem(padding, 4 6);
+      border: none;
+      @include pxRem(border-radius, 5);
+      @include pxRem(font-size, 16);
+      background-color: map-get($color, grey-d);
+      color: white;
+    }
+    .sub-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      @include pxRem(border-radius, 5);
+      background-color: map-get($color, grey-a);
+      z-index: 1;
+      a {
+        display: block;
+        @include pxRem(padding, 4);
+        color: map-get($color, black);
+        text-decoration: none;
+        &:hover {
+          @include pxRem(border-radius, 5);
+          color: map-get($color, white);
+          background-color: map-get($color, info);
+        }
+      }
+    }
   }
   .article-author{
     display: flex;
     align-items: center;
     color: map-get($color, grey-b);
     .author-img {
-      width: 32px;
-      height: 32px;
-      margin-right: 8px;
+      @include pxRem(width, 32);
+      @include pxRem(height, 32);
+      @include pxRem(margin-right, 8);
     }
     .author-name {
       color: map-get($color, black);
     }
     .article-tag {
-      padding: 2px;
-      border-radius: 5px;
+      @include pxRem(padding, 2);
+      @include pxRem(border-radius, 5);
       background: map-get($color, warning);
       color: map-get($color, white);
     }
   }
   .article-body {
-    padding: 0 10px;
+    @include pxRem(padding, 0 10);
     .article-title {
       text-align: justify;
       font-size: map-get($font-size, lg);
@@ -40,65 +83,25 @@
   }
   .article-interact {
     display: flex;
-    padding: 0 10px;
+    @include pxRem(padding, 0 10 8);
     color: map-get($color, grey-b);
     justify-content: center;
     align-items: center;
-    padding-bottom: 8px;
     .article-interact-item {
       display: flex;
       align-items: center;
-      margin-right: 20px;
+      @include pxRem(margin-right, 20);
       font-size: map-get($font-size, normal);
       &.btn-read-more {
         background: map-get($color, violet);
-        padding: 4px;
-        border-radius: 5px;
+        @include pxRem(padding, 4);
+        @include pxRem(border-radius, 5);
         color: map-get($color, white);
       }
       .interact-icon {
-        width: 24px;
-        height: 24px;
-        margin-right: 4px;
-      }
-    }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-      &:hover {
-        .sub-dropdown {
-          display: block;
-        }
-        .btn-dropdown {
-          opacity: 0.8;
-        }
-      }
-      .btn-dropdown {
-        padding: 8px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        background-color: map-get($color, grey-c);
-        color: white;
-      }
-      .sub-dropdown {
-        display: none;
-        position: absolute;
-        top: -50%;
-        left: 100%;
-        border-radius: 5px;
-        background-color: map-get($color, grey-a);
-        z-index: 1;
-        a {
-          display: block;
-          color: map-get($color, black);
-          padding: 8px;
-          text-decoration: none;
-          &:hover {
-            background-color: map-get($color, grey-d);
-            border-radius: 5px;
-          }
-        }
+        @include pxRem(width, 24);
+        @include pxRem(height, 24);
+        @include pxRem(margin-right, 4);
       }
     }
   }
