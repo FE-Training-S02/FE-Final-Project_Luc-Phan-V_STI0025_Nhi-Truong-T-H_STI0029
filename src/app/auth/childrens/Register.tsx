@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import Button from '@app/shared/components/partials/Button';
 import Input from '@app/shared/components/partials/Input';
 import Select from '@app/shared/components/partials/Select';
+import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 
 const Register = () => {
   const {
@@ -31,7 +32,7 @@ const Register = () => {
         <div className="form-wrapper">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="row">
-              <div className="col-6 mr-1">
+              <div className="col col-6">
                 <Input type="text" placeholder="First Name" label="First Name" register={register("firstName",
                   {
                     required: 'This field is required',
@@ -41,7 +42,7 @@ const Register = () => {
                     }
                   })} errors={errors.firstName} />
               </div>
-              <div className="col-6">
+              <div className="col col-6">
                 <Input type="text" placeholder="Last Name" label="Last Name" register={register("lastName",
                   {
                     required: 'This field is required',
@@ -82,10 +83,10 @@ const Register = () => {
                 value === password.current || "The passwords do not match"
             })} errors={errors.password_repeat} />
             <div className="row">
-              <div className="col-6 mr-1">
+              <div className="col col-6">
                 <Select label="Gender" listOptions={genderOptions} {...register("gender")} />
               </div>
-              <div className="col-6">
+              <div className="col col-6">
                 <Input type="date" placeholder="Birthday" label="Birthday" register={register("dob",
                   {
                     required: 'This field is required',
@@ -106,6 +107,7 @@ const Register = () => {
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit'>Sign up</Button>
               <p className="my-2">or</p>
+              <ButtonGoogleLogin />
             </div>
           </form>
         </div>

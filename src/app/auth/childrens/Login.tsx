@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { signIn } from '../auth.actions';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
+import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const Login = () => {
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit' onClick={onLogin}>Sign in</Button>
               <p className="my-2">or</p>
+              <ButtonGoogleLogin />
             </div>
           </form>
         </div>
