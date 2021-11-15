@@ -26,9 +26,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <Header />
       <RouterOutlet routes={appRoutes} />
-      <Footer />
     </BrowserRouter>
   </Provider>,
   document.getElementById('root')

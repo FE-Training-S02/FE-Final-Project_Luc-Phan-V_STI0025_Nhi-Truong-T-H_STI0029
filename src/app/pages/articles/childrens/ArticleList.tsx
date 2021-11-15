@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import ArticleItem from '../partials/ArticleItem';
 
 const ArticleList = () => {
   return (
-    <div>
-      This is article-list page
-      <p>
-        <Link to="1">See detail</Link>
-      </p>
-    </div>
+    <ul className="article-list">
+      <ArticleItem />
+      <ArticleItem />
+      <ArticleItem />
+    </ul>
   );
 };
 
