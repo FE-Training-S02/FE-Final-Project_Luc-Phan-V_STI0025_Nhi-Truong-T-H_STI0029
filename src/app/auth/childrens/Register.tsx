@@ -33,8 +33,7 @@ const Register = () => {
     console.log(register);
     axios.post(`${apiBaseUrl}/users/register`, register)
       .then(function (response) {
-        // console.log(response);
-        console.log(register)
+        console.log(response);
       })
       .catch(function (error) {
         setErrMessage(error.response.data.errors);
@@ -75,7 +74,7 @@ const Register = () => {
                   })} errors={errors.lastName} />
               </div>
             </div>
-            <Input type="text" placeholder="User name" label="User name" register={register("userName",
+            <Input type="text" placeholder="User name" label="User name" register={register("displayName",
               {
                 required: 'This field is required'
               })} errors={errors.userName} />
@@ -106,7 +105,7 @@ const Register = () => {
             })} errors={errors.password_repeat} />
             <div className="row">
               <div className="col col-6">
-                <Select label="Gender" listOptions={genderOptions} defaultValue={'female'} ref={register("gender")} />
+                <Select label="Gender" listOptions={genderOptions} defaultValue={'female'} register={register("gender")} />
               </div>
               <div className="col col-6">
                 <Input type="date" placeholder="Birthday" label="Birthday" register={register("dob",

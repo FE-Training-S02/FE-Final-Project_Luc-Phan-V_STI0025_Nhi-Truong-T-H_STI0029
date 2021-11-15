@@ -7,17 +7,17 @@ interface SelectProps {
   listOptions: SelectOption[];
   className?: string;
   label?: string;
-  ref: any;
+  register: any;
   defaultValue: any
 }
 
-const Select = ({ listOptions, className, label, ref, defaultValue }: SelectProps) => {
+const Select = ({ listOptions, className, label, register, defaultValue }: SelectProps) => {
   return (
     <div className="form-group">
       <div className="input-group">
         <select
           className={`form-control ${className}`}
-          {...ref}
+          {...register}
           defaultValue={defaultValue}
         >
           {
