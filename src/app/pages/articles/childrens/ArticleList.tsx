@@ -4,11 +4,19 @@ import ArticleItem from '../partials/ArticleItem';
 
 const ArticleList = () => {
   return (
-    <ul className="article-list">
-      <ArticleItem />
-      <ArticleItem />
-      <ArticleItem />
-    </ul>
+    <section className="container">
+      <ul className="row article-list">
+        <li className="col col-4">
+          <ArticleItem />
+        </li>
+        <li className="col col-4">
+          <ArticleItem />
+        </li>
+        <li className="col col-4">
+          <ArticleItem />
+        </li>
+      </ul>
+    </section>
   );
 };
 
