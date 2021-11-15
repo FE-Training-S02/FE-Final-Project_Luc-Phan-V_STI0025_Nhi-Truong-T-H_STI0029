@@ -1,0 +1,14 @@
+.section-articles-list {
+  text-align: center;
+  .articles-list-title {
+    @include pxRem(margin-bottom, 10);
+    text-align: left;
+    font-weight: bold;
+  }
+  .btn-load-more {
+    @include pxRem(padding, 8);
+    border-radius: 5px;
+    background: map-get($color, info);
+    color: map-get($color, white);
+  }
+}
