@@ -7,10 +7,11 @@ interface InputProps {
   name?: string;
   value?: string;
   errors?: any;
-  validate?: any
+  label?: string;
+  register?: any
 }
 
-const Input = ({ type, className, placeholder, name, value, errors, validate }: InputProps) => {
+const Input = ({ type, className, placeholder, name, value, errors, label, register }: InputProps) => {
   return (
     <div className="form-group">
       <div className="input-group">
@@ -20,8 +21,8 @@ const Input = ({ type, className, placeholder, name, value, errors, validate }: 
           placeholder={placeholder}
           name={name}
           value={value}
-          {...validate} />
-        <label className="form-label">{placeholder}</label>
+          {...register} />
+        <label className="form-label">{label}</label>
         {errors && <span className="msg-error">{errors.message}</span>}
       </div>
     </div>
