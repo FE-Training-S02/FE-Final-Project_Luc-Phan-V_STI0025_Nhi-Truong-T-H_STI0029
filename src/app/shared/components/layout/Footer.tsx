@@ -30,9 +30,7 @@ export function Footer() {
       <div className="container">
         <div className="row">
           <div className="col col-8">
-            <p className="copyright-text">Copyright &copy; 2021 All Rights Reserved by 
-              <a href="#"> ST Blog</a>.
-            </p>
+            <p className="copyright-text">Copyright &copy; 2021 All Rights Reserved by ST Blog.</p>
           </div>
           <div className="col col-4">
             <ul className="social-icons">
