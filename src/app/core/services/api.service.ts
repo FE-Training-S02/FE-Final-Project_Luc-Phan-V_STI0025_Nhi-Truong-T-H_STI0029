@@ -10,14 +10,14 @@ export class ApiService {
   authStorage: AuthStorageService; 
   constructor() {
     this.authHelper = new AuthHelper();
-    const token = this.authStorage.getToken();
+    //const token = this.authStorage.getToken();
     // Init axiosInstance
     this.axiosInstance = axios.create({
       baseURL: environment.apiBaseUrl,
       // Common header
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        //'Authorization': `Bearer ${token}`,
         ...this.authHelper.defaultHeader()
       }
     });
