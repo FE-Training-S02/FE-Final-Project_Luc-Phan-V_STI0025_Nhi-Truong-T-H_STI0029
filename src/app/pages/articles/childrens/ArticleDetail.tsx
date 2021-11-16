@@ -27,7 +27,7 @@ const ArticleDetail = () => {
             <i className="far fa-bookmark"></i>
           </Link>
         </div>
-        <h1 className="article-title">How Minimalism Helps Me Stay Calm</h1>
+        <h2 className="article-title">How Minimalism Helps Me Stay Calm</h2>
         <div className="article-detail-header-separator"></div>
       </header>
       <section className="article-detail-content">
