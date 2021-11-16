@@ -8,14 +8,14 @@
   color: map-get($color, grey-b);
   hr {
     border-top-color: map-get($color, grey-c);
-    opacity: 0.5
+    opacity: 0.5;
   }
   .footer-title {
     @include pxRem(margin-top, 5);
     @include pxRem(letter-spacing, 2);
     font-size: map-get($font-size, normal);
     color: map-get($color, white);
-    text-transform:uppercase;
+    text-transform: uppercase;
   }
   .footer-links {
     padding-left: 0;
