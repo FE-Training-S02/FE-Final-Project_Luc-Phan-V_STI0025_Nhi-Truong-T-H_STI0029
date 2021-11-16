@@ -1,0 +1,85 @@
+.section-footer
+{
+  @include pxRem(padding, 45 0 20);
+  @include pxRem(margin-top, 10);
+  @include pxRem(line-height, 24);
+  background-color: map-get($color, grey-e);
+  font-size: map-get($font-size, normal);
+  color: map-get($color, grey-b);
+  hr {
+    border-top-color: map-get($color, grey-c);
+    opacity: 0.5
+  }
+  .footer-title {
+    @include pxRem(margin-top, 5);
+    @include pxRem(letter-spacing, 2);
+    font-size: map-get($font-size, normal);
+    color: map-get($color, white);
+    text-transform:uppercase;
+  }
+  .footer-links {
+    padding-left: 0;
+    list-style: none;
+    li {
+      display: block;
+      a {
+        color: map-get($color, grey-b);
+        &:hover {
+          color: map-get($color, info);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+  .social-icons {
+    padding-left: 0;
+    margin-bottom: 0;
+    text-align: right;
+    list-style: none;
+    li {
+      @include pxRem(margin-bottom, 4);
+      display: inline-block;
+      a {
+        @include pxRem(width, 44);
+        @include pxRem(height, 44);
+        @include pxRem(margin-right, 8);
+        @include pxRem(line-height, 44);
+        display: inline-block;
+        border-radius: 100%;
+        background-color: map-get($color, grey-b);
+        font-size: map-get($font-size, normal);
+        color: map-get($color, white);
+        text-align: center;
+        -webkit-transition: all .2s linear;
+        -o-transition: all .2s linear;
+        transition: all .2s linear;
+        &:hover {
+          color: map-get($color, white);
+        }
+        &.facebook {
+          &:hover {
+            background-color: map-get($color, fb);
+          }  
+        }
+        &.twitter {
+          &:hover {
+            background-color: map-get($color, twitter);
+          }  
+        }
+        &.linkedin {
+          &:hover {
+            background-color: map-get($color, linkedin);
+          }  
+        }
+        &.dribbble {
+          &:hover {
+            background-color: map-get($color, dribbble);
+          }  
+        }
+      }
+    }
+  }
+  .copyright-text {
+    margin: 0;
+  }
+}
