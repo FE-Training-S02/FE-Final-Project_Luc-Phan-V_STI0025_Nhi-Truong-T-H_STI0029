@@ -19,4 +19,7 @@ export class AuthService extends AuthHelper {
   signOut() {
     this.removeToken();
   }
+  hadleLogin = (data) => {
+    return
+  }
 }
