@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect}from 'react';
 import { Outlet } from 'react-router-dom';
 import { Header } from '@app/shared/components/layout';
 import { Footer } from '@app/shared/components/layout';
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
+import { loadUser } from '@app/auth/auth.middleware';
 
 const Page = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());
+  }, [dispatch]);
   return (
     <>
     <Header />
