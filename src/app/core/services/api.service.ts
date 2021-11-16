@@ -2,22 +2,21 @@ import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse } f
 import { environment } from '@config/environment';
 import AuthHelper from '../helpers/authHelper';
 import { AuthStorageService } from '@app/core/services/authStorage.service';
-
 export class ApiService {
 
   axiosInstance: AxiosInstance;
   authHelper: AuthHelper;
-  authStorage: AuthStorageService; 
+  authStorage: AuthStorageService;
   constructor() {
     this.authHelper = new AuthHelper();
-    const token = this.authStorage.getToken();
+    // const token = this.authStorage.getToken();
     // Init axiosInstance
     this.axiosInstance = axios.create({
       baseURL: environment.apiBaseUrl,
       // Common header
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
+        // 'Authorization': `Bearer ${token}`,
         ...this.authHelper.defaultHeader()
       }
     });
@@ -68,7 +67,7 @@ export class ApiService {
 
   multipeGets(apiRequests: any) {
     const apiReqs = apiRequests.map((v: any) =>
-    this.axiosInstance.get(v),
+      this.axiosInstance.get(v),
     );
     return new Promise((resolve, reject) => {
       axios.all(apiReqs)
