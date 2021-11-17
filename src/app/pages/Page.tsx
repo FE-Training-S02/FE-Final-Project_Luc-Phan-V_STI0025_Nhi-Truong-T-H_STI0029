@@ -7,9 +7,15 @@ import { loadUser } from '@app/auth/auth.middleware';
 
 const Page = () => {
   const dispatch = useDispatch();
+  const user = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
   useEffect(() => {
-    dispatch(loadUser());
-  }, [dispatch]);
+    if (user) {
+      return;
+    }
+    else {
+      dispatch(loadUser());
+    }
+  }, []);
   return (
     <>
     <Header />
