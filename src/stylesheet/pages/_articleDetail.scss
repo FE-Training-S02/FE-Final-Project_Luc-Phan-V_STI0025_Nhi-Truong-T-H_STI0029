@@ -1,6 +1,6 @@
 .page-container {
   @include pxRem(padding, 30 0);
-  .page-detail-header {
+  .article-header {
     @include pxRem(padding, 20 0 40);
     .article-title {
       position: relative;
@@ -9,7 +9,7 @@
       margin: 0;
       font-size: 40px;
       font-weight: 600;
-      color: #2e2e34;
+      color: map-get($map: $color, $key: grey-e);
       text-align: center;
       letter-spacing: 0.2px;
       line-height: 1.35;
@@ -20,7 +20,7 @@
         @include pxRem(bottom, -20);
         content: "";
         position: absolute;
-        background-color: #2e2e34;
+        background-color: map-get($map: $color, $key: grey-e);
       }
     }
     .article-author {
@@ -30,17 +30,17 @@
       .text-writen-by {
         @include pxRem(margin-right, 10);
         font-size: 12px;
-        color: #7c7e80;
+        color: map-get($map: $color, $key: grey-b);
         letter-spacing: 0.2px;
       }
       .article-author-name {
         @include pxRem(margin-right, 30);
         display: flex;
         align-items: center;
-        color: #d2ae7f;
+        color: map-get($map: $color, $key: orange-b);
       }
     }
-    .article-action-list {
+    .article-actions {
       @include pxRem(padding-top, 15);
       display: flex;
       flex-direction: row;
@@ -48,7 +48,6 @@
       align-items: center;
       .article-action-item {
         @include pxRem(margin, 0 10);
-        color: #8f8f9c;
         .btn-heart,
         .btn-comment {
           @include pxRem(width, 70);
@@ -66,14 +65,14 @@
       }
     }
   }
-  .page-content-detail {
-    img {
+  .article-body {
+    .article-cover-image {
       @include pxRem(max-height, 500);
       width: 100%;
       height: 100%;
       border-radius: 16px;
     }
-    .content-detail {
+    .article-content {
       @include pxRem(margin-top, 30);
     }
   }
