@@ -4,6 +4,8 @@ import { Header } from '@app/shared/components/layout';
 import { Footer } from '@app/shared/components/layout';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { loadUser } from '@app/auth/auth.middleware';
+import { LoadingProvider } from '@app/shared/providers/LoadingProvider';
+import { useLoading } from '@app/shared/contexts/loading';
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ const Page = () => {
     }
   }, []);
   return (
+    <LoadingProvider>
     <>
       <Header />
       <div className="page-container">
@@ -26,6 +29,7 @@ const Page = () => {
       </div>
       <Footer />
     </>
+   </LoadingProvider>
   );
 };
 

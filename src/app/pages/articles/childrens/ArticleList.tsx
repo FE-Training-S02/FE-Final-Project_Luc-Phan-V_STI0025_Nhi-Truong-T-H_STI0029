@@ -7,6 +7,7 @@ import { Post } from '@app/shared/models/post';
 import { Post } from '@app/shared/models/postType';
 >>>>>>> 7ad44b7 (update action loadActicles)
 import { useDispatch } from 'react-redux';
+import { useLoading } from '@app/shared/contexts/loading';
 
 const ArticleList =  () => {
   const [articles, setArticles] = useState<Post[]>([]);
@@ -18,6 +19,7 @@ const ArticleList =  () => {
     setArticles([...articles, ...data]);
   }
   useEffect(() => {
+    show(true);
     function getArticlesPublic() {
       disPatch(loadArticles(getArticlesPublicSuccess, page));
     }
