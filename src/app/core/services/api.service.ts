@@ -10,6 +10,7 @@ export class ApiService {
   authStorage: AuthStorageService; 
   constructor() {
     this.authHelper = new AuthHelper();
+    this.authStorage = new AuthStorageService();
     const token = this.authStorage.getToken();
     // Init axiosInstance
     this.axiosInstance = axios.create({
