@@ -19,8 +19,10 @@ const Page = () => {
   return (
     <>
       <Header />
-      <div className="pages-container">
-        <Outlet />
+      <div className="page-container">
+        <div className="container">
+          <Outlet />
+        </div>
       </div>
       <Footer />
     </>

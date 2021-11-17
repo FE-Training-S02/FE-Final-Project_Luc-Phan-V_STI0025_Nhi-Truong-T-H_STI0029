@@ -1,5 +1,4 @@
-.page-container {
-  @include pxRem(padding, 30 0);
+.main-content {
   .article-header {
     @include pxRem(padding, 20 0 40);
     .article-title {
@@ -48,19 +47,12 @@
       align-items: center;
       .article-action-item {
         @include pxRem(margin, 0 10);
-        .btn-heart,
-        .btn-comment {
-          @include pxRem(width, 70);
-          @include pxRem(height, 35);
-          border-radius: 20px;
-          i {
-            @include pxRem(margin-right, 10);
-          }
+        .fa-heart,
+        .fa-comment {
+          @include pxRem(margin, 0 12 0 8);
         }
-        .btn-bookmark {
-          @include pxRem(width, 36);
-          @include pxRem(height, 36);
-          border-radius: 20px;
+        span {
+          @include pxRem(margin-right, 5);
         }
       }
     }

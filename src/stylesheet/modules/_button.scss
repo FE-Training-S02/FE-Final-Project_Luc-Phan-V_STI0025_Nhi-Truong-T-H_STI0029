@@ -10,10 +10,15 @@
     background-color: map-get($map: $color, $key: primary);
   }
   &.btn-outline {
-    @include pxRem(width, 85);
-    @include pxRem(height, 30);
+    @include pxRem(min-width, 85);
+    @include pxRem(min-height, 30);
+    @include pxRem(padding, 8);
     background-color: transparent;
     border: 1px solid #007bff;
     color: #007bff;
+  }
+  &.btn-icon {
+    @include pxRem(padding, 12);
+    border-radius: 20px;
   }
 }
