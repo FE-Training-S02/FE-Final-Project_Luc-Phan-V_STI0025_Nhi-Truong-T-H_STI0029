@@ -2,19 +2,19 @@ import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { signIn } from '../auth.actions';
+//import { signIn } from '../auth.actions';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 
 const Login = () => {
   const dispatch = useDispatch();
-  const onLogin = () => {
-    const account = { username: 'admin', password: 'admin' };
-    dispatch(
-      signIn(account)
-    );
-  };
+  // const onLogin = () => {
+  //   const account = { username: 'admin', password: 'admin' };
+  //   dispatch(
+  //     signIn(account)
+  //   );
+  // };
   const {
     register,
     handleSubmit,
@@ -52,7 +52,7 @@ const Login = () => {
                 }
               })} errors={errors.password} />
             <div className="btn-group">
-              <Button className="btn btn-primary btn-block" type='submit' onClick={onLogin}>Sign in</Button>
+              <Button className="btn btn-primary btn-block" type='submit'>Sign in</Button>
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
             </div>

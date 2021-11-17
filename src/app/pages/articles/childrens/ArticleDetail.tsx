@@ -6,15 +6,20 @@ import { getDataArticleList } from '../article.middleware';
 const ArticleDetail = () => {
   const { id } = useParams();
 
-  const [dataArticleDetail, setDataArticleDetail] = useState('')
+  const [articleDetail, setArticleDetail] = useState([]);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getDataArticleList(
-      id,
-      (res) => {
-        setDataArticleDetail(res);
-      }));
-  }, [])
+    if (id) {
+      dispatch(getDataArticleList(
+        id,
+        (res) => {
+          setArticleDetail(res);
+        },
+        (error) => {
+          console.log("Error:", error);
+        }));
+    } return
+  }, [id])
 
   return (
     <main className="article-detail-wrap">
