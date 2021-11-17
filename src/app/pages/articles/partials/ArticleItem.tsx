@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Post } from '@app/shared/models/postType';
 
-const ArticleItem = () => {
+const ArticleItem = (props) => {
+  const { post } =  props;
   return (
     <div className="article-item">
       <img src="./assets/images/image.png" alt="article image" className="article-img"/>
@@ -16,13 +18,16 @@ const ArticleItem = () => {
         <div className="article-author">
           <img src="./assets/icons/user.png" alt="avatar" className="author-img"/>
           <h4>
-            <span>By <a className="author-name" href="#">Admin</a></span>
+            <span>By <a className="author-name txt-uppercase" href="#">{post.user.firstName} {post.user.lastName}</a></span>
+            {post.tags[0] ? 
+            <>
             <span>&nbsp;-&nbsp;</span>
-            <span className="article-tag">Food</span>
+            <span className="article-tag">{post.tags[0]}</span>
+            </> : <></>}
           </h4>
         </div>
-        <h3 className="article-title">Plating made easy: feast with your eyes</h3>
-        <p className="article-content">Create a blog post subtitle that summarizes your post in a few short, punchy sentences and entices your audience to continue reading....</p>
+        <h3 className="article-title">{post.title}</h3>
+        <p className="article-content">{post.description}</p>
       </div>
       <div className="article-interact">
         <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon"/> 1</span>
