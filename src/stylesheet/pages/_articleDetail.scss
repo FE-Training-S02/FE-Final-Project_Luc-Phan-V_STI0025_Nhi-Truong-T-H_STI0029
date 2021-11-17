@@ -1,11 +1,11 @@
-.article-detail-wrap {
-  @include pxRem(padding, 50 0);
-  .container-header {
-    @include pxRem(padding, 25);
-    border: 0 solid #e4e4e7;
-    border-radius: 40px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+.page-container {
+  @include pxRem(padding, 30);
+  .page-header-detail {
+    @include pxRem(padding, 20 0 40);
     .article-title {
+      position: relative;
+      display: flex;
+      justify-content: center;
       margin: 0;
       font-size: 40px;
       font-weight: 600;
@@ -13,15 +13,20 @@
       text-align: center;
       letter-spacing: 0.2px;
       line-height: 1.35;
+      &::after {
+        @include pxRem(width, 15);
+        @include pxRem(height, 2);
+        @include pxRem(margin, 10 auto 20);
+        @include pxRem(bottom, -20);
+        content: "";
+        position: absolute;
+        background-color: #2e2e34;
+      }
     }
-    .article-detail-header-separator {
-      @include pxRem(width, 15);
-      @include pxRem(height, 2);
-      @include pxRem(margin, 10 auto 20);
-      background-color: #2e2e34;
-    }
-    .article-detail-author {
-      text-align: center;
+    .article-author {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       .text-writen-by {
         @include pxRem(margin-right, 10);
         font-size: 12px;
@@ -30,6 +35,8 @@
       }
       .author {
         @include pxRem(margin-right, 30);
+        display: flex;
+        align-items: center;
         color: #d2ae7f;
       }
       .follow-author {
@@ -40,7 +47,7 @@
         border-radius: 5px;
       }
     }
-    .article-detail-header-list {
+    .article-list {
       @include pxRem(padding-top, 15);
       display: flex;
       flex-direction: row;
@@ -49,24 +56,31 @@
       .article-detail-item {
         @include pxRem(margin, 0 10);
         color: #8f8f9c;
-      }
-      .btn-heart,
-      .btn-comment {
-        @include pxRem(width, 70);
-        @include pxRem(height, 35);
-        border-radius: 20px;
-        i {
-          @include pxRem(margin-right, 10);
+        .btn-heart,
+        .btn-comment {
+          @include pxRem(width, 70);
+          @include pxRem(height, 35);
+          border-radius: 20px;
+          i {
+            @include pxRem(margin-right, 10);
+          }
         }
-      }
-      .btn-bookmark {
-        @include pxRem(width, 36);
-        @include pxRem(height, 36);
-        border-radius: 20px;
+        .btn-bookmark {
+          @include pxRem(width, 36);
+          @include pxRem(height, 36);
+          border-radius: 20px;
+        }
       }
     }
   }
-  .article-detail-content {
-    @include pxRem(margin-top, 70);
+  .page-content-detail {
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+    }
+    .content-detail {
+      @include pxRem(margin-top, 30);
+    }
   }
 }
