@@ -6,12 +6,11 @@ import { Footer } from '@app/shared/components/layout';
 const Page = () => {
   return (
     <>
-    <Header />
-    <div className="pages-container">
-      Page component works!
-      <Outlet />
-    </div>
-    <Footer />
+      <Header />
+      <div className="pages-container">
+        <Outlet />
+      </div>
+      <Footer />
     </>
   );
 };
