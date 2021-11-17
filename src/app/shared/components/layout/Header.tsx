@@ -32,14 +32,14 @@ export function Header() {
                     <i className="fa fa-caret-down icon"></i>
                   </Link>
                   <div className="dropdown-content">
-                    <a href="#">Profile</a>
-                    <a href="#">Change Password</a>
-                    <a href="#">Logout</a>
+                    <Link to="/">Profile</Link>
+                    <Link to="/">Change Password</Link>
+                    <Link to="/">Logout</Link>
                   </div>
                 </li> : 
                 <>
                   <li className="nav-item">
-                      <Link to="/auth//login" className="nav-link">Login</Link>
+                      <Link to="/auth/login" className="nav-link">Login</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/auth/register" className="nav-link">Sign up</Link>
