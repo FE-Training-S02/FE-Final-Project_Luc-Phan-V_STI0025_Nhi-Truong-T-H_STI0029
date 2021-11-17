@@ -1,7 +1,21 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { getDataArticleList } from '../article.middleware';
 
 const ArticleDetail = () => {
+  const { id } = useParams();
+
+  const [dataArticleDetail, setDataArticleDetail] = useState('')
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDataArticleList(
+      id,
+      (res) => {
+        setDataArticleDetail(res);
+      }));
+  }, [])
+
   return (
     <main className="article-detail-wrap">
       <header className="article-detail-header">
