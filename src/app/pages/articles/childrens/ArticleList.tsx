@@ -7,7 +7,6 @@ const ArticleList =  () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   useEffect(()=> {loadArticles(setPosts, posts, page)},[])
-  console.log(posts[1])
   return (
     <section className="section-articles-list">
       <h3 className="articles-list-title">Articles List</h3>

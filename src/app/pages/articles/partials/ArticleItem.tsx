@@ -10,15 +10,15 @@ const ArticleItem = (props) => {
       <div className="dropdown">
         <button className="btn-dropdown">...</button>
         <div className="sub-dropdown">
-          <a href="#">Delete</a>
-          <a href="#">Update</a>
+          <Link to="/">Delete</Link>
+          <Link to="/">Update</Link>
         </div>
       </div>
       <div className="article-body">
         <div className="article-author">
           <img src="./assets/icons/user.png" alt="avatar" className="author-img"/>
           <h4>
-            <span>By <a className="author-name txt-uppercase" href="#">{post.user.firstName} {post.user.lastName}</a></span>
+            <span>By <Link className="author-name txt-uppercase" to="/">{post.user.firstName} {post.user.lastName}</Link></span>
             {post.tags[0] ? 
             <>
             <span>&nbsp;-&nbsp;</span>
