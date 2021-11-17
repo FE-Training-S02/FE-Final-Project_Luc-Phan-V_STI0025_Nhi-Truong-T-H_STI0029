@@ -3,32 +3,32 @@ import { Link } from 'react-router-dom';
 
 const ArticleDetail = () => {
   return (
-    <div className="container">
-      <div className="page-container">
-        <div className="page-header-detail">
+    <div className="page-container">
+      <div className="container">
+        <div className="page-detail-header">
           <h2 className="article-title">How Minimalism Helps Me Stay Calm</h2>
           <div className="article-author">
             <span className="text-writen-by">WRITEN BY</span>
-            <Link to="/" className="author">
+            <Link to="/" className="article-author-name">
               <i className="fas fa-pen-fancy"></i>
               <h3>Alexey Trofimov </h3>
             </Link>
-            <button className="follow-author">+ Follow</button>
+            <button className="btn btn-outline">+ Follow</button>
           </div>
-          <ul className="article-list">
-            <li className="article-detail-item">
+          <ul className="article-action-list">
+            <li className="article-action-item">
               <button className="btn-comment">
                 <i className="far fa-comment"></i>
                 <span>2 </span>
               </button>
             </li>
-            <li className="article-detail-item">
+            <li className="article-action-item">
               <button className="btn-heart">
                 <i className="far fa-heart"></i>
                 <span>2 </span>
               </button>
             </li>
-            <li className="article-detail-item">
+            <li className="article-action-item">
               <button className="btn-bookmark">
                 <i className="far fa-bookmark"></i>
               </button>
