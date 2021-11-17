@@ -24,11 +24,7 @@ const ArticleList =  () => {
     <section className="section-articles-list">
       <h3 className="articles-list-title">Articles List</h3>
       <ul className="row article-list">
-<<<<<<< HEAD
         {articles.map((item: Post, index: any) =>
-=======
-        {posts.map((item: Post, index: any) =>
->>>>>>> 335ee6e (Call api public articles)
             <li className="col col-4" key={item.id}>
               <ArticleItem post={item} />
             </li>
