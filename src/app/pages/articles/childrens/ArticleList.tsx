@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ArticleItem from '../partials/ArticleItem';
 import { loadArticles } from '../article.middleware';
+<<<<<<< HEAD
 import { Post } from '@app/shared/models/post';
+=======
+import { Post } from '@app/shared/models/postType';
+>>>>>>> 7ad44b7 (update action loadActicles)
 import { useDispatch } from 'react-redux';
 
 const ArticleList =  () => {
