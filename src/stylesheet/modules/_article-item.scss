@@ -1,7 +1,6 @@
 .article-item {
   @include pxRem(margin-bottom, 10);
   position: relative;
-  display: inline-block;
   border-radius: 5px;
   box-shadow: 0 2px 8px map-get($color, grey-c);
   .article-img {
@@ -37,9 +36,10 @@
       border-radius: 5px;
       background-color: map-get($color, grey-a);
       z-index: 1;
-      a {
+      .sub-dropdown-item {
         @include pxRem(padding, 4);
         display: block;
+        width: 100%;
         color: map-get($color, black);
         text-decoration: none;
         &:hover {

@@ -9,10 +9,10 @@ const ArticleItem = (props) => {
       <img src={cover} alt="article image" className="article-img"/>
       <div className="dropdown">
         <button className="btn-dropdown">...</button>
-        <div className="sub-dropdown">
-          <Link to="/">Delete</Link>
-          <Link to="/">Update</Link>
-        </div>
+        <ul className="sub-dropdown">
+          <button className="sub-dropdown-item">Delete</button>
+          <button className="sub-dropdown-item">Update</button>
+        </ul>
       </div>
       <div className="article-body">
         <div className="article-author">
