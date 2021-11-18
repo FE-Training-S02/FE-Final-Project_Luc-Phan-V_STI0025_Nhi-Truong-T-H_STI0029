@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Post } from '@app/shared/models/postType';
+import { Post } from '@app/shared/models/post';
 
 const ArticleItem = (props) => {
-  const { post } =  props;
+  const { cover, user, tags, title, description} =  props.post;
   return (
     <div className="article-item">
-      <img src="./assets/images/image.png" alt="article image" className="article-img"/>
+      <img src={cover} alt="article image" className="article-img"/>
       <div className="dropdown">
         <button className="btn-dropdown">...</button>
         <div className="sub-dropdown">
@@ -18,16 +18,16 @@ const ArticleItem = (props) => {
         <div className="article-author">
           <img src="./assets/icons/user.png" alt="avatar" className="author-img"/>
           <h4>
-            <span>By <Link className="author-name txt-uppercase" to="/">{post.user.firstName} {post.user.lastName}</Link></span>
-            {post.tags[0] ? 
+            <span>By <Link className="author-name txt-uppercase" to="/">{user.firstName} {user.lastName}</Link></span>
+            {tags[0] ? 
             <>
             <span>&nbsp;-&nbsp;</span>
-            <span className="article-tag">{post.tags[0]}</span>
+            <span className="article-tag">{tags[0]}</span>
             </> : <></>}
           </h4>
         </div>
-        <h3 className="article-title">{post.title}</h3>
-        <p className="article-content">{post.description}</p>
+        <h3 className="article-title">{title}</h3>
+        <p className="article-content">{description}</p>
       </div>
       <div className="article-interact">
         <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon"/> 1</span>
