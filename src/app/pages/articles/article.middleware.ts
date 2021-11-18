@@ -1,6 +1,4 @@
-import JwtHelper from '@app/core/helpers/jwtHelper';
 import { ApiService } from '@app/core/services/api.service';
-import ACTION_TYPES from '@app/core/constants/types';
 
 const apiService = new ApiService();
 export const getArticles = (resolve, reject, page) => {
@@ -10,7 +8,7 @@ export const getArticles = (resolve, reject, page) => {
       resolve(res);
     })
     .catch(error => {
-      reject(error)
-    })
-  }
-}
+      reject(error);
+    });
+  };
+};

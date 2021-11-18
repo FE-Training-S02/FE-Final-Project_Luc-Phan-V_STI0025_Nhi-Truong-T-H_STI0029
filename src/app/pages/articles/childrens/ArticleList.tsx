@@ -15,19 +15,18 @@ const ArticleList =  () => {
     const { data } = res;
     setArticles([...articles, ...data]);
     setLoading(false);
-  }
-  const handleError = (error) => {
-    console.log(error);
+  };
+  const getArticlesPublicError = (error) => {
     setLoading(false);
-  }
+  };
   function getArticlesPublic(page) {
-    disPatch(getArticles(getArticlesPublicSuccess, handleError, page));
-  }
+    disPatch(getArticles(getArticlesPublicSuccess, getArticlesPublicError, page));
+  };
   useEffect(() => {
     setLoading(true);
     getArticlesPublic(page);
     }
-  ,[])
+  ,[]);
   return (
     <section className="section-articles-list">
       <h3 className="articles-list-title">Articles List</h3>
