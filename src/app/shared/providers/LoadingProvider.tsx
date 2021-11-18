@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { LoadingContext } from '../contexts/loading';
+import { LoadingContext } from '../contexts/loading.context';
 
 function Loading() {
   return (
@@ -9,14 +8,14 @@ function Loading() {
     </div>
   )
 }
-export function LoadingProvider(props) {
+export function LoadingProvider(props: any) {
   const [loading, setLoading] = useState(false);
   
   return (
     <LoadingContext.Provider
       value={{
         loading: loading,
-        show: (isLoading) => setLoading(isLoading),
+        setLoading,
       }}>
       <>
         {loading && <Loading />}
@@ -25,7 +24,3 @@ export function LoadingProvider(props) {
     </LoadingContext.Provider>
   );
 }
-
-LoadingProvider.propTypes = {
-  children: PropTypes.node
-};

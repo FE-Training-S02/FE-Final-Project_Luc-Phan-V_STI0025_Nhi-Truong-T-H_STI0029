@@ -1,11 +1,4 @@
-export interface User {
-  id: number;
-  email: string;
-  firstName: string;
-  lastName: string;
-  phone: number;
-}
-
+import { User } from "./user";
 export interface Post {
   id: number;
   title: string;
@@ -15,7 +8,7 @@ export interface Post {
   userId: number;
   likes: number;
   comments: number;
-  cover: number;
+  cover: string;
   recommend: boolean;
   user: User;
 }
