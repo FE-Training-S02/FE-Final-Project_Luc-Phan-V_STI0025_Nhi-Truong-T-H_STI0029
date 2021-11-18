@@ -1,64 +1,83 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Select from '@app/shared/components/partials/Select';
+import Input from '@app/shared/components/partials/Input';
+import Button from '@app/shared/components/partials/Button';
+import { requireValidator } from '@app/shared/validators/form.validator';
 
 const CreateArticle = () => {
-  return (
-    <div>
-      <form>
-        <div className="form-group row">
-          <label className="col-2 col-form-label">Tile</label>
-          <div className="col-10">
-            <input type="text" className="form-control-plaintext" />
-          </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-2 col-form-label">Description</label>
-          <div className="col-10">
-            <input type="password" className="form-control" placeholder="Description" />
-          </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-2 col-form-label">Tags</label>
-          <div className="col-10">
-            <input type="text" className="form-control" placeholder="Tags" />
-          </div>
-        </div>
-        <div className="form-group row">
-          <label className="col-2 col-form-label">Status</label>
-          <select className="col-10">
-            <option selected>Public</option>
-            <option>Private</option>
-          </select>
-        </div>
-        <div className="form-group row">
-          <label className="col-2 col-form-label" >Select image</label>
-          <input type="file" className="col-10" />
-        </div>
-        <div className="form-group row">
-          <label className="col-2 col-form-label" >Content</label>
-          <CKEditor
-            editor={ClassicEditor}
-            data="<p>Hello from CKEditor 5!</p>"
-            onReady={editor => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm();
+  const statusOptions = [
+    { value: 'public', name: 'Public' },
+    { value: 'private', name: 'Private' }
+  ]
+  const onSubmit = (data: any) => {
 
-              console.log('Editor is ready to use!', editor);
-            }}
-            onChange={(event, editor) => {
-              const data = editor.getData();
-              console.log({ event, editor, data });
-            }}
-            onBlur={(event, editor) => {
-              console.log('Blur.', editor);
-            }}
-            onFocus={(event, editor) => {
-              console.log('Focus.', editor);
-            }}
-          />
-        </div>
-        <button type="submit" className="btn btn-primary">Create article</button>
-      </form>
-    </div>
+  }
+  return (
+    <>
+      <h2 className="page-title">Create article</h2>
+      <div className="form-wrapper">
+        <form onSubmit={handleSubmit(onsubmit)}>
+          <div className="row">
+            <label className="col-2 col-form-label">Tile</label>
+            <div className="col-10">
+              <Input type="text" register={register('title', requireValidator())} errors={errors.title} />
+            </div>
+          </div>
+          <div className="row">
+            <label className="col-2 col-form-label">Description</label>
+            <div className="col-10">
+              <Input type="text" register={register('description', requireValidator())} errors={errors.description} />
+            </div>
+          </div>
+          <div className="row">
+            <label className="col-2 col-form-label">Tags</label>
+            <div className="col-10">
+              <Input type="text" register={register('tags', requireValidator())} errors={errors.tags} />
+            </div>
+          </div>
+          <div className="row">
+            <label className="col-2 col-form-label">Status</label>
+            <div className="col-10">
+              <Select listOptions={statusOptions} defaultValue={statusOptions[0]} register={register('status', requireValidator())} />
+            </div>
+          </div>
+          <div className="row">
+            <label className="col-2 col-form-label" >Upload image</label>
+            <Input type="file" register={register('cover', requireValidator())} errors={errors.cover} />
+          </div>
+          <div className="row row-ck">
+            <label className="col-2 col-form-label form-label-content">Content</label>
+            <CKEditor
+              editor={ClassicEditor}
+              data=""
+              onReady={editor => {
+                console.log('Editor is ready to use!', editor);
+              }}
+              onChange={(event, editor) => {
+                const data = editor.getData();
+                console.log({ event, editor, data });
+              }}
+              onBlur={(event, editor) => {
+                console.log('Blur.', editor);
+              }}
+              onFocus={(event, editor) => {
+                console.log('Focus.', editor);
+              }}
+            />
+          </div>
+          <Button className="btn btn-primary btn-block" type='submit'>Create article</Button>
+        </form>
+      </div>
+
+    </>
   );
 }
 

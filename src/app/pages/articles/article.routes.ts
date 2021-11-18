@@ -20,7 +20,7 @@ const articleRoutes: PageRoute[] = [
         element: ArticleDetail
       },
       {
-        path: '/create-article',
+        path: '/new',
         element: CreateArticle
       }
     ]
