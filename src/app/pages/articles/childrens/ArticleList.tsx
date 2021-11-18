@@ -16,8 +16,12 @@ const ArticleList =  () => {
     setArticles([...articles, ...data]);
     setLoading(false);
   }
+  const handleError = (error) => {
+    console.log(error);
+    setLoading(false);
+  }
   function getArticlesPublic(page) {
-    disPatch(getArticles(getArticlesPublicSuccess, page));
+    disPatch(getArticles(getArticlesPublicSuccess, handleError, page));
   }
   useEffect(() => {
     setLoading(true);
