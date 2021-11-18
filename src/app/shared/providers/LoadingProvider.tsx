@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import { LoadingContext } from '../contexts/loading';
 
 function Loading() {
-  return <div>Loading...</div>;
+  return (
+    <div className="page-loader">
+      <div className="loader simple-circle"></div>
+    </div>
+  )
 }
-
 export function LoadingProvider(props) {
   const [loading, setLoading] = useState(false);
   

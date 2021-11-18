@@ -1,27 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import ArticleItem from '../partials/ArticleItem';
-import { loadArticles } from '../article.middleware';
-<<<<<<< HEAD
+import { getArticles } from '../article.middleware';
 import { Post } from '@app/shared/models/post';
-=======
-import { Post } from '@app/shared/models/postType';
->>>>>>> 7ad44b7 (update action loadActicles)
 import { useDispatch } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading';
 
 const ArticleList =  () => {
   const [articles, setArticles] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
+  const { show } = useLoading();
   const disPatch = useDispatch();
   
   const getArticlesPublicSuccess = (res) => {
     const { data } = res;
     setArticles([...articles, ...data]);
+    show(false);
   }
   useEffect(() => {
     show(true);
     function getArticlesPublic() {
-      disPatch(loadArticles(getArticlesPublicSuccess, page));
+      disPatch(getArticles(getArticlesPublicSuccess, page));
     }
     getArticlesPublic();
     }
