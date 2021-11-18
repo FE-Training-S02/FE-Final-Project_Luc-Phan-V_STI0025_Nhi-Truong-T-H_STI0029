@@ -7,18 +7,16 @@ export class ApiService {
 
   axiosInstance: AxiosInstance;
   authHelper: AuthHelper;
-  authStorage: AuthStorageService; 
+  authStorage: AuthStorageService;
   constructor() {
     this.authHelper = new AuthHelper();
-    this.authStorage = new AuthStorageService();
-    const token = this.authStorage.getToken();
+    // this.authStorage = new AuthStorageService();
     // Init axiosInstance
     this.axiosInstance = axios.create({
       baseURL: environment.apiBaseUrl,
       // Common header
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
         ...this.authHelper.defaultHeader()
       }
     });
@@ -69,7 +67,7 @@ export class ApiService {
 
   multipeGets(apiRequests: any) {
     const apiReqs = apiRequests.map((v: any) =>
-    this.axiosInstance.get(v),
+      this.axiosInstance.get(v),
     );
     return new Promise((resolve, reject) => {
       axios.all(apiReqs)

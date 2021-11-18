@@ -2,9 +2,9 @@ import { ApiService } from "@app/core/services/api.service";
 
 const http = new ApiService();
 
-export const getDataArticleList = (id, resolve, reject) => {
+export const getArticleDetail = (id, resolve, reject) => {
   return (dispatch) => {
-    http.get([`/auth/article/${id}`])
+    http.get([`/posts/${id}`])
       .then(res => {
         resolve(res);
       }).catch(error => {

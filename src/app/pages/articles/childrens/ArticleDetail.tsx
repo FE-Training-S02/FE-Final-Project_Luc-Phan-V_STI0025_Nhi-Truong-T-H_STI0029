@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { getDataArticleList } from '../article.middleware';
+import { getArticleDetail } from '../article.middleware';
 
 const ArticleDetail = () => {
   const { id } = useParams();
-
-  const [articleDetail, setArticleDetail] = useState([]);
+  const [article, setArticle] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
     if (id) {
-      dispatch(getDataArticleList(
+      dispatch(getArticleDetail(
         id,
         (res) => {
-          setArticleDetail(res);
+          setArticle(res);
         },
         (error) => {
-          console.log("Error:", error);
+          // console.log("Error:", error);
         }));
-    } return
+    }
   }, [id])
 
   return (
