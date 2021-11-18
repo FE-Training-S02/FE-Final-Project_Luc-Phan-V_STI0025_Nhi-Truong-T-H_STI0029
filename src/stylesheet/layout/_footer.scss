@@ -1,5 +1,4 @@
-.section-footer
-{
+.section-footer {
   @include pxRem(padding, 45 0 20);
   @include pxRem(margin-top, 10);
   @include pxRem(line-height, 24);
@@ -32,8 +31,8 @@
     }
   }
   .social-icons {
-    padding-left: 0;
     margin-bottom: 0;
+    padding-left: 0;
     text-align: right;
     list-style: none;
     li {
@@ -50,31 +49,31 @@
         font-size: map-get($font-size, normal);
         color: map-get($color, white);
         text-align: center;
-        -webkit-transition: all .2s linear;
-        -o-transition: all .2s linear;
-        transition: all .2s linear;
+        -webkit-transition: all 0.2s linear;
+        -o-transition: all 0.2s linear;
+        transition: all 0.2s linear;
         &:hover {
           color: map-get($color, white);
         }
         &.facebook {
           &:hover {
             background-color: map-get($color, fb);
-          }  
+          }
         }
         &.twitter {
           &:hover {
             background-color: map-get($color, twitter);
-          }  
+          }
         }
         &.linkedin {
           &:hover {
             background-color: map-get($color, linkedin);
-          }  
+          }
         }
         &.dribbble {
           &:hover {
             background-color: map-get($color, dribbble);
-          }  
+          }
         }
       }
     }
