@@ -17,8 +17,8 @@ const CreateArticle = () => {
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
   ]
-  const onSubmit = (data: any) => {
-
+  const onsubmit = (data: any) => {
+    // console.log(data);
   }
   return (
     <>
