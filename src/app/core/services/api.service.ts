@@ -10,7 +10,6 @@ export class ApiService {
   authStorage: AuthStorageService;
   constructor() {
     this.authHelper = new AuthHelper();
-    // this.authStorage = new AuthStorageService();
     // Init axiosInstance
     this.axiosInstance = axios.create({
       baseURL: environment.apiBaseUrl,

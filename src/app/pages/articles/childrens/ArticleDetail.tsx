@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { useLoading } from '@app/shared/contexts/loading.context';
 import { getArticleDetail } from '../article.middleware';
 
 const ArticleDetail = () => {
   const { id } = useParams();
   const [article, setArticle] = useState(null);
+  const { setLoading } = useLoading();
   const dispatch = useDispatch();
   useEffect(() => {
     if (id) {
@@ -13,10 +15,9 @@ const ArticleDetail = () => {
         id,
         (res) => {
           setArticle(res);
-          console.log(res);
         },
         (error) => {
-          // console.log("Error:", error);
+          setLoading(false);
         }));
     }
   }, [id])
