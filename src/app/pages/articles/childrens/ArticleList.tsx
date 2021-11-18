@@ -4,7 +4,7 @@ import ArticleItem from '../partials/ArticleItem';
 
 const ArticleList = () => {
   return (
-    <section className="container section-articles-list">
+    <section className="section-articles-list">
       <h3 className="articles-list-title">Articles List</h3>
       <ul className="row article-list">
         <li className="col col-4">
