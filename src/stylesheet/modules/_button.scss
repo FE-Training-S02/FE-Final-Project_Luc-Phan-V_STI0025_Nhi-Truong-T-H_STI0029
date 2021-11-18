@@ -14,8 +14,8 @@
     @include pxRem(min-height, 30);
     @include pxRem(padding, 8);
     background-color: transparent;
-    border: 1px solid #007bff;
-    color: #007bff;
+    border: 1px solid map-get($map: $color, $key: blue-a);
+    color: map-get($map: $color, $key: blue-a);
   }
   &.btn-icon {
     @include pxRem(padding, 12);
