@@ -1,3 +1,6 @@
+.page-container {
+  @include pxRem(padding, 30 0);
+}
 .container {
   max-width: 1172px;
   padding-left: 10px;
@@ -16,10 +19,10 @@
 }
 @for $i from 1 through 12 {
   .col-#{$i} {
-    width: calc(100%*#{$i}/12);
+    width: calc(100% *#{$i}/ 12);
   }
 }
-@media (max-width: 375px){
+@media (max-width: 375px) {
   .container {
     max-width: 327px;
     padding-left: 4px;
@@ -36,16 +39,16 @@
   }
   .col {
     padding-left: 4px;
-    padding-right: 4px;    
+    padding-right: 4px;
   }
   @for $i from 1 through 12 {
     .col-sm-#{$i} {
-      width: calc(100%*#{$i}/12);
+      width: calc(100% *#{$i}/ 12);
     }
   }
 }
 
-@media (min-width: 576px) and (max-width: 768px){
+@media (min-width: 576px) and (max-width: 768px) {
   .container {
     max-width: 630px;
     padding-left: 8px;
@@ -62,11 +65,11 @@
   }
   .col {
     padding-left: 8px;
-    padding-right: 8px;    
+    padding-right: 8px;
   }
   @for $i from 1 through 12 {
     .col-md-#{$i} {
-      width: calc(100%*#{$i}/12);
+      width: calc(100% *#{$i}/ 12);
     }
   }
 }

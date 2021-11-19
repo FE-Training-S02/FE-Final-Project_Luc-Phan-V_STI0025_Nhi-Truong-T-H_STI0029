@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.8.2",
+    "dompurify": "^2.3.3",
     "element-react": "^1.4.34",
     "element-theme-default": "^1.4.13",
     "history": "5.0.0",

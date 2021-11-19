@@ -33,7 +33,6 @@ const Register = () => {
       displayName: data.displayName
     }
     axios.post(`${apiBaseUrl}/users/register`, register).then(function (response) {
-      console.log(response);
       setMessSuccess(response.data);
     })
       .catch(function (error) {
@@ -77,7 +76,7 @@ const Register = () => {
                 <Input type="date" placeholder="Birthday" label="Birthday" register={register('dob', birthDayValidator())} errors={errors.dob} />
               </div>
             </div>
-            <Input type="text" placeholder="Phone" label="Phone" register={register("phone", phoneValidator())} errors={errors.phone} />
+            <Input type="text" placeholder="Phone" label="Phone" register={register('phone', phoneValidator())} errors={errors.phone} />
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit'>Sign up</Button>
               {messSuccess && <span className="btn btn-block alert alert-success mt-4">{messSuccess}</span>}

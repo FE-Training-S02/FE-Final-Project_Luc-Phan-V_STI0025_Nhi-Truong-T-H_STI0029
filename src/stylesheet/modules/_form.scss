@@ -64,6 +64,7 @@
     @include pxRem(margin-bottom, 20);
     .btn-block {
       @include pxRem(padding, 10);
+      width: 100%;
       font-size: map-get($map: $font-size, $key: normal);
     }
     p {
