@@ -3,6 +3,7 @@ import ArticleList from './childrens/ArticleList';
 import Articles from './Articles';
 
 import { PageRoute } from '@core/modules/custom-router-dom/router.interface';
+import CreateArticle from './childrens/CreateArticle';
 
 const articleRoutes: PageRoute[] = [
   {
@@ -17,6 +18,10 @@ const articleRoutes: PageRoute[] = [
       {
         path: '/:id',
         element: ArticleDetail
+      },
+      {
+        path: '/new',
+        element: CreateArticle
       }
     ]
   }

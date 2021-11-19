@@ -1,6 +1,6 @@
 import React from 'react';
 interface InputProps {
-  type: 'text' | 'select' | 'textarea' | 'submit' | 'email' | 'number' | 'password' | 'date';
+  type: 'text' | 'select' | 'textarea' | 'submit' | 'email' | 'number' | 'password' | 'date' | 'file';
   className?: string;
   placeholder?: string;
   onChange?: () => void;
