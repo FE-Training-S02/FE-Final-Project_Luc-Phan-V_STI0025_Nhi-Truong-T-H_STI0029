@@ -6,7 +6,7 @@ import { getArticleDetail } from '../article.middleware';
 
 const ArticleDetail = () => {
   const { id } = useParams();
-  const [article, setArticle] = useState(null);
+  const [article, setArticle] = useState<any>({});
   const { setLoading } = useLoading();
   const dispatch = useDispatch();
   useEffect(() => {
@@ -21,16 +21,16 @@ const ArticleDetail = () => {
         }));
     }
   }, [id])
-
+  const { title, user, comments, likes, cover, content } = article;
   return (
     <main className="main-content">
       <div className="article-header">
-        <h2 className="article-title">{article?.title}</h2>
+        <h2 className="article-title">{title}</h2>
         <div className="article-author">
           <span className="text-writen-by">WRITEN BY</span>
           <Link to="/" className="article-author-name">
             <i className="fas fa-pen-fancy"></i>
-            <h3>{article?.user?.firstName + " " + article?.user?.lastName}</h3>
+            <h3>{user?.firstName + " " + user?.lastName}</h3>
           </Link>
           <button className="btn btn-outline">+ Follow</button>
         </div>
@@ -38,13 +38,13 @@ const ArticleDetail = () => {
           <li className="article-action-item">
             <button className="btn btn-icon">
               <i className="far fa-comment"></i>
-              <span>{article?.comments}</span>
+              <span>{comments}</span>
             </button>
           </li>
           <li className="article-action-item">
             <button className="btn btn-icon">
               <i className="far fa-heart"></i>
-              <span>{article?.likes}</span>
+              <span>{likes}</span>
             </button>
           </li>
           <li className="article-action-item">
@@ -55,14 +55,13 @@ const ArticleDetail = () => {
         </ul>
       </div>
       <div className="article-body">
-        <img src={article?.cover} className="article-cover-image" alt="image-article" />
+        <img src={cover} className="article-cover-image" alt="image-article" />
         <div className="article-content">
-          <p>{article?.content}
+          <p>{content}
           </p>
         </div>
       </div>
     </main>
   );
 };
-
 export default ArticleDetail;
