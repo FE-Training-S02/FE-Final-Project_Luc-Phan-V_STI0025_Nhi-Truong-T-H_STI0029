@@ -71,6 +71,7 @@ const Register = () => {
             <div className="row">
               <div className="col col-6">
                 <Select label="Gender" listOptions={genderOptions} defaultValue={genderOptions[0]} register={register('gender')} />
+
               </div>
               <div className="col col-6">
                 <Input type="date" placeholder="Birthday" label="Birthday" register={register('dob', birthDayValidator())} errors={errors.dob} />

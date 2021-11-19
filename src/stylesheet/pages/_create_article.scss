@@ -1,0 +1,21 @@
+.page-container {
+  .container {
+    .page-title {
+      @include pxRem(margin-bottom, 20);
+      font-size: 30px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .row-ck {
+      @include pxRem(padding-bottom, 50);
+      display: flex;
+      flex-wrap: nowrap;
+      .form-label-content {
+        @include pxRem(margin-right, 34);
+      }
+      .ck-editor {
+        width: 100%;
+      }
+    }
+  }
+}
