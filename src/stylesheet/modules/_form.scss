@@ -64,26 +64,11 @@
     @include pxRem(margin-bottom, 20);
     .btn-block {
       @include pxRem(padding, 10);
+      width: 100%;
       font-size: map-get($map: $font-size, $key: normal);
     }
     p {
       text-align: center;
-    }
-    .error-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 5px;
-      color: #eb5757;
-      background-color: #ffdbdc;
-    }
-    .success-box {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 5px;
-      color: #fff;
-      background-color: #4cf0a4;
     }
   }
 }

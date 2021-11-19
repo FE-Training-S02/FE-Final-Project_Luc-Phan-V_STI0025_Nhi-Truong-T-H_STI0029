@@ -1,0 +1,18 @@
+.alert {
+  &.alert-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: #eb5757;
+    background-color: #ffdbdc;
+  }
+  &.alert-success {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #4cf0a4;
+  }
+}

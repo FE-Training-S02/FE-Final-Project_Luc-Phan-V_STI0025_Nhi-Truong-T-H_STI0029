@@ -1,5 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { signIn } from '../auth.actions';
@@ -8,27 +9,28 @@ import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import { emailValidator, passwordValidator } from '@app/shared/validators/form.validator';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
-import axios from 'axios';
 
 const apiBaseUrl = environment.apiBaseUrl;
 const Login = () => {
   const dispatch = useDispatch();
-  const onLogin = () => {
-    const account = { username: 'admin', password: 'admin' };
-    dispatch(
-      signIn(account)
-    );
-  };
+  // const onLogin = () => {
+  //   const account = { username: 'admin', password: 'admin' };
+  //   dispatch(
+  //     signIn(account)
+  //   );
+  // };
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
   const [errMessage, setErrMessage] = useState('');
+  const [messSuccess, setMessSuccess] = useState('');
   const navigate = useNavigate()
   const onSubmit = (data: any) => {
-    console.log(data);
+
     axios.post(`${apiBaseUrl}/users/login`, data).then(function (response) {
+      setMessSuccess(response.data);
       navigate('/home');
     })
       .catch(function (error) {
@@ -48,13 +50,14 @@ const Login = () => {
             <Input type="password" placeholder="Password" label="Password" name="password"
               register={register("password", passwordValidator())} errors={errors.password} />
             <div className="btn-group">
-              <Button className="btn btn-primary btn-block" type='submit' onClick={onLogin}>Sign in</Button>
-              {errMessage && <span className="btn-block error-box mt-4">{errMessage}</span>}
+              <Button className="btn btn-primary btn-block" type="submit">Sign in</Button>
+              {messSuccess && <span className="btn btn-block alert alert-success mt-4">{messSuccess}</span>}
+              {errMessage && <span className="btn btn-block alert alert-error mt-4">{errMessage}</span>}
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
-            </div>
-          </form>
-        </div>
+            </div >
+          </form >
+        </div >
         <div className="tips">
           <Link to="/" className="text-link">Forgot Password?</Link>
           <p>
@@ -62,7 +65,7 @@ const Login = () => {
             <Link to="/auth/register" className="text-link"> Sign up</Link>
           </p>
         </div>
-      </div>
+      </div >
     </>
   );
 };

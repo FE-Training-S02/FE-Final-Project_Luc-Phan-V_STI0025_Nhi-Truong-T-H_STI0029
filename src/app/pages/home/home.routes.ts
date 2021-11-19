@@ -5,6 +5,10 @@ const homeRoutes: PageRoute[] = [
   {
     path: '/',
     element: Home
+  },
+  {
+    path: '/home',
+    element: Home
   }
 ];
 
