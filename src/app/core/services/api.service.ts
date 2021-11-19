@@ -97,11 +97,11 @@ export class ApiService {
 
   private async _handleError(error: AxiosError) {
     // Detect refresh Token
-    if (error.isAxiosError && error.response?.status === 401) {
-      const originalRequest = error.config;
-      const req = await this.authHelper.handleRefreshToken(originalRequest);
-      return this.axiosInstance(req);
-    }
+    // if (error.isAxiosError && error.response?.status === 401) {
+    //   const originalRequest = error.config;
+    //   const req = await this.authHelper.handleRefreshToken(originalRequest);
+    //   return this.axiosInstance(req);
+    // }
 
     // Make error model before promise
     if (error.isAxiosError && error.response) {
