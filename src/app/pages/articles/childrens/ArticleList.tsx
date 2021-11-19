@@ -31,8 +31,8 @@ const ArticleList =  () => {
   ,[]);
   const loadMore = () => {
     setLoading(true);
-    getArticlesPublic(page+1);
-    setPage(page+1);
+    getArticlesPublic(page + 1);
+    setPage(page + 1);
   };
   return (
     <section className="section-articles-list">
@@ -44,7 +44,7 @@ const ArticleList =  () => {
             </li>
           )}
       </ul>
-      {isLoadMore ? <button className="btn-load-more" onClick={() => {loadMore()}}>Load more</button> : ''}
+      {isLoadMore && <button className="btn-load-more" onClick={loadMore}>Load more</button>}
     </section>
   );
 };
