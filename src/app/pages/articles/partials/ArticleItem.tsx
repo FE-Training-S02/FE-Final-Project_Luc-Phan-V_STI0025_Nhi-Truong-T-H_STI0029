@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Post } from '@app/shared/models/post';
 
 const ArticleItem = (props) => {
-  const { cover, user, tags, title, description } = props.post;
+  const { id, cover, user, tags, title, description } = props.post;
   return (
     <div className="article-item">
       <img src={cover} alt="article image" className="article-img" />
@@ -32,7 +32,7 @@ const ArticleItem = (props) => {
       <div className="article-interact">
         <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon" /> 1</span>
         <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon" /> 1</span>
-        <Link to="" className="article-interact-item btn-read-more">Read more...</Link>
+        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">Read more...</Link>
       </div>
     </div>
   );

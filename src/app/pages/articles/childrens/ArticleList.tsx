@@ -8,12 +8,14 @@ import { useLoading } from '@app/shared/contexts/loading.context';
 const ArticleList =  () => {
   const [articles, setArticles] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
+  const [isLoadMore, setIsLoadMore] = useState(false);
   const { setLoading } = useLoading();
   const disPatch = useDispatch();
   
   const getArticlesPublicSuccess = (res) => {
-    const { data } = res;
+    const { data, loadMore } = res;
     setArticles([...articles, ...data]);
+    setIsLoadMore(loadMore);
     setLoading(false);
   };
   const getArticlesPublicError = (error) => {
@@ -27,6 +29,11 @@ const ArticleList =  () => {
     getArticlesPublic(page);
     }
   ,[]);
+  const loadMore = () => {
+    setLoading(true);
+    getArticlesPublic(page + 1);
+    setPage(page + 1);
+  };
   return (
     <section className="section-articles-list">
       <h3 className="articles-list-title">Articles List</h3>
@@ -37,7 +44,7 @@ const ArticleList =  () => {
             </li>
           )}
       </ul>
-      <button className="btn-load-more">Load more</button>
+      {isLoadMore && <button className="btn-load-more" onClick={loadMore}>Load more</button>}
     </section>
   );
 };

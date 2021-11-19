@@ -1,16 +1,37 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import purify from "dompurify";
+import { useLoading } from '@app/shared/contexts/loading.context';
+import { getArticleDetail } from '../article.middleware';
 
 const ArticleDetail = () => {
+  const { id } = useParams();
+  const [article, setArticle] = useState<any>({});
+  const { setLoading } = useLoading();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (id) {
+      dispatch(getArticleDetail(
+        id,
+        (res) => {
+          setArticle(res);
+        },
+        (error) => {
+          setLoading(false);
+        }));
+    }
+  }, [id])
+  const { title, user, comments, likes, cover, content } = article;
   return (
     <main className="main-content">
       <div className="article-header">
-        <h2 className="article-title">How Minimalism Helps Me Stay Calm</h2>
+        <h2 className="article-title">{title}</h2>
         <div className="article-author">
           <span className="text-writen-by">WRITEN BY</span>
           <Link to="/" className="article-author-name">
             <i className="fas fa-pen-fancy"></i>
-            <h3>Alexey Trofimov </h3>
+            <h3>{user?.firstName + " " + user?.lastName}</h3>
           </Link>
           <button className="btn btn-outline">+ Follow</button>
         </div>
@@ -18,13 +39,13 @@ const ArticleDetail = () => {
           <li className="article-action-item">
             <button className="btn btn-icon">
               <i className="far fa-comment"></i>
-              <span>2 </span>
+              <span>{comments}</span>
             </button>
           </li>
           <li className="article-action-item">
             <button className="btn btn-icon">
               <i className="far fa-heart"></i>
-              <span>2 </span>
+              <span>{likes}</span>
             </button>
           </li>
           <li className="article-action-item">
@@ -35,19 +56,11 @@ const ArticleDetail = () => {
         </ul>
       </div>
       <div className="article-body">
-        <img src="./assets/images/article-detail.jpg" className="article-cover-image" alt="image-article" />
-        <div className="article-content">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
+        <img src={cover} className="article-cover-image" alt="image-article" />
+        <div className="article-content" dangerouslySetInnerHTML={{ __html:purify.sanitize(content)}}>
         </div>
       </div>
     </main>
   );
 };
-
 export default ArticleDetail;
