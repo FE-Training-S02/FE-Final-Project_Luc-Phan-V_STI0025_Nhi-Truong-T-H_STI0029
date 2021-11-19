@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -17,8 +17,21 @@ const CreateArticle = () => {
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
   ]
+  const [content, setContent] = useState(null);
   const onsubmit = (data: any) => {
-    // console.log(data);
+
+    const file = data.cover[0];
+    const cover = {
+      type_upload: "cover-post",
+      file_name: file.name,
+      file_type: file.type
+    };
+    const register = {
+      ...data,
+      cover: cover,
+      content: content
+    }
+    console.log(register);
   }
   return (
     <>
@@ -58,25 +71,16 @@ const CreateArticle = () => {
             <CKEditor
               editor={ClassicEditor}
               data=""
-              onReady={editor => {
-                console.log('Editor is ready to use!', editor);
-              }}
               onChange={(event, editor) => {
                 const data = editor.getData();
-                console.log({ event, editor, data });
-              }}
-              onBlur={(event, editor) => {
-                console.log('Blur.', editor);
-              }}
-              onFocus={(event, editor) => {
-                console.log('Focus.', editor);
-              }}
+                setContent(data);
+              }
+              }
             />
           </div>
           <Button className="btn btn-primary btn-block" type='submit'>Create article</Button>
         </form>
       </div>
-
     </>
   );
 }
