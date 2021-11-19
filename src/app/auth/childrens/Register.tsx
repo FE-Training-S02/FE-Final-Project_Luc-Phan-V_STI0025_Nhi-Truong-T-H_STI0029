@@ -20,7 +20,7 @@ const Register = () => {
   const password = useRef({});
   password.current = watch('password', '');
   const [errMessage, setErrMessage] = useState('');
-  const [messageSuccess, setMessageSuccess] = useState('');
+  const [messSuccess, setMessSuccess] = useState('');
   const onSubmit = (data: any) => {
     const register = {
       email: data.email,
@@ -32,11 +32,10 @@ const Register = () => {
       phone: data.phone,
       displayName: data.displayName
     }
-    console.log(register);
-    axios.post(`${apiBaseUrl}/users/register`, register)
-      .then(function (response) {
-        setMessageSuccess(response.data);
-      })
+    axios.post(`${apiBaseUrl}/users/register`, register).then(function (response) {
+      console.log(response);
+      setMessSuccess(response.data);
+    })
       .catch(function (error) {
         setErrMessage(error.response.data.errors);
       })
@@ -81,8 +80,8 @@ const Register = () => {
             <Input type="text" placeholder="Phone" label="Phone" register={register("phone", phoneValidator())} errors={errors.phone} />
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit'>Sign up</Button>
-              {messageSuccess && <span className="btn-block succes-box mt-4">{messageSuccess}</span>}
-              {errMessage && <span className="btn-block error-box mt-4">{errMessage}</span>}
+              {messSuccess && <span className="btn btn-block alert alert-success mt-4">{messSuccess}</span>}
+              {errMessage && <span className="btn btn-block alert alert-error mt-4">{errMessage}</span>}
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
             </div>

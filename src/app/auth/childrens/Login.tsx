@@ -14,21 +14,15 @@ const Login = () => {
     handleSubmit,
     formState: { errors }
   } = useForm();
-  const navigate = useNavigate();
   const [errMessage, setErrMessage] = useState('');
+  const [messSuccess, setMessSuccess] = useState('');
+  const navigate = useNavigate()
   const onSubmit = (data: any) => {
-    // const authService = new AuthService();
-    // authService.handleLogin(data).then(function (response) {
-    //   console.log(response);
-    //   navigate('/home');
-    // })
-    //   .catch(function (error) {
-    //     setErrMessage(error.response.data.errors);
-    //   });
-    axios.post(`${apiBaseUrl}/users/register`, register)
-      .then(function (response) {
-        setErrMessage(response.data);
-      })
+
+    axios.post(`${apiBaseUrl}/users/login`, data).then(function (response) {
+      setMessSuccess(response.data);
+      navigate('/home');
+    })
       .catch(function (error) {
         setErrMessage(error.response.data.errors);
       })
@@ -45,7 +39,8 @@ const Login = () => {
             <Input type="password" placeholder="Password" label="Password" register={register('password', passwordValidator())} errors={errors.password} />
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit' >Sign in</Button>
-              {/* {errMessage && <span className="btn-block error-box mt-4">{errMessage}</span>} */}
+              {messSuccess && <span className="btn btn-block alert alert-success mt-4">{messSuccess}</span>}
+              {errMessage && <span className="btn btn-block alert alert-error mt-4">{errMessage}</span>}
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
             </div>
