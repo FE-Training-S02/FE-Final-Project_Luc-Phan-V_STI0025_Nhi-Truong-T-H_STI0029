@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { getArticleDetail } from '../article.middleware';
 
@@ -56,9 +57,7 @@ const ArticleDetail = () => {
       </div>
       <div className="article-body">
         <img src={cover} className="article-cover-image" alt="image-article" />
-        <div className="article-content">
-          <p>{content}
-          </p>
+        <div className="article-content" dangerouslySetInnerHTML={{ __html:purify.sanitize(content)}}>
         </div>
       </div>
     </main>
