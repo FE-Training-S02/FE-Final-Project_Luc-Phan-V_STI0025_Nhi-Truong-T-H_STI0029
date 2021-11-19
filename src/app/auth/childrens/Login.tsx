@@ -48,7 +48,7 @@ const Login = () => {
       <div className="page-content">
         <div className="form-wrapper">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input type="email" placeholder="Email address" label="Email address" register={register("email", emailValidator())} errors={errors.email} />
+            <Input type="email" placeholder="Email address" label="Email address" register={register('email', emailValidator())} errors={errors.email} />
             <Input type="password" placeholder="Password" label="Password" register={register('password', passwordValidator())} errors={errors.password} />
             <div className="btn-group">
               <Button className="btn btn-primary btn-block" type='submit' >Sign in</Button>

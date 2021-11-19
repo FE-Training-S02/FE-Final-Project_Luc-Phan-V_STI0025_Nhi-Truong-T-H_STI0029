@@ -89,3 +89,11 @@ export function phoneValidator(isRequired?: boolean) {
     }
   }
 }
+export function requireValidator(isRequired?: boolean) {
+  return {
+    required: {
+      value: isRequired || true,
+      message: 'This field is required'
+    }
+  }
+}
