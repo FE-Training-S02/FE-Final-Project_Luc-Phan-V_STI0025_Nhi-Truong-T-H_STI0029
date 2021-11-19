@@ -7,7 +7,7 @@ export class ApiService {
 
   axiosInstance: AxiosInstance;
   authHelper: AuthHelper;
-  authStorage: AuthStorageService; 
+  authStorage: AuthStorageService;
   constructor() {
     this.authHelper = new AuthHelper();
     // Init axiosInstance
@@ -66,7 +66,7 @@ export class ApiService {
 
   multipeGets(apiRequests: any) {
     const apiReqs = apiRequests.map((v: any) =>
-    this.axiosInstance.get(v),
+      this.axiosInstance.get(v),
     );
     return new Promise((resolve, reject) => {
       axios.all(apiReqs)
