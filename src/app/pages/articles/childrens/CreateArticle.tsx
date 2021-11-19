@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
@@ -6,20 +6,32 @@ import Select from '@app/shared/components/partials/Select';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import { requireValidator } from '@app/shared/validators/form.validator';
+import { ApiService } from "@app/core/services/api.service";
+import axios from 'axios';
+import { getUrlUpload } from '../article.middleware';
+import { useDispatch } from 'react-redux';
 
 const CreateArticle = () => {
+  const apiService = new ApiService();
+  const [content, setContent] = useState(null);
+  const disPatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
+
   const statusOptions = [
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
   ]
-  const [content, setContent] = useState(null);
-  const onsubmit = (data: any) => {
 
+  async function getUrlUploadImge (resolve, file, register) {
+    await disPatch(getUrlUpload(resolve, file, register));
+  };
+  
+  const onsubmit = async (data: any) => {
     const file = data.cover[0];
     const cover = {
       type_upload: "cover-post",
@@ -31,7 +43,16 @@ const CreateArticle = () => {
       cover: cover,
       content: content
     }
-    console.log(register);
+    const resolve = (res) => {
+      const {signedRequest, url} = res;
+      axios.put(signedRequest, file);
+      const data = {...register, tags: [], cover:url};
+      apiService.post(['/posts'], data);
+    }
+    const reject = (error) => {
+      console.log(error);
+    }
+    getUrlUploadImge(resolve, reject, file);
   }
   return (
     <>

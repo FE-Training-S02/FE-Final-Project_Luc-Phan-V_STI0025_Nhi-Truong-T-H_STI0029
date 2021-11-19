@@ -23,3 +23,15 @@ export const getArticles = (resolve, reject, page) => {
       });
   };
 };
+
+export const getUrlUpload = (resolve, reject, file) => {
+  return async () => {
+    await apiService.get([`/signatures?type_upload=cover-post&file_name=${file.name}&file_type=${file.type}`])
+      .then((res) => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
