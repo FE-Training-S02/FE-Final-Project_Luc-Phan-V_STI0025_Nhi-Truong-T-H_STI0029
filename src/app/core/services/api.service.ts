@@ -80,7 +80,6 @@ export class ApiService {
     return request.then((resp: AxiosResponse) => {
       resolve(resp.data);
     }).catch((err: any) => {
-      console.log('3333', err);
       reject(err);
     });
   }

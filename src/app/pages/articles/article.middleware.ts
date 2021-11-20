@@ -8,11 +8,21 @@ export const signIn = (account, resolve, rejects) => {
       .then(response => {
         resolve(response);
       }).catch(error => {
-        console.log(2222, error);
-        rejects(error.message);
+        rejects(error);
       });
   };
 };
+export const signUp = (data, resolve, rejects) => {
+  return (dispatch) => {
+    apiService.post([`/users/register`], data)
+      .then(res => {
+        resolve(res);
+      }).catch(error => {
+        rejects(error);
+      });
+  };
+};
+
 export const getArticleDetail = (id, resolve, reject) => {
   return (dispatch) => {
     apiService.get([`/posts/${id}`])

@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { signUp } from '@app/pages/articles/article.middleware';
 import Button from '@app/shared/components/partials/Button';
 import Input from '@app/shared/components/partials/Input';
 import Select from '@app/shared/components/partials/Select';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
-import { environment } from '@config/environment';
 import { birthDayValidator, emailValidator, firstNameValidator, lastNameValidator, passwordValidator, phoneValidator, userNameValidator } from '@app/shared/validators/form.validator';
-const apiBaseUrl = environment.apiBaseUrl;
+
 
 const Register = () => {
   const {
@@ -17,6 +17,7 @@ const Register = () => {
     watch,
     formState: { errors }
   } = useForm();
+  const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch('password', '');
   const [errMessage, setErrMessage] = useState('');
@@ -32,12 +33,13 @@ const Register = () => {
       phone: data.phone,
       displayName: data.displayName
     }
-    axios.post(`${apiBaseUrl}/users/register`, register).then(function (response) {
-      setMessSuccess(response.data);
-    })
-      .catch(function (error) {
+    dispatch(signUp(register,
+      (res) => {
+        setMessSuccess(res.data);
+      },
+      (error) => {
         setErrMessage(error.response.data.errors);
-      })
+      }))
   };
   const genderOptions = [
     { value: 'female', name: 'Female' },
