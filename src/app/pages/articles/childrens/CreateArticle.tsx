@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Select from '@app/shared/components/partials/Select';
@@ -7,9 +9,7 @@ import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import { requireValidator } from '@app/shared/validators/form.validator';
 import { ApiService } from "@app/core/services/api.service";
-import axios from 'axios';
-import { getUrlUpload } from '../article.middleware';
-import { useDispatch } from 'react-redux';
+import { createArticle } from '../article.middleware';
 
 const CreateArticle = () => {
   const apiService = new ApiService();
@@ -19,6 +19,7 @@ const CreateArticle = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm();
 
@@ -27,8 +28,8 @@ const CreateArticle = () => {
     { value: 'private', name: 'Private' }
   ]
 
-  async function getUrlUploadImge (resolve, file, register) {
-    await disPatch(getUrlUpload(resolve, file, register));
+  async function handleCreateArticle(file, resolve, reject) {
+    await disPatch(createArticle(file,resolve, reject));
   };
   
   const onsubmit = async (data: any) => {
@@ -52,7 +53,8 @@ const CreateArticle = () => {
     const reject = (error) => {
       console.log(error);
     }
-    getUrlUploadImge(resolve, reject, file);
+    handleCreateArticle(file, resolve, reject);
+    reset();
   }
   return (
     <>

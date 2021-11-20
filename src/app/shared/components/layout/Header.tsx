@@ -34,6 +34,7 @@ export function Header() {
                   <div className="dropdown-content">
                     <Link to="/">Profile</Link>
                     <Link to="/">Change Password</Link>
+                    <Link to="/articles/new">Create Article</Link>
                     <Link to="/">Logout</Link>
                   </div>
                 </li> : 

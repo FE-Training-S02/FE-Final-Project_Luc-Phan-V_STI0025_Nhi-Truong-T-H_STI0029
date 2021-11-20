@@ -15,7 +15,7 @@ export const getArticleDetail = (id, resolve, reject) => {
 export const getArticles = (resolve, reject, page) => {
   return async () => {
     await apiService.get([`/posts/public?page=${page}&size=9`])
-      .then((res) => {
+      .then(res => {
         resolve(res);
       })
       .catch(error => {
@@ -24,7 +24,7 @@ export const getArticles = (resolve, reject, page) => {
   };
 };
 
-export const getUrlUpload = (resolve, reject, file) => {
+export const createArticle = (file, resolve, reject) => {
   return async () => {
     await apiService.get([`/signatures?type_upload=cover-post&file_name=${file.name}&file_type=${file.type}`])
       .then((res) => {
