@@ -2,28 +2,44 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import purify from "dompurify";
+import { RootStateOrAny, useSelector } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading.context';
-import { getArticleDetail } from '../article.middleware';
+import { likeArticle, getListUserLiked, getArticleDetail } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
+
 
 const ArticleDetail = () => {
   const { id } = useParams();
   const [article, setArticle] = useState<any>({});
   const { setLoading } = useLoading();
+  const [isLiked, setIsLiked] = useState<any>();
   const dispatch = useDispatch();
   useEffect(() => {
     if (id) {
       dispatch(getArticleDetail(
         id,
         (res) => {
+          console.log(res.isLiked)
+          setIsLiked(res.isLiked);
           setArticle(res);
         },
         (error) => {
           setLoading(false);
         }));
     }
-  }, [id])
+  }, [id, isLiked])
   const { title, user, comments, likes, cover, content } = article;
+  const handleLikeArticle = async() => {
+    dispatch(likeArticle(
+      id,
+      (res) => {
+        console.log(res)
+        setIsLiked(res.liked);
+      },
+      (error) => {
+        console.log(error);
+      }));
+  }
   return (
     <>
       <div className="row">
@@ -58,8 +74,8 @@ const ArticleDetail = () => {
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  <button className="btn-interact likes">
-                    <i className="far fa-heart"></i>
+                  <button className="btn-interact likes" onClick={handleLikeArticle}>
+                    <i className={`fa fa-heart ${isLiked ? 'liked' : ''}`}></i>
                     <span>{likes}</span>
                   </button>
                   <button className="btn-interact">

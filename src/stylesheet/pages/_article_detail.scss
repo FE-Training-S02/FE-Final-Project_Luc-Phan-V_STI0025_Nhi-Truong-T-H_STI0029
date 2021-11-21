@@ -87,6 +87,9 @@
             display: inline-block;
             background: map-get($map: $color, $key: white-a);
           }
+          .liked {
+            color: map-get($color, dribbble);
+          }
         }
       }
     }

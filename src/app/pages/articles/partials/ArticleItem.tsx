@@ -6,8 +6,7 @@ import { Post } from '@app/shared/models/post';
 
 const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
-  const { id, cover, user, tags, title, description } = props.post;
-  console.log(user)
+  const { id, cover, user, tags, title, description, likes, comments } = props.post;
   const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   return (
     <div className="article-item grid-box pd-5">
