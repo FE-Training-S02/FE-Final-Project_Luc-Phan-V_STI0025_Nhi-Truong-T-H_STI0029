@@ -39,8 +39,8 @@ const ArticleItem = (props) => {
       </div>
       <div className="article-interact">
         <div className="list-icon-interact">
-          <span className="item-icon-item"><i className="far fa-heart"></i> 1</span>
-          <span className="item-icon-item"><i className="far fa-comment"></i> 1</span>
+          <span className="item-icon-item"><i className="far fa-heart"></i>{likes}</span>
+          <span className="item-icon-item"><i className="far fa-comment"></i>{comments}</span>
         </div>
         {/* <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon" /> 1</span>
         <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon" /> 1</span> */}
