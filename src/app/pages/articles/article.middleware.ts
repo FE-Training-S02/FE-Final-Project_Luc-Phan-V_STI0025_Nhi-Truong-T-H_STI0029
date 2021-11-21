@@ -24,7 +24,7 @@ export const getArticles = (resolve, reject, page) => {
   };
 };
 
-export const createArticle = (file, resolve, reject) => {
+export const uploadImage = (file, resolve, reject) => {
   return async () => {
     await apiService.get([`/signatures?type_upload=cover-post&file_name=${file.name}&file_type=${file.type}`])
       .then((res) => {

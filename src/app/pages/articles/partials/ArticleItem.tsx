@@ -1,20 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
+import JwtHelper from '@app/core/helpers/jwtHelper';
+import { Post } from '@app/shared/models/post';
 
 const ArticleItem = (props) => {
+  const jwtHelper = new JwtHelper();
   const { id, cover, user, tags, title, description } = props.post;
+  console.log(user)
+  const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   return (
-    <div className="article-item grid-box pd-5">
-      <div className="feature">
-        <img src={cover} alt="article image" className="article-img" />
-      </div>
-      <div className="dropdown">
-        <button className="btn-dropdown">...</button>
-        <ul className="sub-dropdown">
-          <button className="sub-dropdown-item">Delete</button>
-          <Link to={`/articles/${id}/edit`} className="sub-dropdown-item">Update</Link>
-        </ul>
-      </div>
+    <div className="article-item">
+      <img src={cover} alt="article image" className="article-img" />
+        {userId===user.id ? 
+          <div className="dropdown">
+            <button className="btn-dropdown">...</button>
+            <ul className="sub-dropdown">
+              <button className="sub-dropdown-item">Delete</button>
+              <Link to={`/articles/${id}/edit`} className="sub-dropdown-item">Update</Link>
+            </ul>
+          </div> 
+        : ''}
       <div className="article-body">
         <div className="article-author">
           <img src="./assets/icons/user.png" alt="avatar" className="author-img" />
