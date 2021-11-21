@@ -10,8 +10,10 @@ const ArticleItem = (props) => {
   console.log(user)
   const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   return (
-    <div className="article-item">
-      <img src={cover} alt="article image" className="article-img" />
+    <div className="article-item grid-box pd-5">
+      <div className="feature">
+        <img src={cover} alt="article image" className="article-img" />
+      </div>
         {userId===user.id ? 
           <div className="dropdown">
             <button className="btn-dropdown">...</button>
