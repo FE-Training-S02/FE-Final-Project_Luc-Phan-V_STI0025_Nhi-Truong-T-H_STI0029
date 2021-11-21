@@ -8,10 +8,11 @@ interface InputProps {
   value?: string;
   errors?: any;
   label?: string;
+  accept?: any;
   register?: any
 }
 
-const Input = ({ type, className, placeholder, name, value, errors, label, register, onChange }: InputProps) => {
+const Input = ({ type, className, placeholder, name, value, errors, label, register, onChange, accept }: InputProps) => {
   const handleChange = () => {
     if (onChange) {
       return onChange();
@@ -26,8 +27,10 @@ const Input = ({ type, className, placeholder, name, value, errors, label, regis
           placeholder={placeholder}
           name={name}
           value={value}
+          accept={accept}
           {...register}
-          onChange={handleChange()} />
+          onChange={handleChange()}
+        />
         <label className="form-label">{label}</label>
         {errors && <span className="msg-error">{errors.message}</span>}
       </div>

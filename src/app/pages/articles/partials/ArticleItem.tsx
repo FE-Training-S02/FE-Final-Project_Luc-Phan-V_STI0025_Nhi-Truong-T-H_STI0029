@@ -14,14 +14,14 @@ const ArticleItem = (props) => {
       <div className="feature">
         <img src={cover} alt="article image" className="article-img" />
       </div>
-        {userId===user.id ? 
-          <div className="dropdown">
-            <button className="btn-dropdown">...</button>
-            <ul className="sub-dropdown">
-              <button className="sub-dropdown-item">Delete</button>
-              <Link to={`/articles/${id}/edit`} className="sub-dropdown-item">Update</Link>
-            </ul>
-          </div> 
+      {userId === user.id ?
+        <div className="dropdown">
+          <button className="btn-dropdown">...</button>
+          <ul className="sub-dropdown">
+            <button className="sub-dropdown-item">Delete</button>
+            <Link to={`/articles/${id}/edit`} className="sub-dropdown-item">Update</Link>
+          </ul>
+        </div>
         : ''}
       <div className="article-body">
         <div className="article-author">
@@ -39,9 +39,13 @@ const ArticleItem = (props) => {
         <p className="article-content">{description}</p>
       </div>
       <div className="article-interact">
-        <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon" /> 1</span>
-        <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon" /> 1</span>
-        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">Read more...</Link>
+        <div className="list-icon-interact">
+          <span className="item-icon-item"><i className="far fa-heart"></i> 1</span>
+          <span className="item-icon-item"><i className="far fa-comment"></i> 1</span>
+        </div>
+        {/* <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon" /> 1</span>
+        <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon" /> 1</span> */}
+        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">Read more</Link>
       </div>
     </div>
   );

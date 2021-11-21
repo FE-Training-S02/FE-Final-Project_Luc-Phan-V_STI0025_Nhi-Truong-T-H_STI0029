@@ -4,6 +4,9 @@ export const PATTERN_BIRTHDAY = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])
 export const PATTERN_PHONE = /[0-9]{3}-[0-9]{3}-[0-9]{4}/;
 export const PASSWORD_MINLENGTH = 8;
 export const NAME_MAXLENGTH = 20;
+export const TITLE_MINLENGTH = 20;
+export const DESCRIPTION_MINLENGTH = 50;
+export const CONTENT_MINLENGTH = 100;
 
 export function emailValidator(isRequired?: boolean) {
   return {
@@ -89,6 +92,42 @@ export function phoneValidator(isRequired?: boolean) {
     }
   }
 }
+export function titleValidator(isRequired?: boolean) {
+  return {
+    required: {
+      value: isRequired || true,
+      message: 'This field is required'
+    },
+    minLength: {
+      value: TITLE_MINLENGTH,
+      message: 'Title should be from 20 characters'
+    }
+  }
+}
+export function descriptionValidator(isRequired?: boolean) {
+  return {
+    required: {
+      value: isRequired || true,
+      message: 'This field is required'
+    },
+    minLength: {
+      value: DESCRIPTION_MINLENGTH,
+      message: 'Description should be from 50 characters'
+    }
+  }
+}
+export function contentValidator(isRequired?: boolean) {
+  return {
+    required: {
+      value: isRequired || true,
+      message: 'This field is required'
+    },
+    minLength: {
+      value: CONTENT_MINLENGTH,
+      message: 'Content should be from 100 characters.'
+    }
+  }
+}
 export function requireValidator(isRequired?: boolean) {
   return {
     required: {
@@ -97,3 +136,4 @@ export function requireValidator(isRequired?: boolean) {
     }
   }
 }
+

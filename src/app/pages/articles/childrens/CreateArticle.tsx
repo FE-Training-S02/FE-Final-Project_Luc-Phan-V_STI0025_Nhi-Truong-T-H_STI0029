@@ -8,7 +8,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Select from '@app/shared/components/partials/Select';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
-import { requireValidator } from '@app/shared/validators/form.validator';
+import { descriptionValidator, requireValidator, titleValidator } from '@app/shared/validators/form.validator';
 import { ApiService } from "@app/core/services/api.service";
 import { uploadImage } from '../article.middleware';
 import { getArticleDetail } from '../article.middleware';
@@ -36,12 +36,12 @@ const CreateArticle = () => {
   ]
 
   async function handleUploadImage(file, resolve, reject) {
-    await disPatch(uploadImage(file,resolve, reject));
+    await disPatch(uploadImage(file, resolve, reject));
   };
   const handleChange = (e) => {
     const file = e.target.files[0];
     const resolve = (res) => {
-      const {signedRequest, url} = res;
+      const { signedRequest, url } = res;
       setUrlImage(url)
       axios.put(signedRequest, file);
     }
@@ -57,7 +57,7 @@ const CreateArticle = () => {
       cover: urlImage,
       content: content
     }
-    {id ? apiService.put([`/posts/${id}`], article) : apiService.post(['/posts'], article)}
+    { id ? apiService.put([`/posts/${id}`], article) : apiService.post(['/posts'], article) }
     navigate('/articles')
   }
   useEffect(() => {
@@ -88,7 +88,7 @@ const CreateArticle = () => {
             <div className="col-10">
               <Input
                 type="text"
-                register={register('title', requireValidator())}
+                register={register('title', titleValidator())}
                 errors={errors.title} />
             </div>
           </div>
@@ -97,7 +97,7 @@ const CreateArticle = () => {
             <div className="col-10">
               <Input
                 type="text"
-                register={register('description', requireValidator())}
+                register={register('description', descriptionValidator())}
                 errors={errors.description} />
             </div>
           </div>
@@ -117,23 +117,24 @@ const CreateArticle = () => {
           <div className="row">
             <label className="col-2 col-form-label" >Upload image</label>
             <div className="col-10">
-              {id ? 
-                <Input 
-                  type="file" 
-                  register={register('cover')} 
-                  errors={errors.cover} 
+              {id ?
+                <Input
+                  type="file"
+                  register={register('cover')}
+                  errors={errors.cover}
                   onChange={() => handleChange}
                   className="col-12"
                 /> :
-                <Input 
-                  type="file" 
-                  register={register('cover', requireValidator())} 
-                  errors={errors.cover} 
+                <Input
+                  type="file"
+                  accept="image/*"
+                  register={register('cover', requireValidator())}
+                  errors={errors.cover}
                   onChange={() => handleChange}
                   className="col-12"
                 />
-              } 
-              {urlImage ? <img src={urlImage} alt="cover"  className="col-4"/> : ''}
+              }
+              {urlImage ? <img src={urlImage} alt="cover" className="col-4" /> : ''}
             </div>
           </div>
           <div className="row row-ck">
@@ -144,7 +145,7 @@ const CreateArticle = () => {
               onChange={(event, editor) => {
                 const data = editor.getData();
                 setContent(data);
-                }
+              }
               }
             />
           </div>
@@ -154,5 +155,4 @@ const CreateArticle = () => {
     </>
   );
 }
-
 export default CreateArticle;

@@ -95,8 +95,17 @@
     @include pxRem(margin-top, 20);
     display: flex;
     color: map-get($color, grey-b);
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    .list-icon-interact {
+      display: flex;
+      .item-icon-item {
+        @include pxRem(margin, 0 15);
+        display: flex;
+        align-items: center;
+        font-size: map-get($font-size, normal);
+      }
+    }
     .article-interact-item {
       @include pxRem(margin, 0 15);
       display: flex;
@@ -106,11 +115,6 @@
         @include pxRem(padding, 4 8);
         background: map-get($color, primary);
         color: map-get($color, white);
-      }
-      .interact-icon {
-        @include pxRem(width, 24);
-        @include pxRem(height, 24);
-        @include pxRem(margin-right, 4);
       }
     }
   }

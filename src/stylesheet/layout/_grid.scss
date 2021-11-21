@@ -1,5 +1,5 @@
 .page-container {
-  @include pxRem(padding, 30 0);
+  @include pxRem(padding, 100 0 30);
 }
 .container {
   max-width: 1172px;
