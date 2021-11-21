@@ -1,6 +1,9 @@
 import AuthHelper from '../helpers/authHelper';
 import { ENDPOINT } from '@config/endpoint';
 import { ApiService } from './api.service';
+import { environment } from '@config/environment';
+
+const apiBaseUrl = environment.apiBaseUrl;
 
 export class AuthService extends AuthHelper {
   http = new ApiService();
@@ -15,7 +18,6 @@ export class AuthService extends AuthHelper {
     */
     return this.http.post([ENDPOINT.auth.login], body);
   }
-
   signOut() {
     this.removeToken();
   }

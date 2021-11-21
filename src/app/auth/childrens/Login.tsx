@@ -1,27 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-//import { signIn } from '../auth.actions';
+import { emailValidator, passwordValidator } from '@app/shared/validators/form.validator';
+import { signIn } from '../auth.middleware';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 
 const Login = () => {
   const dispatch = useDispatch();
-  // const onLogin = () => {
-  //   const account = { username: 'admin', password: 'admin' };
-  //   dispatch(
-  //     signIn(account)
-  //   );
-  // };
   const {
     register,
     handleSubmit,
     formState: { errors }
   } = useForm();
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const [errMessage, setErrMessage] = useState('');
+  const navigate = useNavigate()
+  const onSubmit = (account) => {
+    dispatch(signIn(account,
+      (response) => {
+        navigate('/home');
+      },
+      (error) => {
+        setErrMessage(error.response.data.errors);
+      }))
   };
   return (
     <>
@@ -31,28 +34,23 @@ const Login = () => {
       <div className="page-content">
         <div className="form-wrapper">
           <form onSubmit={handleSubmit(onSubmit)}>
-            <Input type="email" placeholder="Email address" label="Email address" register={register("email",
-              {
-                required: 'This field is required',
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Email is invalid',
-                }
-              })} errors={errors.email} />
-            <Input type="password" placeholder="Password" label="Password" register={register("password",
-              {
-                required: 'This field is required',
-                minLength: {
-                  value: 8,
-                  message: "Password must have at least 8 characters"
-                },
-                pattern: {
-                  value: /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
-                  message: 'Password must contain at least one number and lowercase letter',
-                }
-              })} errors={errors.password} />
+            <Input
+              type="email"
+              placeholder="Email address"
+              label="Email address"
+              register={register('email', emailValidator())}
+              errors={errors.email} />
+            <Input
+              type="password"
+              placeholder="Password"
+              label="Password"
+              register={register('password', passwordValidator())}
+              errors={errors.password} />
             <div className="btn-group">
-              <Button className="btn btn-primary btn-block" type='submit'>Sign in</Button>
+              <Button
+                className="btn btn-primary btn-block"
+                type='submit' >Sign in</Button>
+              {errMessage && <span className="btn btn-block alert alert-error mt-4">{errMessage}</span>}
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
             </div>

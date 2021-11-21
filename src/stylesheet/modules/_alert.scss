@@ -1,0 +1,16 @@
+.alert {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.alert-error {
+    border-radius: 5px;
+    color: #eb5757;
+    background-color: #ffdbdc;
+  }
+  &.alert-success {
+    align-items: center;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #198754;
+  }
+}

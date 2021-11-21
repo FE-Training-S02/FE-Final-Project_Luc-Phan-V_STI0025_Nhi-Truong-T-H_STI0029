@@ -29,7 +29,7 @@ export function passwordValidator(isRequired?: boolean) {
     },
     pattern: {
       value: PATTERN_PASSWORD,
-      message: 'Password must contain at least one number and lowercase letter',
+      message: 'Password must contain at least one number and lowercase letter and special character',
     }
   }
 }
@@ -97,4 +97,3 @@ export function requireValidator(isRequired?: boolean) {
     }
   }
 }
-
