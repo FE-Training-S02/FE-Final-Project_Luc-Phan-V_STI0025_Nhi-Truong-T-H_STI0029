@@ -3,7 +3,7 @@ interface InputProps {
   type: 'text' | 'select' | 'textarea' | 'submit' | 'email' | 'number' | 'password' | 'date' | 'file';
   className?: string;
   placeholder?: string;
-  onChange?: () => void;
+  onChange?: () => {};
   name?: string;
   value?: string;
   errors?: any;

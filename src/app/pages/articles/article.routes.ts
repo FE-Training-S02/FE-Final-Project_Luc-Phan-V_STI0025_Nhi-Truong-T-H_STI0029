@@ -22,6 +22,10 @@ const articleRoutes: PageRoute[] = [
       {
         path: '/new',
         element: CreateArticle
+      },
+      {
+        path: '/:id/edit',
+        element: CreateArticle
       }
     ]
   }
