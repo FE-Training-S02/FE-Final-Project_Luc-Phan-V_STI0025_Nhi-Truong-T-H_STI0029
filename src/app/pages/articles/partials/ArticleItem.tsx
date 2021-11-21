@@ -12,7 +12,7 @@ const ArticleItem = (props) => {
         <button className="btn-dropdown">...</button>
         <ul className="sub-dropdown">
           <button className="sub-dropdown-item">Delete</button>
-          <button className="sub-dropdown-item">Update</button>
+          <Link to={`/articles/${id}/edit`} className="sub-dropdown-item">Update</Link>
         </ul>
       </div>
       <div className="article-body">
