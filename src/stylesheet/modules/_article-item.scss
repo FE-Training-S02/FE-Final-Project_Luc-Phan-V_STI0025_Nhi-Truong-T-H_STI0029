@@ -26,7 +26,7 @@
       @include pxRem(font-size, 16);
       border: none;
       border-radius: 5px;
-      background-color: map-get($color, grey-d);
+      background-color: map-get($color, grey-b);
       color: white;
     }
     .sub-dropdown {
@@ -95,10 +95,10 @@
     @include pxRem(margin-top, 20);
     display: flex;
     color: map-get($color, grey-b);
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     .article-interact-item {
-      @include pxRem(margin-right, 20);
+      @include pxRem(margin, 0 15);
       display: flex;
       align-items: center;
       font-size: map-get($font-size, normal);
