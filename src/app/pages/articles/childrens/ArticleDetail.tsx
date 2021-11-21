@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { getArticleDetail } from '../article.middleware';
+import Sidebar from '@app/shared/components/layout/Sidebar';
 
 const ArticleDetail = () => {
   const { id } = useParams();
@@ -24,43 +25,55 @@ const ArticleDetail = () => {
   }, [id])
   const { title, user, comments, likes, cover, content } = article;
   return (
-    <main className="main-content">
-      <div className="article-header">
-        <h2 className="article-title">{title}</h2>
-        <div className="article-author">
-          <span className="text-writen-by">WRITEN BY</span>
-          <Link to="/" className="article-author-name">
-            <i className="fas fa-pen-fancy"></i>
-            <h3>{user?.firstName + " " + user?.lastName}</h3>
-          </Link>
-          <button className="btn btn-outline">+ Follow</button>
-        </div>
-        <ul className="article-actions">
-          <li className="article-action-item">
-            <button className="btn btn-icon">
-              <i className="far fa-comment"></i>
-              <span>{comments}</span>
-            </button>
-          </li>
-          <li className="article-action-item">
-            <button className="btn btn-icon">
-              <i className="far fa-heart"></i>
-              <span>{likes}</span>
-            </button>
-          </li>
-          <li className="article-action-item">
-            <button className="btn btn-icon">
-              <i className="far fa-bookmark"></i>
-            </button>
-          </li>
-        </ul>
+    <>
+      <div className="row">
+        <main className="col-8 main-content">
+          <div className="grid-box pd-10">
+            <div className="article-header">
+              <div className="featured">
+                <img src={cover} className="article-cover-image" alt="image-article" />
+              </div>
+              <h2 className="article-title txt-capitalize">{title}</h2>
+              <div className="article-author-follow">
+                <div className="article-author">
+                  <span className="text-writen-by">WRITEN BY -</span>
+                  <Link to="/" className="article-author-name">
+                    <i className="fas fa-pen-fancy"></i>
+                    <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
+                  </Link>
+                  <button className="btn btn-outline">+ Follow</button>
+                </div>
+                <button className="btn btn-icon">
+                  <i className="far fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+            <div className="article-body">
+              <div className="article-content" dangerouslySetInnerHTML={{ __html: purify.sanitize(content) }}>
+              </div>
+            </div>
+            <div className="article-footer">
+              <div className="article-footer-left">
+                <p className="txt-uppercase"><span>TAGS </span>bc</p>
+              </div>
+              <div className="article-footer-right">
+                <div className="interact">
+                  <button className="btn-interact likes">
+                    <i className="far fa-heart"></i>
+                    <span>{likes}</span>
+                  </button>
+                  <button className="btn-interact">
+                    <i className="far fa-comment"></i>
+                    <span>{comments}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <Sidebar />
       </div>
-      <div className="article-body">
-        <img src={cover} className="article-cover-image" alt="image-article" />
-        <div className="article-content" dangerouslySetInnerHTML={{ __html:purify.sanitize(content)}}>
-        </div>
-      </div>
-    </main>
+    </>
   );
 };
 export default ArticleDetail;

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
 import { emailValidator, passwordValidator } from '@app/shared/validators/form.validator';
 import { signIn } from '../auth.middleware';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
-
 
 const Login = () => {
   const dispatch = useDispatch();

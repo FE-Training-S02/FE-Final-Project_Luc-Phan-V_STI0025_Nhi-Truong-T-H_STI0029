@@ -1,0 +1,67 @@
+.sidebar {
+  @include pxRem(padding, 0 0 0 30);
+  .widget {
+    @include pxRem(margin-bottom, 40);
+    @include pxRem(padding, 35 40);
+    .widget-title {
+      @include pxRem(margin, -35 -40 20);
+      @include pxRem(padding, 15 40);
+      border-bottom: 1px solid #efefef;
+    }
+    .widget-content {
+      text-align: center;
+      .content-quote {
+        @include pxRem(padding, 0 0 20 0);
+      }
+      .byline {
+        color: map-get($map: $color, $key: grey-c);
+        font-size: map-get($map: $font-size, $key: xxs);
+      }
+    }
+    .categories-list {
+      overflow: hidden;
+      .categorie-item {
+        @include pxRem(padding, 10 15 10 0);
+        float: left;
+        width: 50%;
+        a {
+          color: map-get($map: $color, $key: grey-c);
+          font-size: map-get($map: $font-size, $key: sm);
+        }
+        .categorie-item-qty {
+          float: right;
+          color: map-get($map: $color, $key: grey-b);
+          font-size: 10px;
+          line-height: 2.8;
+        }
+      }
+    }
+    .popular-list {
+      .popular-item {
+        @include pxRem(margin-bottom, 25);
+        @include pxRem(padding-bottom, 25);
+        border-bottom: 1px solid #efefef;
+        &:last-child {
+          @include pxRem(margin, 0);
+          @include pxRem(padding, 0);
+          border-bottom: none;
+        }
+        display: flex;
+        .image-article {
+          @include pxRem(margin-right, 20);
+        }
+        h5 {
+          margin-bottom: 5px;
+          font-size: 13px;
+          font-weight: 400;
+          line-height: 1.77;
+        }
+        span {
+          font-size: 10px;
+          color: #a0a0a0;
+          letter-spacing: 0.065em;
+        }
+      }
+    }
+  }
+}

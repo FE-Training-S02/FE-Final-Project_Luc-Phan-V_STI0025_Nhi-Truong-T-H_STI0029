@@ -24,7 +24,7 @@
         display: inline;
         .nav-link {
           font-size: map-get($font-size, lg);
-          color: map-get($color, info);
+          color: map-get($color, primary);
           line-height: 2.7;
           font-weight: 700;
           .icon {
@@ -59,7 +59,7 @@
   .dropbtn {
     margin: 0;
     border: none;
-    font-size: map-get($font-size, normal);  
+    font-size: map-get($font-size, normal);
     outline: none;
   }
   .dropdown-content {
@@ -70,7 +70,7 @@
     top: 100%;
     left: 0;
     background-color: #f9f9f9;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     a {
       @include pxRem(padding, 12 16);
       display: block;

@@ -29,9 +29,9 @@ const CreateArticle = () => {
   ]
 
   async function handleCreateArticle(file, resolve, reject) {
-    await disPatch(createArticle(file,resolve, reject));
+    await disPatch(createArticle(file, resolve, reject));
   };
-  
+
   const onsubmit = async (data: any) => {
     const file = data.cover[0];
     const cover = {
@@ -45,9 +45,9 @@ const CreateArticle = () => {
       content: content
     }
     const resolve = (res) => {
-      const {signedRequest, url} = res;
+      const { signedRequest, url } = res;
       axios.put(signedRequest, file);
-      const data = {...register, tags: [], cover:url};
+      const data = { ...register, tags: [], cover: url };
       apiService.post(['/posts'], data);
     }
     const reject = (error) => {
@@ -64,19 +64,26 @@ const CreateArticle = () => {
           <div className="row">
             <label className="col-2 col-form-label">Tile</label>
             <div className="col-10">
-              <Input type="text" register={register('title', requireValidator())} errors={errors.title} />
+              <Input
+                type="text"
+                register={register('title', requireValidator())}
+                errors={errors.title} />
             </div>
           </div>
           <div className="row">
             <label className="col-2 col-form-label">Description</label>
             <div className="col-10">
-              <Input type="text" register={register('description', requireValidator())} errors={errors.description} />
+              <Input
+                type="text"
+                register={register('description', requireValidator())}
+                errors={errors.description} />
             </div>
           </div>
           <div className="row">
             <label className="col-2 col-form-label">Tags</label>
             <div className="col-10">
-              <Input type="text" register={register('tags', requireValidator())} errors={errors.tags} />
+              <Input
+                type="text" register={register('tags', requireValidator())} errors={errors.tags} />
             </div>
           </div>
           <div className="row">
