@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Post } from '@app/shared/models/post';
 
 const ArticleItem = (props) => {
   const { id, cover, user, tags, title, description } = props.post;
   return (
-    <div className="article-item">
-      <img src={cover} alt="article image" className="article-img" />
+    <div className="article-item grid-box pd-5">
+      <div className="feature">
+        <img src={cover} alt="article image" className="article-img" />
+      </div>
       <div className="dropdown">
         <button className="btn-dropdown">...</button>
         <ul className="sub-dropdown">

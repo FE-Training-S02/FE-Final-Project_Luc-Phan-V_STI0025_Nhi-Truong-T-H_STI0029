@@ -1,8 +1,9 @@
 .article-item {
-  @include pxRem(margin-bottom, 10);
+  @include pxRem(margin-bottom, 40);
   position: relative;
-  border-radius: 5px;
-  box-shadow: 0 2px 8px map-get($color, grey-c);
+  .feature {
+    @include pxRem(margin, -25 -25 10);
+  }
   .article-img {
     @include pxRem(height, 250);
     width: 100%;
@@ -50,7 +51,7 @@
       }
     }
   }
-  .article-author{
+  .article-author {
     display: flex;
     align-items: center;
     color: map-get($color, grey-b);
@@ -91,10 +92,10 @@
     }
   }
   .article-interact {
-    @include pxRem(padding, 0 10 8);
+    @include pxRem(margin-top, 20);
     display: flex;
     color: map-get($color, grey-b);
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     .article-interact-item {
       @include pxRem(margin-right, 20);
@@ -102,9 +103,8 @@
       align-items: center;
       font-size: map-get($font-size, normal);
       &.btn-read-more {
-        @include pxRem(padding, 4);
-        border-radius: 5px;
-        background: map-get($color, violet);
+        @include pxRem(padding, 4 8);
+        background: map-get($color, primary);
         color: map-get($color, white);
       }
       .interact-icon {

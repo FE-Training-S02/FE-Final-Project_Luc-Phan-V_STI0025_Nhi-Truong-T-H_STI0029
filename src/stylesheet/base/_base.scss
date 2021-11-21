@@ -13,7 +13,7 @@ body {
   color: map-get($color, black);
   line-height: 1.7;
   letter-spacing: 0.8px;
-  background-color: map-get($color, white);
+  background-color: #f8f8f8;
   overscroll-behavior: contain;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,6 +24,34 @@ image {
   max-width: 100%;
   width: 100%;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+  color: #161616;
+}
+h1 {
+  font-size: map-get($map: $font-size, $key: xxxl);
+}
+h2 {
+  font-size: map-get($map: $font-size, $key: xxl);
+}
+h3 {
+  font-size: map-get($map: $font-size, $key: xl);
+}
+h4 {
+  font-size: map-get($map: $font-size, $key: lg);
+}
+h5 {
+  font-size: map-get($map: $font-size, $key: normal);
+}
+h6 {
+  font-size: map-get($map: $font-size, $key: sm);
+}
+
 ul {
   list-style: none;
 }
