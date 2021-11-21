@@ -127,7 +127,6 @@ const CreateArticle = () => {
                 /> :
                 <Input
                   type="file"
-                  accept="image/*"
                   register={register('cover', requireValidator())}
                   errors={errors.cover}
                   onChange={() => handleChange}

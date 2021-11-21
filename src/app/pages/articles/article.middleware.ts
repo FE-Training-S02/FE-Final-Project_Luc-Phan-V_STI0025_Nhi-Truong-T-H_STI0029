@@ -35,3 +35,28 @@ export const uploadImage = (file, resolve, reject) => {
       });
   };
 };
+
+export const likeArticle = (id, resolve, reject) => {
+  return async () => {
+    await apiService.put([`/posts/${id}/likes`])
+      .then((res) => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+
+export const getListUserLiked = (id, resolve, reject) => {
+  return async () => {
+    await apiService.get([`/posts/${id}/likes`])
+      .then((res) => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+
