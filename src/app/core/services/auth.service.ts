@@ -18,11 +18,6 @@ export class AuthService extends AuthHelper {
     */
     return this.http.post([ENDPOINT.auth.login], body);
   }
-
-  handleLogin = (dataInfo) => {
-    const api = new ApiService();
-    return api.post([`${apiBaseUrl}/users/login`], dataInfo);
-  }
   signOut() {
     this.removeToken();
   }

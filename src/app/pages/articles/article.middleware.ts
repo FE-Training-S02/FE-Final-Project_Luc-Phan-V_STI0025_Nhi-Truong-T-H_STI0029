@@ -2,27 +2,6 @@ import { ApiService } from "@app/core/services/api.service";
 
 const apiService = new ApiService();
 
-export const signIn = (account, resolve, rejects) => {
-  return (dispatch) => {
-    apiService.post([`/users/login`], account)
-      .then(response => {
-        resolve(response);
-      }).catch(error => {
-        rejects(error);
-      });
-  };
-};
-export const signUp = (data, resolve, rejects) => {
-  return (dispatch) => {
-    apiService.post([`/users/register`], data)
-      .then(res => {
-        resolve(res);
-      }).catch(error => {
-        rejects(error);
-      });
-  };
-};
-
 export const getArticleDetail = (id, resolve, reject) => {
   return (dispatch) => {
     apiService.get([`/posts/${id}`])
