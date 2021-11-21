@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -7,7 +7,7 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Select from '@app/shared/components/partials/Select';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
-import { requireValidator } from '@app/shared/validators/form.validator';
+import { descriptionValidator, requireValidator, titleValidator } from '@app/shared/validators/form.validator';
 import { ApiService } from "@app/core/services/api.service";
 import { createArticle } from '../article.middleware';
 
@@ -31,7 +31,10 @@ const CreateArticle = () => {
   async function handleCreateArticle(file, resolve, reject) {
     await disPatch(createArticle(file, resolve, reject));
   };
-
+  const handleChange = (e) => {
+    const file = (e.target.files[0]);
+    console.log(file);
+  }
   const onsubmit = async (data: any) => {
     const file = data.cover[0];
     const cover = {
@@ -66,7 +69,7 @@ const CreateArticle = () => {
             <div className="col-10">
               <Input
                 type="text"
-                register={register('title', requireValidator())}
+                register={register('title', titleValidator())}
                 errors={errors.title} />
             </div>
           </div>
@@ -75,7 +78,7 @@ const CreateArticle = () => {
             <div className="col-10">
               <Input
                 type="text"
-                register={register('description', requireValidator())}
+                register={register('description', descriptionValidator())}
                 errors={errors.description} />
             </div>
           </div>
@@ -94,7 +97,7 @@ const CreateArticle = () => {
           </div>
           <div className="row">
             <label className="col-2 col-form-label" >Upload image</label>
-            <Input type="file" register={register('cover', requireValidator())} errors={errors.cover} />
+            <Input type="file" accept="image/*" register={register('cover', requireValidator())} errors={errors.cover} onChange={() => handleChange} />
           </div>
           <div className="row row-ck">
             <label className="col-2 col-form-label form-label-content">Content</label>
@@ -114,5 +117,4 @@ const CreateArticle = () => {
     </>
   );
 }
-
 export default CreateArticle;

@@ -8,6 +8,7 @@
       }
     }
     .article-title {
+      word-wrap: break-word;
       letter-spacing: 0.2px;
       line-height: 1.35;
     }
@@ -44,6 +45,7 @@
   .article-body {
     .article-content {
       @include pxRem(margin-top, 30);
+      word-wrap: break-word;
     }
   }
   .article-footer {

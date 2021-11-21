@@ -8,7 +8,7 @@ export function Header() {
     <>
       <header className="header">
         <div className="container">
-          <div className="header-content header-desktop">
+          <div className="header-content">
             <h1 className="logo">
               <Link to="/" className="logo-link"><img src="./assets/images/logo.png" alt="ST BLOG" /></Link>
             </h1>

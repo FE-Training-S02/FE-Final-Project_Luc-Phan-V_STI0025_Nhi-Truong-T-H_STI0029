@@ -1,10 +1,14 @@
 .header {
+  background: map-get($map: $color, $key: white);
+  position: fixed;
+  width: 100%;
+  margin-bottom: 20px;
+  z-index: 99;
+
   .header-content {
-    &.header-desktop {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     .logo {
       @include pxRem(padding-top, 6);
       .logo-link {
