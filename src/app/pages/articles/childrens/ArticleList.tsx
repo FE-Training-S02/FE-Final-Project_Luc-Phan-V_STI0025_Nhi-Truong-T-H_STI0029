@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ArticleItem from '../partials/ArticleItem';
-import { getArticlesPublic, getArticlesRecommend } from '../article.middleware';
+import { getListArticles } from '../article.middleware';
 import { Post } from '@app/shared/models/post';
 import { useDispatch } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading.context';
@@ -15,6 +15,8 @@ const ArticleList = () => {
   const disPatch = useDispatch();
   const authStorage = new AuthStorageService();
   const token = authStorage.getToken();
+  let endPoint;
+  token ? (endPoint = '/posts/') : (endPoint = '/posts/public/');
 
   useEffect(() => {
     setLoading(true);
@@ -28,8 +30,8 @@ const ArticleList = () => {
   };
 
   const getArticles = (page) => {
-    token ? disPatch(getArticlesRecommend(page, getArticlesSuccess, getArticlesError)) :
-      disPatch(getArticlesPublic(page, getArticlesSuccess, getArticlesError));
+
+    disPatch(getListArticles(endPoint, page, getArticlesSuccess, getArticlesError));
   };
   const getArticlesSuccess = (res) => {
     const { data, loadMore } = res;
