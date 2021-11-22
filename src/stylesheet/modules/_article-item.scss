@@ -64,20 +64,20 @@
       color: map-get($color, black);
     }
     .article-tag {
-      @include pxRem(padding, 2);
-      border-radius: 5px;
-      background: map-get($color, warning);
+      @include pxRem(padding, 2 5);
+      background: map-get($color, orange-b);
+      font-size: map-get($map: $font-size, $key: sm);
       color: map-get($color, white);
     }
   }
   .article-body {
     @include pxRem(padding, 0 10);
+    letter-spacing: 0.2px;
     .article-title {
-      @include pxRem(height, 60);
+      @include pxRem(max-height, 60);
       @include line-clamp(2);
-      text-align: justify;
-      font-size: map-get($font-size, lg);
-      font-weight: 700;
+      text-align: left;
+      font-size: map-get($font-size, normal);
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -113,8 +113,16 @@
       font-size: map-get($font-size, normal);
       &.btn-read-more {
         @include pxRem(padding, 4 8);
-        background: map-get($color, primary);
-        color: map-get($color, white);
+        background: map-get($color, white);
+        border: 1px solid map-get($color, grey-b);
+        color: map-get($color, grey-b);
+        font-size: map-get($font-size, xs);
+        font-weight: 600;
+        &:hover {
+          background: map-get($color, primary);
+          border: none;
+          color: map-get($color, white);
+        }
       }
     }
   }

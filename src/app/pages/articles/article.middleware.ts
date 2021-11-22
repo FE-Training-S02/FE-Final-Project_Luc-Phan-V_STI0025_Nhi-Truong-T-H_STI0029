@@ -12,7 +12,20 @@ export const getArticleDetail = (id, resolve, reject) => {
       });
   };
 };
-export const getArticles = (resolve, reject, page) => {
+
+export const getArticlesRecommend = (page, resolve, reject) => {
+  return async () => {
+    await apiService.get([`/posts?page=${page}&size=8`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+
+export const getArticlesPublic = (page, resolve, reject) => {
   return async () => {
     await apiService.get([`/posts/public?page=${page}&size=8`])
       .then(res => {

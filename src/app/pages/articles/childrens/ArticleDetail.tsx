@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import purify from "dompurify";
-import { RootStateOrAny, useSelector } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { likeArticle, getListUserLiked, getArticleDetail } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
@@ -29,7 +28,7 @@ const ArticleDetail = () => {
     }
   }, [id, isLiked])
   const { title, user, comments, likes, cover, content } = article;
-  const handleLikeArticle = async() => {
+  const handleLikeArticle = async () => {
     dispatch(likeArticle(
       id,
       (res) => {
