@@ -44,7 +44,7 @@ const ArticleItem = (props) => {
         </div>
         {/* <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon" /> 1</span>
         <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon" /> 1</span> */}
-        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">Read more</Link>
+        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">READ MORE</Link>
       </div>
     </div>
   );

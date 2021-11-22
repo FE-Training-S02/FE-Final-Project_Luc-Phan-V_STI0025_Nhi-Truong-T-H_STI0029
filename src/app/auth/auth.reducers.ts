@@ -1,4 +1,3 @@
-import { createReducer } from '@app/core/helpers/reducer-factory';
 import ACTION_TYPES from '@core/constants/types';
 
 const initialState = {
@@ -14,8 +13,8 @@ function authReducer(state = initialState, action) {
   switch (action.type) {
     case ACTION_TYPES.GET_USER_INFO:
       return {
-          ...state,
-          userInfo: action.payload
+        ...state,
+        userInfo: action.payload
       };
     default:
       return state;

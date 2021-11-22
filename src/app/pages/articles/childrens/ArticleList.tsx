@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ArticleItem from '../partials/ArticleItem';
-import { getArticles } from '../article.middleware';
+import { getListArticles } from '../article.middleware';
 import { Post } from '@app/shared/models/post';
 import { useDispatch } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import Sidebar from '@app/shared/components/layout/Sidebar';
+import { AuthStorageService } from '@app/core/services/authStorage.service';
 
 const ArticleList = () => {
   const [articles, setArticles] = useState<Post[]>([]);
@@ -12,28 +13,34 @@ const ArticleList = () => {
   const [isLoadMore, setIsLoadMore] = useState(false);
   const { setLoading } = useLoading();
   const disPatch = useDispatch();
+  const authStorage = new AuthStorageService();
+  const token = authStorage.getToken();
+  let endPoint;
+  token ? (endPoint = '/posts/') : (endPoint = '/posts/public/');
 
-  const getArticlesPublicSuccess = (res) => {
+  useEffect(() => {
+    setLoading(true);
+    getArticles(page);
+  }
+    , []);
+  const loadMore = () => {
+    setLoading(true);
+    getArticles(page + 1);
+    setPage(page + 1);
+  };
+
+  const getArticles = (page) => {
+
+    disPatch(getListArticles(endPoint, page, getArticlesSuccess, getArticlesError));
+  };
+  const getArticlesSuccess = (res) => {
     const { data, loadMore } = res;
     setArticles([...articles, ...data]);
     setIsLoadMore(loadMore);
     setLoading(false);
   };
-  const getArticlesPublicError = (error) => {
+  const getArticlesError = (error) => {
     setLoading(false);
-  };
-  function getArticlesPublic(page) {
-    disPatch(getArticles(getArticlesPublicSuccess, getArticlesPublicError, page));
-  };
-  useEffect(() => {
-    setLoading(true);
-    getArticlesPublic(page);
-  }
-    , []);
-  const loadMore = () => {
-    setLoading(true);
-    getArticlesPublic(page + 1);
-    setPage(page + 1);
   };
   return (
     <div className="row">
