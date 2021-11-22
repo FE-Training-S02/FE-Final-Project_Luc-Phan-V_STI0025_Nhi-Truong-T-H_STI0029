@@ -5,6 +5,7 @@ import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { likeArticle, getListUserLiked, getArticleDetail } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
+import CommentForm from '../partials/CommentForm';
 
 
 const ArticleDetail = () => {
@@ -84,6 +85,7 @@ const ArticleDetail = () => {
                 </div>
               </div>
             </div>
+            <CommentForm/>
           </div>
         </main>
         <Sidebar />
