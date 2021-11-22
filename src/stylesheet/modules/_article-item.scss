@@ -74,7 +74,7 @@
     @include pxRem(padding, 0 10);
     letter-spacing: 0.2px;
     .article-title {
-      @include pxRem(max-height, 60);
+      @include pxRem(height, 60);
       @include line-clamp(2);
       text-align: left;
       font-size: map-get($font-size, normal);
@@ -86,7 +86,7 @@
       @include line-clamp(3);
       color: map-get($color, grey-b);
       font-size: map-get($font-size, sm);
-      text-align: justify;
+      text-align: left;
       overflow: hidden;
       text-overflow: ellipsis;
     }
