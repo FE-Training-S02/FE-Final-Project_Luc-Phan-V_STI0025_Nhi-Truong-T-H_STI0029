@@ -1,9 +1,95 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import purify from "dompurify";
+import { RootStateOrAny, useSelector } from 'react-redux';
+import { useLoading } from '@app/shared/contexts/loading.context';
+import { likeArticle, getListUserLiked, getArticleDetail } from '../article.middleware';
+import Sidebar from '@app/shared/components/layout/Sidebar';
+
 
 const ArticleDetail = () => {
+  const { id } = useParams();
+  const [article, setArticle] = useState<any>({});
+  const { setLoading } = useLoading();
+  const [isLiked, setIsLiked] = useState<any>();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (id) {
+      dispatch(getArticleDetail(
+        id,
+        (res) => {
+          console.log(res.isLiked)
+          setIsLiked(res.isLiked);
+          setArticle(res);
+        },
+        (error) => {
+          setLoading(false);
+        }));
+    }
+  }, [id, isLiked])
+  const { title, user, comments, likes, cover, content } = article;
+  const handleLikeArticle = async() => {
+    dispatch(likeArticle(
+      id,
+      (res) => {
+        console.log(res)
+        setIsLiked(res.liked);
+      },
+      (error) => {
+        console.log(error);
+      }));
+  }
   return (
-    <div>This is article-detail page</div>
+    <>
+      <div className="row">
+        <main className="col-8 main-content">
+          <div className="grid-box pd-10">
+            <div className="article-header">
+              <div className="featured">
+                <img src={cover} className="article-cover-image" alt="image-article" />
+              </div>
+              <h2 className="article-title txt-capitalize">{title}</h2>
+              <div className="article-author-follow">
+                <div className="article-author">
+                  <span className="text-writen-by">WRITEN BY -</span>
+                  <Link to="/" className="article-author-name">
+                    <i className="fas fa-pen-fancy"></i>
+                    <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
+                  </Link>
+                  <button className="btn btn-outline">+ Follow</button>
+                </div>
+                <button className="btn btn-icon">
+                  <i className="far fa-bookmark"></i>
+                </button>
+              </div>
+            </div>
+            <div className="article-body">
+              <div className="article-content" dangerouslySetInnerHTML={{ __html: purify.sanitize(content) }}>
+              </div>
+            </div>
+            <div className="article-footer">
+              <div className="article-footer-left">
+                <p className="txt-uppercase"><span>TAGS </span>bc</p>
+              </div>
+              <div className="article-footer-right">
+                <div className="interact">
+                  <button className="btn-interact likes" onClick={handleLikeArticle}>
+                    <i className={`fa fa-heart ${isLiked ? 'liked' : ''}`}></i>
+                    <span>{likes}</span>
+                  </button>
+                  <button className="btn-interact">
+                    <i className="far fa-comment"></i>
+                    <span>{comments}</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+        <Sidebar />
+      </div>
+    </>
   );
 };
-
 export default ArticleDetail;

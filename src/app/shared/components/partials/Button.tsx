@@ -1,5 +1,4 @@
 import React from 'react';
-
 interface ButtonProps {
   children: JSX.Element | string;
   type: 'button' | 'submit' | 'reset';

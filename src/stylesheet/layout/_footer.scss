@@ -1,0 +1,96 @@
+.section-footer {
+  @include pxRem(padding, 45 0 20);
+  @include pxRem(margin-top, 10);
+  @include pxRem(line-height, 24);
+  background-color: map-get($color, white);
+  font-size: map-get($font-size, normal);
+  color: map-get($color, grey-b);
+  .logo {
+    .logo-link {
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .subcribe-form {
+    max-width: 80%;
+    margin: 0 auto;
+    .subcribe-title {
+      @include pxRem(margin-bottom, 5);
+    }
+    .input-subcribe {
+      input {
+        width: calc(100% - 112px);
+        padding: 0 15px;
+        border: 1px solid #e4e4e4;
+        color: #c6c6c6;
+        height: 38px;
+        font-size: 13px;
+      }
+      .btn-subcribe {
+        background: map-get($map: $color, $key: primary);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 600;
+        text-align: center;
+        padding: 12px 20px;
+      }
+    }
+  }
+  hr {
+    border-top-color: #e4e4e4;
+    opacity: 0.5;
+  }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .copyright-text {
+      font-size: map-get($map: $font-size, $key: xs);
+    }
+    .social-icons {
+      margin-bottom: 0;
+      padding-left: 0;
+      text-align: right;
+      list-style: none;
+      li {
+        @include pxRem(margin-bottom, 4);
+        display: inline-block;
+        a {
+          float: left;
+          margin-left: 8px;
+          width: 31px;
+          border: 1px solid #e4e4e4;
+          border-radius: 50%;
+          font-size: 13px;
+          color: #aaa;
+          text-align: center;
+          line-height: 28px;
+          &:hover {
+            color: map-get($color, white);
+          }
+          &.facebook {
+            &:hover {
+              background-color: map-get($color, fb);
+            }
+          }
+          &.twitter {
+            &:hover {
+              background-color: map-get($color, twitter);
+            }
+          }
+          &.linkedin {
+            &:hover {
+              background-color: map-get($color, linkedin);
+            }
+          }
+          &.dribbble {
+            &:hover {
+              background-color: map-get($color, dribbble);
+            }
+          }
+        }
+      }
+    }
+  }
+}

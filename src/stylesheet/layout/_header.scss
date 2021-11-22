@@ -1,0 +1,89 @@
+.header {
+  background: map-get($map: $color, $key: white);
+  position: fixed;
+  width: 100%;
+  margin-bottom: 20px;
+  z-index: 99;
+
+  .header-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .logo {
+      @include pxRem(padding-top, 6);
+      .logo-link {
+        @include pxRem(width, 138);
+        @include pxRem(height, 36);
+      }
+      img {
+        @include pxRem(height, 36);
+        width: 100%;
+      }
+    }
+    .nav-list {
+      text-align: center;
+      .nav-item {
+        @include pxRem(height, 24);
+        @include pxRem(margin, 12);
+        display: inline;
+        .nav-link {
+          font-size: map-get($font-size, lg);
+          color: map-get($color, primary);
+          line-height: 2.7;
+          font-weight: 700;
+          .icon {
+            @include pxRem(padding, 0 4);
+          }
+        }
+        .avatar-img {
+          @include pxRem(width, 20);
+          @include pxRem(height, 20);
+        }
+      }
+    }
+    .option-item {
+      display: inline-block;
+      @include pxRem(height, 24);
+      @include pxRem(padding, 0 12);
+      @include pxRem(margin, 12 0);
+      .option-link {
+        @include pxRem(height, 24);
+      }
+    }
+  }
+}
+.nav-dropdown {
+  position: relative;
+  overflow: hidden;
+  &:hover {
+    .dropdown-content {
+      display: block;
+    }
+  }
+  .dropbtn {
+    margin: 0;
+    border: none;
+    font-size: map-get($font-size, normal);
+    outline: none;
+  }
+  .dropdown-content {
+    @include pxRem(min-width, 160);
+    position: absolute;
+    z-index: 1;
+    display: none;
+    top: 100%;
+    left: 0;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    a {
+      @include pxRem(padding, 12 16);
+      display: block;
+      color: map-get($color, black);
+      text-align: left;
+      text-decoration: none;
+      &:hover {
+        background-color: #ddd;
+      }
+    }
+  }
+}

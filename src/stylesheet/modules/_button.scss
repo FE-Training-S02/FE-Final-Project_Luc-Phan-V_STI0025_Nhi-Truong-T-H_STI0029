@@ -1,12 +1,29 @@
 .btn {
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center;
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
   &.btn-primary {
     color: map-get($map: $color, $key: white);
     background-color: map-get($map: $color, $key: primary);
+  }
+  &.btn-outline {
+    @include pxRem(min-width, 85);
+    @include pxRem(min-height, 30);
+    @include pxRem(padding, 8);
+    background-color: transparent;
+    border: 1px solid map-get($map: $color, $key: blue-a);
+    color: map-get($map: $color, $key: blue-a);
+  }
+  &.btn-icon {
+    @include pxRem(padding, 12);
+    border-radius: 20px;
+  }
+  &.btn-block {
+    @include pxRem(padding, 10);
+    width: 100%;
+    font-size: map-get($map: $font-size, $key: normal);
   }
 }

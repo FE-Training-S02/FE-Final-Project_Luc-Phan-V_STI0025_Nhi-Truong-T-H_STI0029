@@ -1,0 +1,8 @@
+.section-articles-list {
+  text-align: center;
+  .btn-load-more {
+    @include pxRem(padding, 10);
+    background: map-get($color, primary);
+    color: map-get($color, white);
+  }
+}

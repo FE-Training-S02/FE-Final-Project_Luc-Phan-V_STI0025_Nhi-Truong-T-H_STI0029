@@ -1,23 +1,59 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { RootStateOrAny, useSelector } from 'react-redux';
+import { AuthStorageService } from '@app/core/services/authStorage.service';
+
 
 export function Header() {
+  const user = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
+  const authStorage = new AuthStorageService();
+  const handleLogout = () => {
+    authStorage.removeToken();
+  }
   return (
-    <header>
-      <ul>
-        <li>
-          <Link to="">Home</Link>
-        </li>
-        <li>
-          <Link to="articles">Articles</Link>
-        </li>
-        <li>
-          <Link to="auth/login">Login</Link>
-        </li>
-        <li>
-          <Link to="auth/register">Register</Link>
-        </li>
-      </ul>
-    </header>
+    <>
+      <header className="header">
+        <div className="container">
+          <div className="header-content">
+            <h1 className="logo">
+              <Link to="/" className="logo-link"><img src="./assets/images/logo.png" alt="ST BLOG" /></Link>
+            </h1>
+            <nav className="nav">
+              <ul className="nav-list">
+                <li className="nav-item">
+                  <Link to="/" className="nav-link">Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/articles" className="nav-link">Articles</Link>
+                </li>
+                {user ?
+                  <li className="nav-item nav-dropdown">
+                    <Link to="" className="nav-link dropbtn">
+                      <i className="fa fa-user icon"></i>
+                      {user.lastName}
+                      <i className="fa fa-caret-down icon"></i>
+                    </Link>
+                    <div className="dropdown-content">
+                      <Link to="/">Profile</Link>
+                      <Link to="/">Change Password</Link>
+                      <Link to="/articles/new">Create Article</Link>
+                      <Link to="/auth/login" onClick={handleLogout}>Logout</Link>
+                    </div>
+                  </li> :
+                  <>
+                    <li className="nav-item">
+                      <Link to="/auth/login" className="nav-link">Login</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/auth/register" className="nav-link">Sign up</Link>
+                    </li>
+                  </>
+                }
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </header>
+    </>
   );
 }

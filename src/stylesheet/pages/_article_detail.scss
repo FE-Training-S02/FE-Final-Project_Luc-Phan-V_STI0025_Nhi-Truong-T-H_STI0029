@@ -1,0 +1,97 @@
+.main-content {
+  .article-header {
+    .featured {
+      @include pxRem(margin, -50 -50 40);
+      .article-cover-image {
+        // @include pxRem(max-height, 500);
+        width: 100%;
+      }
+    }
+    .article-title {
+      word-wrap: break-word;
+      letter-spacing: 0.2px;
+      line-height: 1.35;
+    }
+    .article-author-follow {
+      @include pxRem(margin-top, 20);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .article-author {
+        display: flex;
+        align-items: center;
+        .text-writen-by {
+          @include pxRem(margin-right, 5);
+          font-size: map-get($map: $font-size, $key: xs);
+          color: map-get($map: $color, $key: grey-b);
+          letter-spacing: 0.2px;
+        }
+        .article-author-name {
+          @include pxRem(margin-right, 30);
+          display: flex;
+          align-items: center;
+          i {
+            font-size: map-get($map: $font-size, $key: xs);
+            color: map-get($map: $color, $key: grey-e);
+          }
+          h3 {
+            font-size: map-get($map: $font-size, $key: sm);
+            color: map-get($map: $color, $key: grey-e);
+          }
+        }
+      }
+    }
+  }
+  .article-body {
+    .article-content {
+      @include pxRem(margin-top, 30);
+      word-wrap: break-word;
+    }
+  }
+  .article-footer {
+    @include pxRem(margin-top, 80);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .article-footer-left {
+      p {
+        font-size: map-get($map: $font-size, $key: xs);
+        color: map-get($map: $color, $key: primary);
+        font-weight: 600;
+        span {
+          color: map-get($map: $color, $key: grey-b);
+        }
+      }
+    }
+    .article-footer-right {
+      .interact {
+        @include pxRem(min-width, 100);
+        display: inline-block;
+        background: map-get($map: $color, $key: grey-d);
+        border: 1px solid map-get($map: $color, $key: white-a);
+        border-radius: 15px;
+        text-align: center;
+        .btn-interact {
+          background: none;
+          color: map-get($map: $color, $key: grey-b);
+          i {
+            @include pxRem(margin-right, 5);
+          }
+        }
+        .likes {
+          &::after {
+            @include pxRem(width, 2);
+            @include pxRem(height, 10);
+            @include pxRem(margin-left, 11);
+            content: "";
+            display: inline-block;
+            background: map-get($map: $color, $key: white-a);
+          }
+          .liked {
+            color: map-get($color, dribbble);
+          }
+        }
+      }
+    }
+  }
+}

@@ -13,6 +13,9 @@
         &:focus {
           border-color: #7f7f81;
         }
+        &:invalid {
+          border: 1px solid #f4aabd;
+        }
       }
       .form-label {
         @include pxRem(top, -9);
@@ -46,7 +49,7 @@
       }
       select {
         &.form-control {
-          @include pxRem(padding, 14);
+          @include pxRem(padding, 14 12);
         }
       }
       .form-control:focus ~ .form-label {
@@ -59,10 +62,6 @@
   }
   .btn-group {
     @include pxRem(margin-bottom, 20);
-    .btn-block {
-      @include pxRem(padding, 10);
-      font-size: map-get($map: $font-size, $key: normal);
-    }
     p {
       text-align: center;
     }

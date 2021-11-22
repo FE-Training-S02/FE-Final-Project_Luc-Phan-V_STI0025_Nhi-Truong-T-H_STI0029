@@ -1,26 +1,44 @@
-// import { AnyAction } from 'redux';
-// import { put, takeLatest } from 'redux-saga/effects';
+import JwtHelper from '@app/core/helpers/jwtHelper';
+import { ApiService } from '@app/core/services/api.service';
+import { getUserInfo } from './auth.actions';
 
-// import ACTION_TYPES from '@core/constants/types';
-// import { AuthService } from '../core/services/auth.service';
-// import { signInSuccess, signInError } from './auth.actions';
+const jwtHelper = new JwtHelper();
+const apiService = new ApiService();
+export const loadUser = () => async dispatch => {
+  const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
+  try {
+    if (!userId) {
+      dispatch(getUserInfo(null));
+      return;
+    }
+    apiService.get([`/users/${userId}`])
+      .then(response => {
+        dispatch(getUserInfo(response));
+      })
+      .catch(error => { console.log(error); }
+      )
+  } catch (error) {
+    console.log('error', error.message);
+  }
+}
 
-// const auth = new AuthService();
-
-// export function* signin({ payload }: AnyAction) {
-//   try {
-//     // call api login
-//     const res = yield auth.signIn(payload).then(res => res);
-//     // set token into localStorage
-//     auth.setToken(res.accessToken);
-//     // handle successful response
-//     yield put(signInSuccess(res));
-//   } catch (error) {
-//     // handle error response
-//     yield put(signInError(error));
-//   }
-// }
-
-// export function* watchAuth() {
-//   yield takeLatest(ACTION_TYPES.SIGN_IN, signin);
-// }
+export const signIn = (account, resolve, rejects) => {
+  return (dispatch) => {
+    apiService.post([`/users/login`], account)
+      .then(response => {
+        resolve(response);
+      }).catch(error => {
+        rejects(error);
+      });
+  };
+};
+export const signUp = (data, resolve, rejects) => {
+  return (dispatch) => {
+    apiService.post([`/users/register`], data)
+      .then(res => {
+        resolve(res);
+      }).catch(error => {
+        rejects(error);
+      });
+  };
+};
