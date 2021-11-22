@@ -6,40 +6,27 @@ import { useLoading } from '@app/shared/contexts/loading.context';
 import { likeArticle, getListUserLiked, getArticleDetail } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
+import { Like } from '../partials/Like';
 
 
 const ArticleDetail = () => {
-  const { id } = useParams();
+  const { id } = useParams(); 
   const [article, setArticle] = useState<any>({});
   const { setLoading } = useLoading();
-  const [isLiked, setIsLiked] = useState<any>();
   const dispatch = useDispatch();
   useEffect(() => {
     if (id) {
       dispatch(getArticleDetail(
         id,
         (res) => {
-          console.log(res.isLiked)
-          setIsLiked(res.isLiked);
           setArticle(res);
         },
         (error) => {
           setLoading(false);
         }));
     }
-  }, [id, isLiked])
+  }, [id])
   const { title, user, comments, likes, cover, content } = article;
-  const handleLikeArticle = async () => {
-    dispatch(likeArticle(
-      id,
-      (res) => {
-        console.log(res)
-        setIsLiked(res.liked);
-      },
-      (error) => {
-        console.log(error);
-      }));
-  }
   return (
     <>
       <div className="row">
@@ -74,10 +61,7 @@ const ArticleDetail = () => {
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  <button className="btn-interact likes" onClick={handleLikeArticle}>
-                    <i className={`fa fa-heart ${isLiked ? 'liked' : ''}`}></i>
-                    <span>{likes}</span>
-                  </button>
+                  <Like id={id} like={likes}/>
                   <button className="btn-interact">
                     <i className="far fa-comment"></i>
                     <span>{comments}</span>
