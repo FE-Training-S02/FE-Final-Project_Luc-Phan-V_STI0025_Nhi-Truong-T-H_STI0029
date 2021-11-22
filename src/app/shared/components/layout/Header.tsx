@@ -1,9 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { RootStateOrAny, useSelector } from 'react-redux';
+import { AuthStorageService } from '@app/core/services/authStorage.service';
+
 
 export function Header() {
   const user = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
+  const authStorage = new AuthStorageService();
+  const handleLogout = () => {
+    authStorage.removeToken();
+  }
   return (
     <>
       <header className="header">
@@ -31,7 +37,7 @@ export function Header() {
                       <Link to="/">Profile</Link>
                       <Link to="/">Change Password</Link>
                       <Link to="/articles/new">Create Article</Link>
-                      <Link to="/">Logout</Link>
+                      <Link to="/auth/login" onClick={handleLogout}>Logout</Link>
                     </div>
                   </li> :
                   <>

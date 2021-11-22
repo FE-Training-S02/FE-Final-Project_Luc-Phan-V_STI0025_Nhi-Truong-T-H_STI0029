@@ -7,6 +7,7 @@ import { signIn } from '../auth.middleware';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
+import { AuthStorageService } from '@app/core/services/authStorage.service';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -15,11 +16,13 @@ const Login = () => {
     handleSubmit,
     formState: { errors }
   } = useForm();
+  const authStorage = new AuthStorageService();
   const [errMessage, setErrMessage] = useState('');
   const navigate = useNavigate()
   const onSubmit = (account) => {
     dispatch(signIn(account,
       (response) => {
+        authStorage.setToken(response.accessToken);
         navigate('/home');
       },
       (error) => {
