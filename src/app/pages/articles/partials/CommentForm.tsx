@@ -18,8 +18,8 @@ const CommentForm = () => {
             <div className="form-group">
               <div className="input-group">
                 <textarea
-                className="form-control"
-                placeholder="Comment content..."
+                  className="form-control"
+                  placeholder="Comment content..."
                 />
               </div>
             </div>
