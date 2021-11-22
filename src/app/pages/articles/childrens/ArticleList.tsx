@@ -9,8 +9,8 @@ import { AuthStorageService } from '@app/core/services/authStorage.service';
 
 const ArticleList = () => {
   const [articles, setArticles] = useState<Post[]>([]);
-  const [page, setPage] = useState(null);
-  const [isLoadMore, setIsLoadMore] = useState(1);
+  const [page, setPage] = useState(1);
+  const [isLoadMore, setIsLoadMore] = useState(false);
   const { setLoading } = useLoading();
   const disPatch = useDispatch();
   const authStorage = new AuthStorageService();
