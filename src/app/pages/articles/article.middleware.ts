@@ -5,8 +5,8 @@ import { resolve } from "path";
 const apiService = new ApiService();
 
 export const getArticleDetail = (id, resolve, reject) => {
-  return (dispatch) => {
-    apiService.get([`/posts/${id}`])
+  return async (dispatch) => {
+    await apiService.get([`/posts/${id}`])
       .then(res => {
         resolve(res);
       }).catch(error => {
@@ -68,6 +68,17 @@ export const getListUserLiked = (id, resolve, reject) => {
   return async () => {
     await apiService.get([`/posts/${id}/likes`])
       .then((res) => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+export const getCommentsList = (endPoint, page, resolve, reject) => {
+  return async () => {
+    await apiService.get([`${endPoint}?page=${page}&size=8`])
+      .then(res => {
         resolve(res);
       })
       .catch(error => {

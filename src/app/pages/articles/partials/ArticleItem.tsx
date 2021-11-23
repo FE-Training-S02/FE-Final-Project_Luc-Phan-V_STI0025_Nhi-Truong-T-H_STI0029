@@ -1,17 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import JwtHelper from '@app/core/helpers/jwtHelper';
 import { useDialog } from '@app/shared/contexts/dialog.context';
 import { useDispatch } from 'react-redux';
+import { Like } from './Like';
 import { deleteArticle } from '../article.middleware';
 
 const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
-  const { id, cover, user, tags, title, description, likes, comments } = props.post;
-  const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   const { setDialog } = useDialog();
   const dispatch = useDispatch();
-
+  const { id, cover, user, tags, title, description, likes, comments, isLiked } = props.post;
+  const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
+  const { list, hadleDeleteArticle } = props;
+  const newList = list.filter(item => item.id !== id);
   const handleDelete = () => {
     setDialog({
       type: 'DeleteCofirm',
@@ -30,7 +32,7 @@ const ArticleItem = (props) => {
     dispatch(deleteArticle(
       id,
       (res) => {
-        console.log(res);
+        hadleDeleteArticle(newList);
       },
       (error) => {
         console.log(error);
@@ -68,12 +70,12 @@ const ArticleItem = (props) => {
       </div>
       <div className="article-interact">
         <div className="list-icon-interact">
-          <span className="item-icon-item"><i className="far fa-heart"></i>{likes}</span>
+          <Like key={id} id={id} like={likes} liked={isLiked} />
           <span className="item-icon-item"><i className="far fa-comment"></i>{comments}</span>
         </div>
         <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">READ MORE</Link>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };
 

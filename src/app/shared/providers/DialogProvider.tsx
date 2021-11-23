@@ -1,6 +1,4 @@
-import { deleteArticle } from '@app/pages/articles/article.middleware';
 import React, { useCallback, useState } from 'react';
-
 import { DialogContext, useDialog } from '../contexts/dialog.context';
 
 

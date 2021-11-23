@@ -6,40 +6,27 @@ import { useLoading } from '@app/shared/contexts/loading.context';
 import { likeArticle, getListUserLiked, getArticleDetail } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
-
+import { Like } from '../partials/Like';
+import { CommentsList } from '../partials/CommentList';
 
 const ArticleDetail = () => {
   const { id } = useParams();
   const [article, setArticle] = useState<any>({});
   const { setLoading } = useLoading();
-  const [isLiked, setIsLiked] = useState<any>();
   const dispatch = useDispatch();
+  const { title, user, comments, likes, cover, content, isLiked } = article;
   useEffect(() => {
     if (id) {
       dispatch(getArticleDetail(
         id,
         (res) => {
-          console.log(res.isLiked)
-          setIsLiked(res.isLiked);
           setArticle(res);
         },
         (error) => {
           setLoading(false);
         }));
     }
-  }, [id, isLiked])
-  const { title, user, comments, likes, cover, content } = article;
-  const handleLikeArticle = async () => {
-    dispatch(likeArticle(
-      id,
-      (res) => {
-        console.log(res)
-        setIsLiked(res.liked);
-      },
-      (error) => {
-        console.log(error);
-      }));
-  }
+  }, [id])
   return (
     <>
       <div className="row">
@@ -74,10 +61,7 @@ const ArticleDetail = () => {
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  <button className="btn-interact likes" onClick={handleLikeArticle}>
-                    <i className={`fa fa-heart ${isLiked ? 'liked' : ''}`}></i>
-                    <span>{likes}</span>
-                  </button>
+                  <Like id={id} like={likes} liked={isLiked} />
                   <button className="btn-interact">
                     <i className="far fa-comment"></i>
                     <span>{comments}</span>
@@ -86,6 +70,7 @@ const ArticleDetail = () => {
               </div>
             </div>
             <CommentForm />
+            <CommentsList />
           </div>
         </main>
         <Sidebar />

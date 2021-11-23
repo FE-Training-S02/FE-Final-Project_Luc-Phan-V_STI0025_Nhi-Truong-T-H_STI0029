@@ -17,7 +17,6 @@ const ArticleList = () => {
   const token = authStorage.getToken();
   let endPoint = '/posts/public/';
   // token ? (endPoint = '/posts/') : (endPoint = '/posts/public/');
-
   useEffect(() => {
     setLoading(true);
     getArticles(page);
@@ -41,13 +40,16 @@ const ArticleList = () => {
   const getArticlesError = (error) => {
     setLoading(false);
   };
+  const hadleDeleteArticle = (aritclelist) => {
+    setArticles(aritclelist);
+  }
   return (
     <div className="row">
       <section className="section-articles-list col-8">
         <ul className="row article-list">
           {articles.map((item: Post, index: any) =>
             <li className="col col-6" key={item.id}>
-              <ArticleItem post={item} />
+              <ArticleItem post={item} hadleDeleteArticle={hadleDeleteArticle} list={articles} />
             </li>
           )}
         </ul>

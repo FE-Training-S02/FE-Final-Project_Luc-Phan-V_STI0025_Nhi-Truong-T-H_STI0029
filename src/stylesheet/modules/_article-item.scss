@@ -22,12 +22,8 @@
       }
     }
     .btn-dropdown {
-      @include pxRem(padding, 4 6);
-      @include pxRem(font-size, 16);
-      border: none;
-      border-radius: 5px;
-      background-color: map-get($color, grey-b);
-      color: white;
+      background-color: transparent;
+      font-size: map-get($map: $font-size, $key: xl);
     }
     .sub-dropdown {
       display: none;
