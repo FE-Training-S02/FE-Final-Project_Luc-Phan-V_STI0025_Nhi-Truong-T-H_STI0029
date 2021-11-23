@@ -106,3 +106,14 @@ export const postFollow = (data, resolve, reject) => {
       });
   };
 };
+export const getAuthor = (id, resolve, reject) => {
+  return async () => {
+    await apiService.get([`/users/${id}`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
