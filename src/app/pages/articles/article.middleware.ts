@@ -60,3 +60,14 @@ export const getListUserLiked = (id, resolve, reject) => {
       });
   };
 };
+export const getCommentsList = (endPoint, page, resolve, reject) => {
+  return async () => {
+    await apiService.get([`${endPoint}?page=${page}&size=8`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
