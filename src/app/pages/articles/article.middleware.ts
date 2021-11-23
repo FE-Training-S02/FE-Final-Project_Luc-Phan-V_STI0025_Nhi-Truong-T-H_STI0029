@@ -84,3 +84,14 @@ export const getCommentsList = (id, resolve, reject) => {
       });
   };
 };
+export const postComment = (id, data, resolve, reject) => {
+  return async () => {
+    await apiService.post([`/posts/${id}/comments`], data)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
