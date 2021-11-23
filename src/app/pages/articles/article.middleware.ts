@@ -1,6 +1,4 @@
 import { ApiService } from "@app/core/services/api.service";
-import { rejects } from "assert";
-import { resolve } from "path";
 
 const apiService = new ApiService();
 
