@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
-import { getArticleDetail, getCommentsList } from '../article.middleware';
+import { getArticleDetail, getCommentsList, postFollow } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
 import { Like } from '../partials/Like';
@@ -14,6 +14,7 @@ const ArticleDetail = () => {
   const [article, setArticle] = useState<any>({});
   const [comments, setComments] = useState<any>();
   const [commentsList, setCommentsList] = useState<any>([]);
+  const [isFollowed, setIsFollowed] = useState<boolean>(false);
   const { setLoading } = useLoading();
   const disPatch = useDispatch();
   const { title, user, likes, cover, content, isLiked } = article;
@@ -27,7 +28,8 @@ const ArticleDetail = () => {
         },
         (error) => {
           setLoading(false);
-        }));
+        })
+      );
       disPatch(getCommentsList(
         id, 
         (res) => {
@@ -35,7 +37,8 @@ const ArticleDetail = () => {
         },
         (error) => {
           setLoading(false);
-        }))
+        })
+      );
     }
   }, [id])
     
@@ -48,7 +51,23 @@ const ArticleDetail = () => {
       },
       (error) => {
         setLoading(false);
-      }))
+      })
+    );
+  }
+  const followUser = () => {
+    const data = {
+      'followingId': user.id
+    }
+    console.log(data)
+    disPatch(postFollow(
+      data, 
+      (res) => {
+        setIsFollowed(res.followed);
+      },
+      (error) => {
+        console.log(error);
+      })
+    );
   }
   return (
     <>
@@ -67,7 +86,7 @@ const ArticleDetail = () => {
                     <i className="fas fa-pen-fancy"></i>
                     <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
                   </Link>
-                  <button className="btn btn-outline">+ Follow</button>
+                  <button className={`btn btn-outline ${isFollowed ? 'btn-accept' : ''}`}onClick={followUser}>+ Follow</button>
                 </div>
                 <button className="btn btn-icon">
                   <i className="far fa-bookmark"></i>
