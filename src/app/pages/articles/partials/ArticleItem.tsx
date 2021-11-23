@@ -1,12 +1,45 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import JwtHelper from '@app/core/helpers/jwtHelper';
+import { useDialog } from '@app/shared/contexts/dialog.context';
+import { useDispatch } from 'react-redux';
 import { Like } from './Like';
+import { deleteArticle } from '../article.middleware';
 
 const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
+  const { setDialog, onClosed } = useDialog();
+  const dispatch = useDispatch();
   const { id, cover, user, tags, title, description, likes, comments, isLiked } = props.post;
   const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
+  const { list, hadleDeleteArticle } = props;
+  const newList = list.filter(item => item.id !== id);
+  const handleDelete = () => {
+    setDialog({
+      type: 'DeleteCofirm',
+      data: {
+        title: 'Confirm',
+        content: 'Are you sure you want to delete',
+        yes: 'Yes',
+        cancel: 'Cancel'
+      },
+      confirmDialog: () => confirmDeleteArticle()
+    }
+    );
+  };
+
+  const confirmDeleteArticle = () => {
+    dispatch(deleteArticle(
+      id,
+      (res) => {
+        hadleDeleteArticle(newList);
+        onClosed();
+      },
+      (error) => {
+        console.log(error);
+      }
+    ))
+  }
   return (
     <div className="article-item grid-box pd-5">
       <div className="feature">
@@ -16,7 +49,7 @@ const ArticleItem = (props) => {
         <div className="dropdown">
           <button className="btn-dropdown">...</button>
           <ul className="sub-dropdown">
-            <button className="sub-dropdown-item">Delete</button>
+            <button onClick={handleDelete} className="sub-dropdown-item">Delete</button>
             <Link to={`/articles/${id}/edit`} className="sub-dropdown-item">Update</Link>
           </ul>
         </div>
@@ -38,12 +71,12 @@ const ArticleItem = (props) => {
       </div>
       <div className="article-interact">
         <div className="list-icon-interact">
-          <Like key={id} id={id} like={likes} liked={isLiked}/>
+          <Like key={id} id={id} like={likes} liked={isLiked} />
           <span className="item-icon-item"><i className="far fa-comment"></i>{comments}</span>
         </div>
-        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">Read more</Link>
-      </div>
-    </div>
+        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">READ MORE</Link>
+      </div >
+    </div >
   );
 };
 

@@ -25,6 +25,19 @@ export const getListArticles = (endPoint, page, resolve, reject) => {
   };
 };
 
+
+export const deleteArticle = (id, resolve, rejects) => {
+  return async (dispatch) => {
+    await apiService.delete([`/posts/${id}`])
+      .then(res => {
+        resolve(res);
+      }).catch(error => {
+        rejects(error);
+      });
+  };
+};
+
+
 export const uploadImage = (file, resolve, reject) => {
   return async () => {
     await apiService.get([`/signatures?type_upload=cover-post&file_name=${file.name}&file_type=${file.type}`])

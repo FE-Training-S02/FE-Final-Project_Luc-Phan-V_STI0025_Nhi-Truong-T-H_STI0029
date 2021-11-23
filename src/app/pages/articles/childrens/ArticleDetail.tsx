@@ -10,7 +10,7 @@ import { Like } from '../partials/Like';
 import { CommentsList } from '../partials/CommentList';
 
 const ArticleDetail = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [article, setArticle] = useState<any>({});
   const { setLoading } = useLoading();
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ const ArticleDetail = () => {
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  <Like id={id} like={likes} liked={isLiked}/>
+                  <Like id={id} like={likes} liked={isLiked} />
                   <button className="btn-interact">
                     <i className="far fa-comment"></i>
                     <span>{comments}</span>

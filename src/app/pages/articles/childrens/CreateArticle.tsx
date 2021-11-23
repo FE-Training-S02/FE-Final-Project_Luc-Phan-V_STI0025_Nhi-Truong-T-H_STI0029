@@ -84,7 +84,7 @@ const CreateArticle = () => {
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onsubmit)}>
           <div className="row">
-            <label className="col-2 col-form-label">Tile</label>
+            <label className="col-2 col-form-label">Title</label>
             <div className="col-10">
               <Input
                 type="text"
