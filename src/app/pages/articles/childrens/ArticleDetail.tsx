@@ -14,6 +14,7 @@ const ArticleDetail = () => {
   const [article, setArticle] = useState<any>({});
   const { setLoading } = useLoading();
   const dispatch = useDispatch();
+  const { title, user, comments, likes, cover, content, isLiked } = article;
   useEffect(() => {
     if (id) {
       dispatch(getArticleDetail(
@@ -26,7 +27,6 @@ const ArticleDetail = () => {
         }));
     }
   }, [id])
-  const { title, user, comments, likes, cover, content, isLiked } = article;
   return (
     <>
       <div className="row">
