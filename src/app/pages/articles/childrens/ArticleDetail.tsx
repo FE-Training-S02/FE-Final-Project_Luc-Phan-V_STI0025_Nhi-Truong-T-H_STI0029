@@ -85,7 +85,7 @@ const ArticleDetail = () => {
                 </div>
               </div>
             </div>
-            <CommentForm/>
+            <CommentForm />
           </div>
         </main>
         <Sidebar />

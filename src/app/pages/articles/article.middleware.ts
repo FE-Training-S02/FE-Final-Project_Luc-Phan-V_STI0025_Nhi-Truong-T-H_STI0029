@@ -1,4 +1,6 @@
 import { ApiService } from "@app/core/services/api.service";
+import { rejects } from "assert";
+import { resolve } from "path";
 
 const apiService = new ApiService();
 
@@ -24,6 +26,19 @@ export const getListArticles = (endPoint, page, resolve, reject) => {
       });
   };
 };
+
+
+export const deleteArticle = (id, resolve, rejects) => {
+  return async (dispatch) => {
+    await apiService.delete([`/posts/${id}`])
+      .then(res => {
+        resolve(res);
+      }).catch(error => {
+        rejects(error);
+      });
+  };
+};
+
 
 export const uploadImage = (file, resolve, reject) => {
   return async () => {
@@ -60,4 +75,3 @@ export const getListUserLiked = (id, resolve, reject) => {
       });
   };
 };
-

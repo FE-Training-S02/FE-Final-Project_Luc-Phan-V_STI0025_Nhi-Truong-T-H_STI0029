@@ -15,8 +15,8 @@ const ArticleList = () => {
   const disPatch = useDispatch();
   const authStorage = new AuthStorageService();
   const token = authStorage.getToken();
-  let endPoint;
-  token ? (endPoint = '/posts/') : (endPoint = '/posts/public/');
+  let endPoint = '/posts/public/';
+  // token ? (endPoint = '/posts/') : (endPoint = '/posts/public/');
 
   useEffect(() => {
     setLoading(true);
@@ -30,7 +30,6 @@ const ArticleList = () => {
   };
 
   const getArticles = (page) => {
-
     disPatch(getListArticles(endPoint, page, getArticlesSuccess, getArticlesError));
   };
   const getArticlesSuccess = (res) => {

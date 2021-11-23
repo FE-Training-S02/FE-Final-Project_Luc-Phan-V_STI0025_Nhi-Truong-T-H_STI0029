@@ -26,4 +26,14 @@
     width: 100%;
     font-size: map-get($map: $font-size, $key: normal);
   }
+  &.btn-accept {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  &.btn-cancel {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+  }
 }
