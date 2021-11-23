@@ -60,9 +60,9 @@ export const getListUserLiked = (id, resolve, reject) => {
       });
   };
 };
-export const getCommentsList = (endPoint, page, resolve, reject) => {
+export const getCommentsList = (id, resolve, reject) => {
   return async () => {
-    await apiService.get([`${endPoint}?page=${page}&size=8`])
+    await apiService.get([`/posts/${id}/comments`])
       .then(res => {
         resolve(res);
       })
