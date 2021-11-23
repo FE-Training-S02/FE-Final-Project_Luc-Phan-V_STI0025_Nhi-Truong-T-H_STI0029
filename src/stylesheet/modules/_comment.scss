@@ -1,0 +1,10 @@
+.comment-item {
+  display: flex;
+  .avatar-comment {
+    @include pxRem(width, 48);
+    @include pxRem(height, 48);
+  }
+  .comment-body {
+    @include pxRem(padding, 0 16);
+  }
+}

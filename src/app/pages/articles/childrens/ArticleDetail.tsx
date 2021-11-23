@@ -7,6 +7,7 @@ import { likeArticle, getListUserLiked, getArticleDetail } from '../article.midd
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
 import { Like } from '../partials/Like';
+import { CommentItem } from '../partials/CommentItem';
 
 
 const ArticleDetail = () => {
@@ -70,6 +71,7 @@ const ArticleDetail = () => {
               </div>
             </div>
             <CommentForm/>
+            <CommentItem/>
           </div>
         </main>
         <Sidebar />
