@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import JwtHelper from '@app/core/helpers/jwtHelper';
-import { Post } from '@app/shared/models/post';
+import { Like } from './Like';
 
 const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
-  const { id, cover, user, tags, title, description, likes, comments } = props.post;
+  const { id, cover, user, tags, title, description, likes, comments, isLiked } = props.post;
   const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   return (
     <div className="article-item grid-box pd-5">
@@ -39,12 +38,10 @@ const ArticleItem = (props) => {
       </div>
       <div className="article-interact">
         <div className="list-icon-interact">
-          <span className="item-icon-item"><i className="far fa-heart"></i>{likes}</span>
+          <Like key={id} id={id} like={likes} liked={isLiked}/>
           <span className="item-icon-item"><i className="far fa-comment"></i>{comments}</span>
         </div>
-        {/* <span className="article-interact-item"><img src="./assets/icons/like.png" alt="" className="interact-icon" /> 1</span>
-        <span className="article-interact-item"><img src="./assets/icons/comment.png" alt="" className="interact-icon" /> 1</span> */}
-        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">READ MORE</Link>
+        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">Read more</Link>
       </div>
     </div>
   );

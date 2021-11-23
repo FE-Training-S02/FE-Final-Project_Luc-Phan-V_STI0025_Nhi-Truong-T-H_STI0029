@@ -1,0 +1,10 @@
+.btn-interact {
+  background: none;
+  color: map-get($map: $color, $key: grey-b);
+  i {
+    @include pxRem(margin-right, 5);
+  }
+  .liked {
+    color: map-get($color, dribbble);
+  }
+}
