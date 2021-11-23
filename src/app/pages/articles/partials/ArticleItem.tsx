@@ -8,7 +8,7 @@ import { deleteArticle } from '../article.middleware';
 
 const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
-  const { setDialog } = useDialog();
+  const { setDialog, onClosed } = useDialog();
   const dispatch = useDispatch();
   const { id, cover, user, tags, title, description, likes, comments, isLiked } = props.post;
   const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
@@ -33,6 +33,7 @@ const ArticleItem = (props) => {
       id,
       (res) => {
         hadleDeleteArticle(newList);
+        onClosed();
       },
       (error) => {
         console.log(error);
