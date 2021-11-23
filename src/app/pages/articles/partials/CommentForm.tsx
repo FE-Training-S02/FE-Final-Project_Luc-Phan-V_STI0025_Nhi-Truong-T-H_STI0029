@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '@app/shared/components/partials/Button';
 import { useDispatch } from 'react-redux';
-import { CommentsList } from './CommentList';
 import { postComment, getArticleDetail } from '../article.middleware';
 
 const CommentForm = (props) => {
@@ -10,7 +9,6 @@ const CommentForm = (props) => {
   const {
     register,
     handleSubmit,
-    watch,
     reset,
     formState: { errors }
   } = useForm();

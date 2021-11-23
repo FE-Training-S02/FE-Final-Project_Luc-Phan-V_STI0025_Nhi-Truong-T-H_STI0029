@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
-import { likeArticle, getListUserLiked, getArticleDetail, getCommentsList } from '../article.middleware';
+import { getArticleDetail, getCommentsList } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
 import { Like } from '../partials/Like';
@@ -101,4 +101,5 @@ const ArticleDetail = () => {
     </>
   );
 };
+
 export default ArticleDetail;
