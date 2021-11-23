@@ -70,7 +70,7 @@ const ArticleDetail = () => {
               </div>
             </div>
             <CommentForm />
-            <CommentsList />
+            <CommentsList id={id} />
           </div>
         </main>
         <Sidebar />
