@@ -26,7 +26,7 @@ const ArticleDetail = () => {
         }));
     }
   }, [id])
-  const { title, user, comments, likes, cover, content } = article;
+  const { title, user, comments, likes, cover, content, isLiked } = article;
   return (
     <>
       <div className="row">
@@ -61,7 +61,7 @@ const ArticleDetail = () => {
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  <Like id={id} like={likes}/>
+                  <Like id={id} like={likes} liked={isLiked}/>
                   <button className="btn-interact">
                     <i className="far fa-comment"></i>
                     <span>{comments}</span>

@@ -6,8 +6,9 @@ import { useParams } from 'react-router-dom';
 
 export function Like(props) {
   const { id, like, liked } = props;
-  const [likes, setLikes] = useState<any>(like);
-  const [isLiked, setIsLiked] = useState<any>();
+  const [likes, setLikes] = useState<any>();
+
+  const [isLiked, setIsLiked] = useState<any>(liked);
   const dispatch = useDispatch();
   useEffect(() => {
     if (id) {
@@ -21,6 +22,7 @@ export function Like(props) {
         (error) => {
         }));
     }
+
   }, [id, isLiked])
   const handleLikeArticle = async() => {
     await dispatch(likeArticle(

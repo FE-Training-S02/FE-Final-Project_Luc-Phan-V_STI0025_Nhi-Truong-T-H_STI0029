@@ -38,8 +38,8 @@ const ArticleItem = (props) => {
       </div>
       <div className="article-interact">
         <div className="list-icon-interact">
-          <Like id={id} like={likes} liked={isLiked}/>
-          <span className="item-icon-item"><i className="far fa-heart"></i>{likes}</span>
+          <Like key={id} id={id} like={likes} liked={isLiked}/>
+          {/* <span className="item-icon-item"><i className="far fa-heart"></i>{likes}</span> */}
           <span className="item-icon-item"><i className="far fa-comment"></i>{comments}</span>
         </div>
         <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">Read more</Link>

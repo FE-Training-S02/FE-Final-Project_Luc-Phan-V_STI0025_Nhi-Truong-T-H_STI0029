@@ -3,8 +3,8 @@ import { ApiService } from "@app/core/services/api.service";
 const apiService = new ApiService();
 
 export const getArticleDetail = (id, resolve, reject) => {
-  return (dispatch) => {
-    apiService.get([`/posts/${id}`])
+  return async (dispatch) => {
+    await apiService.get([`/posts/${id}`])
       .then(res => {
         resolve(res);
       }).catch(error => {
@@ -60,4 +60,3 @@ export const getListUserLiked = (id, resolve, reject) => {
       });
   };
 };
-
