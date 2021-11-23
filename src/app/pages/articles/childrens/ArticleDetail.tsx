@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
-import { likeArticle, getListUserLiked, getArticleDetail } from '../article.middleware';
+import { getArticleDetail, getCommentsList } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
 import { Like } from '../partials/Like';
@@ -12,21 +12,44 @@ import { CommentsList } from '../partials/CommentList';
 const ArticleDetail = () => {
   const { id } = useParams();
   const [article, setArticle] = useState<any>({});
+  const [comments, setComments] = useState<any>();
+  const [commentsList, setCommentsList] = useState<any>([]);
   const { setLoading } = useLoading();
-  const dispatch = useDispatch();
-  const { title, user, comments, likes, cover, content, isLiked } = article;
+  const disPatch = useDispatch();
+  const { title, user, likes, cover, content, isLiked } = article;
   useEffect(() => {
     if (id) {
-      dispatch(getArticleDetail(
+      disPatch(getArticleDetail(
         id,
         (res) => {
+          setComments(res.comments);
           setArticle(res);
         },
         (error) => {
           setLoading(false);
         }));
+      disPatch(getCommentsList(
+        id, 
+        (res) => {
+          setCommentsList(res)
+        },
+        (error) => {
+          setLoading(false);
+        }))
     }
   }, [id])
+    
+  const submitComment = () => {
+    disPatch(getCommentsList(
+      id, 
+      (res) => {
+        setCommentsList(res);
+        setComments(res.length);
+      },
+      (error) => {
+        setLoading(false);
+      }))
+  }
   return (
     <>
       <div className="row">
@@ -69,8 +92,8 @@ const ArticleDetail = () => {
                 </div>
               </div>
             </div>
-            <CommentForm />
-            <CommentsList id={id} />
+            <CommentForm id={id} submitComment={submitComment}/>
+            <CommentsList id={id} commentsList={commentsList}/>
           </div>
         </main>
         <Sidebar />
@@ -78,4 +101,5 @@ const ArticleDetail = () => {
     </>
   );
 };
+
 export default ArticleDetail;
