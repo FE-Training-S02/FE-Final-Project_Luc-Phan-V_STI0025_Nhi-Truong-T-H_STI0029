@@ -1,16 +1,18 @@
 .header {
-  background: map-get($map: $color, $key: white);
+  @include pxRem(margin-bottom, 20);
+  @include pxRem(padding, 5 0);
   position: fixed;
   width: 100%;
-  margin-bottom: 20px;
   z-index: 99;
-
+  border-bottom: 1px solid map-get($map: $color, $key: grey-f);
+  background: map-get($map: $color, $key: white);
   .header-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     .logo {
-      @include pxRem(padding-top, 6);
+      display: flex;
+      align-items: center;
       .logo-link {
         @include pxRem(width, 138);
         @include pxRem(height, 36);

@@ -24,7 +24,7 @@ export function Header() {
                   <Link to="/" className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <Link to="/articles" className="nav-link">Articles</Link>
+                  <Link to="/articles/new" className="nav-link">Write</Link>
                 </li>
                 {user ?
                   <li className="nav-item nav-dropdown">
@@ -36,7 +36,6 @@ export function Header() {
                     <div className="dropdown-content">
                       <Link to="/">Profile</Link>
                       <Link to="/">Change Password</Link>
-                      <Link to="/articles/new">Create Article</Link>
                       <Link to="/auth/login" onClick={handleLogout}>Logout</Link>
                     </div>
                   </li> :

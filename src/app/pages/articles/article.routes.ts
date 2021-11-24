@@ -1,13 +1,13 @@
+import { PageRoute } from '@core/modules/custom-router-dom/router.interface';
+import CreateArticle from './childrens/CreateArticle';
+
 import ArticleDetail from './childrens/ArticleDetail';
 import ArticleList from './childrens/ArticleList';
 import Articles from './Articles';
 
-import { PageRoute } from '@core/modules/custom-router-dom/router.interface';
-import CreateArticle from './childrens/CreateArticle';
-
 const articleRoutes: PageRoute[] = [
   {
-    path: '/articles',
+    path: '/',
     element: Articles,
     //isProtected: true,
     children: [
@@ -16,15 +16,15 @@ const articleRoutes: PageRoute[] = [
         element: ArticleList
       },
       {
-        path: '/:id',
+        path: '/articles/:id',
         element: ArticleDetail
       },
       {
-        path: '/new',
+        path: '/articles/new',
         element: CreateArticle
       },
       {
-        path: '/:id/edit',
+        path: '/articles/:id/edit',
         element: CreateArticle
       }
     ]
