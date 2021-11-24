@@ -8,6 +8,7 @@ import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 import { AuthStorageService } from '@app/core/services/authStorage.service';
+import { useAlert } from '@app/shared/contexts/alert.context';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -17,16 +18,20 @@ const Login = () => {
     formState: { errors }
   } = useForm();
   const authStorage = new AuthStorageService();
-  const [errMessage, setErrMessage] = useState('');
+  const { setAlert } = useAlert();
+
   const navigate = useNavigate()
   const onSubmit = (account) => {
     dispatch(signIn(account,
       (response) => {
         authStorage.setToken(response.accessToken);
-        navigate('/home');
+        navigate('/');
       },
       (error) => {
-        setErrMessage(error.response.data.errors);
+        setAlert({
+          type: 'AlertError',
+          messError: error.response.data.errors
+        })
       }))
   };
   return (
@@ -53,7 +58,6 @@ const Login = () => {
               <Button
                 className="btn btn-primary btn-block"
                 type='submit' >Sign in</Button>
-              {errMessage && <span className="btn btn-block alert alert-error mt-4">{errMessage}</span>}
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
             </div>
