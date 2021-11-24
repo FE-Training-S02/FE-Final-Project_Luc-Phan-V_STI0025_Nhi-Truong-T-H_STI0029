@@ -7,7 +7,7 @@
   cursor: pointer;
   .button-title {
     font-weight: bolder;
-    color: #161849;
+    color: map-get($map: $color, $key: black-a);
   }
   .icon {
     height: 20px;
@@ -15,4 +15,3 @@
     margin-right: 10px;
   }
 }
-

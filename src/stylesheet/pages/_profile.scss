@@ -1,0 +1,31 @@
+.profile {
+  @include pxRem(padding, 0 100);
+  .user-info {
+    @include pxRem(margin-top, -44);
+    @include pxRem(padding, 16 0);
+    text-align: center;
+    background: map-get($color, white);
+    .btn-change {
+      @include pxRem(padding, 8);
+      @include pxRem(margin, 0 8);
+      border-radius: 5px;
+      background: map-get($color, primary);
+      color: map-get($color, white);
+    }
+    .btn-edit {
+      @include pxRem(padding, 8);
+      @include pxRem(margin, 0 8);
+      border-radius: 5px;
+      background: map-get($color, blue-a);
+      color: map-get($color, white);
+    }
+    .avatar-img {
+      @include pxRem(width, 100);
+      @include pxRem(height, 100);
+      border-radius: 100%;
+    }
+  }
+  .profile-body {
+    @include pxRem(margin, 0 -10);
+  }
+}
