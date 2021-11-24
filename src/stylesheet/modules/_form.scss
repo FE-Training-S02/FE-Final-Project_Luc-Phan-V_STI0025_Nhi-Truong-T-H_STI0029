@@ -52,11 +52,7 @@
           @include pxRem(padding, 14 12);
           -webkit-appearance: none;
           -moz-appearance: none;
-          background-image: url("/assets/icons/arrow-down.svg");
-          background-repeat: no-repeat;
-          background-position-x: 97%;
-          background-position-y: 9px;
-          background-repeat: no-repeat;
+          background: url("/assets/icons/arrow-down.svg") 97% 9px no-repeat;
         }
       }
       .form-control:focus ~ .form-label {
