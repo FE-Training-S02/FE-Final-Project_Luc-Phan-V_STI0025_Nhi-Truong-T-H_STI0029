@@ -20,6 +20,12 @@ body {
   margin: 0;
   padding: 0;
 }
+.auth-page {
+  background-color: map-get($map: $color, $key: white);
+}
+input {
+  font-family: $font-body;
+}
 image {
   max-width: 100%;
   width: 100%;
