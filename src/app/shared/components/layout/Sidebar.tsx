@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   return (
     <>
-      <aside className="col-4 sidebar">
+      <aside className="col col-4 sidebar">
         <ul>
           <li className="grid-box widget">
             <h4 className="widget-title">Categories</h4>

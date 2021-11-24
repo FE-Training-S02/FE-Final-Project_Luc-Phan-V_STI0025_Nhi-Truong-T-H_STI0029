@@ -28,7 +28,7 @@
       }
       .msg-error {
         @include pxRem(margin-top, 8);
-        @include pxRem(padding, 0.5 10);
+        @include pxRem(padding, 0 10);
         position: relative;
         display: block;
         border-radius: 5px;
@@ -50,6 +50,9 @@
       select {
         &.form-control {
           @include pxRem(padding, 14 12);
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background: url("/assets/icons/arrow-down.svg") 97% 9px no-repeat;
         }
       }
       .form-control:focus ~ .form-label {

@@ -135,7 +135,7 @@ const Register = () => {
         <div className="tips">
           <p>
             Already have an account?
-            <Link to="/auth/login"> Sign in</Link>
+            <Link to="/auth/login" className="text-link"> Sign in</Link>
           </p>
         </div>
       </div>

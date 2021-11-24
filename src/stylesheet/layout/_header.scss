@@ -1,16 +1,18 @@
 .header {
-  background: map-get($map: $color, $key: white);
+  @include pxRem(margin-bottom, 20);
+  @include pxRem(padding, 8 0);
   position: fixed;
   width: 100%;
-  margin-bottom: 20px;
   z-index: 99;
-
+  border-bottom: 1px solid map-get($map: $color, $key: grey-f);
+  background: map-get($map: $color, $key: white);
   .header-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     .logo {
-      @include pxRem(padding-top, 6);
+      display: flex;
+      align-items: center;
       .logo-link {
         @include pxRem(width, 138);
         @include pxRem(height, 36);
@@ -26,13 +28,25 @@
         @include pxRem(height, 24);
         @include pxRem(margin, 12);
         display: inline;
+        &:last-child {
+          @include pxRem(padding, 10 15);
+          border-radius: 50px;
+          background-color: map-get($map: $color, $key: primary);
+          .nav-link {
+            color: map-get($map: $color, $key: white);
+          }
+        }
         .nav-link {
           font-size: map-get($font-size, lg);
           color: map-get($color, primary);
           line-height: 2.7;
-          font-weight: 700;
           .icon {
-            @include pxRem(padding, 0 4);
+            &.fa-user {
+              @include pxRem(padding-right, 6);
+            }
+            &.fa-caret-down {
+              @include pxRem(padding-left, 10);
+            }
           }
         }
         .avatar-img {

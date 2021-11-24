@@ -40,3 +40,17 @@
     background: transparent;
   }
 }
+.btn-change {
+  @include pxRem(padding, 8);
+  @include pxRem(margin, 0 8);
+  border-radius: 5px;
+  background: map-get($color, primary);
+  color: map-get($color, white);
+}
+.btn-edit {
+  @include pxRem(padding, 8);
+  @include pxRem(margin, 0 8);
+  border-radius: 5px;
+  background: map-get($color, blue-a);
+  color: map-get($color, white);
+}

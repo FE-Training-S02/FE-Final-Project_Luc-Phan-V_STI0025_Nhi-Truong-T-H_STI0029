@@ -1,19 +1,19 @@
 import JwtHelper from '@app/core/helpers/jwtHelper';
 import { ApiService } from '@app/core/services/api.service';
-import { getUserInfo } from './auth.actions';
+import { saveUserInfo } from './auth.actions';
 
 const jwtHelper = new JwtHelper();
 const apiService = new ApiService();
-export const loadUser = () => async dispatch => {
+export const getUserInfo = () => dispatch => {
   const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   try {
     if (!userId) {
-      dispatch(getUserInfo(null));
+      dispatch(saveUserInfo(null));
       return;
     }
     apiService.get([`/users/${userId}`])
       .then(response => {
-        dispatch(getUserInfo(response));
+        dispatch(saveUserInfo(response));
       })
       .catch(error => { console.log(error); }
       )
