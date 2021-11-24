@@ -41,7 +41,12 @@
           color: map-get($color, primary);
           line-height: 2.7;
           .icon {
-            @include pxRem(padding, 0 4);
+            &.fa-user {
+              @include pxRem(padding-right, 6);
+            }
+            &.fa-caret-down {
+              @include pxRem(padding-left, 10);
+            }
           }
         }
         .avatar-img {

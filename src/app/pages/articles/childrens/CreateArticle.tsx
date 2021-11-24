@@ -56,9 +56,9 @@ const CreateArticle = () => {
       tags: [data.tags],
       cover: urlImage,
       content: content
-    }
-    { id ? apiService.put([`/posts/${id}`], article) : apiService.post(['/posts'], article) }
-    navigate('/articles')
+    };
+    { id ? apiService.put([`/posts/${id}`], article) : apiService.post(['/posts'], article) };
+    navigate('/articles');
   }
   useEffect(() => {
     if (id) {
@@ -77,7 +77,7 @@ const CreateArticle = () => {
           console.log(error);
         }));
     }
-  }, [id])
+  }, [id]);
   return (
     <>
       <h2 className="page-title">{id ? 'Edit article' : 'Create article'}</h2>
