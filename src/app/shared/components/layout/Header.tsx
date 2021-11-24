@@ -34,7 +34,7 @@ export function Header() {
                       <i className="fa fa-caret-down icon"></i>
                     </Link>
                     <div className="dropdown-content">
-                      <Link to="/">Profile</Link>
+                      <Link to="/user">Profile</Link>
                       <Link to="/">Change Password</Link>
                       <Link to="/articles/new">Create Article</Link>
                       <Link to="/auth/login" onClick={handleLogout}>Logout</Link>
