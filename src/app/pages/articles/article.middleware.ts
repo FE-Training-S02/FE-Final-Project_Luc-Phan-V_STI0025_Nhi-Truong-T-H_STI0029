@@ -95,3 +95,25 @@ export const postComment = (id, data, resolve, reject) => {
       });
   };
 };
+export const postFollow = (data, resolve, reject) => {
+  return async () => {
+    await apiService.post([`/friends/follow`], data)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+export const getAuthor = (id, resolve, reject) => {
+  return async () => {
+    await apiService.get([`/users/${id}`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
