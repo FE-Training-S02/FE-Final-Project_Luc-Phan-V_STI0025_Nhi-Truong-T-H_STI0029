@@ -25,26 +25,27 @@ export function Header() {
                 <li className="nav-item">
                   <Link to="/" className="nav-link">Home</Link>
                 </li>
-                <li className="nav-item">
-                  <Link to="/articles" className="nav-link">Articles</Link>
-                </li>
                 {user ?
-                  <li className="nav-item nav-dropdown">
-                    <Link to="" className="nav-link dropbtn">
-                      <i className="fa fa-user icon"></i>
-                      {user.lastName}
-                      <i className="fa fa-caret-down icon"></i>
-                    </Link>
-                    <div className="dropdown-content">
-                      <Link to="/user">Profile</Link>
-                      <Link to="/">Change Password</Link>
-                      <Link to="/articles/new">Create Article</Link>
-                      <Link to="/auth/login" onClick={handleLogout}>Logout</Link>
-                    </div>
-                  </li> :
                   <>
                     <li className="nav-item">
-                      <Link to="/auth/login" className="nav-link">Login</Link>
+                      <Link to="/articles/new" className="nav-link">Write</Link>
+                    </li>
+                    <li className="nav-item nav-dropdown">
+                      <Link to="" className="nav-link dropbtn">
+                        <i className="fa fa-user icon"></i>
+                        {user.lastName}
+                        <i className="fa fa-caret-down icon"></i>
+                      </Link>
+                      <div className="dropdown-content">
+                        <Link to="/user">Profile</Link>
+                        <Link to="/">Change Password</Link>
+                        <Link to="/auth/login" onClick={handleLogout}>Logout</Link>
+                      </div>
+                    </li>
+                  </> :
+                  <>
+                    <li className="nav-item">
+                      <Link to="/auth/login" className="nav-link">Sign In</Link>
                     </li>
                     <li className="nav-item">
                       <Link to="/auth/register" className="nav-link">Sign up</Link>
