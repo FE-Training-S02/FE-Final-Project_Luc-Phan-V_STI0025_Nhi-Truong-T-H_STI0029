@@ -31,7 +31,7 @@
         &:last-child {
           @include pxRem(padding, 10 15);
           border-radius: 50px;
-          background-color: map-get($map: $color, $key: black);
+          background-color: map-get($map: $color, $key: primary);
           .nav-link {
             color: map-get($map: $color, $key: white);
           }

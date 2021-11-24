@@ -5,7 +5,7 @@ const Home = () => {
   const navigate = useNavigate();
   useEffect(() => {
     navigate('/articles')
-  })
+  }, [])
   return (
     <></>
   );
