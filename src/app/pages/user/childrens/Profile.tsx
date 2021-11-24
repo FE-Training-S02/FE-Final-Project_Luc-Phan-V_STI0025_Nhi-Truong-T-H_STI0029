@@ -9,7 +9,7 @@ const Profile= () => {
     <div className="profile">
       <div className="row user-info mb-2">
         <div className="col col-12">
-            <img src={user?.picture || "https://bootdey.com/img/Content/avatar/avatar6.png"} alt="Admin" className="avatar-img" />
+            <img src={user?.picture || "./assets/icons/user.png"} alt="Admin" className="avatar-img" />
             <div className="mt-3">    
               <h4 className="user-name">{user?.firstName} {user?.lastName}</h4>
               <div className="mb-2">
