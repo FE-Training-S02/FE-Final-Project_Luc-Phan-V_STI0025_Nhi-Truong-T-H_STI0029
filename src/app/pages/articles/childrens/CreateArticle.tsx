@@ -58,7 +58,7 @@ const CreateArticle = () => {
       content: content
     }
     { id ? apiService.put([`/posts/${id}`], article) : apiService.post(['/posts'], article) }
-    navigate('/')
+    navigate('/articles')
   }
   useEffect(() => {
     if (id) {

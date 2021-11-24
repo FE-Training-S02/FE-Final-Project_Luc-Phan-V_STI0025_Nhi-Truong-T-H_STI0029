@@ -1,6 +1,6 @@
 .header {
   @include pxRem(margin-bottom, 20);
-  @include pxRem(padding, 5 0);
+  @include pxRem(padding, 8 0);
   position: fixed;
   width: 100%;
   z-index: 99;
@@ -28,11 +28,18 @@
         @include pxRem(height, 24);
         @include pxRem(margin, 12);
         display: inline;
+        &:last-child {
+          @include pxRem(padding, 10 15);
+          border-radius: 50px;
+          background-color: map-get($map: $color, $key: black);
+          .nav-link {
+            color: map-get($map: $color, $key: white);
+          }
+        }
         .nav-link {
           font-size: map-get($font-size, lg);
           color: map-get($color, primary);
           line-height: 2.7;
-          font-weight: 700;
           .icon {
             @include pxRem(padding, 0 4);
           }

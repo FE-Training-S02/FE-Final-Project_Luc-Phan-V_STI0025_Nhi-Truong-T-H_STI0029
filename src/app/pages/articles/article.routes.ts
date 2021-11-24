@@ -7,7 +7,7 @@ import Articles from './Articles';
 
 const articleRoutes: PageRoute[] = [
   {
-    path: '/',
+    path: '/articles',
     element: Articles,
     //isProtected: true,
     children: [
@@ -16,15 +16,15 @@ const articleRoutes: PageRoute[] = [
         element: ArticleList
       },
       {
-        path: '/articles/:id',
+        path: '/:id',
         element: ArticleDetail
       },
       {
-        path: '/articles/new',
+        path: '/new',
         element: CreateArticle
       },
       {
-        path: '/articles/:id/edit',
+        path: '/:id/edit',
         element: CreateArticle
       }
     ]
