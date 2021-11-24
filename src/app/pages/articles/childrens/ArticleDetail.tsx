@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
+import { RootStateOrAny, useSelector } from 'react-redux';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
-import { getArticleDetail, getCommentsList } from '../article.middleware';
+import { getArticleDetail, getCommentsList, postFollow, getAuthor } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
 import { Like } from '../partials/Like';
@@ -19,26 +20,50 @@ const ArticleDetail = () => {
   const { title, user, likes, cover, content, isLiked } = article;
   useEffect(() => {
     if (id) {
+      setLoading(true);
       disPatch(getArticleDetail(
         id,
         (res) => {
           setComments(res.comments);
           setArticle(res);
+          getAuthorInfo(res);
+          setLoading(false);
         },
         (error) => {
           setLoading(false);
-        }));
-      disPatch(getCommentsList(
-        id, 
-        (res) => {
-          setCommentsList(res)
-        },
-        (error) => {
-          setLoading(false);
-        }))
+        })
+      );
+      getComments();
     }
-  }, [id])
-    
+  }, [id]);
+  const getComments = () => {
+    setLoading(true);
+    disPatch(getCommentsList(
+      id, 
+      (res) => {
+        setCommentsList(res);
+        setLoading(false);
+      },
+      (error) => {
+        setLoading(false);
+      })
+    );
+  }
+  const getAuthorInfo = (article) => {
+    setLoading(true);
+    disPatch(getAuthor(
+      article.user.id, 
+      (res) => {
+        const authorUser = {...article.user, isFollowed:res.isFollowed};
+        const newArticle = {...article, user:authorUser};
+        setArticle(newArticle);
+        setLoading(false);
+      },
+      (error) => {
+        setLoading(false);
+      })
+    );
+  }
   const submitComment = () => {
     disPatch(getCommentsList(
       id, 
@@ -48,7 +73,23 @@ const ArticleDetail = () => {
       },
       (error) => {
         setLoading(false);
-      }))
+      })
+    );
+  }
+  const followUser = () => {
+    const data = {
+      'followingId': user.id
+    }
+    disPatch(postFollow(
+      data, 
+      (res) => {
+        const newArticle = {...article, user:{...user, isFollowed: res.followed}};
+        setArticle(newArticle);
+      },
+      (error) => {
+        console.log(error);
+      })
+    );
   }
   return (
     <>
@@ -67,7 +108,7 @@ const ArticleDetail = () => {
                     <i className="fas fa-pen-fancy"></i>
                     <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
                   </Link>
-                  <button className="btn btn-outline">+ Follow</button>
+                  <button className={`btn btn-outline ${user?.isFollowed ? 'btn-accept' : ''}`}onClick={followUser}>+ Follow</button>
                 </div>
                 <button className="btn btn-icon">
                   <i className="far fa-bookmark"></i>
@@ -92,8 +133,8 @@ const ArticleDetail = () => {
                 </div>
               </div>
             </div>
-            <CommentForm id={id} submitComment={submitComment}/>
-            <CommentsList id={id} commentsList={commentsList}/>
+            <CommentForm id={id} submitComment={submitComment} />
+            <CommentsList id={id} commentsList={commentsList} />
           </div>
         </main>
         <Sidebar />
