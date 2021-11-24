@@ -1,14 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { AuthStorageService } from '@app/core/services/authStorage.service';
-
+import { saveUserInfo } from '@app/auth/auth.actions';
 
 export function Header() {
-  const user = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
+  const dispatch = useDispatch();
   const authStorage = new AuthStorageService();
+  const user = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
   const handleLogout = () => {
     authStorage.removeToken();
+    dispatch(saveUserInfo(null));
   }
   return (
     <>
