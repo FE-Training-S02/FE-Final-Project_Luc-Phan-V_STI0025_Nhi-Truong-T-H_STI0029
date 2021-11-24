@@ -10,8 +10,8 @@ const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
   const { setDialog, onClosed } = useDialog();
   const dispatch = useDispatch();
-  const { id, cover, user, tags, title, description, likes, comments, isLiked } = props.post;
-  const userId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
+  const { id, cover, userId, user, tags, title, description, likes, comments, isLiked } = props.post;
+  const curentUserId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   const { list, hadleDeleteArticle } = props;
   const newList = list.filter(item => item.id !== id);
   const handleDelete = () => {
@@ -45,7 +45,7 @@ const ArticleItem = (props) => {
       <div className="feature">
         <img src={cover} alt="article image" className="article-img" />
       </div>
-      {userId === user.id ?
+      {curentUserId === userId ?
         <div className="dropdown">
           <button className="btn-dropdown">...</button>
           <ul className="sub-dropdown">
