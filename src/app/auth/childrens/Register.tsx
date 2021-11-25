@@ -8,34 +8,44 @@ import Input from '@app/shared/components/partials/Input';
 import Select from '@app/shared/components/partials/Select';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 import { birthDayValidator, emailValidator, firstNameValidator, lastNameValidator, passwordValidator, phoneValidator, userNameValidator } from '@app/shared/validators/form.validator';
+import { useAlert } from '@app/shared/contexts/alert.context';
 
 const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors }
   } = useForm();
   const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch('password', '');
-  const [errMessage, setErrMessage] = useState('');
-  const [messSuccess, setMessSuccess] = useState('');
+  const { setAlert } = useAlert();
   const onSubmit = (data: any) => {
     delete data.password_repeat;
     dispatch(signUp(data,
       (res) => {
-        setMessSuccess(res.data);
+        setAlert({
+          type: 'success',
+          mess: res
+        });
+        reset({
+          data: ''
+        });
       },
       (error) => {
-        setErrMessage(error.response.data.errors);
-      }))
+        setAlert({
+          type: 'danger',
+          mess: error.response.data.errors
+        });
+      }));
   };
   const genderOptions = [
     { value: 'female', name: 'Female' },
     { value: 'male', name: 'Male' },
     { value: 'other', name: 'Other' }
-  ]
+  ];
   return (
     <>
       <div className="page-heading">
@@ -117,8 +127,6 @@ const Register = () => {
               <Button
                 className="btn btn-primary btn-block"
                 type='submit'>Sign up</Button>
-              {messSuccess && <span className="btn btn-block alert alert-success mt-4">{messSuccess}</span>}
-              {errMessage && <span className="btn btn-block alert alert-error mt-4">{errMessage}</span>}
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
             </div>

@@ -33,6 +33,10 @@
     background-color: #6c757d;
     border-color: #6c757d;
   }
+  &.btn-close {
+    background-color: transparent;
+    border: 0;
+  }
 }
 .btn-change {
   @include pxRem(padding, 8);
