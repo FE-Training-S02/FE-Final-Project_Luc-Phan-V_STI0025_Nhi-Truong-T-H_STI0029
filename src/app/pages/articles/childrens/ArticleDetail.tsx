@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { RootStateOrAny, useSelector } from 'react-redux';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { getArticleDetail, getCommentsList, postFollow, getAuthor } from '../article.middleware';
@@ -80,14 +79,16 @@ const ArticleDetail = () => {
     const data = {
       'followingId': user.id
     }
+    setLoading(true);
     disPatch(postFollow(
       data, 
       (res) => {
         const newArticle = {...article, user:{...user, isFollowed: res.followed}};
         setArticle(newArticle);
+        setLoading(false);
       },
       (error) => {
-        console.log(error);
+        setLoading(false);
       })
     );
   }
@@ -125,8 +126,7 @@ const ArticleDetail = () => {
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  {likes && (<Like id={id} like={likes} liked={isLiked} />)
-                  }
+                  {likes && (<Like id={id} like={likes} liked={isLiked} />)}
                   <button className="btn-interact">
                     <i className="far fa-comment"></i>
                     <span>{comments}</span>

@@ -22,7 +22,7 @@ const ArticleList = () => {
   const loadMore = () => {
     setLoading(true);
     getArticles(page + 1);
-    setPage(page + 1);
+    setPage(pre => pre + 1);
   };
 
   const getArticles = (page) => {

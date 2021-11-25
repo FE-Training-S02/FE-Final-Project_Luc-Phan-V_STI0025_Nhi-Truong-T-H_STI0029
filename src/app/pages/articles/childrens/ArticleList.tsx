@@ -25,7 +25,7 @@ const ArticleList = () => {
   const loadMore = () => {
     setLoading(true);
     getArticles(page + 1);
-    setPage(page + 1);
+    setPage(pre => pre + 1);
   };
 
   const getArticles = (page) => {
@@ -34,7 +34,6 @@ const ArticleList = () => {
   const getArticlesSuccess = (res) => {
     const { data, loadMore } = res;
     setArticles([...articles, ...data]);
-    console.log(res.data)
     setIsLoadMore(loadMore);
     setLoading(false);
   };
@@ -46,7 +45,7 @@ const ArticleList = () => {
   }
   return (
     <div className="row">
-      <section className="section-articles-list col-8">
+      <section className="section-articles-list col col-8">
         <ul className="row article-list">
           {articles.map((item: Post, index: any) =>
             <li className="col col-6" key={item.id}>
