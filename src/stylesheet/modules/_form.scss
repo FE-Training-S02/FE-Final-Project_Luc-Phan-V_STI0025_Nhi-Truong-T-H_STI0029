@@ -17,6 +17,12 @@
           border: 1px solid #f4aabd;
         }
       }
+      input[type="file"] {
+        &.form-control {
+          padding: 0;
+          border: none;
+        }
+      }
       .form-label {
         @include pxRem(top, -9);
         @include pxRem(left, 20);
@@ -63,10 +69,24 @@
       }
     }
   }
+  .col-form-label {
+    @include pxRem(padding-right, 20);
+    text-align: right;
+  }
   .btn-group {
     @include pxRem(margin-bottom, 20);
     p {
       text-align: center;
     }
   }
+}
+
+input[type="file"]::file-selector-button {
+  @include pxRem(padding, 12 25);
+  cursor: pointer;
+  border: 1px solid #d8dfee;
+  border-radius: 10px;
+  background-color: map-get($map: $color, $key: info);
+  color: map-get($map: $color, $key: white);
+  font-weight: 600;
 }

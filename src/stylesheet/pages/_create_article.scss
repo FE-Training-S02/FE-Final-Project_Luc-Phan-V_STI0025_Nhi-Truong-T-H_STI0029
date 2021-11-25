@@ -8,14 +8,14 @@
     }
     .row-ck {
       @include pxRem(padding-bottom, 50);
-      display: flex;
-      flex-wrap: nowrap;
-      .form-label-content {
-        @include pxRem(margin-right, 34);
-      }
       .ck-editor {
         width: 100%;
       }
     }
+  }
+  .form-btn-group {
+    @include pxRem(margin-left, 10);
+    width: calc(100% * 10 / 12);
+    justify-content: flex-end;
   }
 }

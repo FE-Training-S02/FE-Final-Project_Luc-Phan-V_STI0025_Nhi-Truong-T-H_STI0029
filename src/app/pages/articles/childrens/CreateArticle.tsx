@@ -80,12 +80,12 @@ const CreateArticle = () => {
   }, [id]);
   return (
     <>
-      <h2 className="page-title">{id ? 'Edit article' : 'Create article'}</h2>
+      <h2 className="page-title">{id ? 'Edit Article' : 'New Article'}</h2>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onsubmit)}>
           <div className="row">
-            <label className="col-2 col-form-label">Title</label>
-            <div className="col-10">
+            <label className="col-3 col-form-label">Title</label>
+            <div className="col-7">
               <Input
                 type="text"
                 register={register('title', titleValidator())}
@@ -93,8 +93,8 @@ const CreateArticle = () => {
             </div>
           </div>
           <div className="row">
-            <label className="col-2 col-form-label">Description</label>
-            <div className="col-10">
+            <label className="col-3 col-form-label">Description</label>
+            <div className="col-7">
               <Input
                 type="text"
                 register={register('description', descriptionValidator())}
@@ -102,53 +102,57 @@ const CreateArticle = () => {
             </div>
           </div>
           <div className="row">
-            <label className="col-2 col-form-label">Tags</label>
-            <div className="col-10">
+            <label className="col-3 col-form-label">Tags</label>
+            <div className="col-7">
               <Input
                 type="text" register={register('tags', requireValidator())} errors={errors.tags} />
             </div>
           </div>
           <div className="row">
-            <label className="col-2 col-form-label">Status</label>
-            <div className="col-10">
+            <label className="col-3 col-form-label">Status</label>
+            <div className="col-7">
               <Select listOptions={statusOptions} defaultValue={statusOptions[0]} register={register('status', requireValidator())} />
             </div>
           </div>
           <div className="row">
-            <label className="col-2 col-form-label" >Upload image</label>
-            <div className="col-10">
+            <label className="col-3 col-form-label" >Upload image</label>
+            <div className="col-7">
               {id ?
                 <Input
                   type="file"
                   register={register('cover')}
                   errors={errors.cover}
                   onChange={() => handleChange}
-                  className="col-12"
                 /> :
                 <Input
                   type="file"
                   register={register('cover', requireValidator())}
                   errors={errors.cover}
                   onChange={() => handleChange}
-                  className="col-12"
                 />
               }
               {urlImage ? <img src={urlImage} alt="cover" className="col-4" /> : ''}
             </div>
           </div>
           <div className="row row-ck">
-            <label className="col-2 col-form-label form-label-content">Content</label>
-            <CKEditor
-              editor={ClassicEditor}
-              data={content}
-              onChange={(event, editor) => {
-                const data = editor.getData();
-                setContent(data);
-              }
-              }
-            />
+            <label className="col-3 col-form-label">Content</label>
+            <div className="col-7">
+              <CKEditor
+                editor={ClassicEditor}
+                data={content}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  setContent(data);
+                }
+                }
+              />
+            </div>
           </div>
-          <Button className="btn btn-primary btn-block" type='submit'>{id ? 'Edit article' : 'Create article'}</Button>
+          <div className="row form-btn-group">
+            <div className="col-3">
+              <Button className="btn btn-primary btn-block" type='submit'>{id ? 'Save' : 'Submit'}</Button>
+            </div>
+          </div>
         </form>
       </div>
     </>
