@@ -15,7 +15,7 @@
   }
   .form-btn-group {
     @include pxRem(margin-left, 10);
-    width: calc(100% * 9 / 12);
+    width: calc(100% * 10 / 12);
     justify-content: flex-end;
   }
 }

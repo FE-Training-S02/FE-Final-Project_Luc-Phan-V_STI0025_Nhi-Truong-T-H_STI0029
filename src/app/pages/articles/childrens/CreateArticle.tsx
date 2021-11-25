@@ -85,7 +85,7 @@ const CreateArticle = () => {
         <form onSubmit={handleSubmit(onsubmit)}>
           <div className="row">
             <label className="col-3 col-form-label">Title</label>
-            <div className="col-6">
+            <div className="col-7">
               <Input
                 type="text"
                 register={register('title', titleValidator())}
@@ -94,7 +94,7 @@ const CreateArticle = () => {
           </div>
           <div className="row">
             <label className="col-3 col-form-label">Description</label>
-            <div className="col-6">
+            <div className="col-7">
               <Input
                 type="text"
                 register={register('description', descriptionValidator())}
@@ -103,20 +103,20 @@ const CreateArticle = () => {
           </div>
           <div className="row">
             <label className="col-3 col-form-label">Tags</label>
-            <div className="col-6">
+            <div className="col-7">
               <Input
                 type="text" register={register('tags', requireValidator())} errors={errors.tags} />
             </div>
           </div>
           <div className="row">
             <label className="col-3 col-form-label">Status</label>
-            <div className="col-6">
+            <div className="col-7">
               <Select listOptions={statusOptions} defaultValue={statusOptions[0]} register={register('status', requireValidator())} />
             </div>
           </div>
           <div className="row">
             <label className="col-3 col-form-label" >Upload image</label>
-            <div className="col-6">
+            <div className="col-7">
               {id ?
                 <Input
                   type="file"
@@ -136,7 +136,7 @@ const CreateArticle = () => {
           </div>
           <div className="row row-ck">
             <label className="col-3 col-form-label">Content</label>
-            <div className="col-6">
+            <div className="col-7">
               <CKEditor
                 editor={ClassicEditor}
                 data={content}
