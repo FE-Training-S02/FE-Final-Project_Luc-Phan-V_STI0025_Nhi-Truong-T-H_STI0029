@@ -123,14 +123,12 @@ const CreateArticle = () => {
                   register={register('cover')}
                   errors={errors.cover}
                   onChange={() => handleChange}
-                  className="col-12"
                 /> :
                 <Input
                   type="file"
                   register={register('cover', requireValidator())}
                   errors={errors.cover}
                   onChange={() => handleChange}
-                  className="col-12"
                 />
               }
               {urlImage ? <img src={urlImage} alt="cover" className="col-4" /> : ''}
@@ -150,7 +148,7 @@ const CreateArticle = () => {
               />
             </div>
           </div>
-          <div className="row row-btn">
+          <div className="row form-btn-group">
             <div className="col-3">
               <Button className="btn btn-primary btn-block" type='submit'>{id ? 'Save' : 'Submit'}</Button>
             </div>

@@ -13,7 +13,7 @@
       }
     }
   }
-  .row-btn {
+  .form-btn-group {
     @include pxRem(margin-left, 10);
     width: calc(100% * 8 / 12);
     justify-content: flex-end;
