@@ -17,7 +17,7 @@ const ArticleDetail = () => {
   const [commentsList, setCommentsList] = useState<any>([]);
   const { setLoading } = useLoading();
   const disPatch = useDispatch();
-  const { title, user, likes, cover, content, isLiked } = article;
+  const { title, likes, user, cover, content, isLiked } = article;
   useEffect(() => {
     if (id) {
       setLoading(true);
@@ -125,7 +125,8 @@ const ArticleDetail = () => {
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  <Like id={id} like={likes} liked={isLiked} />
+                  {likes && (<Like id={id} like={likes} liked={isLiked} />)
+                  }
                   <button className="btn-interact">
                     <i className="far fa-comment"></i>
                     <span>{comments}</span>

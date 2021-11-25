@@ -16,7 +16,7 @@ const ArticleList = () => {
   const authStorage = new AuthStorageService();
   const token = authStorage.getToken();
   let endPoint = '/posts/public/';
-  // token ? (endPoint = '/posts/') : (endPoint = '/posts/public/');
+  token ? (endPoint = '/posts/') : (endPoint = '/posts/public/');
   useEffect(() => {
     setLoading(true);
     getArticles(page);
@@ -34,6 +34,7 @@ const ArticleList = () => {
   const getArticlesSuccess = (res) => {
     const { data, loadMore } = res;
     setArticles([...articles, ...data]);
+    console.log(res.data)
     setIsLoadMore(loadMore);
     setLoading(false);
   };

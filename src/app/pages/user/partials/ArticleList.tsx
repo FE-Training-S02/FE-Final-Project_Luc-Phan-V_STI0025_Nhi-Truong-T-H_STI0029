@@ -5,7 +5,6 @@ import { Post } from '@app/shared/models/post';
 import { useDispatch } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import Sidebar from '@app/shared/components/layout/Sidebar';
-import { AuthStorageService } from '@app/core/services/authStorage.service';
 
 const ArticleList = () => {
   const [articles, setArticles] = useState<Post[]>([]);
@@ -13,13 +12,13 @@ const ArticleList = () => {
   const [isLoadMore, setIsLoadMore] = useState(false);
   const { setLoading } = useLoading();
   const disPatch = useDispatch();
-  const authStorage = new AuthStorageService();
-  const token = authStorage.getToken();
   let endPoint = 'users/me/posts/';
+
   useEffect(() => {
     setLoading(true);
     getArticles(page);
   }, []);
+
   const loadMore = () => {
     setLoading(true);
     getArticles(page + 1);
@@ -29,6 +28,7 @@ const ArticleList = () => {
   const getArticles = (page) => {
     disPatch(getListArticles(endPoint, page, getArticlesSuccess, getArticlesError));
   };
+
   const getArticlesSuccess = (res) => {
     const { Posts, loadMore, firstName, lastName } = res;
     const user = { firstName, lastName };
@@ -39,12 +39,15 @@ const ArticleList = () => {
     setIsLoadMore(loadMore);
     setLoading(false);
   };
+
   const getArticlesError = (error) => {
     setLoading(false);
   };
+
   const hadleDeleteArticle = (aritclelist) => {
     setArticles(aritclelist);
   }
+
   return (
     <div className="row">
       <Sidebar />

@@ -1,32 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { likeArticle } from '../article.middleware';
-import { getArticleDetail } from '../article.middleware';
 
 export function Like(props) {
   const { id, like, liked } = props;
-  const [likes, setLikes] = useState<any>();
+  const [likes, setLikes] = useState<any>(like);
   const [isLiked, setIsLiked] = useState<any>(liked);
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (id) {
-      dispatch(getArticleDetail(
-        id,
-        (res) => {
-          setIsLiked(res.isLiked);
-          setLikes(res.likes);
-        },
-        (error) => {
-          console.log(error);
-        })
-      );
-    }
-  }, [id, isLiked])
   const handleLikeArticle = async() => {
     await dispatch(likeArticle(
       id,
       (res) => {
         setIsLiked(res.liked);
+        res.liked ? setLikes(+likes + 1) : setLikes(+likes - 1);
       },
       (error) => {
         console.log(error);
@@ -35,6 +21,7 @@ export function Like(props) {
   };
   return (
     <button className="btn-interact likes" onClick={handleLikeArticle}>
+      {console.log(isLiked)}
       <i className={`fa fa-heart ${isLiked ? 'liked' : ''}`}></i>
       <span>{likes}</span>
     </button>
