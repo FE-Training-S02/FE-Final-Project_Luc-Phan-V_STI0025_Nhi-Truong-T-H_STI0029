@@ -1,17 +1,26 @@
 .alert {
   @include pxRem(top, 50);
   @include pxRem(right, 20);
-  @include pxRem(padding, 10 25);
+  @include pxRem(padding, 10 20);
   position: fixed;
-  display: flex;
   z-index: 100;
-  border-radius: 5px;
-  &.alert-error {
-    color: #eb5757;
-    background-color: #ffdbdc;
+  border-radius: 3px;
+  &.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
   }
   &.alert-success {
-    color: #fff;
-    background-color: map-get($map: $color, $key: primary);
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+  }
+  .close {
+    float: right;
+    font-size: map-get($map: $font-size, $key: xxxl);
+    font-weight: 700;
+    line-height: 1;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
   }
 }

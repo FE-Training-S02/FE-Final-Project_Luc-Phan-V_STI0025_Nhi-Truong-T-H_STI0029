@@ -29,8 +29,8 @@ const Login = () => {
       },
       (error) => {
         setAlert({
-          type: 'AlertError',
-          messError: error.response.data.errors
+          type: 'danger',
+          mess: error.response.data.errors
         })
       }))
   };

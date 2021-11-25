@@ -1,28 +1,18 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { AlertContext, useAlert } from '../contexts/alert.context';
 
 export const Alert = () => {
   const { alert, onClosed } = useAlert();
-  const { type, messError, messSuccess } = alert;
+  const { type, mess } = alert;
 
   return (
     <>
-      {type === 'AlertError' &&
-        <div className="alert alert-error">
-          {messError}
-          <button className="btn close" onClick={() => onClosed()}>
-            <span>&times;</span>
-          </button>
-        </div>
-      }
-      {type === 'AlertSuccess' &&
-        <div className="alert alert-success">
-          {messSuccess}
-          <button className="btn close" onClick={() => onClosed()}>
-            <span>&times;</span>
-          </button>
-        </div>
-      }
+      <div className={`alert alert-${type}`}>
+        {mess}
+        <button className="btn close" onClick={() => onClosed()}>
+          <span>&times;</span>
+        </button>
+      </div>
     </>
   )
 }
@@ -32,6 +22,13 @@ export const AlertProvider = props => {
   const onClosed = useCallback(() => {
     setAlert(null);
   }, [setAlert]);
+  useEffect(() => {
+    {
+      alert ? setTimeout(() => {
+        setAlert(null);
+      }, 3000) : ''
+    }
+  }, [alert])
   return (
     <AlertContext.Provider value={{ alert, onClosed, setAlert }} >
       {props.children}
@@ -39,4 +36,3 @@ export const AlertProvider = props => {
     </AlertContext.Provider>
   );
 }
-

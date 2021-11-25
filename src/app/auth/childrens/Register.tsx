@@ -27,8 +27,8 @@ const Register = () => {
     dispatch(signUp(data,
       (res) => {
         setAlert({
-          type: 'AlertSuccess',
-          messSuccess: res
+          type: 'success',
+          mess: res
         });
         reset({
           data: ""
@@ -36,8 +36,8 @@ const Register = () => {
       },
       (error) => {
         setAlert({
-          type: 'AlertError',
-          messError: error.response.data.errors
+          type: 'danger',
+          mess: error.response.data.errors
         })
       }))
   };
