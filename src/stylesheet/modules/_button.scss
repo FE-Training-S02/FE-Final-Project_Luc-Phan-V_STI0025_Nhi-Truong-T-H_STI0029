@@ -24,14 +24,16 @@
     font-size: map-get($map: $font-size, $key: normal);
   }
   &.btn-accept {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    @include pxRem(padding, 10 15);
+    color: map-get($map: $color, $key: white);
+    background-color: map-get($map: $color, $key: blue-a);
+    border-color: map-get($map: $color, $key: blue-a);
   }
   &.btn-cancel {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
+    @include pxRem(padding, 10 15);
+    color: map-get($map: $color, $key: white);
+    background-color: map-get($map: $color, $key: grey-b);
+    border-color: map-get($map: $color, $key: grey-b);
   }
   &.btn-close {
     background-color: transparent;
