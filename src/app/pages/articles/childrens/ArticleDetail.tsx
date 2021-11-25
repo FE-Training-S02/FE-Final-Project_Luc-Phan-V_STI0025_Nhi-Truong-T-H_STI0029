@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import { RootStateOrAny, useSelector } from 'react-redux';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { getArticleDetail, getCommentsList, postFollow, getAuthor } from '../article.middleware';
@@ -39,7 +38,7 @@ const ArticleDetail = () => {
   const getComments = () => {
     setLoading(true);
     disPatch(getCommentsList(
-      id, 
+      id,
       (res) => {
         setCommentsList(res);
         setLoading(false);
@@ -52,10 +51,10 @@ const ArticleDetail = () => {
   const getAuthorInfo = (article) => {
     setLoading(true);
     disPatch(getAuthor(
-      article.user.id, 
+      article.user.id,
       (res) => {
-        const authorUser = {...article.user, isFollowed:res.isFollowed};
-        const newArticle = {...article, user:authorUser};
+        const authorUser = { ...article.user, isFollowed: res.isFollowed };
+        const newArticle = { ...article, user: authorUser };
         setArticle(newArticle);
         setLoading(false);
       },
@@ -66,7 +65,7 @@ const ArticleDetail = () => {
   }
   const submitComment = () => {
     disPatch(getCommentsList(
-      id, 
+      id,
       (res) => {
         setCommentsList(res);
         setComments(res.length);
@@ -81,9 +80,9 @@ const ArticleDetail = () => {
       'followingId': user.id
     }
     disPatch(postFollow(
-      data, 
+      data,
       (res) => {
-        const newArticle = {...article, user:{...user, isFollowed: res.followed}};
+        const newArticle = { ...article, user: { ...user, isFollowed: res.followed } };
         setArticle(newArticle);
       },
       (error) => {
@@ -108,7 +107,7 @@ const ArticleDetail = () => {
                     <i className="fas fa-pen-fancy"></i>
                     <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
                   </Link>
-                  <button className={`btn btn-outline ${user?.isFollowed ? 'btn-accept' : ''}`}onClick={followUser}>+ Follow</button>
+                  <button className={`btn btn-outline ${user?.isFollowed ? 'btn-accept' : ''}`} onClick={followUser}>+ Follow</button>
                 </div>
                 <button className="btn btn-icon">
                   <i className="far fa-bookmark"></i>
