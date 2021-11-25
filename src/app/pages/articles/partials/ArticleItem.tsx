@@ -48,10 +48,10 @@ const ArticleItem = (props) => {
       {curentUserId === userId ?
         <div className="dropdown">
           <button className="btn-dropdown">...</button>
-          <ul className="sub-dropdown">
+          <div className="sub-dropdown">
             <button onClick={handleDelete} className="sub-dropdown-item">Delete</button>
             <Link to={`/articles/${id}/edit`} className="sub-dropdown-item">Update</Link>
-          </ul>
+          </div>
         </div>
         : ''}
       <div className="article-body">
