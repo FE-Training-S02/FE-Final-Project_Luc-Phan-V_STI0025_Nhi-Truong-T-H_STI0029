@@ -9,7 +9,7 @@ export const Dialog = () => {
   return (
     <>
       {type === 'DeleteCofirm' &&
-        <div className="modal fade">
+        <div className="modal-fade">
           <div className="modal">
             <div className="modal-box modal-dialog-centered">
               <div className="modal-content">

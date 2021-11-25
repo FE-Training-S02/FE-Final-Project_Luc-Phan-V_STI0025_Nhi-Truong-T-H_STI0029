@@ -26,18 +26,22 @@
       font-size: map-get($map: $font-size, $key: xl);
     }
     .sub-dropdown {
-      @include pxRem(min-width, 80);
-      @include pxRem(max-height, 80);
+      @include pxRem(min-width, 150);
+      @include pxRem(max-height, 100);
+      @include pxRem(right, -50);
+      @include pxRem(padding-top, 10);
+      @include pxRem(padding-bottom, 10);
       display: none;
       position: absolute;
       top: 100%;
-      right: 0;
+      border-radius: 5px;
       background-color: map-get($color, grey-a);
       z-index: 1;
       .sub-dropdown-item {
         @include pxRem(min-height, 40);
+        @include pxRem(padding-left, 20);
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
         width: 100%;
         background: transparent;
@@ -46,8 +50,8 @@
         font-weight: 500;
         text-decoration: none;
         &:hover {
-          color: map-get($color, white);
-          background-color: map-get($color, primary);
+          color: map-get($color, primary);
+          background: #e8e8e8;
         }
       }
     }
