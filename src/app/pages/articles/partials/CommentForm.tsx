@@ -10,8 +10,8 @@ const CommentForm = (props) => {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
-  } = useForm();
+    formState: {isValid, errors}
+  } = useForm({mode: "onChange", reValidateMode: "onChange"});
   const disPatch = useDispatch()
   const onSubmit = (data: any) => {
     disPatch(postComment(id, data,
@@ -35,11 +35,17 @@ const CommentForm = (props) => {
                 <textarea
                   className="form-control"
                   placeholder="Comment content..."
-                  {...register('content')}
-                />
+                  {...register('content', {required: true})}
+                /> 
+                {errors.content?.type === 'required' && <span className="msg-error">Content is required</span>}
               </div>
             </div>
-            <Button className="btn btn-primary btn-block" type='submit'>Comment</Button>
+            <Button 
+              className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
+              type="submit"
+            >
+              Comment
+            </Button>
           </form>
         </div>
       </div>

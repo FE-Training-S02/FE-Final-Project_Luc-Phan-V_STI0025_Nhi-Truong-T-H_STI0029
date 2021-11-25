@@ -2,6 +2,9 @@
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
+  &.btn-disable {
+    opacity: 0.5;
+  }
   &.btn-primary {
     color: map-get($map: $color, $key: white);
     background-color: map-get($map: $color, $key: primary);
