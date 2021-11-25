@@ -6,5 +6,6 @@
   }
   .comment-body {
     @include pxRem(padding, 0 16);
+    word-break: break-word;
   }
 }
