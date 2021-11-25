@@ -15,7 +15,7 @@ export const getArticleDetail = (id, resolve, reject) => {
 
 export const getListArticles = (endPoint, page, resolve, reject) => {
   return async () => {
-    await apiService.get([`${endPoint}?page=${page}&size=8`])
+    await apiService.get([`${endPoint}?page=${page}&size=20`])
       .then(res => {
         resolve(res);
       })

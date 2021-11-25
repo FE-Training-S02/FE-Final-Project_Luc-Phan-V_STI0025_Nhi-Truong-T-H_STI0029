@@ -29,7 +29,7 @@ const CommentForm = (props) => {
     <>
       <div className="page-content">
         <div className="form-wrapper">
-          <form className="mt-4" onSubmit={handleSubmit(onSubmit)}>
+          <form className="mt-4 mb-10" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
               <div className="input-group">
                 <textarea
