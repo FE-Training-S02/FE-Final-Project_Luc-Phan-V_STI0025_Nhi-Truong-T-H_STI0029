@@ -15,11 +15,11 @@
     background-color: map-get($map: $color, $key: success);
     border-color: map-get($map: $color, $key: green-b);
   }
-  .close {
+  .btn-close {
     float: right;
     font-size: map-get($map: $font-size, $key: xxxl);
     font-weight: 700;
-    line-height: 1;
+    line-height: 1.1;
     text-shadow: 0 1px 0 map-get($map: $color, $key: white);
     opacity: 0.5;
   }

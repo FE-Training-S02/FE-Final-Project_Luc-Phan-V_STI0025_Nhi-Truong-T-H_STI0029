@@ -6,16 +6,14 @@ export const Alert = () => {
   const { type, mess } = alert;
 
   return (
-    <>
-      <div className={`alert alert-${type}`}>
-        {mess}
-        <button className="btn close" onClick={() => onClosed()}>
-          <span>&times;</span>
-        </button>
-      </div>
-    </>
-  )
-}
+    <div className={`alert alert-${type}`}>
+      {mess}
+      <button className="btn btn-close" onClick={() => onClosed()}>
+        <span>&times;</span>
+      </button>
+    </div>
+  );
+};
 
 export const AlertProvider = props => {
   const [alert, setAlert] = useState();
@@ -26,13 +24,13 @@ export const AlertProvider = props => {
     if (alert) {
       setTimeout(() => {
         setAlert(null);
-      }, 3000)
-    }
-  }, [alert])
+      }, 3000);
+    };
+  }, [alert]);
   return (
-    <AlertContext.Provider value={{ alert, onClosed, setAlert }} >
+    <AlertContext.Provider value={{ alert, onClosed, setAlert }}>
       {props.children}
       {alert && <Alert />}
     </AlertContext.Provider>
   );
-}
+};
