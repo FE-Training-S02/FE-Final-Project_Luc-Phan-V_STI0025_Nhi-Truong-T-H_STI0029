@@ -31,21 +31,21 @@ const Register = () => {
           mess: res
         });
         reset({
-          data: ""
-        })
+          data: ''
+        });
       },
       (error) => {
         setAlert({
           type: 'danger',
           mess: error.response.data.errors
-        })
-      }))
+        });
+      }));
   };
   const genderOptions = [
     { value: 'female', name: 'Female' },
     { value: 'male', name: 'Male' },
     { value: 'other', name: 'Other' }
-  ]
+  ];
   return (
     <>
       <div className="page-heading">

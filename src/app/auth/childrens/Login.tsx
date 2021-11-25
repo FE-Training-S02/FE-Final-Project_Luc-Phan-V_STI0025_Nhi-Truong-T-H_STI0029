@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
@@ -19,8 +19,7 @@ const Login = () => {
   } = useForm();
   const authStorage = new AuthStorageService();
   const { setAlert } = useAlert();
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const onSubmit = (account) => {
     dispatch(signIn(account,
       (response) => {
@@ -31,8 +30,8 @@ const Login = () => {
         setAlert({
           type: 'danger',
           mess: error.response.data.errors
-        })
-      }))
+        });
+      }));
   };
   return (
     <>

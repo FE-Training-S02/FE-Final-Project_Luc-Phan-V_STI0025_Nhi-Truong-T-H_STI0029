@@ -23,10 +23,10 @@ export const AlertProvider = props => {
     setAlert(null);
   }, [setAlert]);
   useEffect(() => {
-    {
-      alert ? setTimeout(() => {
+    if (alert) {
+      setTimeout(() => {
         setAlert(null);
-      }, 3000) : ''
+      }, 3000)
     }
   }, [alert])
   return (

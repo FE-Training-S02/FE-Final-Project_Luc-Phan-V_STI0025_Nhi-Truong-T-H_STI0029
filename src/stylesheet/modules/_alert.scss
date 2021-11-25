@@ -6,21 +6,21 @@
   z-index: 100;
   border-radius: 3px;
   &.alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
+    color: map-get($map: $color, $key: red-a);
+    background-color: map-get($map: $color, $key: danger);
+    border-color: map-get($map: $color, $key: pink);
   }
   &.alert-success {
-    color: #155724;
-    background-color: #d4edda;
-    border-color: #c3e6cb;
+    color: map-get($map: $color, $key: green-a);
+    background-color: map-get($map: $color, $key: success);
+    border-color: map-get($map: $color, $key: green-b);
   }
   .close {
     float: right;
     font-size: map-get($map: $font-size, $key: xxxl);
     font-weight: 700;
     line-height: 1;
-    text-shadow: 0 1px 0 #fff;
+    text-shadow: 0 1px 0 map-get($map: $color, $key: white);
     opacity: 0.5;
   }
 }
