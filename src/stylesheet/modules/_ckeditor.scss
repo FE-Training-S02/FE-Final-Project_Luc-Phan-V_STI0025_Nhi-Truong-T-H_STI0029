@@ -1,0 +1,16 @@
+.ck {
+  &.ck-toolbar {
+    border: 1px solid #d8dfee;
+  }
+  .ck-editor__main {
+    .ck-content {
+      @include pxRem(min-height, 300);
+      &.ck-editor__editable {
+        border: 1px solid #d8dfee;
+        &:focus {
+          border-color: #7f7f81;
+        }
+      }
+    }
+  }
+}
