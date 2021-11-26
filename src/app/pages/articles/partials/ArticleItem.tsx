@@ -16,7 +16,7 @@ const ArticleItem = (props) => {
   const newList = list.filter(item => item.id !== id);
   const handleDelete = () => {
     setDialog({
-      type: 'delete',
+      type: 'danger',
       data: {
         title: 'Confirm',
         content: 'Are you sure you want to delete?',

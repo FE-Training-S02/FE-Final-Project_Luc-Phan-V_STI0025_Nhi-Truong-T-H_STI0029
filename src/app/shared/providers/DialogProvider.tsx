@@ -6,31 +6,27 @@ export const Dialog = () => {
   const { type, data, confirmDialog } = dialog;
   const { title, content, accept, cancel } = data;
   return (
-    <>
-      {type === 'delete' &&
-        <div className="modal-fade" onClick={onClosed}>
-          <div className="modal">
-            <div className="modal-box modal-dialog-centered">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h5 className="modal-title">{title}</h5>
-                  <button className="close" onClick={onClosed}>
-                    <span>&times;</span>
-                  </button>
-                </div>
-                <div className="modal-body">
-                  <p>{content}</p>
-                </div>
-                <div className="modal-footer">
-                  <button className="btn btn-danger" onClick={confirmDialog} >{accept}</button>
-                  <button className="btn btn-secondary" onClick={onClosed}>{cancel}</button>
-                </div>
-              </div>
+    <div className="modal-fade" onClick={onClosed}>
+      <div className="modal">
+        <div className="modal-box modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title">{title}</h5>
+              <button className="close" onClick={onClosed}>
+                <span>&times;</span>
+              </button>
+            </div>
+            <div className="modal-body">
+              <p>{content}</p>
+            </div>
+            <div className="modal-footer">
+              <button className={`btn btn-${type}`} onClick={confirmDialog} >{accept}</button>
+              <button className="btn btn-secondary" onClick={onClosed}>{cancel}</button>
             </div>
           </div>
         </div>
-      }
-    </>
+      </div>
+    </div>
   );
 };
 
