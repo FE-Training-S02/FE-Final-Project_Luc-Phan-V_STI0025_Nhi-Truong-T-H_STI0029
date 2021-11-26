@@ -12,6 +12,7 @@ import { descriptionValidator, requireValidator, titleValidator } from '@app/sha
 import { ApiService } from "@app/core/services/api.service";
 import { uploadImage } from '../article.middleware';
 import { getArticleDetail } from '../article.middleware';
+import { useLoading } from '@app/shared/contexts/loading.context';
 
 const CreateArticle = () => {
   const { id } = useParams();
@@ -21,19 +22,19 @@ const CreateArticle = () => {
   const [content, setContent] = useState(null);
   const disPatch = useDispatch();
   const navigate = useNavigate();
+  const { setLoading } = useLoading();
 
   const {
     register,
     handleSubmit,
     reset,
     setValue,
-    formState: { errors }
-  } = useForm();
-
+    formState: { isValid, errors }
+  } = useForm({mode: 'onChange'});
   const statusOptions = [
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
-  ]
+  ];
 
   async function handleUploadImage(file, resolve, reject) {
     await disPatch(uploadImage(file, resolve, reject));
@@ -49,7 +50,7 @@ const CreateArticle = () => {
       console.log(error);
     }
     handleUploadImage(file, resolve, reject);
-  }
+  };
   const onsubmit = async (data: any) => {
     const article = {
       ...data,
@@ -59,9 +60,10 @@ const CreateArticle = () => {
     };
     { id ? apiService.put([`/posts/${id}`], article) : apiService.post(['/posts'], article) };
     navigate('/articles');
-  }
+  };
   useEffect(() => {
     if (id) {
+      setLoading(true);
       disPatch(getArticleDetail(
         id,
         (res) => {
@@ -72,9 +74,10 @@ const CreateArticle = () => {
           setContent(res.content);
           setArticle(res);
           setUrlImage(res.cover)
+          setLoading(false);
         },
         (error) => {
-          console.log(error);
+          setLoading(false);
         }));
     }
   }, [id]);
@@ -118,18 +121,28 @@ const CreateArticle = () => {
             <label className="col-3 col-form-label" >Upload image</label>
             <div className="col-7">
               {id ?
-                <Input
-                  type="file"
-                  register={register('cover')}
-                  errors={errors.cover}
-                  onChange={() => handleChange}
-                /> :
-                <Input
-                  type="file"
-                  register={register('cover', requireValidator())}
-                  errors={errors.cover}
-                  onChange={() => handleChange}
-                />
+                <div className="form-group">
+                  <div className="input-group">
+                    <input
+                      type="file"
+                      className="form-control"
+                      {...register('cover')}
+                      onChange={handleChange}
+                    /> 
+                    {errors.cover?.type === 'required' && <span className="msg-error">Content is required</span>}
+                  </div>
+                </div> :
+                <div className="form-group">
+                  <div className="input-group">
+                    <input
+                      type="file"
+                      className="form-control"
+                      {...register('cover', requireValidator())}
+                      onChange={handleChange}
+                    /> 
+                    {errors.cover?.type === 'required' && <span className="msg-error">Content is required</span>}
+                  </div>
+                </div>
               }
               {urlImage ? <img src={urlImage} alt="cover" className="col-4" /> : ''}
             </div>
@@ -150,7 +163,13 @@ const CreateArticle = () => {
           </div>
           <div className="row form-btn-group">
             <div className="col-3">
-              <Button className="btn btn-primary btn-block" type='submit'>{id ? 'Save' : 'Submit'}</Button>
+              <Button 
+                className="btn btn-primary btn-block" 
+                type="submit" 
+                disabled={!isValid}
+              >
+                {id ? 'Save' : 'Submit'}
+              </Button>
             </div>
           </div>
         </form>
