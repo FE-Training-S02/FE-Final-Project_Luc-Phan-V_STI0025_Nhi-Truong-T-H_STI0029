@@ -8,7 +8,7 @@ export const Alert = () => {
   return (
     <div className={`alert alert-${type}`}>
       {mess}
-      <button className="btn btn-close" onClick={() => onClosed()}>
+      <button className="btn btn-close" onClick={onClosed()}>
         <span>&times;</span>
       </button>
     </div>

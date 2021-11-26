@@ -16,11 +16,11 @@ const ArticleItem = (props) => {
   const newList = list.filter(item => item.id !== id);
   const handleDelete = () => {
     setDialog({
-      type: 'DeleteCofirm',
+      type: 'danger',
       data: {
         title: 'Confirm',
-        content: 'Are you sure you want to delete',
-        yes: 'Yes',
+        content: 'Are you sure you want to delete?',
+        accept: 'Delete',
         cancel: 'Cancel'
       },
       confirmDialog: () => confirmDeleteArticle()

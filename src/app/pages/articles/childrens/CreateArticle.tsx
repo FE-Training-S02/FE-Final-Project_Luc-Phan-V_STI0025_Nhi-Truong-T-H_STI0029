@@ -156,8 +156,7 @@ const CreateArticle = () => {
                 onChange={(event, editor) => {
                   const data = editor.getData();
                   setContent(data);
-                }
-                }
+                }}
               />
             </div>
           </div>

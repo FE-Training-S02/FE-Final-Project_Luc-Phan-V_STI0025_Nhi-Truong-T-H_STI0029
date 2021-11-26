@@ -1,49 +1,52 @@
-.fade {
-  opacity: 1;
-}
-.modal {
+.modal-fade {
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
-  .modal-box {
-    position: relative;
-    max-width: 500px;
-    margin: 30vh auto;
-    &.modal-dialog-centered {
-      display: flex;
-      align-items: center;
-      .modal-content {
-        width: 100%;
+  .modal {
+    .modal-box {
+      position: relative;
+      max-width: 500px;
+      margin: 30vh auto;
+      &.modal-dialog-centered {
         display: flex;
-        flex-direction: column;
-        background: map-get($map: $color, $key: white);
-        border: 1px solid rgba(0, 0, 0, 0.2);
-        border-radius: 0.3rem;
-        .modal-header {
-          @include pxRem(padding, 16);
+        align-items: center;
+        .modal-content {
+          width: 100%;
           display: flex;
-          justify-content: space-between;
-          border-bottom: 1px solid #e9ecef;
-          .close {
-            background-color: transparent;
-            font-size: map-get($map: $font-size, $key: xxxl);
-            line-height: 0.6;
+          flex-direction: column;
+          background: map-get($map: $color, $key: white);
+          border: 1px solid rgba(0, 0, 0, 0.2);
+          border-radius: 0.3rem;
+          .modal-header {
+            @include pxRem(padding, 16);
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid map-get($map: $color, $key: grey-a);
+            .modal-title {
+              font-size: map-get($map: $font-size, $key: xl);
+            }
+            .close {
+              background-color: transparent;
+              font-size: map-get($map: $font-size, $key: xxxl);
+              line-height: 0.6;
+            }
           }
-        }
-        .modal-body {
-          @include pxRem(padding, 16);
-        }
-        .modal-footer {
-          @include pxRem(padding, 16);
-          display: flex;
-          justify-content: flex-end;
-          border-top: 1px solid #e9ecef;
-          button {
-            @include pxRem(margin-right, 5);
-            @include pxRem(padding, 8 10);
+          .modal-body {
+            @include pxRem(padding, 16);
+          }
+          .modal-footer {
+            @include pxRem(padding, 16);
+            display: flex;
+            justify-content: flex-end;
+            border-top: 1px solid map-get($map: $color, $key: grey-a);
+            button {
+              @include pxRem(margin-right, 10);
+              font-size: map-get($map: $font-size, $key: sm);
+            }
           }
         }
       }
