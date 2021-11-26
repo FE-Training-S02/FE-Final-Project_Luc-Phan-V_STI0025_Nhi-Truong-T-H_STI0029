@@ -13,6 +13,7 @@ import { ApiService } from "@app/core/services/api.service";
 import { uploadImage } from '../article.middleware';
 import { getArticleDetail } from '../article.middleware';
 import { useLoading } from '@app/shared/contexts/loading.context';
+import { useAlert } from '@app/shared/contexts/alert.context';
 
 const CreateArticle = () => {
   const { id } = useParams();
@@ -23,14 +24,14 @@ const CreateArticle = () => {
   const disPatch = useDispatch();
   const navigate = useNavigate();
   const { setLoading } = useLoading();
-
+  const { setAlert } = useAlert();
   const {
     register,
     handleSubmit,
     reset,
     setValue,
     formState: { isValid, errors }
-  } = useForm({mode: 'onChange'});
+  } = useForm({mode: 'onChange', reValidateMode: 'onSubmit'});
   const statusOptions = [
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
@@ -58,6 +59,10 @@ const CreateArticle = () => {
       cover: urlImage,
       content: content
     };
+    setAlert({
+      type: 'danger',
+      mess: 'test'
+    });
     { id ? apiService.put([`/posts/${id}`], article) : apiService.post(['/posts'], article) };
     navigate('/articles');
   };
@@ -137,7 +142,7 @@ const CreateArticle = () => {
                     <input
                       type="file"
                       className="form-control"
-                      {...register('cover', requireValidator())}
+                      {...register('cover', {required:true})}
                       onChange={handleChange}
                     /> 
                     {errors.cover?.type === 'required' && <span className="msg-error">Content is required</span>}
@@ -163,9 +168,10 @@ const CreateArticle = () => {
           <div className="row form-btn-group">
             <div className="col-3">
               <Button 
-                className="btn btn-primary btn-block" 
-                type="submit" 
+                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`} 
+                type="submit"
                 disabled={!isValid}
+                // disabled={!isValid}
               >
                 {id ? 'Save' : 'Submit'}
               </Button>
