@@ -103,11 +103,11 @@
       text-overflow: ellipsis;
     }
     .read-more {
-      display: block;
       @include pxRem(padding, 4 0);
+      display: block;
       text-align: left;
       font-size: map-get($font-size, sm);
-      color: map-get($color, grey-b);
+      color: map-get($color, primary);
     }
   }
   .article-interact {
