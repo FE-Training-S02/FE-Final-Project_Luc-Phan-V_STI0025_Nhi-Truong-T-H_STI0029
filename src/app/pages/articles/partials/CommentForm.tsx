@@ -10,8 +10,8 @@ const CommentForm = (props) => {
     register,
     handleSubmit,
     reset,
-    formState: {isValid, errors}
-  } = useForm({mode: "onChange", reValidateMode: "onChange"});
+    formState: { isValid, errors }
+  } = useForm({ mode: 'onChange', reValidateMode: 'onChange' });
   const disPatch = useDispatch()
   const onSubmit = (data: any) => {
     disPatch(postComment(id, data,
@@ -41,7 +41,8 @@ const CommentForm = (props) => {
               </div>
             </div>
             <Button 
-              className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
+              className="btn btn-primary btn-block"
+              disabled={!isValid}
               type="submit"
             >
               Comment

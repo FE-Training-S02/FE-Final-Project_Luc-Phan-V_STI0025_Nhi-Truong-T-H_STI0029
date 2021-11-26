@@ -164,8 +164,9 @@ const CreateArticle = () => {
           <div className="row form-btn-group">
             <div className="col-3">
               <Button 
-                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`} 
-                type='submit' 
+                className="btn btn-primary btn-block" 
+                type="submit" 
+                disabled={!isValid}
               >
                 {id ? 'Save' : 'Submit'}
               </Button>

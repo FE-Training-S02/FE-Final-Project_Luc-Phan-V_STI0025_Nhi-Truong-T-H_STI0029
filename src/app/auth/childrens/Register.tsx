@@ -17,7 +17,7 @@ const Register = () => {
     reset,
     watch,
     formState: { isValid, errors }
-  } = useForm({mode: 'onChange'});
+  } = useForm({ mode: 'onChange' });
   const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch('password', '');
@@ -125,8 +125,9 @@ const Register = () => {
               errors={errors.phone} />
             <div className="btn-group">
               <Button
-                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
-                type='submit'
+                className="btn btn-primary btn-block"
+                type="submit"
+                disabled={!isValid}
               >
                 Sign up
               </Button>

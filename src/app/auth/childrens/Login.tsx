@@ -16,7 +16,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { isValid, errors }
-  } = useForm({mode: 'onChange'});
+  } = useForm({ mode: 'onChange' });
   const authStorage = new AuthStorageService();
   const { setAlert } = useAlert();
   const navigate = useNavigate();
@@ -55,7 +55,8 @@ const Login = () => {
               errors={errors.password} />
             <div className="btn-group">
               <Button
-                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
+                className="btn btn-primary btn-block"
+                disabled={!isValid}
                 type="submit"
               >
                 Sign in
