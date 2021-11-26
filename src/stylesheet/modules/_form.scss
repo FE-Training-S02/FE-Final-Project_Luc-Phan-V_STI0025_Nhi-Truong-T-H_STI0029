@@ -84,9 +84,13 @@
 input[type="file"]::file-selector-button {
   @include pxRem(padding, 12 25);
   cursor: pointer;
-  border: 1px solid #d8dfee;
-  border-radius: 10px;
-  background-color: map-get($map: $color, $key: info);
-  color: map-get($map: $color, $key: white);
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid map-get($map: $color, $key: info);
+  color: map-get($map: $color, $key: info);
   font-weight: 600;
+  &:hover {
+    background-color: map-get($map: $color, $key: info);
+    color: map-get($map: $color, $key: white);
+  }
 }

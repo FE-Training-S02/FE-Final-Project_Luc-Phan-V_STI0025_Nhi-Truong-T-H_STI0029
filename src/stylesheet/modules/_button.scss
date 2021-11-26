@@ -2,56 +2,73 @@
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
+  @include pxRem(padding, 10 15);
   &.btn-disable {
     opacity: 0.5;
   }
   &.btn-primary {
-    color: map-get($map: $color, $key: white);
     background-color: map-get($map: $color, $key: primary);
+    color: map-get($map: $color, $key: white);
   }
-  &.btn-outline {
-    @include pxRem(min-width, 85);
-    @include pxRem(min-height, 30);
-    @include pxRem(padding, 8);
+  &.btn-secondary {
+    background-color: map-get($map: $color, $key: secondary);
+    color: map-get($map: $color, $key: white);
+  }
+  &.btn-blue {
+    background-color: map-get($map: $color, $key: blue);
+    border-color: map-get($map: $color, $key: blue);
+    color: map-get($map: $color, $key: white);
+  }
+  &.btn-danger {
+    background-color: map-get($map: $color, $key: danger);
+    border-color: map-get($map: $color, $key: blue-a);
+    color: map-get($map: $color, $key: white);
+  }
+  &.btn-outline-primary {
     background-color: transparent;
-    border: 1px solid map-get($map: $color, $key: blue-a);
-    color: map-get($map: $color, $key: blue-a);
+    border: 1px solid map-get($map: $color, $key: primary);
+    color: map-get($map: $color, $key: primary);
+    &:hover {
+      background-color: map-get($map: $color, $key: primary);
+      color: map-get($map: $color, $key: white);
+    }
+  }
+  &.btn-outline-secondary {
+    background-color: transparent;
+    border: 1px solid map-get($map: $color, $key: secondary);
+    color: map-get($map: $color, $key: secondary);
+    &:hover {
+      background-color: map-get($map: $color, $key: secondary);
+      color: map-get($map: $color, $key: white);
+    }
+  }
+  &.btn-outline-danger {
+    background-color: transparent;
+    border: 1px solid map-get($map: $color, $key: danger);
+    color: map-get($map: $color, $key: danger);
+    &:hover {
+      background-color: map-get($map: $color, $key: danger);
+      color: map-get($map: $color, $key: white);
+    }
+  }
+  &.btn-outline-blue {
+    background-color: transparent;
+    border: 1px solid map-get($map: $color, $key: blue);
+    color: map-get($map: $color, $key: blue);
+    &:hover {
+      background-color: map-get($map: $color, $key: blue);
+      color: map-get($map: $color, $key: white);
+    }
   }
   &.btn-icon {
-    @include pxRem(padding, 12);
     border-radius: 20px;
   }
   &.btn-block {
-    @include pxRem(padding, 10);
     width: 100%;
     font-size: map-get($map: $font-size, $key: normal);
-  }
-  &.btn-accept {
-    color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  &.btn-cancel {
-    color: #fff;
-    background-color: #6c757d;
-    border-color: #6c757d;
   }
   &.btn-close {
     background-color: transparent;
     border: 0;
   }
-}
-.btn-change {
-  @include pxRem(padding, 8);
-  @include pxRem(margin, 0 8);
-  border-radius: 5px;
-  background: map-get($color, primary);
-  color: map-get($color, white);
-}
-.btn-edit {
-  @include pxRem(padding, 8);
-  @include pxRem(margin, 0 8);
-  border-radius: 5px;
-  background: map-get($color, blue-a);
-  color: map-get($color, white);
 }
