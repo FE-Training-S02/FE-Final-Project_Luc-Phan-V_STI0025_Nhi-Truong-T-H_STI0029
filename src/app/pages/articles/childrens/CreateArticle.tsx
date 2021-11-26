@@ -13,6 +13,12 @@ import { ApiService } from "@app/core/services/api.service";
 import { uploadImage } from '../article.middleware';
 import { getArticleDetail } from '../article.middleware';
 
+// import ClassicEditor from '@ckeditor/ckeditor5-editor-classic/src/classiceditor';
+// import Bold from '@ckeditor/ckeditor5-basic-styles/src/bold';
+// import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
+// import Essentials from '@ckeditor/ckeditor5-essentials/src/Essentials';
+// import Paragraph from '@ckeditor/ckeditor5-paragraph/src/Paragraph';
+
 const CreateArticle = () => {
   const { id } = useParams();
   const [article, setArticle] = useState<any>({});
@@ -143,8 +149,7 @@ const CreateArticle = () => {
                 onChange={(event, editor) => {
                   const data = editor.getData();
                   setContent(data);
-                }
-                }
+                }}
               />
             </div>
           </div>

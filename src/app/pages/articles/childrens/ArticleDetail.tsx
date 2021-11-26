@@ -109,7 +109,7 @@ const ArticleDetail = () => {
                     <i className="fas fa-pen-fancy"></i>
                     <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
                   </Link>
-                  <button className={`btn btn-outline ${user?.isFollowed ? 'btn-accept' : ''}`} onClick={followUser}>+ Follow</button>
+                  <button className={`btn btn-outline-primary ${user?.isFollowed ? 'btn-follow' : ''}`} onClick={followUser}>+ Follow</button>
                 </div>
                 <button className="btn btn-icon">
                   <i className="far fa-bookmark"></i>

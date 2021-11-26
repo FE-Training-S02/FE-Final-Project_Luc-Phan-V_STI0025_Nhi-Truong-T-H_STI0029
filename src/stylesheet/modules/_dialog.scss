@@ -4,7 +4,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 100;
   .modal {
     .modal-box {
@@ -25,7 +25,7 @@
             @include pxRem(padding, 16);
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid map-get($map: $color, $key: grey-a);
             .modal-title {
               font-size: map-get($map: $font-size, $key: xl);
             }
@@ -42,7 +42,7 @@
             @include pxRem(padding, 16);
             display: flex;
             justify-content: flex-end;
-            border-top: 1px solid #e9ecef;
+            border-top: 1px solid map-get($map: $color, $key: grey-a);
             button {
               @include pxRem(margin-right, 10);
               font-size: map-get($map: $font-size, $key: sm);

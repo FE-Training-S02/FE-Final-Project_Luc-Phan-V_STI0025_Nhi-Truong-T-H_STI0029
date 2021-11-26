@@ -1,21 +1,20 @@
 import React, { useCallback, useState } from 'react';
 import { DialogContext, useDialog } from '../contexts/dialog.context';
 
-
 export const Dialog = () => {
   const { dialog, onClosed } = useDialog();
   const { type, data, confirmDialog } = dialog;
-  const { title, content, yes, cancel } = data;
+  const { title, content, accept, cancel } = data;
   return (
     <>
-      {type === 'DeleteCofirm' &&
-        <div className="modal-fade" onClick={() => onClosed()}>
+      {type === 'delete' &&
+        <div className="modal-fade" onClick={onClosed}>
           <div className="modal">
             <div className="modal-box modal-dialog-centered">
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title">{title}</h5>
-                  <button className="close" onClick={() => onClosed()}>
+                  <button className="close" onClick={onClosed}>
                     <span>&times;</span>
                   </button>
                 </div>
@@ -23,8 +22,8 @@ export const Dialog = () => {
                   <p>{content}</p>
                 </div>
                 <div className="modal-footer">
-                  <button className="btn btn-accept" onClick={() => confirmDialog()} >{yes}</button>
-                  <button className="btn btn-cancel" onClick={() => onClosed()}>{cancel}</button>
+                  <button className="btn btn-danger" onClick={confirmDialog} >{accept}</button>
+                  <button className="btn btn-secondary" onClick={onClosed}>{cancel}</button>
                 </div>
               </div>
             </div>
@@ -32,8 +31,8 @@ export const Dialog = () => {
         </div>
       }
     </>
-  )
-}
+  );
+};
 
 export const DialogProvider = props => {
   const [dialog, setDialog] = useState(null);
@@ -46,5 +45,5 @@ export const DialogProvider = props => {
       {dialog && <Dialog />}
     </DialogContext.Provider>
   );
-}
+};
 
