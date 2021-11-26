@@ -20,7 +20,7 @@ export const Dialog = () => {
               <p>{content}</p>
             </div>
             <div className="modal-footer">
-              <button className={`btn btn-${type}`} onClick={confirmDialog} >{accept}</button>
+              <button className={`btn btn-${type || 'primary'}`} onClick={confirmDialog} >{accept}</button>
               <button className="btn btn-secondary" onClick={onClosed}>{cancel}</button>
             </div>
           </div>

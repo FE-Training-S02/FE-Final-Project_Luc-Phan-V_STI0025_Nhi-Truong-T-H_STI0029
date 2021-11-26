@@ -16,8 +16,8 @@ const Register = () => {
     handleSubmit,
     reset,
     watch,
-    formState: { errors }
-  } = useForm();
+    formState: { isValid, errors }
+  } = useForm({ mode: 'onChange' });
   const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch('password', '');
@@ -126,7 +126,11 @@ const Register = () => {
             <div className="btn-group">
               <Button
                 className="btn btn-primary btn-block"
-                type='submit'>Sign up</Button>
+                type="submit"
+                disabled={!isValid}
+              >
+                Sign up
+              </Button>
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
             </div>
