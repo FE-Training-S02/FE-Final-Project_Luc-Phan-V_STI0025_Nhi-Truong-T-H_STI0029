@@ -1,17 +1,15 @@
 .sidebar {
-  @include pxRem(padding, 0 0 0 30);
+  @include pxRem(padding-left, 30);
   .widget {
     @include pxRem(margin-bottom, 40);
-    @include pxRem(padding, 35 40);
     .widget-title {
-      @include pxRem(margin, -35 -40 20);
-      @include pxRem(padding, 15 40);
+      @include pxRem(padding, 15 25);
       border-bottom: 1px solid #efefef;
     }
     .widget-content {
       text-align: center;
       .content-quote {
-        @include pxRem(padding, 0 0 20 0);
+        @include pxRem(padding-bottom, 20);
       }
       .byline {
         color: map-get($map: $color, $key: grey-c);
@@ -40,26 +38,40 @@
       .popular-item {
         @include pxRem(margin-bottom, 25);
         @include pxRem(padding-bottom, 25);
-        border-bottom: 1px solid #efefef;
+        border-bottom: 1px solid map-get($map: $color, $key: grey-a);
         &:last-child {
           @include pxRem(margin, 0);
           @include pxRem(padding, 0);
           border-bottom: none;
         }
-        display: flex;
-        .image-article {
-          @include pxRem(margin-right, 20);
-        }
-        h5 {
-          margin-bottom: 5px;
-          font-size: 13px;
-          font-weight: 400;
-          line-height: 1.77;
-        }
-        span {
-          font-size: 10px;
-          color: #a0a0a0;
-          letter-spacing: 0.065em;
+        .wrap-popular-item {
+          @include pxRem(height, 100);
+          display: flex;
+          .article-image {
+            @include pxRem(margin-right, 20);
+            height: 100%;
+          }
+          .article-content {
+            .article-title {
+              @include pxRem(max-height, 16);
+              height: 100%;
+              margin-bottom: 5px;
+              font-size: map-get($map: $font-size, $key: sm);
+              line-height: 1.1;
+              overflow: hidden;
+            }
+            .article-description {
+              @include pxRem(max-height, 60);
+              height: 100%;
+              font-size: map-get($map: $font-size, $key: xs);
+              overflow: hidden;
+            }
+            span {
+              font-size: map-get($map: $font-size, $key: xxs);
+              color: map-get($map: $color, $key: grey-b);
+              letter-spacing: 0.065em;
+            }
+          }
         }
       }
     }

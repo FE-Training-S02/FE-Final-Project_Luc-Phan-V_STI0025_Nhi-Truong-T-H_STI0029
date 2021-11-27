@@ -25,6 +25,17 @@ export const getListArticles = (endPoint, page, resolve, reject) => {
   };
 };
 
+export const getArticlesRecommend = (endPoint, page, resolve, reject) => {
+  return async () => {
+    await apiService.get([`${endPoint}?page=${page}&size=5`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
 
 export const deleteArticle = (id, resolve, rejects) => {
   return async (dispatch) => {

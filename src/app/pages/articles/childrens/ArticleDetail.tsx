@@ -95,7 +95,7 @@ const ArticleDetail = () => {
   return (
     <>
       <div className="row">
-        <main className="col-8 main-content">
+        <main className="col col-8 main-content">
           <div className="grid-box pd-10">
             <div className="article-header">
               <div className="featured">
