@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { useParams, useNavigate } from 'react-router-dom';;
-import axios from 'axios';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Select from '@app/shared/components/partials/Select';
@@ -10,8 +9,7 @@ import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import { descriptionValidator, requireValidator, titleValidator } from '@app/shared/validators/form.validator';
 import { ApiService } from "@app/core/services/api.service";
-import { uploadImage } from '../article.middleware';
-import { getArticleDetail } from '../article.middleware';
+import { uploadImage, getArticleDetail, createArticle, updateArticle } from '../article.middleware';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { useAlert } from '@app/shared/contexts/alert.context';
 
@@ -40,16 +38,16 @@ const CreateArticle = () => {
   async function handleUploadImage(file, resolve, reject) {
     await disPatch(uploadImage(file, resolve, reject));
   };
+  const resolve = (res) => {
+    setUrlImage(res.url);
+    setLoading(false);
+  }
+  const reject = (error) => {
+    setLoading(false);
+  }
   const handleChange = (e) => {
     const file = e.target.files[0];
-    const resolve = (res) => {
-      const { signedRequest, url } = res;
-      setUrlImage(url)
-      axios.put(signedRequest, file);
-    }
-    const reject = (error) => {
-      console.log(error);
-    }
+    setLoading(true);
     handleUploadImage(file, resolve, reject);
   };
   const onsubmit = async (data: any) => {
@@ -59,12 +57,47 @@ const CreateArticle = () => {
       cover: urlImage,
       content: content
     };
-    setAlert({
-      type: 'danger',
-      mess: 'test'
-    });
-    { id ? apiService.put([`/posts/${id}`], article) : apiService.post(['/posts'], article) };
-    navigate('/articles');
+    setLoading(true);
+    { id ? 
+      disPatch(updateArticle(
+        id,
+        article,
+        (res) => {
+          setLoading(false);
+          navigate(`/articles/${id}`);
+          setAlert({
+            type: 'success',
+            mess: 'The article has been updated successfully'
+          });
+        },
+        (error) => {
+          setLoading(false);
+          setAlert({
+            type: 'danger',
+            mess: 'An error occurred while editing the article!'
+          });
+        })
+      )
+      : 
+      disPatch(createArticle(
+        article,
+        (res) => {
+          setLoading(false);
+          navigate(`/articles/${res.id}`);
+          setAlert({
+            type: 'success',
+            mess: 'The article has been created successfully'
+          });
+        },
+        (error) => {
+          setLoading(false);
+          setAlert({
+            type: 'danger',
+            mess: 'An error occurred while creating the article!'
+          });
+        })
+      )
+    }
   };
   useEffect(() => {
     if (id) {
@@ -142,10 +175,10 @@ const CreateArticle = () => {
                     <input
                       type="file"
                       className="form-control"
-                      {...register('cover', {required:true})}
+                      {...register('cover', {required:{value:true, message:'This field is required'}})}
                       onChange={handleChange}
-                    /> 
-                    {errors.cover?.type === 'required' && <span className="msg-error">Content is required</span>}
+                    />
+                    {errors.cover?.type === 'required' && <span className="msg-error">{errors.cover.message}</span>}
                   </div>
                 </div>
               }
@@ -171,7 +204,6 @@ const CreateArticle = () => {
                 className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`} 
                 type="submit"
                 disabled={!isValid}
-                // disabled={!isValid}
               >
                 {id ? 'Save' : 'Submit'}
               </Button>
