@@ -15,8 +15,9 @@
     background-color: map-get($map: $color, $key: success);
     border-color: map-get($map: $color, $key: green-b);
   }
-  .btn-close {
+  .btn-alert-close {
     float: right;
+    background: transparent;
     font-size: map-get($map: $font-size, $key: xxxl);
     font-weight: 700;
     line-height: 1.1;
