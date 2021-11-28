@@ -41,7 +41,7 @@ const ChangePassword = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row justify-content-center">
             <div className="col-6">
-              <label>Old Password</label>
+              <label className="col-form-label">Old Password</label>
               <Input
                 type="password"
                 register={register('oldPassword', passwordValidator())}
@@ -50,7 +50,7 @@ const ChangePassword = () => {
           </div>
           <div className="row justify-content-center">
             <div className="col-6">
-              <label>New Password</label>
+              <label className="col-form-label">New Password</label>
               <Input
                 type="password"
                 register={register('newPassword', passwordValidator())}

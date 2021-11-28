@@ -127,7 +127,7 @@ const CreateArticle = () => {
         <form onSubmit={handleSubmit(onsubmit)}>
           <div className="row justify-content-center">
             <div className="col-7">
-              <label>Title</label>
+              <label className="col-form-label">Title</label>
               <Input
                 type="text"
                 register={register('title', titleValidator())}
@@ -136,7 +136,7 @@ const CreateArticle = () => {
           </div>
           <div className="row justify-content-center">
             <div className="col-7">
-              <label>Description</label>
+              <label className="col-form-label">Description</label>
               <Input
                 type="text"
                 register={register('description', descriptionValidator())}
@@ -145,21 +145,20 @@ const CreateArticle = () => {
           </div>
           <div className="row justify-content-center">
             <div className="col-7">
-
-              <label>Tags</label>
+              <label className="col-form-label">Tags</label>
               <Input
                 type="text" register={register('tags', requireValidator())} errors={errors.tags} />
             </div>
           </div>
           <div className="row justify-content-center">
             <div className="col-7">
-              <label>Status</label>
+              <label className="col-form-label">Status</label>
               <Select listOptions={statusOptions} defaultValue={statusOptions[0]} register={register('status', requireValidator())} />
             </div>
           </div>
           <div className="row justify-content-center">
             <div className="col-7">
-              <label>Upload image</label>
+              <label className="col-form-label">Upload image</label>
               {id ?
                 <div className="form-group">
                   <div className="input-group">
@@ -189,7 +188,7 @@ const CreateArticle = () => {
           </div>
           <div className="row row-ck justify-content-center">
             <div className="col-7">
-              <label>Content</label>
+              <label className="col-form-label">Content</label>
               <CKEditor
                 editor={ClassicEditor}
                 data={content}
