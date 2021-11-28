@@ -1,10 +1,8 @@
 .article-item {
   @include pxRem(margin-bottom, 40);
   position: relative;
-  .feature {
-    @include pxRem(margin, -25 -25 10);
-  }
   .article-img {
+    display: block;
     @include pxRem(height, 250);
     width: 100%;
   }
@@ -60,12 +58,22 @@
     align-items: center;
     color: map-get($color, grey-b);
     .author-img {
-      @include pxRem(width, 32);
-      @include pxRem(height, 32);
+      @include pxRem(width, 50);
+      @include pxRem(height, 50);
       @include pxRem(margin-right, 8);
+      border-radius: 100%;
+    }
+    .author-info {
+      text-align: left;
+      .create-at {
+        display: block;
+        text-align: left;
+        font-size: map-get($map: $font-size, $key: xs);
+      }
     }
     .author-name {
-      color: map-get($color, black);
+      font-size: map-get($font-size, sm);
+      color: map-get($color, primary);
     }
     .article-tag {
       @include pxRem(padding, 2 5);
@@ -75,28 +83,35 @@
     }
   }
   .article-body {
-    @include pxRem(padding, 0 10);
     letter-spacing: 0.2px;
     .article-title {
-      @include pxRem(height, 60);
+      @include pxRem(height, 70);
       @include line-clamp(2);
       text-align: left;
+      word-break: break-word;
+      font-size: map-get($font-size, xxl);
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: map-get($color, black);
+    }
+    .article-content {
+      @include pxRem(height, 80);
+      @include line-clamp(3);
+      color: map-get($color, grey-b);
       font-size: map-get($font-size, normal);
+      text-align: left;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .article-content {
-      @include pxRem(height, 64);
-      @include line-clamp(3);
-      color: map-get($color, grey-b);
-      font-size: map-get($font-size, sm);
+    .read-more {
+      @include pxRem(padding, 4 0);
+      display: block;
       text-align: left;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: map-get($font-size, sm);
+      color: map-get($color, primary);
     }
   }
   .article-interact {
-    @include pxRem(margin-top, 20);
     display: flex;
     color: map-get($color, grey-b);
     justify-content: space-between;

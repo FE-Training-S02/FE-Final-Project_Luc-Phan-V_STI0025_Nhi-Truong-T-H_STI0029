@@ -1,5 +1,5 @@
 import { ApiService } from "@app/core/services/api.service";
-import axios from 'axios';
+
 const apiService = new ApiService();
 
 export const getArticleDetail = (id, resolve, reject) => {
@@ -25,6 +25,17 @@ export const getListArticles = (endPoint, page, resolve, reject) => {
   };
 };
 
+export const getArticlesRecommend = (page, resolve, reject) => {
+  return async () => {
+    await apiService.get([`/posts/recommend/?page=${page}&size=5`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
 
 export const deleteArticle = (id, resolve, rejects) => {
   return async (dispatch) => {
@@ -41,8 +52,7 @@ export const deleteArticle = (id, resolve, rejects) => {
 export const uploadImage = (file, resolve, reject) => {
   return async () => {
     await apiService.get([`/signatures?type_upload=cover-post&file_name=${file.name}&file_type=${file.type}`])
-      .then((res: any) => { 
-        axios.put(res.signedRequest, file);
+      .then((res) => {
         resolve(res);
       })
       .catch(error => {
@@ -120,7 +130,7 @@ export const getAuthor = (id, resolve, reject) => {
 };
 export const createArticle = (data, resolve, reject) => {
   return async () => {
-    await  apiService.post(['/posts'], data)
+    await apiService.post(['/posts'], data)
       .then(res => {
         resolve(res);
       })
@@ -131,7 +141,7 @@ export const createArticle = (data, resolve, reject) => {
 };
 export const updateArticle = (id, data, resolve, reject) => {
   return async () => {
-    await  apiService.put([`/posts/${id}`], data)
+    await apiService.put([`/posts/${id}`], data)
       .then(res => {
         resolve(res);
       })

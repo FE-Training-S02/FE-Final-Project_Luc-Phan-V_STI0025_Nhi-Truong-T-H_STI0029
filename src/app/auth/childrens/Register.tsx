@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../auth.middleware';
@@ -9,6 +9,7 @@ import Select from '@app/shared/components/partials/Select';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 import { birthDayValidator, emailValidator, firstNameValidator, lastNameValidator, passwordValidator, phoneValidator, userNameValidator } from '@app/shared/validators/form.validator';
 import { useAlert } from '@app/shared/contexts/alert.context';
+import { useLoading } from '@app/shared/contexts/loading.context';
 
 const Register = () => {
   const {
@@ -22,7 +23,10 @@ const Register = () => {
   const password = useRef({});
   password.current = watch('password', '');
   const { setAlert } = useAlert();
+  const navigate = useNavigate();
+  const { setLoading } = useLoading();
   const onSubmit = (data: any) => {
+    setLoading(true);
     delete data.password_repeat;
     dispatch(signUp(data,
       (res) => {
@@ -33,12 +37,15 @@ const Register = () => {
         reset({
           data: ''
         });
+        navigate('/auth/login');
+        setLoading(false);
       },
       (error) => {
         setAlert({
           type: 'danger',
           mess: error.response.data.errors
         });
+        setLoading(false);
       }));
   };
   const genderOptions = [
