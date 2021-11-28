@@ -40,18 +40,17 @@ const ChangePassword = () => {
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row justify-content-center">
-            <label className="col-2 col-form-label">Old Password</label>
-            <div className="col-4">
+            <div className="col-6">
+              <label>Old Password</label>
               <Input
                 type="password"
                 register={register('oldPassword', passwordValidator())}
                 errors={errors.oldPassword} />
-
             </div>
           </div>
           <div className="row justify-content-center">
-            <label className="col-2 col-form-label">New Password</label>
-            <div className="col-4">
+            <div className="col-6">
+              <label>New Password</label>
               <Input
                 type="password"
                 register={register('newPassword', passwordValidator())}

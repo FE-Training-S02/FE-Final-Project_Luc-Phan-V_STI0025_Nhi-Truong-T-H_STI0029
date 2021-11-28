@@ -1,20 +1,14 @@
 .page-container {
   .container {
     .page-title {
-      @include pxRem(margin-bottom, 40);
-      font-size: 25px;
+      @include pxRem(margin-bottom, 35);
+      font-size: map-get($map: $font-size, $key: xxxl);
       font-weight: bold;
       text-align: center;
-    }
-    .row-ck {
-      .ck-editor {
-        width: 100%;
-      }
     }
   }
   .form-btn-group {
     @include pxRem(margin-top, 40);
-    @include pxRem(margin-left, 80);
     justify-content: center;
   }
 }

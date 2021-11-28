@@ -29,7 +29,7 @@ const CreateArticle = () => {
     reset,
     setValue,
     formState: { isValid, errors }
-  } = useForm({mode: 'onChange', reValidateMode: 'onSubmit'});
+  } = useForm({ mode: 'onChange', reValidateMode: 'onSubmit' });
   const statusOptions = [
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
@@ -58,45 +58,46 @@ const CreateArticle = () => {
       content: content
     };
     setLoading(true);
-    { id ? 
-      disPatch(updateArticle(
-        id,
-        article,
-        (res) => {
-          setLoading(false);
-          navigate(`/articles/${id}`);
-          setAlert({
-            type: 'success',
-            mess: 'The article has been updated successfully'
-          });
-        },
-        (error) => {
-          setLoading(false);
-          setAlert({
-            type: 'danger',
-            mess: 'An error occurred while editing the article!'
-          });
-        })
-      )
-      : 
-      disPatch(createArticle(
-        article,
-        (res) => {
-          setLoading(false);
-          navigate(`/articles/${res.id}`);
-          setAlert({
-            type: 'success',
-            mess: 'The article has been created successfully'
-          });
-        },
-        (error) => {
-          setLoading(false);
-          setAlert({
-            type: 'danger',
-            mess: 'An error occurred while creating the article!'
-          });
-        })
-      )
+    {
+      id ?
+        disPatch(updateArticle(
+          id,
+          article,
+          (res) => {
+            setLoading(false);
+            navigate(`/articles/${id}`);
+            setAlert({
+              type: 'success',
+              mess: 'The article has been updated successfully'
+            });
+          },
+          (error) => {
+            setLoading(false);
+            setAlert({
+              type: 'danger',
+              mess: 'An error occurred while editing the article!'
+            });
+          })
+        )
+        :
+        disPatch(createArticle(
+          article,
+          (res) => {
+            setLoading(false);
+            navigate(`/articles/${res.id}`);
+            setAlert({
+              type: 'success',
+              mess: 'The article has been created successfully'
+            });
+          },
+          (error) => {
+            setLoading(false);
+            setAlert({
+              type: 'danger',
+              mess: 'An error occurred while creating the article!'
+            });
+          })
+        )
     }
   };
   useEffect(() => {
@@ -124,40 +125,41 @@ const CreateArticle = () => {
       <h2 className="page-title">{id ? 'Edit Article' : 'New Article'}</h2>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onsubmit)}>
-          <div className="row">
-            <label className="col-3 col-form-label">Title</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label>Title</label>
               <Input
                 type="text"
                 register={register('title', titleValidator())}
                 errors={errors.title} />
             </div>
           </div>
-          <div className="row">
-            <label className="col-3 col-form-label">Description</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label>Description</label>
               <Input
                 type="text"
                 register={register('description', descriptionValidator())}
                 errors={errors.description} />
             </div>
           </div>
-          <div className="row">
-            <label className="col-3 col-form-label">Tags</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+
+              <label>Tags</label>
               <Input
                 type="text" register={register('tags', requireValidator())} errors={errors.tags} />
             </div>
           </div>
-          <div className="row">
-            <label className="col-3 col-form-label">Status</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label>Status</label>
               <Select listOptions={statusOptions} defaultValue={statusOptions[0]} register={register('status', requireValidator())} />
             </div>
           </div>
-          <div className="row">
-            <label className="col-3 col-form-label" >Upload image</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label>Upload image</label>
               {id ?
                 <div className="form-group">
                   <div className="input-group">
@@ -166,7 +168,7 @@ const CreateArticle = () => {
                       className="form-control"
                       {...register('cover')}
                       onChange={handleChange}
-                    /> 
+                    />
                     {errors.cover?.type === 'required' && <span className="msg-error">Content is required</span>}
                   </div>
                 </div> :
@@ -175,7 +177,7 @@ const CreateArticle = () => {
                     <input
                       type="file"
                       className="form-control"
-                      {...register('cover', {required:{value:true, message:'This field is required'}})}
+                      {...register('cover', { required: { value: true, message: 'This field is required' } })}
                       onChange={handleChange}
                     />
                     {errors.cover?.type === 'required' && <span className="msg-error">{errors.cover.message}</span>}
@@ -185,9 +187,9 @@ const CreateArticle = () => {
               {urlImage ? <img src={urlImage} alt="cover" className="col-4" /> : ''}
             </div>
           </div>
-          <div className="row row-ck">
-            <label className="col-3 col-form-label">Content</label>
+          <div className="row row-ck justify-content-center">
             <div className="col-7">
+              <label>Content</label>
               <CKEditor
                 editor={ClassicEditor}
                 data={content}
@@ -200,8 +202,8 @@ const CreateArticle = () => {
           </div>
           <div className="row form-btn-group">
             <div className="col-3">
-              <Button 
-                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`} 
+              <Button
+                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
                 type="submit"
                 disabled={!isValid}
               >

@@ -69,10 +69,6 @@
       }
     }
   }
-  .col-form-label {
-    @include pxRem(padding-right, 20);
-    text-align: right;
-  }
   .btn-group {
     @include pxRem(margin-bottom, 20);
     p {
