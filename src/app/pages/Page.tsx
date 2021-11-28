@@ -18,13 +18,15 @@ const Page = () => {
   }, []);
   return (
     <>
-      <Header />
-      <div className="page-container">
-        <div className="container">
-          <Outlet />
+      <div className="wrapper">
+        <Header />
+        <div className="page-container">
+          <div className="container">
+            <Outlet />
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

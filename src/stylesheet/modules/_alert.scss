@@ -1,5 +1,5 @@
 .alert {
-  @include pxRem(top, 50);
+  @include pxRem(top, 75);
   @include pxRem(right, 20);
   @include pxRem(padding, 10 20);
   position: fixed;
@@ -15,8 +15,9 @@
     background-color: map-get($map: $color, $key: success);
     border-color: map-get($map: $color, $key: green-b);
   }
-  .btn-close {
+  .btn-alert-close {
     float: right;
+    background: transparent;
     font-size: map-get($map: $font-size, $key: xxxl);
     font-weight: 700;
     line-height: 1.1;

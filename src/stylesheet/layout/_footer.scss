@@ -1,7 +1,13 @@
 .section-footer {
+  @include pxRem(height, 190);
   @include pxRem(padding, 45 0 20);
   @include pxRem(margin-top, 10);
   @include pxRem(line-height, 24);
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+
   background-color: map-get($color, white);
   font-size: map-get($font-size, normal);
   color: map-get($color, grey-b);
