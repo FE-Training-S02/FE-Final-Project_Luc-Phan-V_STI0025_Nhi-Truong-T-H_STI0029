@@ -30,7 +30,7 @@ const CreateArticle = () => {
     trigger,
     setValue,
     formState: { isValid, errors }
-  } = useForm({ mode: 'onChange', reValidateMode: 'onSubmit' });
+  } = useForm({ mode: 'onChange', reValidateMode: 'onChange' });
   const statusOptions = [
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
@@ -42,10 +42,10 @@ const CreateArticle = () => {
   const resolve = (res) => {
     setUrlImage(res.url);
     setLoading(false);
-  }
+  };
   const reject = (error) => {
     setLoading(false);
-  }
+  };
   const handleChange = (e) => {
     const file = e.target.files[0];
     setLoading(true);
@@ -62,44 +62,44 @@ const CreateArticle = () => {
     setLoading(true);
     {
       id ?
-        disPatch(updateArticle(
-          id,
-          article,
-          (res) => {
-            setLoading(false);
-            navigate(`/articles/${id}`);
-            setAlert({
-              type: 'success',
-              mess: 'The article has been updated successfully'
-            });
-          },
-          (error) => {
-            setLoading(false);
-            setAlert({
-              type: 'danger',
-              mess: 'An error occurred while editing the article!'
-            });
-          })
-        )
-        :
-        disPatch(createArticle(
-          article,
-          (res) => {
-            setLoading(false);
-            navigate(`/articles/${res.id}`);
-            setAlert({
-              type: 'success',
-              mess: 'The article has been created successfully'
-            });
-          },
-          (error) => {
-            setLoading(false);
-            setAlert({
-              type: 'danger',
-              mess: 'An error occurred while creating the article!'
-            });
-          })
-        )
+      disPatch(updateArticle(
+        id,
+        article,
+        (res) => {
+          setLoading(false);
+          navigate(`/articles/${id}`);
+          setAlert({
+            type: 'success',
+            mess: 'The article has been updated successfully'
+          });
+        },
+        (error) => {
+          setLoading(false);
+          setAlert({
+            type: 'danger',
+            mess: 'An error occurred while editing the article!'
+          });
+        })
+      )
+      :
+      disPatch(createArticle(
+        article,
+        (res) => {
+          setLoading(false);
+          navigate(`/articles/${res.id}`);
+          setAlert({
+            type: 'success',
+            mess: 'The article has been created successfully'
+          });
+        },
+        (error) => {
+          setLoading(false);
+          setAlert({
+            type: 'danger',
+            mess: 'An error occurred while creating the article!'
+          });
+        })
+      )
     }
   };
   useEffect(() => {
