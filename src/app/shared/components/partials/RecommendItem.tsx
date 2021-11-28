@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { convertDate } from '@app/shared/pipes/convert-date';
 
-const SidebarItem = (props) => {
+const RecommendItem = (props) => {
   const { id, cover, title, description, createdAt } = props.article;
   return (
     <div className="wrap-popular-item">
@@ -11,10 +12,10 @@ const SidebarItem = (props) => {
           <h5 className="article-title">{title}</h5>
         </Link>
         <p className="article-description">{description}</p>
-        <span>{new Date(createdAt).toLocaleString()}</span>
+        <span>{convertDate(createdAt)}</span>
       </div>
     </div>
   );
 }
 
-export default SidebarItem;
+export default RecommendItem;

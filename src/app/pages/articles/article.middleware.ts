@@ -25,9 +25,9 @@ export const getListArticles = (endPoint, page, resolve, reject) => {
   };
 };
 
-export const getArticlesRecommend = (endPoint, page, resolve, reject) => {
+export const getArticlesRecommend = (page, resolve, reject) => {
   return async () => {
-    await apiService.get([`${endPoint}?page=${page}&size=5`])
+    await apiService.get([`/posts/recommend/?page=${page}&size=5`])
       .then(res => {
         resolve(res);
       })
@@ -120,6 +120,28 @@ export const postFollow = (data, resolve, reject) => {
 export const getAuthor = (id, resolve, reject) => {
   return async () => {
     await apiService.get([`/users/${id}`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+export const createArticle = (data, resolve, reject) => {
+  return async () => {
+    await apiService.post(['/posts'], data)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+export const updateArticle = (id, data, resolve, reject) => {
+  return async () => {
+    await apiService.put([`/posts/${id}`], data)
       .then(res => {
         resolve(res);
       })

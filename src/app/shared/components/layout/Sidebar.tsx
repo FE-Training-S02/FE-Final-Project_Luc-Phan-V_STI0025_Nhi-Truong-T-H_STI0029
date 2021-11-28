@@ -1,28 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Post } from '@app/shared/models/post';
-import SidebarItem from '../partials/SidebarItem';
-import { getArticlesRecommend } from '@app/pages/articles/article.middleware';
+import RecommendArticles from '../partials/RecommendArticles';
 
 const Sidebar = () => {
 
-  const [page, setPage] = useState(1);
-  const [articlesRecommend, setArticlesRecommend] = useState<Post[]>([]);
-  const disPatch = useDispatch();
-  let endPoint = '/posts/recommend/';
-  useEffect(() => {
-    disPatch(getArticlesRecommend(
-      endPoint,
-      page,
-      (res) => {
-        setArticlesRecommend(res.data.slice(0, 5));
-      },
-      (error) => {
-      }
-    )
-    );
-  }, []);
   return (
     <>
       <aside className="col col-4 sidebar">
@@ -47,16 +28,7 @@ const Sidebar = () => {
             </div>
           </li>
           <li className="grid-box widget">
-            <h4 className="widget-title">Popular Articles</h4>
-            <ul className="popular-list pd-5">
-              {articlesRecommend ?
-                articlesRecommend.map((item) =>
-                  <li className="popular-item" key={item.id}>
-                    <SidebarItem article={item} />
-                  </li>
-                )
-                : ''}
-            </ul>
+            <RecommendArticles />
           </li>
         </ul>
       </aside>
