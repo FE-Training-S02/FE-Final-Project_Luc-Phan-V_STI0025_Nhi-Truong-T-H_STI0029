@@ -61,7 +61,10 @@
     }
   }
   &.btn-icon {
-    border-radius: 20px;
+    @include pxRem(width, 36);
+    @include pxRem(height, 36);
+    @include pxRem(padding, 10);
+    border-radius: 100%;
   }
   &.btn-block {
     width: 100%;

@@ -10,10 +10,11 @@ const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
   const { setDialog, onClosed } = useDialog();
   const dispatch = useDispatch();
-  const { id, cover, userId, user, tags, title, description, likes, comments, isLiked } = props.post;
+  const { id, cover, userId, user, tags, title, description, likes, comments, isLiked, createdAt } = props.post;
   const curentUserId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   const { list, hadleDeleteArticle } = props;
   const newList = list.filter(item => item.id !== id);
+  
   const handleDelete = () => {
     setDialog({
       type: 'danger',
@@ -39,9 +40,9 @@ const ArticleItem = (props) => {
         console.log(error);
       }
     ))
-  }
+  };
   return (
-    <div className="article-item grid-box pd-5">
+    <div className="article-item grid-box">
       <div className="feature">
         <img src={cover} alt="article image" className="article-img" />
       </div>
@@ -54,28 +55,37 @@ const ArticleItem = (props) => {
           </div>
         </div>
         : ''}
-      <div className="article-body">
+      <div className="article-body pd-5">
         <div className="article-author">
-          <img src="./assets/icons/user.png" alt="avatar" className="author-img" />
-          <h4>
-            <span>By <Link className="author-name txt-uppercase" to="/">{user.firstName} {user.lastName}</Link></span>
-            {tags[0] ?
-              <>
-                <span>&nbsp;-&nbsp;</span>
-                <span className="article-tag">{tags[0]}</span>
-              </> : <></>}
-          </h4>
+          <img src={user.picture || "./assets/icons/user.png"} alt="avatar" className="author-img" />
+          <div className="author-info">
+            <h4>
+              <span><Link className="author-name txt-uppercase" to="/">{user.firstName} {user.lastName}</Link></span>
+              {tags[0] ?
+                <>
+                  <span>&nbsp;-&nbsp;</span>
+                  <span className="article-tag">{tags[0]}</span>
+                </> : <></>}
+            </h4>
+          <p className="create-at">{new Date(createdAt).toLocaleString("en-US")}</p>
+          </div>
         </div>
-        <h3 className="article-title">{title}</h3>
+        <h3><Link to={`/articles/${id}`} className="article-title">{title}</Link></h3>
         <p className="article-content">{description}</p>
+        <Link to={`/articles/${id}`} className="read-more">Read more...</Link>
+        <div className="article-interact">
+          <div className="list-icon-interact">
+            <Like key={id} id={id} like={likes} liked={isLiked} />
+            <button className="btn-interact">
+              <i className="far fa-comment"></i>
+              <span>{comments}</span>
+            </button>
+          </div>
+          <button className="btn btn-icon">
+            <i className="far fa-bookmark"></i>
+          </button>
+        </div >
       </div>
-      <div className="article-interact">
-        <div className="list-icon-interact">
-          <Like key={id} id={id} like={likes} liked={isLiked} />
-          <span className="item-icon-item"><i className="far fa-comment"></i>{comments}</span>
-        </div>
-        <Link to={`/articles/${id}`} className="article-interact-item btn-read-more">READ MORE</Link>
-      </div >
     </div >
   );
 };
