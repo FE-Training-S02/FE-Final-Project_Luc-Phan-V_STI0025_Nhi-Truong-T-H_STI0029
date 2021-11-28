@@ -8,7 +8,6 @@ export function Header() {
   const dispatch = useDispatch();
   const authStorage = new AuthStorageService();
   const user = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
-  console.log(user);
   const handleLogout = () => {
     authStorage.removeToken();
     dispatch(saveUserInfo(null));

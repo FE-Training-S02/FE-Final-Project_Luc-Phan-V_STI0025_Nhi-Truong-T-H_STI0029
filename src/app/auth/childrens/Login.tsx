@@ -9,6 +9,7 @@ import Button from '@app/shared/components/partials/Button';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 import { AuthStorageService } from '@app/core/services/authStorage.service';
 import { useAlert } from '@app/shared/contexts/alert.context';
+import { useLoading } from '@app/shared/contexts/loading.context';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -20,17 +21,21 @@ const Login = () => {
   const authStorage = new AuthStorageService();
   const { setAlert } = useAlert();
   const navigate = useNavigate();
+  const { setLoading } = useLoading();
   const onSubmit = (account) => {
+    setLoading(true);
     dispatch(signIn(account,
       (response) => {
         authStorage.setToken(response.accessToken);
         navigate('/');
+        setLoading(false);
       },
       (error) => {
         setAlert({
           type: 'danger',
           mess: error.response.data.errors
         });
+        setLoading(false);
       }));
   };
   return (
