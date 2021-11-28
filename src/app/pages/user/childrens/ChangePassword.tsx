@@ -12,8 +12,8 @@ const ChangePassword = () => {
     register,
     handleSubmit,
     reset,
-    formState: { errors }
-  } = useForm();
+    formState: { isValid, errors }
+  } = useForm({ mode: 'onChange', reValidateMode: 'onSubmit' });
   const dispatch = useDispatch();
   const { setAlert } = useAlert();
   const onSubmit = (data) => {
@@ -36,40 +36,38 @@ const ChangePassword = () => {
   }
   return (
     <>
-      <h2 className="page-title">Change Password</h2>
+      <h2 className="page-title">Change your password</h2>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row justify-content-center">
+            <label className="col-2 col-form-label-left">Old Password</label>
             <div className="col-6">
-              <label className="col-form-label">Old Password</label>
               <Input
                 type="password"
-                placeholder="Old Password"
                 register={register('oldPassword', passwordValidator())}
                 errors={errors.oldPassword} />
+
             </div>
           </div>
           <div className="row justify-content-center">
+            <label className="col-2 col-form-label-left">New Password</label>
             <div className="col-6">
-              <label className="col-form-label">New Password</label>
               <Input
                 type="password"
-                placeholder="New Password"
                 register={register('newPassword', passwordValidator())}
                 errors={errors.newPassword} />
             </div>
           </div>
-          <div className="w-75 ml-1 d-flex justify-content-end">
-            <div className="w-25">
-              <div className="btn-group">
-                <Button
-                  className="btn btn-primary btn-block"
-                  type='submit'>Change Password</Button>
-              </div>
+          <div className="row form-btn-group">
+            <div className="col-3">
+              <Button
+                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
+                type='submit'>Change Password
+              </Button>
             </div>
           </div>
         </form>
-      </div>
+      </div >
     </>
   );
 }

@@ -7,15 +7,14 @@
       text-align: center;
     }
     .row-ck {
-      @include pxRem(padding-bottom, 50);
       .ck-editor {
         width: 100%;
       }
     }
   }
   .form-btn-group {
-    @include pxRem(margin-left, 10);
-    width: calc(100% * 10 / 12);
-    justify-content: flex-end;
+    @include pxRem(margin-top, 50);
+    @include pxRem(margin-left, 80);
+    justify-content: center;
   }
 }

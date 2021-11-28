@@ -73,6 +73,10 @@
     @include pxRem(padding-right, 20);
     text-align: right;
   }
+  .col-form-label-left {
+    @include pxRem(padding-right, 20);
+    text-align: left;
+  }
   .btn-group {
     @include pxRem(margin-bottom, 20);
     p {
