@@ -29,7 +29,7 @@ const CreateArticle = () => {
     reset,
     setValue,
     formState: { isValid, errors }
-  } = useForm({mode: 'onChange', reValidateMode: 'onSubmit'});
+  } = useForm({ mode: 'onChange', reValidateMode: 'onSubmit' });
   const statusOptions = [
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
@@ -58,45 +58,46 @@ const CreateArticle = () => {
       content: content
     };
     setLoading(true);
-    { id ? 
-      disPatch(updateArticle(
-        id,
-        article,
-        (res) => {
-          setLoading(false);
-          navigate(`/articles/${id}`);
-          setAlert({
-            type: 'success',
-            mess: 'The article has been updated successfully'
-          });
-        },
-        (error) => {
-          setLoading(false);
-          setAlert({
-            type: 'danger',
-            mess: 'An error occurred while editing the article!'
-          });
-        })
-      )
-      : 
-      disPatch(createArticle(
-        article,
-        (res) => {
-          setLoading(false);
-          navigate(`/articles/${res.id}`);
-          setAlert({
-            type: 'success',
-            mess: 'The article has been created successfully'
-          });
-        },
-        (error) => {
-          setLoading(false);
-          setAlert({
-            type: 'danger',
-            mess: 'An error occurred while creating the article!'
-          });
-        })
-      )
+    {
+      id ?
+        disPatch(updateArticle(
+          id,
+          article,
+          (res) => {
+            setLoading(false);
+            navigate(`/articles/${id}`);
+            setAlert({
+              type: 'success',
+              mess: 'The article has been updated successfully'
+            });
+          },
+          (error) => {
+            setLoading(false);
+            setAlert({
+              type: 'danger',
+              mess: 'An error occurred while editing the article!'
+            });
+          })
+        )
+        :
+        disPatch(createArticle(
+          article,
+          (res) => {
+            setLoading(false);
+            navigate(`/articles/${res.id}`);
+            setAlert({
+              type: 'success',
+              mess: 'The article has been created successfully'
+            });
+          },
+          (error) => {
+            setLoading(false);
+            setAlert({
+              type: 'danger',
+              mess: 'An error occurred while creating the article!'
+            });
+          })
+        )
     }
   };
   useEffect(() => {
@@ -166,7 +167,7 @@ const CreateArticle = () => {
                       className="form-control"
                       {...register('cover')}
                       onChange={handleChange}
-                    /> 
+                    />
                     {errors.cover?.type === 'required' && <span className="msg-error">Content is required</span>}
                   </div>
                 </div> :
@@ -175,7 +176,7 @@ const CreateArticle = () => {
                     <input
                       type="file"
                       className="form-control"
-                      {...register('cover', {required:{value:true, message:'This field is required'}})}
+                      {...register('cover', { required: { value: true, message: 'This field is required' } })}
                       onChange={handleChange}
                     />
                     {errors.cover?.type === 'required' && <span className="msg-error">{errors.cover.message}</span>}
@@ -200,8 +201,8 @@ const CreateArticle = () => {
           </div>
           <div className="row form-btn-group">
             <div className="col-3">
-              <Button 
-                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`} 
+              <Button
+                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
                 type="submit"
                 disabled={!isValid}
               >
