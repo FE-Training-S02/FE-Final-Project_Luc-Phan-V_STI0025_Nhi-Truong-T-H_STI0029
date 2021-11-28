@@ -24,11 +24,15 @@
       }
     }
     .nav-list {
+      display: flex;
+      flex-direction: row;
       text-align: center;
       .nav-item {
-        @include pxRem(height, 24);
-        @include pxRem(margin, 12);
-        display: inline;
+        @include pxRem(height, 48);
+        @include pxRem(padding, 0 12);
+        display: flex;
+        justify-content: center;
+        align-items: center;
         &:last-child {
           @include pxRem(padding, 10 15);
           border-radius: 50px;
@@ -38,6 +42,9 @@
           }
         }
         .nav-link {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           font-size: map-get($font-size, lg);
           color: map-get($color, primary);
           line-height: 2.7;
@@ -48,6 +55,13 @@
             &.fa-caret-down {
               @include pxRem(padding-left, 10);
             }
+          }
+          .display-name {
+            @include pxRem(width, 100);
+            display: inline-block;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
           }
         }
         .avatar-img {
@@ -69,7 +83,6 @@
 }
 .nav-dropdown {
   position: relative;
-  overflow: hidden;
   &:hover {
     .dropdown-content {
       display: block;

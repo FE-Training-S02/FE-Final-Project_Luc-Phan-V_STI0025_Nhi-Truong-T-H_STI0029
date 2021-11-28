@@ -8,6 +8,7 @@ export function Header() {
   const dispatch = useDispatch();
   const authStorage = new AuthStorageService();
   const user = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
+  console.log(user);
   const handleLogout = () => {
     authStorage.removeToken();
     dispatch(saveUserInfo(null));
@@ -31,9 +32,9 @@ export function Header() {
                       <Link to="/articles/new" className="nav-link">Write</Link>
                     </li>
                     <li className="nav-item nav-dropdown">
-                      <Link to="" className="nav-link dropbtn">
+                      <Link to="/user" className="nav-link dropbtn">
                         <i className="fa fa-user icon"></i>
-                        {user.lastName}
+                        <span className="display-name txt-uppercase">{user.displayName || `${user.firstName} ${user.lastName}`}</span>
                         <i className="fa fa-caret-down icon"></i>
                       </Link>
                       <div className="dropdown-content">
