@@ -27,6 +27,7 @@ const CreateArticle = () => {
     register,
     handleSubmit,
     reset,
+    trigger,
     setValue,
     formState: { isValid, errors }
   } = useForm({ mode: 'onChange', reValidateMode: 'onSubmit' });
@@ -48,6 +49,7 @@ const CreateArticle = () => {
   const handleChange = (e) => {
     const file = e.target.files[0];
     setLoading(true);
+    trigger('cover');
     handleUploadImage(file, resolve, reject);
   };
   const onsubmit = async (data: any) => {
