@@ -40,8 +40,8 @@ const ChangePassword = () => {
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row justify-content-center">
-            <label className="col-2 col-form-label-left">Old Password</label>
-            <div className="col-6">
+            <label className="col-2 col-form-label">Old Password</label>
+            <div className="col-4">
               <Input
                 type="password"
                 register={register('oldPassword', passwordValidator())}
@@ -50,8 +50,8 @@ const ChangePassword = () => {
             </div>
           </div>
           <div className="row justify-content-center">
-            <label className="col-2 col-form-label-left">New Password</label>
-            <div className="col-6">
+            <label className="col-2 col-form-label">New Password</label>
+            <div className="col-4">
               <Input
                 type="password"
                 register={register('newPassword', passwordValidator())}
@@ -59,7 +59,7 @@ const ChangePassword = () => {
             </div>
           </div>
           <div className="row form-btn-group">
-            <div className="col-3">
+            <div className="col">
               <Button
                 className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
                 type='submit'>Change Password

@@ -1,8 +1,8 @@
 .page-container {
   .container {
     .page-title {
-      @include pxRem(margin-bottom, 20);
-      font-size: 30px;
+      @include pxRem(margin-bottom, 40);
+      font-size: 25px;
       font-weight: bold;
       text-align: center;
     }
@@ -13,7 +13,7 @@
     }
   }
   .form-btn-group {
-    @include pxRem(margin-top, 50);
+    @include pxRem(margin-top, 40);
     @include pxRem(margin-left, 80);
     justify-content: center;
   }
