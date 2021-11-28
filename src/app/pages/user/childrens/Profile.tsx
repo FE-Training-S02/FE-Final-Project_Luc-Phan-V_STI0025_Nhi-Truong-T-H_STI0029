@@ -17,7 +17,7 @@ const Profile = () => {
               <span className="ml-2">{user?.followings} followings</span>
             </div>
             <Link to="/" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
-            <Link to="/" className="btn btn-primary">Change Password</Link>
+            <Link to="/user/change-password" className="btn btn-primary">Change Password</Link>
           </div>
         </div>
       </div>

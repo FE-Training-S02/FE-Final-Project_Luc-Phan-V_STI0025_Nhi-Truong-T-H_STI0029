@@ -70,8 +70,8 @@
     }
   }
   .col-form-label {
-    @include pxRem(padding-right, 20);
-    text-align: right;
+    @include pxRem(margin-bottom, 5);
+    display: block;
   }
   .btn-group {
     @include pxRem(margin-bottom, 20);

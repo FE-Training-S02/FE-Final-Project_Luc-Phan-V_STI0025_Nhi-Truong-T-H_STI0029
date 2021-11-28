@@ -127,40 +127,40 @@ const CreateArticle = () => {
       <h2 className="page-title">{id ? 'Edit Article' : 'New Article'}</h2>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onsubmit)}>
-          <div className="row">
-            <label className="col-3 col-form-label">Title</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label className="col-form-label">Title</label>
               <Input
                 type="text"
                 register={register('title', titleValidator())}
                 errors={errors.title} />
             </div>
           </div>
-          <div className="row">
-            <label className="col-3 col-form-label">Description</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label className="col-form-label">Description</label>
               <Input
                 type="text"
                 register={register('description', descriptionValidator())}
                 errors={errors.description} />
             </div>
           </div>
-          <div className="row">
-            <label className="col-3 col-form-label">Tags</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label className="col-form-label">Tags</label>
               <Input
                 type="text" register={register('tags', requireValidator())} errors={errors.tags} />
             </div>
           </div>
-          <div className="row">
-            <label className="col-3 col-form-label">Status</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label className="col-form-label">Status</label>
               <Select listOptions={statusOptions} defaultValue={statusOptions[0]} register={register('status', requireValidator())} />
             </div>
           </div>
-          <div className="row">
-            <label className="col-3 col-form-label" >Upload image</label>
+          <div className="row justify-content-center">
             <div className="col-7">
+              <label className="col-form-label">Upload image</label>
               {id ?
                 <div className="form-group">
                   <div className="input-group">
@@ -188,9 +188,9 @@ const CreateArticle = () => {
               {urlImage ? <img src={urlImage} alt="cover" className="col-4" /> : ''}
             </div>
           </div>
-          <div className="row row-ck">
-            <label className="col-3 col-form-label">Content</label>
+          <div className="row row-ck justify-content-center">
             <div className="col-7">
+              <label className="col-form-label">Content</label>
               <CKEditor
                 editor={ClassicEditor}
                 data={content}

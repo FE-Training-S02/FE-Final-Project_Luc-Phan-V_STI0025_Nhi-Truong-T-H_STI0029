@@ -1,5 +1,5 @@
 .alert {
-  @include pxRem(top, 50);
+  @include pxRem(top, 75);
   @include pxRem(right, 20);
   @include pxRem(padding, 10 20);
   position: fixed;

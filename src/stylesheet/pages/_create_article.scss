@@ -1,21 +1,14 @@
 .page-container {
   .container {
     .page-title {
-      @include pxRem(margin-bottom, 20);
-      font-size: 30px;
+      @include pxRem(margin-bottom, 45);
+      font-size: map-get($map: $font-size, $key: xxxl);
       font-weight: bold;
       text-align: center;
     }
-    .row-ck {
-      @include pxRem(padding-bottom, 50);
-      .ck-editor {
-        width: 100%;
-      }
-    }
   }
   .form-btn-group {
-    @include pxRem(margin-left, 10);
-    width: calc(100% * 10 / 12);
-    justify-content: flex-end;
+    @include pxRem(margin-top, 40);
+    justify-content: center;
   }
 }

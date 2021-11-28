@@ -20,6 +20,10 @@ body {
   margin: 0;
   padding: 0;
 }
+.wrapper {
+  // position: relative;
+  min-height: 100vh;
+}
 .auth-page {
   min-height: 100vh;
   background-color: map-get($map: $color, $key: white);
@@ -71,4 +75,13 @@ a {
 button {
   cursor: pointer;
   border: none;
+}
+.d-flex {
+  display: flex;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-end {
+  justify-content: flex-end;
 }
