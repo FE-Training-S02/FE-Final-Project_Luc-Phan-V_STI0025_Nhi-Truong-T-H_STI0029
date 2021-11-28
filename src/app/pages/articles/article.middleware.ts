@@ -1,5 +1,5 @@
 import { ApiService } from "@app/core/services/api.service";
-
+import axios from 'axios';
 const apiService = new ApiService();
 
 export const getArticleDetail = (id, resolve, reject) => {
@@ -41,7 +41,8 @@ export const deleteArticle = (id, resolve, rejects) => {
 export const uploadImage = (file, resolve, reject) => {
   return async () => {
     await apiService.get([`/signatures?type_upload=cover-post&file_name=${file.name}&file_type=${file.type}`])
-      .then((res) => {
+      .then((res: any) => { 
+        axios.put(res.signedRequest, file);
         resolve(res);
       })
       .catch(error => {
@@ -109,6 +110,28 @@ export const postFollow = (data, resolve, reject) => {
 export const getAuthor = (id, resolve, reject) => {
   return async () => {
     await apiService.get([`/users/${id}`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+export const createArticle = (data, resolve, reject) => {
+  return async () => {
+    await  apiService.post(['/posts'], data)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
+};
+export const updateArticle = (id, data, resolve, reject) => {
+  return async () => {
+    await  apiService.put([`/posts/${id}`], data)
       .then(res => {
         resolve(res);
       })
