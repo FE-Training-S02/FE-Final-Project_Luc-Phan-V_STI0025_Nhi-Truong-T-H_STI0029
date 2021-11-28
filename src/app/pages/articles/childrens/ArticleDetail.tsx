@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import {  RootStateOrAny, useSelector, useDispatch } from 'react-redux';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { getArticleDetail, getCommentsList, postFollow, getAuthor } from '../article.middleware';
@@ -8,6 +8,8 @@ import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
 import { Like } from '../partials/Like';
 import { CommentsList } from '../partials/CommentList';
+import { useDialog } from '@app/shared/contexts/dialog.context';
+import { deleteArticle } from '../article.middleware';
 
 const ArticleDetail = () => {
   const { id } = useParams();
@@ -17,6 +19,9 @@ const ArticleDetail = () => {
   const { setLoading } = useLoading();
   const disPatch = useDispatch();
   const { title, likes, user, cover, content, isLiked } = article;
+  const currentUser = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
+  const { setDialog, onClosed } = useDialog();
+  const navigate = useNavigate();
   useEffect(() => {
     if (id) {
       setLoading(true);
@@ -47,7 +52,7 @@ const ArticleDetail = () => {
         setLoading(false);
       })
     );
-  }
+  };
   const getAuthorInfo = (article) => {
     setLoading(true);
     disPatch(getAuthor(
@@ -62,7 +67,7 @@ const ArticleDetail = () => {
         setLoading(false);
       })
     );
-  }
+  };
   const submitComment = () => {
     disPatch(getCommentsList(
       id,
@@ -74,7 +79,7 @@ const ArticleDetail = () => {
         setLoading(false);
       })
     );
-  }
+  };
   const followUser = () => {
     const data = {
       'followingId': user.id
@@ -91,7 +96,37 @@ const ArticleDetail = () => {
         setLoading(false);
       })
     );
-  }
+  };
+  const handleDelete = () => {
+    setDialog({
+      type: 'danger',
+      data: {
+        title: 'Confirm',
+        content: 'Are you sure you want to delete?',
+        accept: 'Delete',
+        cancel: 'Cancel'
+      },
+      confirmDialog: () => confirmDeleteArticle()
+    }
+    );
+  };
+  const confirmDeleteArticle = () => {
+    setLoading(true);
+    disPatch(deleteArticle(
+      id,
+      (res) => {
+        onClosed();
+        navigate('/user')
+        setLoading(false);
+      },
+      (error) => {
+        setLoading(false);
+      }
+    ))
+  };
+  const updateArticle = () => {
+    navigate(`/articles/${id}/edit`);
+  };
   return (
     <>
       <div className="row">
@@ -109,7 +144,14 @@ const ArticleDetail = () => {
                     <i className="fas fa-pen-fancy"></i>
                     <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
                   </Link>
-                  <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>+ Follow</button>
+                  {currentUser?.email !== user?.email ?
+                    <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>+ Follow</button>
+                    :
+                    <> 
+                      <button className="btn btn-danger mr-2" onClick={handleDelete}>Delete</button>
+                      <button className="btn btn-primary" onClick={updateArticle}>Update</button>
+                    </>
+                  }
                 </div>
                 <button className="btn btn-icon">
                   <i className="far fa-bookmark"></i>
