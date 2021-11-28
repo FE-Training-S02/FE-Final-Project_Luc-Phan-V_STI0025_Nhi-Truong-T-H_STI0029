@@ -147,7 +147,7 @@ const ArticleDetail = () => {
                     <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
                   </Link>
                   {currentUser?.email !== user?.email ?
-                    <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>+ Follow</button>
+                    <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>{user?.isFollowed ? 'Following' : '+ Follow'}</button>
                     :
                     <> 
                       <button className="btn btn-danger mr-2" onClick={handleDelete}>Delete</button>
