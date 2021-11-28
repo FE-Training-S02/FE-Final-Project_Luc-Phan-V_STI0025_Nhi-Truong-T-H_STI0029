@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import JwtHelper from '@app/core/helpers/jwtHelper';
 import { useDialog } from '@app/shared/contexts/dialog.context';
-import { useDispatch } from 'react-redux';
+import { useLoading } from '@app/shared/contexts/loading.context';
 import { Like } from './Like';
 import { deleteArticle } from '../article.middleware';
 
@@ -14,6 +15,7 @@ const ArticleItem = (props) => {
   const curentUserId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
   const { list, hadleDeleteArticle } = props;
   const newList = list.filter(item => item.id !== id);
+  const { setLoading } = useLoading();
   
   const handleDelete = () => {
     setDialog({
@@ -30,14 +32,16 @@ const ArticleItem = (props) => {
   };
 
   const confirmDeleteArticle = () => {
+    setLoading(true);
     dispatch(deleteArticle(
       id,
       (res) => {
         hadleDeleteArticle(newList);
         onClosed();
+        setLoading(false);
       },
       (error) => {
-        console.log(error);
+        setLoading(false);
       }
     ))
   };

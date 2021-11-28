@@ -69,11 +69,13 @@ const ArticleDetail = () => {
     );
   };
   const submitComment = () => {
+    setLoading(true);
     disPatch(getCommentsList(
       id,
       (res) => {
         setCommentsList(res);
         setComments(res.length);
+        setLoading(false);
       },
       (error) => {
         setLoading(false);
