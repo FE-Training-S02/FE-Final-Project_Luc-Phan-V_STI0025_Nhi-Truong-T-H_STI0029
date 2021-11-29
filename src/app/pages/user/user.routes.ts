@@ -4,7 +4,7 @@ import Profile from './childrens/Profile';
 import User from './User';
 const userRoutes: PageRoute[] = [
   {
-    path: '/user',
+    path: '/users',
     element: User,
     children: [
       {
@@ -13,6 +13,10 @@ const userRoutes: PageRoute[] = [
       },
       {
         path: '/profile',
+        element: Profile
+      },
+      {
+        path: '/:id',
         element: Profile
       },
       {
