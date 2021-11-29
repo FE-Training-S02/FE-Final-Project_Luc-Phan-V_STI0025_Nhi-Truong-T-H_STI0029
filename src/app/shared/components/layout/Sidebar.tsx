@@ -22,9 +22,9 @@ const Sidebar = () => {
             <h4 className="widget-title">Quote of the day</h4>
             <div className="widget-content pd-5">
               <div className="content-quote">
-                <p>&quot;There are no #strangers here, only #friends that have not yet met.&quot;</p>
+                <blockquote>&quot;There are no #strangers here, only #friends that have not yet met.&quot;</blockquote >
               </div>
-              <span className="byline">Theme Doe</span>
+              <h5 className="byline">Theme Doe</h5>
             </div>
           </li>
           <li className="grid-box widget">

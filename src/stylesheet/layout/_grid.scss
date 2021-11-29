@@ -18,6 +18,9 @@
   flex-direction: row;
   margin: 0 -10px;
 }
+.row-ck {
+  @include pxRem(padding-bottom, 40);
+}
 .col {
   padding-left: 10px;
   padding-right: 10px;

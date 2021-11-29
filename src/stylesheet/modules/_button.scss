@@ -12,6 +12,7 @@
     &:disabled {
       background-color: map-get($map: $color, $key: green-c);
       color: map-get($map: $color, $key: white);
+      cursor: not-allowed;
     }
   }
   &.btn-secondary {
@@ -20,6 +21,7 @@
     &:disabled {
       background-color: map-get($map: $color, $key: grey-g);
       color: map-get($map: $color, $key: white);
+      cursor: not-allowed;
     }
   }
   &.btn-blue {
@@ -29,6 +31,7 @@
     &:disabled {
       background-color: map-get($map: $color, $key: blue-b);
       color: map-get($map: $color, $key: white);
+      cursor: not-allowed;
     }
   }
   &.btn-danger {
@@ -38,6 +41,7 @@
     &:disabled {
       background-color: map-get($map: $color, $key: danger-a);
       color: map-get($map: $color, $key: white);
+      cursor: not-allowed;
     }
   }
   &.btn-outline-primary {

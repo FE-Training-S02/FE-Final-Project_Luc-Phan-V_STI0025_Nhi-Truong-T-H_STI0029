@@ -7,13 +7,14 @@
       border-bottom: 1px solid #efefef;
     }
     .widget-content {
+      font-style: italic;
       text-align: center;
       .content-quote {
         @include pxRem(padding-bottom, 20);
       }
       .byline {
         color: map-get($map: $color, $key: grey-c);
-        font-size: map-get($map: $font-size, $key: xxs);
+        font-size: map-get($map: $font-size, $key: xs);
       }
     }
     .categories-list {
@@ -59,12 +60,20 @@
               font-size: map-get($map: $font-size, $key: sm);
               line-height: 1.1;
               overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-line-clamp: 1;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
             }
             .article-description {
               @include pxRem(max-height, 60);
               height: 100%;
               font-size: map-get($map: $font-size, $key: xs);
               overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-line-clamp: 3;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
             }
             span {
               font-size: map-get($map: $font-size, $key: xxs);

@@ -12,6 +12,8 @@ import { ApiService } from "@app/core/services/api.service";
 import { uploadImage, getArticleDetail, createArticle, updateArticle } from '../article.middleware';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { useAlert } from '@app/shared/contexts/alert.context';
+import viewToPlainText from '@ckeditor/ckeditor5-clipboard/src/utils/viewtoplaintext';
+import { types } from 'util';
 
 const CreateArticle = () => {
   const { id } = useParams();
@@ -27,6 +29,7 @@ const CreateArticle = () => {
     register,
     handleSubmit,
     reset,
+    setError,
     trigger,
     setValue,
     formState: { isValid, errors }
@@ -62,44 +65,44 @@ const CreateArticle = () => {
     setLoading(true);
     {
       id ?
-      disPatch(updateArticle(
-        id,
-        article,
-        (res) => {
-          setLoading(false);
-          navigate(`/articles/${id}`);
-          setAlert({
-            type: 'success',
-            mess: 'The article has been updated successfully'
-          });
-        },
-        (error) => {
-          setLoading(false);
-          setAlert({
-            type: 'danger',
-            mess: 'An error occurred while editing the article!'
-          });
-        })
-      )
-      :
-      disPatch(createArticle(
-        article,
-        (res) => {
-          setLoading(false);
-          navigate(`/articles/${res.id}`);
-          setAlert({
-            type: 'success',
-            mess: 'The article has been created successfully'
-          });
-        },
-        (error) => {
-          setLoading(false);
-          setAlert({
-            type: 'danger',
-            mess: 'An error occurred while creating the article!'
-          });
-        })
-      )
+        disPatch(updateArticle(
+          id,
+          article,
+          (res) => {
+            setLoading(false);
+            navigate(`/articles/${id}`);
+            setAlert({
+              type: 'success',
+              mess: 'The article has been updated successfully'
+            });
+          },
+          (error) => {
+            setLoading(false);
+            setAlert({
+              type: 'danger',
+              mess: 'An error occurred while editing the article!'
+            });
+          })
+        )
+        :
+        disPatch(createArticle(
+          article,
+          (res) => {
+            setLoading(false);
+            navigate(`/articles/${res.id}`);
+            setAlert({
+              type: 'success',
+              mess: 'The article has been created successfully'
+            });
+          },
+          (error) => {
+            setLoading(false);
+            setAlert({
+              type: 'danger',
+              mess: 'An error occurred while creating the article!'
+            });
+          })
+        )
     }
   };
   useEffect(() => {
@@ -170,7 +173,7 @@ const CreateArticle = () => {
                       {...register('cover')}
                       onChange={handleChange}
                     />
-                    {errors.cover?.type === 'required' && <span className="msg-error">Content is required</span>}
+                    {errors.cover?.type === 'required' && <span className="msg-error">Image is required</span>}
                   </div>
                 </div> :
                 <div className="form-group">
@@ -194,11 +197,22 @@ const CreateArticle = () => {
               <CKEditor
                 editor={ClassicEditor}
                 data={content}
+                name="content"
                 onChange={(event, editor) => {
                   const data = editor.getData();
                   setContent(data);
+                  // const valueLength = viewToPlainText(editor.editing.view.document.getRoot()).length;
+                  // setError("content", {
+                  //   types: {
+                  //     required: true,
+                  //     message: "This is required"
+                  //   }
+                  // });
                 }}
               />
+              {/* {errors.content && errors.content.types.required && (
+                  <span className="msg-error-ck">{errors.content.types.message}</span>
+                )} */}
             </div>
           </div>
           <div className="row form-btn-group">
