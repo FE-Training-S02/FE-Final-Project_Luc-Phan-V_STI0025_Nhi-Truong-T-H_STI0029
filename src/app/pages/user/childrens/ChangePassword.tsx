@@ -61,7 +61,8 @@ const ChangePassword = () => {
             <div className="col">
               <Button
                 className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
-                type='submit'>Change Password
+                type="submit"
+                disabled={!isValid}>Change Password
               </Button>
             </div>
           </div>

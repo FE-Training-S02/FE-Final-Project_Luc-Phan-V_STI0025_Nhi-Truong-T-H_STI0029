@@ -1,5 +1,11 @@
 .form-wrapper {
   width: 100%;
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
   .form-group {
     @include pxRem(margin-bottom, 15);
     position: relative;
@@ -73,6 +79,27 @@
     @include pxRem(margin-bottom, 5);
     display: block;
   }
+  .msg-error-ck {
+    @include pxRem(margin-top, 8);
+    @include pxRem(padding, 0 10);
+    position: relative;
+    display: block;
+    border-radius: 5px;
+    font-size: map-get($map: $font-size, $key: xs);
+    color: #a83232;
+    background-color: #ffdbdc;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 5%;
+      bottom: 100%;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #ffdbdc;
+    }
+  }
   .btn-group {
     @include pxRem(margin-bottom, 20);
     p {
@@ -80,7 +107,6 @@
     }
   }
 }
-
 input[type="file"]::file-selector-button {
   @include pxRem(padding, 12 25);
   cursor: pointer;

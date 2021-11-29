@@ -1,10 +1,11 @@
 .ck {
+  @include pxRem(max-height, 360);
   &.ck-toolbar {
     border: 1px solid #d8dfee;
   }
   .ck-editor__main {
     .ck-content {
-      @include pxRem(min-height, 300);
+      @include pxRem(min-height, 350);
       &.ck-editor__editable {
         border: 1px solid #d8dfee;
         &:focus {

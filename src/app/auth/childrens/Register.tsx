@@ -124,6 +124,7 @@ const Register = () => {
                   errors={errors.dob} />
               </div>
             </div>
+
             <Input
               type="text"
               placeholder="Phone"
