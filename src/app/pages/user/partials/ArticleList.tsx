@@ -6,13 +6,14 @@ import { useDispatch } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 
-const ArticleList = () => {
+const ArticleList = (props) => {
+  const { id } = props;
   const [articles, setArticles] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [isLoadMore, setIsLoadMore] = useState(false);
   const { setLoading } = useLoading();
   const disPatch = useDispatch();
-  let endPoint = 'users/me/posts/';
+  let endPoint = `users/${id}/posts/`;
 
   useEffect(() => {
     setLoading(true);

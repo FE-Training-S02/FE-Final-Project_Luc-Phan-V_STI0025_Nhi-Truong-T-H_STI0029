@@ -142,7 +142,7 @@ const ArticleDetail = () => {
               <div className="article-author-follow">
                 <div className="article-author">
                   <span className="text-writen-by">WRITEN BY -</span>
-                  <Link to="/" className="article-author-name">
+                  <Link to={`/users/${user?.id}`} className="article-author-name">
                     <i className="fas fa-pen-fancy"></i>
                     <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
                   </Link>

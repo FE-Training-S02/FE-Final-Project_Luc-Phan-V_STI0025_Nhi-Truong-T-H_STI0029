@@ -64,7 +64,7 @@ const ArticleItem = (props) => {
           <img src={user.picture || "./assets/icons/user.png"} alt="avatar" className="author-img" />
           <div className="author-info">
             <h4>
-              <span><Link className="author-name txt-uppercase" to="/">{user.firstName} {user.lastName}</Link></span>
+              <span><Link className="author-name txt-uppercase" to={`/users/${userId}`}>{user.firstName} {user.lastName}</Link></span>
               {tags[0] ?
                 <>
                   <span>&nbsp;-&nbsp;</span>
