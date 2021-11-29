@@ -22,7 +22,7 @@ const CreateArticle = () => {
   const [urlImage, setUrlImage] = useState<any>('');
   const apiService = new ApiService();
   const [content, setContent] = useState(null);
-  const disPatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setLoading } = useLoading();
   const { setAlert } = useAlert();
@@ -30,7 +30,6 @@ const CreateArticle = () => {
   const {
     register,
     handleSubmit,
-    reset,
     setError,
     trigger,
     setValue,
@@ -42,7 +41,7 @@ const CreateArticle = () => {
   ];
 
   async function handleUploadImage(file, resolve, reject) {
-    await disPatch(uploadImage(file, resolve, reject));
+    await dispatch(uploadImage(file, resolve, reject));
   };
   const resolve = (res) => {
     setUrlImage(res.url);
@@ -67,7 +66,7 @@ const CreateArticle = () => {
     setLoading(true);
     {
       id ?
-        disPatch(updateArticle(
+        dispatch(updateArticle(
           id,
           article,
           (res) => {
@@ -87,7 +86,7 @@ const CreateArticle = () => {
           })
         )
         :
-        disPatch(createArticle(
+        dispatch(createArticle(
           article,
           (res) => {
             setLoading(false);
@@ -110,7 +109,7 @@ const CreateArticle = () => {
   useEffect(() => {
     if (id) {
       setLoading(true);
-      disPatch(getArticleDetail(
+      dispatch(getArticleDetail(
         id,
         (res) => {
           const isCurrentUser = jwt.isCurrentUser(res.userId);
@@ -190,6 +189,7 @@ const CreateArticle = () => {
                   <div className="input-group">
                     <input
                       type="file"
+                      accept="image/*"
                       className="form-control"
                       {...register('cover', { required: { value: true, message: 'This field is required' } })}
                       onChange={handleChange}
