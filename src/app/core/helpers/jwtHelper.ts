@@ -33,9 +33,9 @@ export default class JwtHelper extends AuthStorageService implements AuthHelperI
     return isTokenValid;
   }
 
-  isCurrentUser(uid: string) {
+  isCurrentUser(uid: number) {
     const userInfo = this.getUserInfo();
-    return userInfo ? uid === userInfo.uid : false;
+    return userInfo ? uid === userInfo.userId : false;
   }
 
   userRole() {

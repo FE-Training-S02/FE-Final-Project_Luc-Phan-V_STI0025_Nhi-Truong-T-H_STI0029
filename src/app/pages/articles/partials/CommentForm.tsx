@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Button from '@app/shared/components/partials/Button';
 import { useDispatch } from 'react-redux';
@@ -22,7 +22,7 @@ const CommentForm = (props) => {
       (error) => {
         console.log(error);
       }
-      )
+    )
     )
   };
   return (
@@ -35,12 +35,11 @@ const CommentForm = (props) => {
                 <textarea
                   className="form-control"
                   placeholder="Comment content..."
-                  {...register('content', {required: true})}
-                /> 
-                {errors.content?.type === 'required' && <span className="msg-error">Content is required</span>}
+                  {...register('content', { required: true })}
+                />
               </div>
             </div>
-            <Button 
+            <Button
               className="btn btn-primary btn-block"
               disabled={!isValid}
               type="submit"
