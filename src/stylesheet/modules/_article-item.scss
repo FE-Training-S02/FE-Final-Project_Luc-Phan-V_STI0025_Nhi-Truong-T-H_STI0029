@@ -85,11 +85,12 @@
   .article-body {
     letter-spacing: 0.2px;
     .article-title {
-      @include pxRem(height, 70);
+      @include pxRem(min-height, 56);
       @include line-clamp(2);
       text-align: left;
       word-break: break-word;
       font-size: map-get($font-size, xxl);
+      line-height: 1.2;
       overflow: hidden;
       text-overflow: ellipsis;
       color: map-get($color, black);
