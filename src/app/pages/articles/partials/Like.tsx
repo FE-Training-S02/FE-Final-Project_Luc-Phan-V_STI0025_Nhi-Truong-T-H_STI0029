@@ -32,7 +32,7 @@ export function Like(props) {
   };
   const handleLogin = () => {
     setDialog({
-      type: 'blue',
+      type: 'primary',
       data: {
         title: 'Confirm',
         content: 'Please login to continue',
