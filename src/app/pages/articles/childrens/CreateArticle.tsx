@@ -117,7 +117,7 @@ const CreateArticle = () => {
           if (!isCurrentUser) {
             navigate('/articles/page-not-found');
             setLoading(false);
-          } 
+          }
           else {
             setValue('description', res.description);
             setValue('title', res.title);
@@ -228,7 +228,7 @@ const CreateArticle = () => {
           <div className="row form-btn-group">
             <div className="col-3">
               <Button
-                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
+                className="btn btn-primary btn-block"
                 type="submit"
                 disabled={!isValid}
               >

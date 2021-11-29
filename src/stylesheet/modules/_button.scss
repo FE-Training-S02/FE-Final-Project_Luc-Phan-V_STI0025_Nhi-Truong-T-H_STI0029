@@ -3,9 +3,6 @@
   text-align: center;
   font-weight: bold;
   @include pxRem(padding, 10 15);
-  &.btn-disable {
-    opacity: 0.5;
-  }
   &:disabled {
     cursor: not-allowed;
   }
