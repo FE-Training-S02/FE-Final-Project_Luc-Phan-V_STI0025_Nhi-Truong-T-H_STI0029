@@ -45,6 +45,9 @@
     .article-content {
       @include pxRem(margin-top, 30);
       word-wrap: break-word;
+      img {
+        width: 100%;
+      }
     }
   }
   .article-footer {

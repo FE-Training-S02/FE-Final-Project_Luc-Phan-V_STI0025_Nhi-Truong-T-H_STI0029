@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  RootStateOrAny, useSelector, useDispatch } from 'react-redux';
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import purify from "dompurify";
 import { useLoading } from '@app/shared/contexts/loading.context';
@@ -17,7 +17,7 @@ const ArticleDetail = () => {
   const [comments, setComments] = useState<any>();
   const [commentsList, setCommentsList] = useState<any>([]);
   const { setLoading } = useLoading();
-  const disPatch = useDispatch();
+  const dispatch = useDispatch();
   const { title, likes, user, cover, content, isLiked } = article;
   const currentUser = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
   const { setDialog, onClosed } = useDialog();
@@ -25,7 +25,7 @@ const ArticleDetail = () => {
   useEffect(() => {
     if (id) {
       setLoading(true);
-      disPatch(getArticleDetail(
+      dispatch(getArticleDetail(
         id,
         (res) => {
           setComments(res.comments);
@@ -42,7 +42,7 @@ const ArticleDetail = () => {
   }, [id]);
   const getComments = () => {
     setLoading(true);
-    disPatch(getCommentsList(
+    dispatch(getCommentsList(
       id,
       (res) => {
         setCommentsList(res);
@@ -55,7 +55,7 @@ const ArticleDetail = () => {
   };
   const getAuthorInfo = (article) => {
     setLoading(true);
-    disPatch(getAuthor(
+    dispatch(getAuthor(
       article.user.id,
       (res) => {
         const authorUser = { ...article.user, isFollowed: res.isFollowed };
@@ -70,7 +70,7 @@ const ArticleDetail = () => {
   };
   const submitComment = () => {
     setLoading(true);
-    disPatch(getCommentsList(
+    dispatch(getCommentsList(
       id,
       (res) => {
         setCommentsList(res);
@@ -83,21 +83,39 @@ const ArticleDetail = () => {
     );
   };
   const followUser = () => {
-    const data = {
-      'followingId': user.id
-    }
-    setLoading(true);
-    disPatch(postFollow(
-      data,
-      (res) => {
-        const newArticle = { ...article, user: { ...user, isFollowed: res.followed } };
-        setArticle(newArticle);
-        setLoading(false);
+    if (currentUser) {
+      const data = {
+        'followingId': user.id
+      }
+      setLoading(true);
+      dispatch(postFollow(
+        data,
+        (res) => {
+          const newArticle = { ...article, user: { ...user, isFollowed: res.followed } };
+          setArticle(newArticle);
+          setLoading(false);
+        },
+        (error) => {
+          setLoading(false);
+        })
+      );
+    } else { handleLogin() }
+
+  };
+  const handleLogin = () => {
+    setDialog({
+      type: 'blue',
+      data: {
+        title: 'Confirm',
+        content: 'Please login to continue',
+        accept: 'Login',
+        cancel: 'Cancel'
       },
-      (error) => {
-        setLoading(false);
-      })
-    );
+      confirmDialog: () => confirmLogin()
+    });
+  }
+  const confirmLogin = () => {
+    navigate('/auth/login');
   };
   const handleDelete = () => {
     setDialog({
@@ -114,7 +132,7 @@ const ArticleDetail = () => {
   };
   const confirmDeleteArticle = () => {
     setLoading(true);
-    disPatch(deleteArticle(
+    dispatch(deleteArticle(
       id,
       (res) => {
         onClosed();
@@ -149,7 +167,7 @@ const ArticleDetail = () => {
                   {currentUser?.email !== user?.email ?
                     <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>{user?.isFollowed ? 'Following' : '+ Follow'}</button>
                     :
-                    <> 
+                    <>
                       <button className="btn btn-danger mr-2" onClick={handleDelete}>Delete</button>
                       <button className="btn btn-primary" onClick={updateArticle}>Update</button>
                     </>
@@ -178,7 +196,7 @@ const ArticleDetail = () => {
                 </div>
               </div>
             </div>
-            <CommentForm id={id} submitComment={submitComment} />
+            <CommentForm id={id} submitComment={submitComment} user={currentUser} />
             <CommentsList id={id} commentsList={commentsList} />
           </div>
         </main>

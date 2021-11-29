@@ -16,7 +16,7 @@ const ArticleItem = (props) => {
   const { list, hadleDeleteArticle } = props;
   const newList = list.filter(item => item.id !== id);
   const { setLoading } = useLoading();
-  
+
   const handleDelete = () => {
     setDialog({
       type: 'danger',
@@ -27,8 +27,7 @@ const ArticleItem = (props) => {
         cancel: 'Cancel'
       },
       confirmDialog: () => confirmDeleteArticle()
-    }
-    );
+    });
   };
 
   const confirmDeleteArticle = () => {
@@ -71,7 +70,7 @@ const ArticleItem = (props) => {
                   <span className="article-tag">{tags[0]}</span>
                 </> : <></>}
             </h4>
-          <p className="create-at">{new Date(createdAt).toLocaleString("en-US")}</p>
+            <p className="create-at">{new Date(createdAt).toLocaleString("en-US")}</p>
           </div>
         </div>
         <h3><Link to={`/articles/${id}`} className="article-title">{title}</Link></h3>
@@ -79,7 +78,7 @@ const ArticleItem = (props) => {
         <Link to={`/articles/${id}`} className="read-more">Read more...</Link>
         <div className="article-interact">
           <div className="list-icon-interact">
-            <Like key={id} id={id} like={likes} liked={isLiked} />
+            <Like key={id} id={id} like={likes} liked={isLiked} user={curentUserId} />
             <button className="btn-interact">
               <i className="far fa-comment"></i>
               <span>{comments}</span>
