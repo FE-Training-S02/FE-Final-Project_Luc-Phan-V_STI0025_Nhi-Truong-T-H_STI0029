@@ -60,7 +60,7 @@ const ChangePassword = () => {
           <div className="row form-btn-group">
             <div className="col">
               <Button
-                className={`btn btn-primary btn-block ${!isValid ? 'btn-disable' : ''}`}
+                className="btn btn-primary btn-block"
                 type="submit"
                 disabled={!isValid}>Change Password
               </Button>
