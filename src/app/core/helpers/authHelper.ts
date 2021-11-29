@@ -6,7 +6,7 @@ export interface AuthHelperInterface {
   getAuthHeader: () => {};
   isValidToken: () => boolean;
   isAuthenticated: () => boolean;
-  isCurrentUser(uid: string): boolean;
+  isCurrentUser(uid: number): boolean;
   userRole: () => string | number;
   getUserInfo: () => {};
 }
