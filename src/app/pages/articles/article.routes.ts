@@ -4,12 +4,12 @@ import CreateArticle from './childrens/CreateArticle';
 import ArticleDetail from './childrens/ArticleDetail';
 import ArticleList from './childrens/ArticleList';
 import Articles from './Articles';
+import { PageNotFound } from './partials/PageNotFound';
 
 const articleRoutes: PageRoute[] = [
   {
     path: '/articles',
     element: Articles,
-    //isProtected: true,
     children: [
       {
         path: '/',
@@ -21,11 +21,17 @@ const articleRoutes: PageRoute[] = [
       },
       {
         path: '/new',
-        element: CreateArticle
+        element: CreateArticle,
+        isProtected: true
       },
       {
         path: '/:id/edit',
-        element: CreateArticle
+        element: CreateArticle,
+        isProtected: true
+      },
+      {
+        path: '/page-not-found',
+        element: PageNotFound,
       }
     ]
   }

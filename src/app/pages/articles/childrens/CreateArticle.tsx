@@ -12,6 +12,7 @@ import { ApiService } from "@app/core/services/api.service";
 import { uploadImage, getArticleDetail, createArticle, updateArticle } from '../article.middleware';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { useAlert } from '@app/shared/contexts/alert.context';
+import JwtHelper from '@app/core/helpers/jwtHelper';
 
 const CreateArticle = () => {
   const { id } = useParams();
@@ -23,6 +24,7 @@ const CreateArticle = () => {
   const navigate = useNavigate();
   const { setLoading } = useLoading();
   const { setAlert } = useAlert();
+  const jwt = new JwtHelper();
   const {
     register,
     handleSubmit,
@@ -108,14 +110,22 @@ const CreateArticle = () => {
       disPatch(getArticleDetail(
         id,
         (res) => {
-          setValue('title', res.title);
-          setValue('description', res.description);
-          setValue('tags', res.tags[0]);
-          setValue('status', res.status);
-          setContent(res.content);
-          setArticle(res);
-          setUrlImage(res.cover)
-          setLoading(false);
+          const isCurrentUser = jwt.isCurrentUser(res.userId);
+          if (!isCurrentUser) {
+            navigate('/articles/page-not-found');
+            setLoading(false);
+          } 
+          else {
+            setValue('description', res.description);
+            setValue('title', res.title);
+            setValue('description', res.description);
+            setValue('tags', res.tags[0]);
+            setValue('status', res.status);
+            setContent(res.content);
+            setArticle(res);
+            setUrlImage(res.cover);
+            setLoading(false);
+          }
         },
         (error) => {
           setLoading(false);

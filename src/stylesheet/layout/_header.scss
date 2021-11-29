@@ -1,5 +1,5 @@
 .header {
-  @include pxRem(height, 65);
+  @include pxRem(height, 60);
   @include pxRem(margin-bottom, 20);
   @include pxRem(padding, 8 0);
   position: fixed;
@@ -28,7 +28,7 @@
       flex-direction: row;
       text-align: center;
       .nav-item {
-        @include pxRem(height, 48);
+        @include pxRem(height, 42);
         @include pxRem(padding, 0 12);
         display: flex;
         justify-content: center;
