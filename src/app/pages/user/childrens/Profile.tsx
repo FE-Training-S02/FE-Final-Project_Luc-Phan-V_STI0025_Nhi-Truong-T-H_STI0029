@@ -1,10 +1,35 @@
-import React from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import { useDispatch } from 'react-redux';
+import { Link, useParams, useLocation } from 'react-router-dom';
+import JwtHelper from '@app/core/helpers/jwtHelper';
+import { useLoading } from '@app/shared/contexts/loading.context';
 import ArticleList from '../partials/ArticleList';
+import { getUserInfo } from '../user.middleware';
 
 const Profile = () => {
-  const user = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
+  const jwtHelper = new JwtHelper();
+  const curentUserId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
+  const [user, setUser] = useState<any>({});
+  const dispatch = useDispatch();
+  const { setLoading } = useLoading();
+  const pathName = useLocation().pathname;
+  const [id, setId] =useState<any>();
+  const paramId = useParams().id;
+  useEffect(() => {
+    const authorId = (pathName === '/users/profile') ? curentUserId : paramId;
+    setId(authorId);
+    setLoading(true);
+    dispatch(getUserInfo(
+      authorId,
+      (res) => {
+        setUser(res);
+        setLoading(false);
+      },
+      (error) => {
+        setLoading(false);
+      }
+    ));
+  }, [id]);
   return (
     <div className="profile">
       <div className="row user-info mb-2">
@@ -16,13 +41,17 @@ const Profile = () => {
               <span className="mr-2">{user?.followers} followers</span>
               <span className="ml-2">{user?.followings} followings</span>
             </div>
-            <Link to="/" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
-            <Link to="/user/change-password" className="btn btn-primary">Change Password</Link>
+            {(curentUserId === id) &&
+              <>
+              <Link to="/" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
+              <Link to="/user/change-password" className="btn btn-primary">Change Password</Link>
+              </>
+            }
           </div>
         </div>
       </div>
       <div className="profile-body">
-        <ArticleList />
+        {id && <ArticleList id={id}/>}
       </div>
     </div>
   );
