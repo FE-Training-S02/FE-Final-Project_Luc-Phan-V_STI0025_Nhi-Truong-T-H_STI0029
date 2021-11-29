@@ -1,11 +1,12 @@
-import Button from '@app/shared/components/partials/Button';
-import Input from '@app/shared/components/partials/Input';
-import { useAlert } from '@app/shared/contexts/alert.context';
-import { passwordValidator } from '@app/shared/validators/form.validator';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { useAlert } from '@app/shared/contexts/alert.context';
+import { useLoading } from '@app/shared/contexts/loading.context';
 import { changePassword } from '../user.middleware';
+import { passwordValidator } from '@app/shared/validators/form.validator';
+import Button from '@app/shared/components/partials/Button';
+import Input from '@app/shared/components/partials/Input';
 
 const ChangePassword = () => {
   const {
@@ -16,9 +17,12 @@ const ChangePassword = () => {
   } = useForm({ mode: 'onChange', reValidateMode: 'onSubmit' });
   const dispatch = useDispatch();
   const { setAlert } = useAlert();
+  const { setLoading } = useLoading();
   const onSubmit = (data) => {
+    setLoading(true);
     dispatch(changePassword(data,
       (res) => {
+        setLoading(false);
         setAlert({
           type: 'success',
           mess: res
@@ -28,6 +32,7 @@ const ChangePassword = () => {
         });
       },
       (error) => {
+        setLoading(false);
         setAlert({
           type: 'danger',
           mess: error.response.data.errors
