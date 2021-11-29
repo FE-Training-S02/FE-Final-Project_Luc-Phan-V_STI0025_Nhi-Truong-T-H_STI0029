@@ -60,7 +60,7 @@ const ArticleItem = (props) => {
         </div>
         : ''}
       <div className="article-body pd-5">
-        <div className="article-author">
+        <div className="article-author mb-3">
           <img src={user.picture || "./assets/icons/user.png"} alt="avatar" className="author-img" />
           <div className="author-info">
             <h4>
