@@ -6,11 +6,12 @@ import { useLoading } from '@app/shared/contexts/loading.context';
 import ArticleList from '../partials/ArticleList';
 import { getUserInfo } from '../user.middleware';
 import { postFollow } from '@app/pages/articles/article.middleware';
+import { Follow } from '@app/pages/articles/partials/Follow';
 
 const Profile = () => {
   const jwtHelper = new JwtHelper();
   const curentUserId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
-  const [user, setUser] = useState<any>({});
+  const [user, setUser] = useState<any>();
   const dispatch = useDispatch();
   const { setLoading } = useLoading();
   const pathName = useLocation().pathname;
@@ -39,6 +40,7 @@ const Profile = () => {
     dispatch(postFollow(
       data,
       (res) => {
+        res.followed ? user.followers = user.followers + 1 : user.followers = user.followers - 1;
         setUser({...user, isFollowed: res.followed});
         setLoading(false);
       },
@@ -54,7 +56,7 @@ const Profile = () => {
           <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="avatar-img" />
           <div className="mt-3">
             <h4 className="user-name">{user?.firstName} {user?.lastName}</h4>
-            {user.displayName&&<h6>(<span>{user.displayName})</span></h6>}
+            {user?.displayName&&<h6>(<span>{user?.displayName})</span></h6>}
             <div className="mb-2">
               <span className="mr-2">{user?.followers} followers</span>
               <span className="ml-2">{user?.followings} followings</span>
@@ -65,7 +67,7 @@ const Profile = () => {
                 <Link to="/user/change-password" className="btn btn-primary">Change Password</Link>
               </>
               :
-              <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>{user?.isFollowed ? 'Following' : '+ Follow'}</button>
+              (user && <Follow user = {user} followUser={followUser}/>)
             }
           </div>
         </div>
