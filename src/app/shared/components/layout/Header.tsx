@@ -33,7 +33,7 @@ export function Header() {
                     <li className="nav-item nav-dropdown">
                       <Link to="/users/profile" className="nav-link dropbtn">
                         <i className="fa fa-user icon"></i>
-                        <span className="display-name txt-uppercase">{user.displayName || `${user.firstName} ${user.lastName}`}</span>
+                        <span className="display-name">{user.displayName || `${user.firstName} ${user.lastName}`}</span>
                         <i className="fa fa-caret-down icon"></i>
                       </Link>
                       <div className="dropdown-content">

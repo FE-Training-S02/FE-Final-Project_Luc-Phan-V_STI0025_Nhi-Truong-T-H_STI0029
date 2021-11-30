@@ -1,8 +1,9 @@
 .btn {
+  @include pxRem(padding, 10 15);
+  display: inline-block;
   border-radius: 5px;
   text-align: center;
   font-weight: bold;
-  @include pxRem(padding, 10 15);
   &:disabled {
     cursor: not-allowed;
   }
