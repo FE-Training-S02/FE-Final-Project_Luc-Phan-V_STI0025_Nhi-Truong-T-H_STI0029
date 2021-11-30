@@ -4,10 +4,6 @@
     @include pxRem(width, 48);
     @include pxRem(height, 48);
   }
-  .created-at {
-    font-size: map-get($font-size, xs);
-    color: map-get($color, grey-b)
-  }
   .comment-body {
     @include pxRem(padding, 0 16);
     word-break: break-word;

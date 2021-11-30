@@ -8,7 +8,7 @@ export function CommentItem(props) {
       <img src={user.picture || "./assets/icons/user.png"} className="avatar-comment" alt="avatar"/>
       <div className="comment-body">
         <h4 className="comment-author">{user.displayName||user.lastName}</h4>
-        <p className="created-at">{convertDate(createdAt)}</p>
+        <p className="txt-date-time">{convertDate(createdAt)}</p>
         <p className="comment-content">{comment}</p>
       </div>
     </li>
