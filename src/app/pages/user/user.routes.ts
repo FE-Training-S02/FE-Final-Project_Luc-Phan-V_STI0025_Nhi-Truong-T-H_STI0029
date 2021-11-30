@@ -20,9 +20,9 @@ const userRoutes: PageRoute[] = [
         element: Profile
       },
       {
-        path: '/change-password',
+        path: '/profile/change-password',
         element: ChangePassword
-      }
+      },
     ]
   }
 ];

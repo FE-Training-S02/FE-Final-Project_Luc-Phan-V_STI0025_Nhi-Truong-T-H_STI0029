@@ -6,6 +6,7 @@ import { useDialog } from '@app/shared/contexts/dialog.context';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { Like } from './Like';
 import { deleteArticle } from '../article.middleware';
+import { convertDate } from '@app/shared/pipes/convert-date';
 
 const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
@@ -47,7 +48,9 @@ const ArticleItem = (props) => {
   return (
     <div className="article-item grid-box">
       <div className="feature">
-        <img src={cover} alt="article image" className="article-img" />
+        <Link to={`/articles/${id}`}>
+          <img src={cover} alt="article image" className="article-img" />
+        </Link>
       </div>
       {curentUserId === userId ?
         <div className="dropdown">
@@ -67,10 +70,10 @@ const ArticleItem = (props) => {
               {tags[0] ?
                 <>
                   <span>&nbsp;-&nbsp;</span>
-                  <span className="article-tag">{tags[0]}</span>
+                  <span className="badge badge-tag">{tags[0]}</span>
                 </> : <></>}
             </h4>
-            <p className="create-at">{new Date(createdAt).toLocaleString("en-US")}</p>
+            <p className="create-at">{convertDate(createdAt)}</p>
           </div>
         </div>
         <h3><Link to={`/articles/${id}`} className="article-title">{title}</Link></h3>

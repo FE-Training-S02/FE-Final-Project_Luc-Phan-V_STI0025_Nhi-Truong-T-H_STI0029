@@ -18,7 +18,7 @@ const ArticleDetail = () => {
   const [commentsList, setCommentsList] = useState<any>([]);
   const { setLoading } = useLoading();
   const dispatch = useDispatch();
-  const { title, likes, user, cover, content, isLiked } = article;
+  const { title, likes, user, cover, content, isLiked, tags } = article;
   const currentUser = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
   const { setDialog, onClosed } = useDialog();
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ const ArticleDetail = () => {
       dispatch(getArticleDetail(
         id,
         (res) => {
+          console.log(res.tags);
           setComments(res.comments);
           setArticle(res);
           getAuthorInfo(res);
@@ -151,53 +152,59 @@ const ArticleDetail = () => {
     <>
       <div className="row">
         <main className="col col-8 main-content">
-          <div className="grid-box pd-10">
-            <div className="article-header">
-              <div className="featured">
-                <img src={cover} className="article-cover-image" alt="image-article" />
-              </div>
-              <h2 className="article-title txt-capitalize">{title}</h2>
-              <div className="article-author-follow">
-                <div className="article-author">
-                  <span className="text-writen-by">WRITEN BY -</span>
-                  <Link to={`/users/${user?.id}`} className="article-author-name">
-                    <i className="fas fa-pen-fancy"></i>
-                    <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
-                  </Link>
-                  {currentUser?.email !== user?.email ?
-                    <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>{user?.isFollowed ? 'Following' : '+ Follow'}</button>
-                    :
-                    <>
-                      <button className="btn btn-danger mr-2" onClick={handleDelete}>Delete</button>
-                      <button className="btn btn-primary" onClick={updateArticle}>Update</button>
-                    </>
-                  }
-                </div>
-                <button className="btn btn-icon">
-                  <i className="far fa-bookmark"></i>
-                </button>
-              </div>
-            </div>
-            <div className="article-body">
-              <div className="article-content" dangerouslySetInnerHTML={{ __html: purify.sanitize(content) }}>
-              </div>
-            </div>
-            <div className="article-footer">
-              <div className="article-footer-left">
-                <p className="txt-uppercase"><span>TAGS </span>bc</p>
-              </div>
-              <div className="article-footer-right">
-                <div className="interact">
-                  {likes && (<Like id={id} like={likes} liked={isLiked} />)}
-                  <button className="btn-interact">
-                    <i className="far fa-comment"></i>
-                    <span>{comments}</span>
+          <div className="grid-box">
+            <img src={cover} className="article-cover-image" alt="image-article" />
+            <div className="pd-10">
+              <div className="article-header">
+                <h2 className="article-title txt-capitalize">{title}</h2>
+                <div className="article-author-follow">
+                  <div className="article-author">
+                    <span className="text-writen-by">WRITEN BY -</span>
+                    <Link to={`/users/${user?.id}`} className="article-author-name">
+                      <i className="fas fa-pen-fancy"></i>
+                      <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
+                    </Link>
+                    {currentUser?.email !== user?.email ?
+                      <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>{user?.isFollowed ? 'Following' : '+ Follow'}</button>
+                      :
+                      <>
+                        <button className="btn btn-danger mr-2" onClick={handleDelete}>Delete</button>
+                        <button className="btn btn-primary" onClick={updateArticle}>Update</button>
+                      </>
+                    }
+                  </div>
+                  <button className="btn btn-icon">
+                    <i className="far fa-bookmark"></i>
                   </button>
                 </div>
               </div>
+              <div className="article-body">
+                <div className="article-content" dangerouslySetInnerHTML={{ __html: purify.sanitize(content) }}>
+                </div>
+              </div>
+
+              <div className="article-footer">
+                <div className="article-footer-left">
+                  {tags && <p className="txt-uppercase"><span>TAGS: </span>
+                    {(tags.length !== 0 && tags[0] !== '') ?
+                      <span className="badge badge-tag">{tags[0]}</span>
+                      : <></>
+                    }
+                  </p>}
+                </div>
+                <div className="article-footer-right">
+                  <div className="interact">
+                    {likes && (<Like id={id} like={likes} liked={isLiked} user={currentUser} />)}
+                    <button className="btn-interact">
+                      <i className="far fa-comment"></i>
+                      <span>{comments}</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <CommentForm id={id} submitComment={submitComment} user={currentUser} />
+              <CommentsList id={id} commentsList={commentsList} />
             </div>
-            <CommentForm id={id} submitComment={submitComment} user={currentUser} />
-            <CommentsList id={id} commentsList={commentsList} />
           </div>
         </main>
         <Sidebar />

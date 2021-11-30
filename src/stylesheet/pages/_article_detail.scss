@@ -1,11 +1,10 @@
 .main-content {
+  .article-cover-image {
+    display: block;
+    @include pxRem(height, 480);
+    width: 100%;
+  }
   .article-header {
-    .featured {
-      @include pxRem(margin, -50 -50 40);
-      .article-cover-image {
-        width: 100%;
-      }
-    }
     .article-title {
       word-wrap: break-word;
       letter-spacing: 0.2px;
@@ -57,12 +56,9 @@
     align-items: center;
     .article-footer-left {
       p {
-        font-size: map-get($map: $font-size, $key: xs);
+        font-size: map-get($map: $font-size, $key: sm);
         color: map-get($map: $color, $key: primary);
         font-weight: 600;
-        span {
-          color: map-get($map: $color, $key: grey-b);
-        }
       }
     }
     .article-footer-right {

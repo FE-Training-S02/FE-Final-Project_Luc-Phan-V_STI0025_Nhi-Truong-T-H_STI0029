@@ -1,0 +1,25 @@
+.badge {
+  @include pxRem(padding, 3 6);
+  display: inline-block;
+  font-size: map-get($map: $font-size, $key: sm);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 5px;
+  &.badge-primary {
+    color: #fff;
+    background-color: map-get($map: $color, $key: primary);
+  }
+  &.badge-secondary {
+    color: #fff;
+    background-color: map-get($map: $color, $key: secondary);
+  }
+  &.badge-danger {
+    color: #fff;
+    background-color: map-get($map: $color, $key: danger);
+  }
+  &.badge-tag {
+    color: #fff;
+    background-color: map-get($map: $color, $key: tag);
+  }
+}
