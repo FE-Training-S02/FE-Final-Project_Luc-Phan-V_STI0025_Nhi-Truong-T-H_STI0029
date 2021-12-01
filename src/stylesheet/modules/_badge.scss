@@ -6,20 +6,17 @@
   text-align: center;
   white-space: nowrap;
   border-radius: 5px;
+  color: #fff;
   &.badge-primary {
-    color: #fff;
     background-color: map-get($map: $color, $key: primary);
   }
   &.badge-secondary {
-    color: #fff;
     background-color: map-get($map: $color, $key: secondary);
   }
   &.badge-danger {
-    color: #fff;
     background-color: map-get($map: $color, $key: danger);
   }
   &.badge-tag {
-    color: #fff;
     background-color: map-get($map: $color, $key: tag);
   }
 }
