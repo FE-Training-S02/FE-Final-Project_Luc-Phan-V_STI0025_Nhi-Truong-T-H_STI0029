@@ -19,6 +19,14 @@
       background: map-get($color, blue-a);
       color: map-get($color, white);
     }
+    .user-avatar {
+      position: relative;
+      .btn-follow {
+        position: absolute;
+        bottom: 0;
+        left: 51%;
+      }
+    }
     .avatar-img {
       @include pxRem(width, 100);
       @include pxRem(height, 100);

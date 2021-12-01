@@ -4,7 +4,7 @@ import { getListArticles } from '@app/pages/articles/article.middleware';
 import { Post } from '@app/shared/models/post';
 import { useDispatch } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading.context';
-import Sidebar from '@app/shared/components/layout/Sidebar';
+import Sidebar from './Sidebar'
 
 const ArticleList = (props) => {
   const { id } = props;
@@ -51,7 +51,7 @@ const ArticleList = (props) => {
 
   return (
     <div className="row">
-      <Sidebar />
+      <Sidebar id={id}/>
       <section className="section-articles-list col col-8">
         <ul className="row article-list">
           {articles.map((item: Post, index: any) =>
