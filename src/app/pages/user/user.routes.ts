@@ -1,5 +1,6 @@
 import { PageRoute } from '@core/modules/custom-router-dom/router.interface';
 import ChangePassword from './childrens/ChangePassword';
+import EditProfile from './childrens/EditProfile';
 import Profile from './childrens/Profile';
 import User from './User';
 const userRoutes: PageRoute[] = [
@@ -22,6 +23,10 @@ const userRoutes: PageRoute[] = [
       {
         path: '/change-password',
         element: ChangePassword
+      },
+      {
+        path: '/edit-profile',
+        element: EditProfile
       }
     ]
   }

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import JwtHelper from '@app/core/helpers/jwtHelper';
@@ -13,7 +13,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { setLoading } = useLoading();
   const pathName = useLocation().pathname;
-  const [id, setId] =useState<any>();
+  const [id, setId] = useState<any>();
   const paramId = useParams().id;
   useEffect(() => {
     const authorId = (pathName === '/users/profile') ? curentUserId : paramId;
@@ -43,15 +43,15 @@ const Profile = () => {
             </div>
             {(curentUserId === id) &&
               <>
-              <Link to="/" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
-              <Link to="/user/change-password" className="btn btn-primary">Change Password</Link>
+                <Link to="/users/edit-profile" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
+                <Link to="/users/change-password" className="btn btn-primary">Change Password</Link>
               </>
             }
           </div>
         </div>
       </div>
       <div className="profile-body">
-        {id && <ArticleList id={id}/>}
+        {id && <ArticleList id={id} />}
       </div>
     </div>
   );

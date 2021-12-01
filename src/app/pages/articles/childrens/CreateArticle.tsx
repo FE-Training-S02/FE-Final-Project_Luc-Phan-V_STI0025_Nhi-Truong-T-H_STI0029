@@ -20,7 +20,6 @@ const CreateArticle = () => {
   const { id } = useParams();
   const [article, setArticle] = useState<any>({});
   const [urlImage, setUrlImage] = useState<any>('');
-  const apiService = new ApiService();
   const [content, setContent] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
