@@ -32,7 +32,7 @@ export function Follow(props) {
     }
   }
   return (
-    <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={follow}>
+    <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'} btn-follow`} onClick={follow}>
       {user?.isFollowed ? 'Following' : '+ Follow'}
     </button>
   );

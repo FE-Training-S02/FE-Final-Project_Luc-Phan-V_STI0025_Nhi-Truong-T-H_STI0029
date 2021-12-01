@@ -38,7 +38,7 @@ export function Header() {
                       </Link>
                       <div className="dropdown-content">
                         <Link to="/users/profile">Profile</Link>
-                        <Link to="/user/change-password">Change Password</Link>
+                        <Link to="/users/profile/change-password">Change Password</Link>
                         <Link to="/auth/login" onClick={handleLogout}>Logout</Link>
                       </div>
                     </li>

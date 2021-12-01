@@ -1,50 +1,131 @@
 .main-content {
+  word-break: break-word;
   .article-header {
-    .featured {
-      @include pxRem(margin, -50 -50 40);
-      .article-cover-image {
-        width: 100%;
-      }
-    }
     .article-title {
       word-wrap: break-word;
+      font-size: 40px;
       letter-spacing: 0.2px;
-      line-height: 1.35;
+      line-height: 50px;
     }
-    .article-author-follow {
+    .article-description {
       @include pxRem(margin-top, 20);
+      font-size: map-get($map: $font-size, $key: xxl);
+      font-weight: 400;
+      color: map-get($map: $color, $key: grey-b);
+      line-height: 28px;
+      letter-spacing: 0;
+    }
+    .article-author-info {
+      @include pxRem(margin-top, 25);
       display: flex;
       justify-content: space-between;
       align-items: center;
       .article-author {
         display: flex;
         align-items: center;
-        .text-writen-by {
-          @include pxRem(margin-right, 5);
-          font-size: map-get($map: $font-size, $key: xs);
-          color: map-get($map: $color, $key: grey-b);
-          letter-spacing: 0.2px;
-        }
-        .article-author-name {
-          @include pxRem(margin-right, 30);
-          display: flex;
-          align-items: center;
-          i {
-            font-size: map-get($map: $font-size, $key: xs);
-            color: map-get($map: $color, $key: grey-e);
+        .article-author-img {
+          @include pxRem(margin-right, 8);
+          .author-img {
+            @include pxRem(width, 48);
+            @include pxRem(height, 48);
+            border-radius: 50%;
+            vertical-align: middle;
           }
-          h3 {
-            font-size: map-get($map: $font-size, $key: sm);
-            color: map-get($map: $color, $key: grey-e);
+        }
+        .article-author-left {
+          .article-author-name-follow {
+            @include pxRem(margin-bottom, 2);
+            display: flex;
+            align-items: center;
+            .article-author-name {
+              @include pxRem(max-width, 200);
+              @include pxRem(margin-right, 5);
+              display: -webkit-box;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 1;
+              font-size: map-get($map: $font-size, $key: sm);
+            }
+            .btn-follow {
+              @include pxRem(padding, 0 8 1);
+              font-size: 13px;
+              border-radius: 15px;
+            }
+          }
+          .create-at {
+            display: block;
+            font-size: map-get($map: $font-size, $key: xs);
+          }
+        }
+      }
+      .article-bookmark {
+        @include pxRem(min-width, 50);
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .dropdown {
+          @include pxRem(top, -10);
+          @include pxRem(right, 0);
+          position: absolute;
+          display: inline-block;
+          &:hover {
+            .sub-dropdown {
+              display: block;
+            }
+            .btn-dropdown {
+              opacity: 0.8;
+            }
+          }
+          .btn-dropdown {
+            background-color: transparent;
+            font-size: map-get($map: $font-size, $key: xl);
+          }
+          .sub-dropdown {
+            @include pxRem(min-width, 150);
+            @include pxRem(max-height, 100);
+            @include pxRem(right, -120);
+            @include pxRem(padding, 10 0);
+            display: none;
+            position: absolute;
+            top: 100%;
+            border-radius: 5px;
+            background-color: map-get($color, grey-a);
+            z-index: 1;
+            .sub-dropdown-item {
+              @include pxRem(min-height, 40);
+              @include pxRem(padding-left, 20);
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              width: 100%;
+              background: transparent;
+              color: map-get($color, black);
+              font-size: map-get($font-size, sm);
+              font-weight: 500;
+              text-decoration: none;
+              &:hover {
+                color: map-get($color, primary);
+                background: map-get($color, grey-f);
+              }
+            }
           }
         }
       }
     }
   }
+  .article-cover-image {
+    @include pxRem(margin-top, 50);
+    @include pxRem(height, 480);
+    display: block;
+    width: 100%;
+  }
   .article-body {
     .article-content {
       @include pxRem(margin-top, 30);
       word-wrap: break-word;
+      font-size: map-get($map: $font-size, $key: normal);
       img {
         width: 100%;
       }
@@ -57,12 +138,9 @@
     align-items: center;
     .article-footer-left {
       p {
-        font-size: map-get($map: $font-size, $key: xs);
+        font-size: map-get($map: $font-size, $key: sm);
         color: map-get($map: $color, $key: primary);
         font-weight: 600;
-        span {
-          color: map-get($map: $color, $key: grey-b);
-        }
       }
     }
     .article-footer-right {

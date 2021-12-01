@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import JwtHelper from '@app/core/helpers/jwtHelper';
@@ -15,7 +15,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { setLoading } = useLoading();
   const pathName = useLocation().pathname;
-  const [id, setId] =useState<any>();
+  const [id, setId] = useState<any>();
   const paramId = useParams().id;
   useEffect(() => {
     const authorId = (pathName === '/users/profile') ? curentUserId : paramId;
@@ -41,7 +41,7 @@ const Profile = () => {
       data,
       (res) => {
         res.followed ? user.followers = user.followers + 1 : user.followers = user.followers - 1;
-        setUser({...user, isFollowed: res.followed});
+        setUser({ ...user, isFollowed: res.followed });
         setLoading(false);
       },
       (error) => {
@@ -56,7 +56,7 @@ const Profile = () => {
           <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="avatar-img" />
           <div className="mt-3">
             <h4 className="user-name">{user?.firstName} {user?.lastName}</h4>
-            {user?.displayName&&<h6>(<span>{user?.displayName})</span></h6>}
+            {user?.displayName && <h6>(<span>{user?.displayName})</span></h6>}
             <div className="mb-2">
               <span className="mr-2">{user?.followers} followers</span>
               <span className="ml-2">{user?.followings} followings</span>
@@ -64,19 +64,19 @@ const Profile = () => {
             {(curentUserId === id) ?
               <>
                 <Link to="/" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
-                <Link to="/user/change-password" className="btn btn-primary">Change Password</Link>
+                <Link to="/users/profile/change-password" className="btn btn-primary">Change Password</Link>
               </>
               :
-              (user && <Follow user = {user} followUser={followUser}/>)
+              (user && <Follow user={user} followUser={followUser} />)
             }
           </div>
         </div>
       </div>
       {curentUserId ?
         <div className="profile-body">
-          {id && <ArticleList id={id}/>}
+          {id && <ArticleList id={id} />}
         </div>
-      :
+        :
         <div className="row">
           <div className="notification col-12 pd-10">
             <h3 className="mb-5">Connecting with {user?.displayName} on ST-Blog</h3>

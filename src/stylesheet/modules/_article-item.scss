@@ -76,16 +76,6 @@
       font-size: map-get($font-size, sm);
       color: map-get($color, primary);
     }
-    .article-tag {
-      @include pxRem(max-width, 110);
-      @include pxRem(padding, 1 5);
-      display: inline-block;
-      border-radius: 5px;
-      text-transform: capitalize;
-      background: map-get($color, orange-b);
-      font-size: map-get($map: $font-size, $key: sm);
-      color: map-get($color, white);
-    }
   }
   .article-body {
     letter-spacing: 0.2px;

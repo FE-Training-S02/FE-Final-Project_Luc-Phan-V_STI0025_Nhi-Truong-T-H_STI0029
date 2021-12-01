@@ -10,6 +10,7 @@ import { Like } from '../partials/Like';
 import { CommentsList } from '../partials/CommentList';
 import { useDialog } from '@app/shared/contexts/dialog.context';
 import { deleteArticle } from '../article.middleware';
+import { convertDate } from '@app/shared/pipes/convert-date';
 import { Follow } from '../partials/Follow';
 
 const ArticleDetail = () => {
@@ -19,7 +20,7 @@ const ArticleDetail = () => {
   const [commentsList, setCommentsList] = useState<any>([]);
   const { setLoading } = useLoading();
   const dispatch = useDispatch();
-  const { title, likes, user, cover, content, isLiked } = article;
+  const { title, description, createdAt, likes, user, cover, content, isLiked, tags } = article;
   const currentUser = useSelector((state: RootStateOrAny) => state.authReducer.userInfo);
   const { setDialog, onClosed } = useDialog();
   const navigate = useNavigate();
@@ -136,45 +137,64 @@ const ArticleDetail = () => {
         <main className="col col-8 main-content">
           <div className="grid-box pd-10">
             <div className="article-header">
-              <div className="featured">
-                <img src={cover} className="article-cover-image" alt="image-article" />
-              </div>
               <h2 className="article-title txt-capitalize">{title}</h2>
-              <div className="article-author-follow">
+              <p className="article-description">{description}</p>
+              <div className="article-author-info">
                 <div className="article-author">
-                  <span className="text-writen-by">WRITEN BY -</span>
-                  <Link to={`/users/${user?.id}`} className="article-author-name">
-                    <i className="fas fa-pen-fancy"></i>
-                    <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
-                  </Link>
-                  {currentUser ? 
-                    currentUser?.email !== user?.email ?
-                      (user?.isFollowed !== undefined) && <Follow user={article.user} followUser={followUser}/>
-                      :
-                      <>
-                        <button className="btn btn-danger mr-2" onClick={handleDelete}>Delete</button>
-                        <button className="btn btn-primary" onClick={updateArticle}>Update</button>
-                      </>
-                    :
-                    <Follow />
-                  }
+                  <div className="article-author-img">
+                    <Link to={`/users/${user?.id}`}>
+                      <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="author-img" />
+                    </Link>
+                  </div>
+                  <div className="article-author-left">
+                    <div className="article-author-name-follow">
+                      <Link to={`/users/${user?.id}`} >
+                        <h4 className="article-author-name">{user?.firstName + " " + user?.lastName}</h4>
+                      </Link>
+                      {currentUser ?
+                        currentUser?.email !== user?.email ?
+                          (user?.isFollowed !== undefined) && <Follow user={article.user} followUser={followUser} />
+                          :
+                          <></>
+                        :
+                        <Follow />
+                      }
+                    </div>
+                    <p className="create-at">{convertDate(createdAt)}</p>
+                  </div>
                 </div>
-                <button className="btn btn-icon">
+                <div className="article-bookmark">
                   <i className="far fa-bookmark"></i>
-                </button>
+                  {currentUser?.email === user?.email ?
+                    <div className="dropdown">
+                      <button className="btn-dropdown">...</button>
+                      <div className="sub-dropdown">
+                        <button onClick={handleDelete} className="sub-dropdown-item">Delete</button>
+                        <button onClick={updateArticle} className="sub-dropdown-item">Update</button>
+                      </div>
+                    </div>
+                    : ''}
+                </div>
               </div>
             </div>
+            <img src={cover} className="article-cover-image" alt="image-article" />
             <div className="article-body">
               <div className="article-content" dangerouslySetInnerHTML={{ __html: purify.sanitize(content) }}>
               </div>
             </div>
+
             <div className="article-footer">
               <div className="article-footer-left">
-                <p className="txt-uppercase"><span>TAGS </span>bc</p>
+                {tags && <p className="txt-uppercase"><span>TAGS: </span>
+                  {(tags.length && tags[0]) ?
+                    <span className="badge badge-tag">{tags[0]}</span>
+                    : <></>
+                  }
+                </p>}
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  {likes && (<Like id={id} like={likes} liked={isLiked} />)}
+                  {likes && (<Like id={id} like={likes} liked={isLiked} user={currentUser} />)}
                   <button className="btn-interact">
                     <i className="far fa-comment"></i>
                     <span>{comments}</span>
