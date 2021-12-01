@@ -63,8 +63,8 @@ const Profile = () => {
             </div>
             {(curentUserId === id) ?
               <>
-                <Link to="/profile/edit-profile" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
-                <Link to="/profile/change-password" className="btn btn-primary">Change Password</Link>
+                <Link to="/users/profile/edit-profile" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
+                <Link to="/users/profile/change-password" className="btn btn-primary">Change Password</Link>
               </>
               :
               (user && <Follow user={user} followUser={followUser} />)

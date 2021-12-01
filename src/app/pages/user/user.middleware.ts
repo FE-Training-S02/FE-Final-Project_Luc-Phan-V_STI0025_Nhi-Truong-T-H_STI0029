@@ -20,8 +20,19 @@ export const getUserInfo = (id, resolve, reject) => {
         resolve(res);
       })
       .catch(error => {
-        reject(error); 
-      }
-    )
-  }
+        reject(error);
+      });
+  };
+};
+
+export const updateUserInfo = (data, resolve, reject) => {
+  return () => {
+    apiService.put([`/users/me`], data)
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error);
+      });
+  };
 };

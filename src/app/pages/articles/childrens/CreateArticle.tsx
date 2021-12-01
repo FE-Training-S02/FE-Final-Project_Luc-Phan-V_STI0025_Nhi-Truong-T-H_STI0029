@@ -8,7 +8,6 @@ import Select from '@app/shared/components/partials/Select';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
 import { descriptionValidator, requireValidator, titleValidator } from '@app/shared/validators/form.validator';
-import { ApiService } from "@app/core/services/api.service";
 import { uploadImage, getArticleDetail, createArticle, updateArticle } from '../article.middleware';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { useAlert } from '@app/shared/contexts/alert.context';
@@ -177,6 +176,7 @@ const CreateArticle = () => {
                   <div className="input-group">
                     <input
                       type="file"
+                      accept="image/*"
                       className="form-control"
                       {...register('cover')}
                       onChange={handleChange}
@@ -206,6 +206,7 @@ const CreateArticle = () => {
               <CKEditor
                 editor={ClassicEditor}
                 data={content}
+
                 name="content"
                 onChange={(event, editor) => {
                   const data = editor.getData();
