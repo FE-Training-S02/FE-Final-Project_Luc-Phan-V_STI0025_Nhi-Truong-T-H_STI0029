@@ -28,4 +28,9 @@
   .profile-body {
     @include pxRem(margin, 0 -10);
   }
+  .notification {
+    @include pxRem(height, 200);
+    text-align: center;
+    background: map-get($color, white);
+  }
 }
