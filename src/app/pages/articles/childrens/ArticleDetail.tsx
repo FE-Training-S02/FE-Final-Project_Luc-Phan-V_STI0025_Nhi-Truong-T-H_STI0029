@@ -10,6 +10,7 @@ import { Like } from '../partials/Like';
 import { CommentsList } from '../partials/CommentList';
 import { useDialog } from '@app/shared/contexts/dialog.context';
 import { deleteArticle } from '../article.middleware';
+import { Follow } from '../partials/Follow';
 
 const ArticleDetail = () => {
   const { id } = useParams();
@@ -83,39 +84,21 @@ const ArticleDetail = () => {
     );
   };
   const followUser = () => {
-    if (currentUser) {
-      const data = {
-        'followingId': user.id
-      }
-      setLoading(true);
-      dispatch(postFollow(
-        data,
-        (res) => {
-          const newArticle = { ...article, user: { ...user, isFollowed: res.followed } };
-          setArticle(newArticle);
-          setLoading(false);
-        },
-        (error) => {
-          setLoading(false);
-        })
-      );
-    } else { handleLogin() }
-
-  };
-  const handleLogin = () => {
-    setDialog({
-      type: 'primary',
-      data: {
-        title: 'Confirm',
-        content: 'Please login to continue',
-        accept: 'Login',
-        cancel: 'Cancel'
+    const data = {
+      'followingId': user.id
+    }
+    setLoading(true);
+    dispatch(postFollow(
+      data,
+      (res) => {
+        const newArticle = { ...article, user: { ...user, isFollowed: res.followed } };
+        setArticle(newArticle);
+        setLoading(false);
       },
-      confirmDialog: () => confirmLogin()
-    });
-  }
-  const confirmLogin = () => {
-    navigate('/auth/login');
+      (error) => {
+        setLoading(false);
+      })
+    );
   };
   const handleDelete = () => {
     setDialog({
@@ -164,13 +147,16 @@ const ArticleDetail = () => {
                     <i className="fas fa-pen-fancy"></i>
                     <h3 className="txt-capitalize">{user?.firstName + " " + user?.lastName}</h3>
                   </Link>
-                  {currentUser?.email !== user?.email ?
-                    <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'}`} onClick={followUser}>{user?.isFollowed ? 'Following' : '+ Follow'}</button>
+                  {currentUser ? 
+                    currentUser?.email !== user?.email ?
+                      (user?.isFollowed !== undefined) && <Follow user={article.user} followUser={followUser}/>
+                      :
+                      <>
+                        <button className="btn btn-danger mr-2" onClick={handleDelete}>Delete</button>
+                        <button className="btn btn-primary" onClick={updateArticle}>Update</button>
+                      </>
                     :
-                    <>
-                      <button className="btn btn-danger mr-2" onClick={handleDelete}>Delete</button>
-                      <button className="btn btn-primary" onClick={updateArticle}>Update</button>
-                    </>
+                    <Follow />
                   }
                 </div>
                 <button className="btn btn-icon">
