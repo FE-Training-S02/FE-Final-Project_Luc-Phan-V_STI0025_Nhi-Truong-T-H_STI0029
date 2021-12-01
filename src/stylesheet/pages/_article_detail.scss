@@ -8,14 +8,14 @@
     }
     .article-description {
       @include pxRem(margin-top, 20);
-      font-size: map-get($map: $font-size, $key: xl);
+      font-size: map-get($map: $font-size, $key: xxl);
       font-weight: 400;
-      color: map-get($map: $color, $key: grey-c);
+      color: map-get($map: $color, $key: grey-b);
       line-height: 28px;
       letter-spacing: 0;
     }
     .article-author-info {
-      @include pxRem(margin-top, 20);
+      @include pxRem(margin-top, 25);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -115,7 +115,7 @@
     }
   }
   .article-cover-image {
-    @include pxRem(margin-top, 55);
+    @include pxRem(margin-top, 50);
     @include pxRem(height, 480);
     display: block;
     width: 100%;

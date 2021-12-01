@@ -11,6 +11,7 @@ import { CommentsList } from '../partials/CommentList';
 import { useDialog } from '@app/shared/contexts/dialog.context';
 import { deleteArticle } from '../article.middleware';
 import { convertDate } from '@app/shared/pipes/convert-date';
+import { Follow } from '../partials/Follow';
 
 const ArticleDetail = () => {
   const { id } = useParams();
@@ -29,7 +30,6 @@ const ArticleDetail = () => {
       dispatch(getArticleDetail(
         id,
         (res) => {
-          console.log(res);
           setComments(res.comments);
           setArticle(res);
           getAuthorInfo(res);
@@ -85,39 +85,21 @@ const ArticleDetail = () => {
     );
   };
   const followUser = () => {
-    if (currentUser) {
-      const data = {
-        'followingId': user.id
-      }
-      setLoading(true);
-      dispatch(postFollow(
-        data,
-        (res) => {
-          const newArticle = { ...article, user: { ...user, isFollowed: res.followed } };
-          setArticle(newArticle);
-          setLoading(false);
-        },
-        (error) => {
-          setLoading(false);
-        })
-      );
-    } else { handleLogin() }
-
-  };
-  const handleLogin = () => {
-    setDialog({
-      type: 'primary',
-      data: {
-        title: 'Confirm',
-        content: 'Please login to continue',
-        accept: 'Login',
-        cancel: 'Cancel'
+    const data = {
+      'followingId': user.id
+    }
+    setLoading(true);
+    dispatch(postFollow(
+      data,
+      (res) => {
+        const newArticle = { ...article, user: { ...user, isFollowed: res.followed } };
+        setArticle(newArticle);
+        setLoading(false);
       },
-      confirmDialog: () => confirmLogin()
-    });
-  }
-  const confirmLogin = () => {
-    navigate('/auth/login');
+      (error) => {
+        setLoading(false);
+      })
+    );
   };
   const handleDelete = () => {
     setDialog({
@@ -156,7 +138,7 @@ const ArticleDetail = () => {
           <div className="grid-box pd-10">
             <div className="article-header">
               <h2 className="article-title txt-capitalize">{title}</h2>
-              <h3 className="article-description">{description}</h3>
+              <p className="article-description">{description}</p>
               <div className="article-author-info">
                 <div className="article-author">
                   <div className="article-author-img">
@@ -169,10 +151,13 @@ const ArticleDetail = () => {
                       <Link to={`/users/${user?.id}`} >
                         <h4 className="article-author-name">{user?.firstName + " " + user?.lastName}</h4>
                       </Link>
-                      {currentUser?.email !== user?.email ?
-                        <button className={`btn ${user?.isFollowed ? 'btn-primary' : 'btn-outline-primary'} btn-follow`} onClick={followUser}>{user?.isFollowed ? 'Following' : '+ Follow'}</button>
+                      {currentUser ?
+                        currentUser?.email !== user?.email ?
+                          (user?.isFollowed !== undefined) && <Follow user={article.user} followUser={followUser} />
+                          :
+                          <></>
                         :
-                        <></>
+                        <Follow />
                       }
                     </div>
                     <p className="create-at">{convertDate(createdAt)}</p>
