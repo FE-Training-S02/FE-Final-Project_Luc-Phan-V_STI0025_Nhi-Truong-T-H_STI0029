@@ -18,6 +18,7 @@ const Profile = () => {
   const [id, setId] = useState<any>();
   const paramId = useParams().id;
   useEffect(() => {
+    console.log('aaaa', id);
     const authorId = (pathName === '/users/profile') ? curentUserId : paramId;
     setId(authorId);
     setLoading(true);
@@ -25,6 +26,7 @@ const Profile = () => {
       authorId,
       (res) => {
         setUser(res);
+        console.log(res);
         setLoading(false);
       },
       (error) => {
@@ -32,6 +34,7 @@ const Profile = () => {
       }
     ));
   }, [id]);
+  //useEffect(())
   const followUser = () => {
     const data = {
       'followingId': id

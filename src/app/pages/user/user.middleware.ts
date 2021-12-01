@@ -25,3 +25,16 @@ export const getUserInfo = (id, resolve, reject) => {
     )
   }
 };
+export const getFollowingsList = (id, endpoint, resolve, reject) => {
+  return () => {
+    apiService.get([`/friends/${id}/${endpoint}`])
+      .then(res => {
+        resolve(res);
+      })
+      .catch(error => {
+        reject(error); 
+      }
+    )
+  }
+};
+
