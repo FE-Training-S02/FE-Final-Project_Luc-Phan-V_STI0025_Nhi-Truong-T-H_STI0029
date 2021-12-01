@@ -179,9 +179,7 @@ const ArticleDetail = () => {
                   </div>
                 </div>
                 <div className="article-bookmark">
-                  <button className="btn btn-icon">
-                    <i className="far fa-bookmark"></i>
-                  </button>
+                  <i className="far fa-bookmark"></i>
                   {currentUser?.email === user?.email ?
                     <div className="dropdown">
                       <button className="btn-dropdown">...</button>

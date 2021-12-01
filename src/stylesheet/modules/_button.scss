@@ -80,7 +80,6 @@
     @include pxRem(width, 36);
     @include pxRem(height, 36);
     @include pxRem(padding, 10);
-    background: transparent;
     border-radius: 100%;
   }
   &.btn-block {
