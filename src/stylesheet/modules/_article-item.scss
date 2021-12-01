@@ -53,7 +53,7 @@
       }
     }
   }
-  .article-author {
+  .article-info {
     display: flex;
     align-items: center;
     color: map-get($color, grey-b);
@@ -65,13 +65,21 @@
     }
     .author-info {
       text-align: left;
+      .align-items-center {
+        display: flex;
+        align-items: center;
+      }
     }
     .author-name {
+      @include pxRem(max-width, 120);
+      display: inline-block;
       font-size: map-get($font-size, sm);
       color: map-get($color, primary);
     }
     .article-tag {
+      @include pxRem(max-width, 110);
       @include pxRem(padding, 2 5);
+      display: inline-block;
       background: map-get($color, orange-b);
       font-size: map-get($map: $font-size, $key: sm);
       color: map-get($color, white);
