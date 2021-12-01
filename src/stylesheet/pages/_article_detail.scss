@@ -48,9 +48,9 @@
               font-size: map-get($map: $font-size, $key: sm);
             }
             .btn-follow {
-              @include pxRem(padding, 0 8 1);
-              font-size: 13px;
-              border-radius: 15px;
+              @include pxRem(width, 30);
+              @include pxRem(height, 30);
+              @include pxRem(padding, 7 6);
             }
           }
           .create-at {
