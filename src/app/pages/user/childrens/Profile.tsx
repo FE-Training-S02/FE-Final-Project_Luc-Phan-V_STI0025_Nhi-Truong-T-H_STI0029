@@ -72,9 +72,19 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className="profile-body">
-        {id && <ArticleList id={id}/>}
-      </div>
+      {curentUserId ?
+        <div className="profile-body">
+          {id && <ArticleList id={id}/>}
+        </div>
+      :
+        <div className="row">
+          <div className="notification col-12 pd-10">
+            <h3 className="mb-5">Connecting with {user?.displayName} on ST-Blog</h3>
+            <Link to="/auth/login" className="btn btn-primary mr-2">Sign In</Link>
+            <span>Or</span>
+            <Link to="/auth/register" className="btn btn-outline-primary ml-2">Sign up</Link>
+          </div>
+        </div>}
     </div>
   );
 }
