@@ -31,10 +31,10 @@ const ArticleList = (props) => {
   };
 
   const getArticlesSuccess = (res) => {
-    const { Posts, loadMore, firstName, lastName } = res;
-    const user = { firstName, lastName };
+    const { Posts, loadMore, firstName, lastName, picture } = res;
+    const user = { firstName, lastName, picture };
     const newPost = Posts.map((item, index) => {
-      return item = {...item, user};
+      return item = { ...item, user };
     });
     setArticles([...articles, ...newPost]);
     setIsLoadMore(loadMore);

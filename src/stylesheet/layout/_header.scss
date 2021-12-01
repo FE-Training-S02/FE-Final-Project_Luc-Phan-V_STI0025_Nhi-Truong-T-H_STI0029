@@ -29,7 +29,7 @@
       text-align: center;
       .nav-item {
         @include pxRem(height, 42);
-        @include pxRem(padding, 0 12);
+        @include pxRem(margin, 0 12);
         display: flex;
         justify-content: center;
         align-items: center;

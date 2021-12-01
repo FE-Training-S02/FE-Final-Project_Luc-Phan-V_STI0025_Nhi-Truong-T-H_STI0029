@@ -2,7 +2,7 @@
   @include pxRem(padding, 0 100);
   .user-info {
     @include pxRem(margin-top, -44);
-    @include pxRem(padding, 16 0);
+    @include pxRem(padding, 32 0);
     text-align: center;
     background: map-get($color, white);
     .btn-change {
@@ -27,5 +27,10 @@
   }
   .profile-body {
     @include pxRem(margin, 0 -10);
+  }
+  .notification {
+    @include pxRem(height, 200);
+    text-align: center;
+    background: map-get($color, white);
   }
 }

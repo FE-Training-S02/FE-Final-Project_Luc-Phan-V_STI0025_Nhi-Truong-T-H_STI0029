@@ -160,7 +160,7 @@ const CreateArticle = () => {
             <div className="col-7">
               <label className="col-form-label">Tags</label>
               <Input
-                type="text" register={register('tags', requireValidator())} errors={errors.tags} />
+                type="text" register={register('tags')} />
             </div>
           </div>
           <div className="row justify-content-center">
