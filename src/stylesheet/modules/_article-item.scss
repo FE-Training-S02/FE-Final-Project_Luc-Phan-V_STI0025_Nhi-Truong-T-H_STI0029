@@ -78,8 +78,10 @@
     }
     .article-tag {
       @include pxRem(max-width, 110);
-      @include pxRem(padding, 2 5);
+      @include pxRem(padding, 1 5);
       display: inline-block;
+      border-radius: 5px;
+      text-transform: capitalize;
       background: map-get($color, orange-b);
       font-size: map-get($map: $font-size, $key: sm);
       color: map-get($color, white);
