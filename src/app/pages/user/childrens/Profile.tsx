@@ -18,6 +18,7 @@ const Profile = () => {
   const [id, setId] = useState<any>();
   const paramId = useParams().id;
   useEffect(() => {
+    console.log('aaaa', id);
     const authorId = (pathName === '/users/profile') ? curentUserId : paramId;
     setId(authorId);
     setLoading(true);
@@ -25,6 +26,7 @@ const Profile = () => {
       authorId,
       (res) => {
         setUser(res);
+        console.log(res);
         setLoading(false);
       },
       (error) => {
@@ -32,6 +34,7 @@ const Profile = () => {
       }
     ));
   }, [id]);
+  //useEffect(())
   const followUser = () => {
     const data = {
       'followingId': id
@@ -53,7 +56,10 @@ const Profile = () => {
     <div className="profile">
       <div className="row user-info mb-2">
         <div className="col col-12">
-          <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="avatar-img" />
+          <div className="user-avatar">
+            <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="avatar-img" />
+            {(curentUserId !== id) && <Follow user={user} followUser={followUser} />}
+          </div>
           <div className="mt-3">
             <h4 className="user-name">{user?.firstName} {user?.lastName}</h4>
             {user?.displayName && <h6>(<span>{user?.displayName})</span></h6>}
@@ -67,7 +73,7 @@ const Profile = () => {
                 <Link to="/users/profile/change-password" className="btn btn-primary">Change Password</Link>
               </>
               :
-              (user && <Follow user={user} followUser={followUser} />)
+              ''
             }
           </div>
         </div>

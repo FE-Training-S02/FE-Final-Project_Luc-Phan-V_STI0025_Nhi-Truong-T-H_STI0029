@@ -35,6 +35,20 @@
         }
       }
     }
+    .follow-item {
+      .user-img {
+        @include pxRem(height, 68);
+        display: block;
+        width: 100%;
+        border-radius: 5px;
+      }
+      .user-name {
+        display: block;
+        font-size: map-get($font-size, xs);
+        word-break: break-word;
+        color: map-get($color, black);
+      }
+    }
     .popular-list {
       .popular-item {
         @include pxRem(margin-bottom, 25);
