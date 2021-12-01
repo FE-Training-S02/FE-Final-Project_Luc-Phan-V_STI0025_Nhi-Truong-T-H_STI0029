@@ -73,7 +73,7 @@ const ArticleItem = (props) => {
                   <span className="badge badge-tag">{tags[0]}</span>
                 </> : <></>}
             </h4>
-            <p className="create-at">{convertDate(createdAt)}</p>
+            <p className="txt-date-time">{convertDate(createdAt)}</p>
           </div>
         </div>
         <h3><Link to={`/articles/${id}`} className="article-title">{title}</Link></h3>
