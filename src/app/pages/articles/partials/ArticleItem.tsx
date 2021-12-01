@@ -60,15 +60,15 @@ const ArticleItem = (props) => {
         </div>
         : ''}
       <div className="article-body pd-5">
-        <div className="article-author mb-3">
+        <div className="article-info mb-3">
           <img src={user.picture || "./assets/icons/user.png"} alt="avatar" className="author-img" />
           <div className="author-info">
-            <h4>
-              <span><Link className="author-name txt-uppercase" to={`/users/${userId}`}>{user.firstName} {user.lastName}</Link></span>
+            <h4 className="align-items-center">
+              <Link className="author-name txt-truncate" to={`/users/${userId}`}>{user.displayName || `${user.firstName} ${user.lastName}`}</Link>
               {tags[0] ?
                 <>
                   <span>&nbsp;-&nbsp;</span>
-                  <span className="article-tag">{tags[0]}</span>
+                  <span className="article-tag txt-truncate">{tags[0]}</span>
                 </> : <></>}
             </h4>
             <p className="txt-date-time">{convertDate(createdAt)}</p>
