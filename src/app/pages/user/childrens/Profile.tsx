@@ -18,7 +18,7 @@ const Profile = () => {
   const [id, setId] = useState<any>();
   const paramId = useParams().id;
   useEffect(() => {
-    console.log('aaaa', id);
+    window.scroll({ top: 0, left: 0 });
     const authorId = (pathName === '/users/profile') ? curentUserId : paramId;
     setId(authorId);
     setLoading(true);
@@ -26,7 +26,6 @@ const Profile = () => {
       authorId,
       (res) => {
         setUser(res);
-        console.log(res);
         setLoading(false);
       },
       (error) => {
@@ -57,7 +56,7 @@ const Profile = () => {
       <div className="row user-info mb-2">
         <div className="col col-12">
           <div className="user-avatar">
-            <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="avatar-img" />
+            <img src={user?.picture || "./assets/images/user.png"} alt="avatar" className="avatar-img" />
             {(curentUserId !== id) && <Follow user={user} followUser={followUser} />}
           </div>
           <div className="mt-3">

@@ -105,6 +105,7 @@ const CreateArticle = () => {
     }
   };
   useEffect(() => {
+    window.scroll({ top: 0, left: 0 });
     if (id) {
       setLoading(true);
       dispatch(getArticleDetail(
