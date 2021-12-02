@@ -13,7 +13,7 @@ body {
   color: map-get($color, black);
   line-height: 1.7;
   letter-spacing: 0.8px;
-  background-color: #f8f8f8;
+  background-color: map-get($color, white);
   overscroll-behavior: contain;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

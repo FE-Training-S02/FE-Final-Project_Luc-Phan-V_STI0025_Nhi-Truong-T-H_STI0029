@@ -32,7 +32,7 @@ const CreateArticle = () => {
     trigger,
     setValue,
     formState: { isValid, errors }
-  } = useForm({ mode: 'onChange', reValidateMode: 'onChange' });
+  } = useForm({ mode: 'onTouched', reValidateMode: 'onChange' });
   const statusOptions = [
     { value: 'public', name: 'Public' },
     { value: 'private', name: 'Private' }
@@ -117,11 +117,11 @@ const CreateArticle = () => {
             setLoading(false);
           }
           else {
-            setValue('description', res.description);
-            setValue('title', res.title);
-            setValue('description', res.description);
-            setValue('tags', res.tags[0]);
-            setValue('status', res.status);
+            setValue('description', res.description, { shouldValidate:true });
+            setValue('title', res.title, { shouldValidate:true });
+            setValue('description', res.description, { shouldValidate:true });
+            setValue('tags', res.tags[0], { shouldValidate:true });
+            setValue('status', res.status, { shouldValidate:true });
             setContent(res.content);
             setArticle(res);
             setUrlImage(res.cover);
@@ -212,18 +212,8 @@ const CreateArticle = () => {
                 onChange={(event, editor) => {
                   const data = editor.getData();
                   setContent(data);
-                  // const valueLength = viewToPlainText(editor.editing.view.document.getRoot()).length;
-                  // setError("content", {
-                  //   types: {
-                  //     required: true,
-                  //     message: "This is required"
-                  //   }
-                  // });
                 }}
               />
-              {/* {errors.content && errors.content.types.required && (
-                  <span className="msg-error-ck">{errors.content.types.message}</span>
-                )} */}
             </div>
           </div>
           <div className="row form-btn-group">

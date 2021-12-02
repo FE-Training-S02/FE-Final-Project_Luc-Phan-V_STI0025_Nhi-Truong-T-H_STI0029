@@ -9,7 +9,7 @@
   margin: 0 auto;
 }
 .grid-box {
-  border: 1px solid #efefef;
+  border: 1px solid map-get($color, grey-e);
   background: #fff;
   border-radius: 6px;
 }
