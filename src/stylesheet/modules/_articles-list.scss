@@ -9,3 +9,14 @@
     font-size: map-get($font-size, sm);
   }
 }
+.blog-title {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+.blog-description {
+  margin: 0 20%;
+  text-align: center;
+  font-size: map-get($font-size, normal);
+  color: map-get($color, grey-c);
+}
