@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { emailValidator, passwordValidator } from '@app/shared/validators/form.validator';
+import { emailValidator, requireValidator } from '@app/shared/validators/form.validator';
 import { signIn } from '../auth.middleware';
 import Input from '@app/shared/components/partials/Input';
 import Button from '@app/shared/components/partials/Button';
@@ -56,7 +56,7 @@ const Login = () => {
               type="password"
               placeholder="Password"
               label="Password"
-              register={register('password', passwordValidator())}
+              register={register('password', requireValidator())}
               errors={errors.password} />
             <div className="btn-group">
               <Button
