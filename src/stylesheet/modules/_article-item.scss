@@ -5,6 +5,8 @@
     display: block;
     @include pxRem(height, 250);
     width: 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
   }
   .dropdown {
     @include pxRem(top, 10);
@@ -62,6 +64,8 @@
       @include pxRem(height, 50);
       @include pxRem(margin-right, 8);
       border-radius: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
     }
     .author-info {
       text-align: left;

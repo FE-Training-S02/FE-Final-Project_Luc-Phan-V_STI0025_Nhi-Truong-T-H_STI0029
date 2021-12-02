@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import JwtHelper from '@app/core/helpers/jwtHelper';
 import Button from '@app/shared/components/partials/Button';
@@ -7,7 +7,7 @@ import { birthDayValidator, firstNameValidator, lastNameValidator, phoneValidato
 import Select from '@app/shared/components/partials/Select';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { useDispatch } from 'react-redux';
-import { getUserInfo, updateUserInfo } from '../user.middleware';
+import { getUserInfo, updateUserInfo, uploadImage } from '../user.middleware';
 import { useAlert } from '@app/shared/contexts/alert.context';
 import { saveUserInfo } from '@app/auth/auth.actions';
 
@@ -23,6 +23,7 @@ const EditProfile = () => {
   const { setLoading } = useLoading();
   const { setAlert } = useAlert();
   const dispatch = useDispatch();
+  const [urlImage, setUrlImage] = useState();
   const genderOptions = [
     { value: 'female', name: 'Female' },
     { value: 'male', name: 'Male' },
@@ -40,14 +41,30 @@ const EditProfile = () => {
         setValue('phone', res.phone);
       },
       (error) => {
-        console.log(error);
+        setLoading(false);
       }
     ));
   }, []);
+  const handleChange = (e) => {
+    const file = e.target.files[0];
+    setLoading(true);
+    dispatch(uploadImage(file,
+      (res) => {
+        setUrlImage(res.url);
+        setLoading(false);
+      },
+      (error) => {
+        setLoading(false);
+      }))
+  };
   const onSubmit = (data) => {
+    const user = {
+      ...data,
+      picture: urlImage
+    }
     setLoading(true);
     dispatch(updateUserInfo(
-      data,
+      user,
       (res) => {
         setLoading(false);
         setAlert({
@@ -64,20 +81,24 @@ const EditProfile = () => {
         });
       })
     )
-
   };
   return (
     <div>
       <h2 className="page-title">Edit profile</h2>
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="row">
-            {/* <div className="col-3">
+          <div className="row justify-content-center mb-10">
+            {/* <div className="user-avatar">
+            <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="avatar-img" />
+            
+          </div> */}
+            <div className="col col-3 d-flex justify-content-center">
               <div className="avatar-image">
-              <input type="file" name="image" id="image" accept="image/*" />
-
+                {urlImage ? <img src={urlImage} alt="avatar" className="avatar-img" /> : <img src="./assets/images/user.png" alt="avatar" className="avatar-img" />}
+                <input type="file" name="image" id="input-image" className="input-image" accept="image/*" onChange={handleChange} />
+                <label htmlFor="input-image" className="select-image"> <i className="fas fa-camera"></i></label>
               </div>
-            </div> */}
+            </div>
           </div>
           <div className="row justify-content-center">
             <div className="col col-3">

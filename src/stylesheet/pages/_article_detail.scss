@@ -30,6 +30,8 @@
             @include pxRem(height, 48);
             border-radius: 50%;
             vertical-align: middle;
+            aspect-ratio: 1/1;
+            object-fit: cover;
           }
         }
         .article-author-left {
@@ -120,6 +122,7 @@
     @include pxRem(height, 480);
     display: block;
     width: 100%;
+    object-fit: cover;
   }
   .article-body {
     .article-content {

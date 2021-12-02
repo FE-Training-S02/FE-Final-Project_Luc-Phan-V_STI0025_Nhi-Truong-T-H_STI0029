@@ -63,7 +63,7 @@ const ArticleItem = (props) => {
         : ''}
       <div className="article-body pd-5">
         <div className="article-info mb-3">
-          <img src={user.picture || "./assets/icons/user.png"} alt="avatar" className="author-img" />
+          <img src={user.picture || "./assets/images/user.png"} alt="avatar" className="author-img" />
           <div className="author-info">
             <h4 className="align-items-center">
               <Link className="author-name txt-truncate" to={`/users/${userId}`}>{user.displayName || `${user.firstName} ${user.lastName}`}</Link>
@@ -79,7 +79,7 @@ const ArticleItem = (props) => {
           {tags[0] ?
             (tags.slice(0, 5)).map((x) =>
               <span key={x} className="badge badge-tag">{x}</span>
-            ) : <></>}
+            ) : <span className="badge"></span>}
         </div>
         <div className="article-interact">
           <div className="list-icon-interact">
