@@ -5,4 +5,7 @@
     background: map-get($color, primary);
     color: map-get($color, white);
   }
+  .none-articles {
+    font-size: map-get($font-size, sm);
+  }
 }

@@ -23,11 +23,14 @@ const FollowList = (props) => {
     ))
   }, [id])
   return (
+    (followsList.length !==0) ?
     <ul className="row pd-5">
        {followsList.map((item: any, index: any) =>
           <FollowItem key={index} user={item}/>
         )}
     </ul>
+    :
+    <p className="none-follower pd-10">{type === 'followers' ? "Don't have any followers" : "Don't have any followings"}</p>
   );
 };
 
