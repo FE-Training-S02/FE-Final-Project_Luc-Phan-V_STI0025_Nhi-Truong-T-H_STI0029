@@ -2,14 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import purify from "dompurify";
-import { useDialog } from '@app/shared/contexts/dialog.context';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { getArticleDetail, getCommentsList, postFollow, getAuthor } from '../article.middleware';
-import { deleteArticle } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
 import { Like } from '../partials/Like';
 import { CommentsList } from '../partials/CommentList';
+import { useDialog } from '@app/shared/contexts/dialog.context';
+import { deleteArticle } from '../article.middleware';
 import { convertDate } from '@app/shared/pipes/convert-date';
 import { Follow } from '../partials/Follow';
 
@@ -25,6 +25,7 @@ const ArticleDetail = () => {
   const { setDialog, onClosed } = useDialog();
   const navigate = useNavigate();
   useEffect(() => {
+    window.scroll({ top: 0, left: 0 });
     if (id) {
       setLoading(true);
       dispatch(getArticleDetail(
