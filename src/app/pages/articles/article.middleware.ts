@@ -1,3 +1,4 @@
+import axios from "axios";
 import { ApiService } from "@app/core/services/api.service";
 
 const apiService = new ApiService();
@@ -52,7 +53,8 @@ export const deleteArticle = (id, resolve, rejects) => {
 export const uploadImage = (file, resolve, reject) => {
   return () => {
     apiService.get([`/signatures?type_upload=cover-post&file_name=${file.name}&file_type=${file.type}`])
-      .then((res) => {
+      .then((res: any) => {
+        axios.put(res.signedRequest, file);
         resolve(res);
       })
       .catch(error => {

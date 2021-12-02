@@ -143,7 +143,7 @@ const ArticleDetail = () => {
                 <div className="article-author">
                   <div className="article-author-img">
                     <Link to={`/users/${user?.id}`}>
-                      <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="author-img" />
+                      <img src={user?.picture || "./assets/images/user.png"} alt="avatar" className="author-img" />
                     </Link>
                   </div>
                   <div className="article-author-left">

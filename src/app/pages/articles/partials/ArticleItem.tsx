@@ -63,15 +63,11 @@ const ArticleItem = (props) => {
         : ''}
       <div className="article-body pd-5">
         <div className="article-info mb-3">
-          <img src={user.picture || "./assets/icons/user.png"} alt="avatar" className="author-img" />
+          <img src={user.picture || "./assets/images/user.png"} alt="avatar" className="author-img" />
           <div className="author-info">
             <h4 className="align-items-center">
               <Link className="author-name txt-truncate" to={`/users/${userId}`}>{user.displayName || `${user.firstName} ${user.lastName}`}</Link>
-              {tags[0] ?
-                <>
-                  <span>&nbsp;-&nbsp;</span>
-                  <span className="badge badge-tag">{tags[0]}</span>
-                </> : <></>}
+
             </h4>
             <p className="txt-date-time">{convertDate(createdAt)}</p>
           </div>
@@ -79,6 +75,12 @@ const ArticleItem = (props) => {
         <h3><Link to={`/articles/${id}`} className="article-title">{title}</Link></h3>
         <p className="article-content">{description}</p>
         <Link to={`/articles/${id}`} className="read-more">Read more...</Link>
+        <div className="article-tags">
+          {tags[0] ?
+            (tags.slice(0, 5)).map((x) =>
+              <span key={x} className="badge badge-tag">{x}</span>
+            ) : <span className="badge"></span>}
+        </div>
         <div className="article-interact">
           <div className="list-icon-interact">
             <Like key={id} id={id} like={likes} liked={isLiked} user={curentUserId} />

@@ -69,7 +69,7 @@ const Profile = () => {
             </div>
             {(curentUserId === id) ?
               <>
-                <Link to="/" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
+                <Link to="/users/profile/edit-profile" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
                 <Link to="/users/profile/change-password" className="btn btn-primary">Change Password</Link>
               </>
               :

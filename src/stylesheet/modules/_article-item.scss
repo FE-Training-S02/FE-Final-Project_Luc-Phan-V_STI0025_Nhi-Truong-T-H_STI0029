@@ -5,6 +5,8 @@
     display: block;
     @include pxRem(height, 250);
     width: 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
   }
   .dropdown {
     @include pxRem(top, 10);
@@ -62,6 +64,8 @@
       @include pxRem(height, 50);
       @include pxRem(margin-right, 8);
       border-radius: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
     }
     .author-info {
       text-align: left;
@@ -78,6 +82,7 @@
     }
   }
   .article-body {
+    @include pxRem(height, 335);
     letter-spacing: 0.2px;
     .article-title {
       @include pxRem(min-height, 56);
@@ -105,6 +110,14 @@
       text-align: left;
       font-size: map-get($font-size, sm);
       color: map-get($color, primary);
+    }
+    .article-tags {
+      display: -webkit-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      text-align: left;
     }
   }
   .article-interact {
