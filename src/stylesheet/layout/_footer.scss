@@ -1,6 +1,6 @@
 .section-footer {
-  @include pxRem(height, 190);
-  @include pxRem(padding, 45 0 20);
+  @include pxRem(height, 175);
+  @include pxRem(padding, 30 0 15);
   @include pxRem(margin-top, 10);
   @include pxRem(line-height, 24);
   position: absolute;

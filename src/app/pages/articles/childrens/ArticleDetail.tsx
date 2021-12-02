@@ -120,7 +120,7 @@ const ArticleDetail = () => {
       id,
       (res) => {
         onClosed();
-        navigate('/user')
+        navigate('/users/profile');
         setLoading(false);
       },
       (error) => {

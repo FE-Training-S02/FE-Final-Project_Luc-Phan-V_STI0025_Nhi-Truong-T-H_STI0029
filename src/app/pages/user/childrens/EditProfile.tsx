@@ -37,6 +37,7 @@ const EditProfile = () => {
         setValue('firstName', res.firstName);
         setValue('lastName', res.lastName);
         setValue('displayName', res.displayName);
+        setUrlImage(res.picture);
         setValue('dob', res.dob);
         setValue('phone', res.phone);
       },
@@ -121,28 +122,27 @@ const EditProfile = () => {
                 errors={errors.displayName} />
             </div>
             <div className="col col-3">
-              <label className="col-form-label">Birthday</label>
+              <label className="col-form-label">Phone</label>
               <Input
-                type="date"
-                register={register('dob', birthDayValidator())}
-                errors={errors.dob} />
+                type="text"
+                register={register('phone', phoneValidator())}
+                errors={errors.phone} />
             </div>
           </div>
           <div className="row justify-content-center">
             <div className="col col-3">
               <label className="col-form-label">Gender</label>
               <Select
-                label="Gender"
                 listOptions={genderOptions}
                 defaultValue={genderOptions[0]}
                 register={register('gender')} />
             </div>
             <div className="col col-3">
-              <label className="col-form-label">Phone</label>
+              <label className="col-form-label">Birthday</label>
               <Input
-                type="text"
-                register={register('phone', phoneValidator())}
-                errors={errors.phone} />
+                type="date"
+                register={register('dob', birthDayValidator())}
+                errors={errors.dob} />
             </div>
           </div>
           <div className="row form-btn-group">
