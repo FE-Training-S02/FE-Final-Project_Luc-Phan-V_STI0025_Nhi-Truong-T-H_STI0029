@@ -12,7 +12,7 @@ const ArticleList = () => {
   const [page, setPage] = useState(1);
   const [isLoadMore, setIsLoadMore] = useState(false);
   const { setLoading } = useLoading();
-  const disPatch = useDispatch();
+  const dispatch = useDispatch();
   const authStorage = new AuthStorageService();
   const token = authStorage.getToken();
   let endPoint = '/posts/public/';
@@ -29,7 +29,7 @@ const ArticleList = () => {
   };
 
   const getArticles = (page) => {
-    disPatch(getListArticles(endPoint, page, getArticlesSuccess, getArticlesError));
+    dispatch(getListArticles(endPoint, page, getArticlesSuccess, getArticlesError));
   };
   const getArticlesSuccess = (res) => {
     const { data, loadMore } = res;
