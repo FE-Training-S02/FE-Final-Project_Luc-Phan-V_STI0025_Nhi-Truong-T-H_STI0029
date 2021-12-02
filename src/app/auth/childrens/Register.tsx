@@ -18,7 +18,7 @@ const Register = () => {
     reset,
     watch,
     formState: { isValid, errors }
-  } = useForm({ mode: 'onChange' });
+  } = useForm({ mode: 'onTouched' });
   const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch('password', '');

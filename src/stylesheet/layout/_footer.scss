@@ -3,6 +3,7 @@
   @include pxRem(padding, 30 0 15);
   @include pxRem(margin-top, 10);
   @include pxRem(line-height, 24);
+  border-top: 1px solid map-get($color, grey-e);
   position: absolute;
   bottom: 0;
   right: 0;

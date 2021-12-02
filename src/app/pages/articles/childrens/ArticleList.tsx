@@ -44,19 +44,27 @@ const ArticleList = () => {
     setArticles(aritclelist);
   }
   return (
-    <div className="row">
-      <section className="section-articles-list col col-8">
-        <ul className="row article-list">
-          {articles.map((item: Post, index: any) =>
-            <li className="col col-6" key={item.id}>
-              <ArticleItem post={item} hadleDeleteArticle={hadleDeleteArticle} list={articles} />
-            </li>
-          )}
-        </ul>
-        {isLoadMore && <button className="btn-load-more" onClick={loadMore}>Load more</button>}
-      </section>
-      <Sidebar />
-    </div>
+    <>
+      <h1 className="blog-title">The ST <span className="txt-primary">Blog</span></h1>
+      <p className="blog-description mb-10">The latest updates, stories, on product management, engineering, design, culture and many more... from the ST team.</p>
+      {articles.length !== 0 ?
+        <div className="row">
+          <section className="section-articles-list col col-8">
+            <ul className="row article-list">
+              {articles.map((item: Post, index: any) =>
+                <li className="col col-6" key={item.id}>
+                  <ArticleItem post={item} hadleDeleteArticle={hadleDeleteArticle} list={articles} />
+                </li>
+              )}
+            </ul>
+            {isLoadMore && <button className="btn btn-primary" onClick={loadMore}>Load more</button>}
+          </section>
+          <Sidebar />
+        </div>
+        :
+        <p className="none-articles mt-5">No articles yet!</p>
+      }
+    </>
   );
 };
 

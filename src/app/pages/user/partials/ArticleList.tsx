@@ -53,14 +53,20 @@ const ArticleList = (props) => {
     <div className="row">
       <Sidebar id={id}/>
       <section className="section-articles-list col col-8">
-        <ul className="row article-list">
-          {articles.map((item: Post, index: any) =>
-            <li className="col col-12" key={item.id}>
-              <ArticleItem post={item} hadleDeleteArticle={hadleDeleteArticle} list={articles} />
-            </li>
-          )}
-        </ul>
-        {isLoadMore && <button className="btn-load-more" onClick={loadMore}>Load more</button>}
+        {(articles.length !== 0) ?
+          <>
+            <ul className="row article-list">
+              {articles.map((item: Post, index: any) =>
+                <li className="col col-12" key={item.id}>
+                  <ArticleItem post={item} hadleDeleteArticle={hadleDeleteArticle} list={articles} />
+                </li>
+              )}
+            </ul>
+            {isLoadMore && <button className="btn-load-more" onClick={loadMore}>Load more</button>}
+          </>
+          :
+          <p className="none-articles mt-5">No articles yet!</p>
+        }
       </section>
     </div>
   );

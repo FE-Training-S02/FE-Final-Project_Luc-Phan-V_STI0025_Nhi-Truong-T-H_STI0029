@@ -18,8 +18,8 @@ const EditProfile = () => {
     register,
     setValue,
     handleSubmit,
-    formState: { errors }
-  } = useForm();
+    formState: { isValid, errors }
+  } = useForm({ mode: 'onTouched' });
   const { setLoading } = useLoading();
   const { setAlert } = useAlert();
   const dispatch = useDispatch();
@@ -34,12 +34,13 @@ const EditProfile = () => {
     dispatch(getUserInfo(id,
       (res) => {
         setLoading(false);
-        setValue('firstName', res.firstName);
-        setValue('lastName', res.lastName);
-        setValue('displayName', res.displayName);
+        setValue('firstName', res.firstName, { shouldValidate: true });
+        setValue('lastName', res.lastName, { shouldValidate: true });
+        setValue('displayName', res.displayName, { shouldValidate: true });
         setUrlImage(res.picture);
-        setValue('dob', res.dob);
-        setValue('phone', res.phone);
+        setValue('dob', res.dob, { shouldValidate: true });
+        setValue('phone', res.phone, { shouldValidate: true });
+        setValue('gender', res.gender, { shouldValidate: true });
       },
       (error) => {
         setLoading(false);
@@ -150,7 +151,9 @@ const EditProfile = () => {
               <div className="btn-group">
                 <Button
                   className="btn btn-primary btn-block"
-                  type='submit' >Update Profile</Button>
+                  type='submit'
+                  disabled={!isValid}
+                   >Update Profile</Button>
               </div>
             </div>
           </div>

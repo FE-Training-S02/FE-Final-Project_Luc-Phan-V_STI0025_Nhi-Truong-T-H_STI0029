@@ -1,5 +1,6 @@
 import moment from "moment";
 
 export const convertDateFromNow = (value) => {
-  return moment(value, "YYYYMMDD").fromNow();
+  let time = moment(value).utc();
+  return moment(time, "YYYYMMDD").fromNow();
 }
