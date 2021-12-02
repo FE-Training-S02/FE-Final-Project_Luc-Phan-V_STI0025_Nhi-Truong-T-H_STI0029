@@ -3,6 +3,7 @@
   .user-info {
     @include pxRem(margin-top, -44);
     @include pxRem(padding, 32 0);
+    border: 1px solid map-get($color, grey-e);
     text-align: center;
     background: map-get($color, white);
     .btn-change {
