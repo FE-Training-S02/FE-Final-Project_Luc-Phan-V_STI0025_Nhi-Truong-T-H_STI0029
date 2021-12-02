@@ -55,7 +55,6 @@ export const uploadImage = (file, resolve, reject) => {
     apiService.get([`/signatures?type_upload=cover-post&file_name=${file.name}&file_type=${file.type}`])
       .then((res: any) => {
         axios.put(res.signedRequest, file);
-        console.log(res.signedRequest);
         resolve(res);
       })
       .catch(error => {

@@ -88,10 +88,6 @@ const EditProfile = () => {
       <div className="form-wrapper">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="row justify-content-center mb-10">
-            {/* <div className="user-avatar">
-            <img src={user?.picture || "./assets/icons/user.png"} alt="avatar" className="avatar-img" />
-            
-          </div> */}
             <div className="col col-3 d-flex justify-content-center">
               <div className="avatar-image">
                 {urlImage ? <img src={urlImage} alt="avatar" className="avatar-img" /> : <img src="./assets/images/user.png" alt="avatar" className="avatar-img" />}
@@ -148,22 +144,6 @@ const EditProfile = () => {
                 register={register('phone', phoneValidator())}
                 errors={errors.phone} />
             </div>
-          </div>
-          <div className="row justify-content-center">
-            {/* <div className="col col-6">
-              <label className="col-form-label">Upload image</label>
-              <div className="form-group">
-                <div className="input-group">
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="form-control"
-                    {...register('cover', { required: { value: true, message: 'This field is required' } })}
-                  />
-                  {errors.cover?.type === 'required' && <span className="msg-error">{errors.cover.message}</span>}
-                </div>
-              </div>
-            </div> */}
           </div>
           <div className="row form-btn-group">
             <div className="col col-3">
