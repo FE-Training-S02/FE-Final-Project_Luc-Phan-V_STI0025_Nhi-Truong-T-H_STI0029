@@ -3,9 +3,25 @@
   .avatar-comment {
     @include pxRem(width, 48);
     @include pxRem(height, 48);
+    border-radius: 50%;
   }
   .comment-body {
-    @include pxRem(padding, 0 16);
+    width: 100%;
+    @include pxRem(padding, 8);
     word-break: break-word;
+    background-color: #f2f2f2;
+    border-radius: 5px 20px 15px;
+    .comment-author {
+      display: flex;
+      align-items: center;
+      .user-name {
+        font-size: map-get($font-size, sm);
+      }
+      flex-direction: row;
+      justify-content: space-between
+    }
+    .comment-content {
+      font-size: map-get($font-size, sm);
+    }
   }
 }
