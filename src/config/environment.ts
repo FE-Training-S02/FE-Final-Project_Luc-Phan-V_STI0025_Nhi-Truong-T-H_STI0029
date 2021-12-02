@@ -1,4 +1,4 @@
 export const environment = {
   apiBaseUrl: 'https://vast-lowlands-08945.herokuapp.com/api/v1',
-  clientBaseUrl: 'http://localhost:3000'
+  clientBaseUrl: 'https://st-blog-2021.web.app'
 };
