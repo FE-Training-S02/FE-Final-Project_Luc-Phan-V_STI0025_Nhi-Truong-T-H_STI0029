@@ -1,5 +1,11 @@
 .form-wrapper {
   width: 100%;
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
   .form-group {
     @include pxRem(margin-bottom, 15);
     position: relative;
@@ -17,6 +23,12 @@
           border: 1px solid #f4aabd;
         }
       }
+      input[type="file"] {
+        &.form-control {
+          padding: 0;
+          border: none;
+        }
+      }
       .form-label {
         @include pxRem(top, -9);
         @include pxRem(left, 20);
@@ -28,7 +40,7 @@
       }
       .msg-error {
         @include pxRem(margin-top, 8);
-        @include pxRem(padding, 0.5 10);
+        @include pxRem(padding, 0 10);
         position: relative;
         display: block;
         border-radius: 5px;
@@ -50,6 +62,10 @@
       select {
         &.form-control {
           @include pxRem(padding, 14 12);
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          background: url("/assets/icons/arrow-down.svg") 97% 9px no-repeat;
+          background-color: map-get($map: $color, $key: white);
         }
       }
       .form-control:focus ~ .form-label {
@@ -60,10 +76,48 @@
       }
     }
   }
+  .col-form-label {
+    @include pxRem(margin-bottom, 5);
+    display: block;
+  }
+  .msg-error-ck {
+    @include pxRem(margin-top, 8);
+    @include pxRem(padding, 0 10);
+    position: relative;
+    display: block;
+    border-radius: 5px;
+    font-size: map-get($map: $font-size, $key: xs);
+    color: #a83232;
+    background-color: #ffdbdc;
+    &::after {
+      content: "";
+      position: absolute;
+      left: 5%;
+      bottom: 100%;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid #ffdbdc;
+    }
+  }
   .btn-group {
     @include pxRem(margin-bottom, 20);
     p {
       text-align: center;
     }
+  }
+}
+input[type="file"]::file-selector-button {
+  @include pxRem(padding, 12 25);
+  cursor: pointer;
+  border-radius: 20px;
+  background-color: transparent;
+  border: 1px solid map-get($map: $color, $key: primary);
+  color: map-get($map: $color, $key: primary);
+  font-weight: 600;
+  &:hover {
+    background-color: map-get($map: $color, $key: primary);
+    color: map-get($map: $color, $key: white);
   }
 }

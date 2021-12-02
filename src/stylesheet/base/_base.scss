@@ -20,6 +20,20 @@ body {
   margin: 0;
   padding: 0;
 }
+.wrapper {
+  // position: relative;
+  min-height: 100vh;
+}
+.auth-page {
+  min-height: 100vh;
+  background-color: map-get($map: $color, $key: white);
+}
+input {
+  font-family: $font-body;
+}
+textarea {
+  font-family: $font-body;
+}
 image {
   max-width: 100%;
   width: 100%;
@@ -31,7 +45,7 @@ h4,
 h5,
 h6 {
   font-weight: 700;
-  color: #161616;
+  color: map-get($map: $color, $key: black-a);
 }
 h1 {
   font-size: map-get($map: $font-size, $key: xxxl);
@@ -61,4 +75,13 @@ a {
 button {
   cursor: pointer;
   border: none;
+}
+.d-flex {
+  display: flex;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-end {
+  justify-content: flex-end;
 }

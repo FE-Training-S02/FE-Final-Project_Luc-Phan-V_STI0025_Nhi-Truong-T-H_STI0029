@@ -3,7 +3,9 @@ import { Outlet } from 'react-router-dom';
 
 const Articles = () => {
   return (
-    <Outlet />
+    <>
+      <Outlet />
+    </>
   );
 };
 

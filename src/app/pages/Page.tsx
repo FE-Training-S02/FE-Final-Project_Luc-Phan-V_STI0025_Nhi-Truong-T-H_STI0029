@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { Header } from '@app/shared/components/layout';
 import { Footer } from '@app/shared/components/layout';
 import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
-import { loadUser } from '@app/auth/auth.middleware';
+import { getUserInfo } from '@app/auth/auth.middleware';
 
 const Page = () => {
   const dispatch = useDispatch();
@@ -13,18 +13,20 @@ const Page = () => {
       return;
     }
     else {
-      dispatch(loadUser());
+      dispatch(getUserInfo());
     }
   }, []);
   return (
     <>
-      <Header />
-      <div className="page-container">
-        <div className="container">
-          <Outlet />
+      <div className="wrapper">
+        <Header />
+        <div className="page-container">
+          <div className="container">
+            <Outlet />
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

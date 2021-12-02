@@ -1,5 +1,6 @@
 .page-container {
-  @include pxRem(padding, 100 0 30);
+  @include pxRem(padding, 100 0 300);
+  min-height: calc(100% - (65px + 190px));
 }
 .container {
   max-width: 1172px;
@@ -10,12 +11,16 @@
 .grid-box {
   border: 1px solid #efefef;
   background: #fff;
+  border-radius: 6px;
 }
 .row {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   margin: 0 -10px;
+}
+.row-ck {
+  @include pxRem(padding-bottom, 40);
 }
 .col {
   padding-left: 10px;

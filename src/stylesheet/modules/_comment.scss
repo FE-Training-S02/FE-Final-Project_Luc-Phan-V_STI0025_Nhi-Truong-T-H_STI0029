@@ -1,0 +1,28 @@
+.comment-item {
+  display: flex;
+  .avatar-comment {
+    @include pxRem(width, 48);
+    @include pxRem(height, 48);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .comment-body {
+    @include pxRem(padding, 8);
+    width: 100%;
+    word-break: break-word;
+    background-color: #f2f2f2;
+    border-radius: 5px 20px 15px;
+    .comment-author {
+      display: flex;
+      align-items: center;
+      .user-name {
+        font-size: map-get($font-size, sm);
+      }
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .comment-content {
+      font-size: map-get($font-size, sm);
+    }
+  }
+}

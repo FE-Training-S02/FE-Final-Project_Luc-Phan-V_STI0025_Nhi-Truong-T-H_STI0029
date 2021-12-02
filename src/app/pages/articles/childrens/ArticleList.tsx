@@ -1,47 +1,55 @@
 import React, { useState, useEffect } from 'react';
 import ArticleItem from '../partials/ArticleItem';
-import { getArticles } from '../article.middleware';
+import { getListArticles } from '../article.middleware';
 import { Post } from '@app/shared/models/post';
 import { useDispatch } from 'react-redux';
 import { useLoading } from '@app/shared/contexts/loading.context';
 import Sidebar from '@app/shared/components/layout/Sidebar';
+import { AuthStorageService } from '@app/core/services/authStorage.service';
 
 const ArticleList = () => {
   const [articles, setArticles] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [isLoadMore, setIsLoadMore] = useState(false);
   const { setLoading } = useLoading();
-  const disPatch = useDispatch();
+  const dispatch = useDispatch();
+  const authStorage = new AuthStorageService();
+  const token = authStorage.getToken();
+  let endPoint = '/posts/public/';
+  token ? (endPoint = '/posts/') : (endPoint = '/posts/public/');
+  useEffect(() => {
+    setLoading(true);
+    getArticles(page);
+  }
+    , []);
+  const loadMore = () => {
+    setLoading(true);
+    getArticles(page + 1);
+    setPage(pre => pre + 1);
+  };
 
-  const getArticlesPublicSuccess = (res) => {
+  const getArticles = (page) => {
+    dispatch(getListArticles(endPoint, page, getArticlesSuccess, getArticlesError));
+  };
+  const getArticlesSuccess = (res) => {
     const { data, loadMore } = res;
     setArticles([...articles, ...data]);
     setIsLoadMore(loadMore);
     setLoading(false);
   };
-  const getArticlesPublicError = (error) => {
+  const getArticlesError = (error) => {
     setLoading(false);
   };
-  function getArticlesPublic(page) {
-    disPatch(getArticles(getArticlesPublicSuccess, getArticlesPublicError, page));
-  };
-  useEffect(() => {
-    setLoading(true);
-    getArticlesPublic(page);
+  const hadleDeleteArticle = (aritclelist) => {
+    setArticles(aritclelist);
   }
-    , []);
-  const loadMore = () => {
-    setLoading(true);
-    getArticlesPublic(page + 1);
-    setPage(page + 1);
-  };
   return (
     <div className="row">
-      <section className="section-articles-list col-8">
+      <section className="section-articles-list col col-8">
         <ul className="row article-list">
           {articles.map((item: Post, index: any) =>
             <li className="col col-6" key={item.id}>
-              <ArticleItem post={item} />
+              <ArticleItem post={item} hadleDeleteArticle={hadleDeleteArticle} list={articles} />
             </li>
           )}
         </ul>

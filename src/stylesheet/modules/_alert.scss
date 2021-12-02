@@ -1,16 +1,27 @@
 .alert {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &.alert-error {
-    border-radius: 5px;
-    color: #eb5757;
-    background-color: #ffdbdc;
+  @include pxRem(top, 75);
+  @include pxRem(right, 20);
+  @include pxRem(padding, 10 20);
+  position: fixed;
+  z-index: 100;
+  border-radius: 3px;
+  &.alert-danger {
+    color: map-get($map: $color, $key: red-a);
+    background-color: map-get($map: $color, $key: pink);
+    border-color: map-get($map: $color, $key: pink);
   }
   &.alert-success {
-    align-items: center;
-    border-radius: 5px;
-    color: #fff;
-    background-color: #198754;
+    color: map-get($map: $color, $key: green-a);
+    background-color: map-get($map: $color, $key: success);
+    border-color: map-get($map: $color, $key: green-b);
+  }
+  .btn-alert-close {
+    float: right;
+    background: transparent;
+    font-size: map-get($map: $font-size, $key: xxxl);
+    font-weight: 700;
+    line-height: 1.1;
+    text-shadow: 0 1px 0 map-get($map: $color, $key: white);
+    opacity: 0.5;
   }
 }

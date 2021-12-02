@@ -1,5 +1,7 @@
 .button-google-login {
+  display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   text-decoration: none;
   background-color: white;
@@ -7,7 +9,7 @@
   cursor: pointer;
   .button-title {
     font-weight: bolder;
-    color: #161849;
+    color: map-get($map: $color, $key: black-a);
   }
   .icon {
     height: 20px;
@@ -15,4 +17,3 @@
     margin-right: 10px;
   }
 }
-

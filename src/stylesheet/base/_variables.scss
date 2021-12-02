@@ -9,25 +9,40 @@ $breakpoints: (
 );
 
 $color: (
-  primary: #82af7c,
+  primary: #0f730c,
+  secondary: #8d8d8d,
+  blue: #007bff,
   orange-a: #a17143,
-  orange-b: #d2ae7f,
   grey-a: #f3f3f3,
-  grey-b: #8d8d8d,
+  grey-b: rgba(0, 0, 0, 0.54),
   grey-c: #5e5e62,
   grey-d: #fafafa,
   grey-e: #26272b,
-  black: #000000,
+  grey-f: #e8e8e8,
+  grey-g: #6c757d,
+  black: #292929,
+  black-a: #161616,
   white: #ffffff,
   white-a: #e4e4e4,
   warning: #ff8700,
   violet: #b97ebb,
   blue-a: #007bff,
+  blue-b: #496e96,
   info: #17a2b8,
   fb: #3b5998,
   twitter: #00aced,
   linkedin: #007bb6,
   dribbble: #ea4c89,
+  success: #d4edda,
+  danger: #dc3545,
+  danger-a: #f0949c,
+  red: #dc3545,
+  red-a: #721c24,
+  green: #28a745,
+  green-a: #155724,
+  green-b: #c3e6cb,
+  pink: #e99695,
+  tag: #c69f6d,
 );
 
 $font-size: (
@@ -41,5 +56,5 @@ $font-size: (
   xxxl: 25px,
 );
 $col-max: 12;
-$font-body: san-serif;
+$font-body: Roboto, sans-serif;
 $font-japan: serif;

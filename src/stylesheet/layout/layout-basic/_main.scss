@@ -22,7 +22,7 @@
       .tips {
         text-align: center;
         .text-link {
-          color: #7269ef;
+          color: map-get($map: $color, $key: primary);
         }
       }
     }

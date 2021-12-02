@@ -1,12 +1,12 @@
 .article-item {
   @include pxRem(margin-bottom, 40);
   position: relative;
-  .feature {
-    @include pxRem(margin, -25 -25 10);
-  }
   .article-img {
+    display: block;
     @include pxRem(height, 250);
     width: 100%;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
   }
   .dropdown {
     @include pxRem(top, 10);
@@ -22,77 +22,105 @@
       }
     }
     .btn-dropdown {
-      @include pxRem(padding, 4 6);
-      @include pxRem(font-size, 16);
-      border: none;
-      border-radius: 5px;
-      background-color: map-get($color, grey-b);
-      color: white;
+      background-color: transparent;
+      font-size: map-get($map: $font-size, $key: xl);
     }
     .sub-dropdown {
+      @include pxRem(min-width, 150);
+      @include pxRem(max-height, 100);
+      @include pxRem(right, -50);
+      @include pxRem(padding, 10 0);
       display: none;
       position: absolute;
       top: 100%;
-      right: 0;
       border-radius: 5px;
       background-color: map-get($color, grey-a);
       z-index: 1;
       .sub-dropdown-item {
-        @include pxRem(padding, 4);
-        display: block;
+        @include pxRem(min-height, 40);
+        @include pxRem(padding-left, 20);
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
         width: 100%;
+        background: transparent;
         color: map-get($color, black);
+        font-size: map-get($font-size, sm);
+        font-weight: 500;
         text-decoration: none;
         &:hover {
-          border-radius: 5px;
-          color: map-get($color, white);
-          background-color: map-get($color, info);
+          color: map-get($color, primary);
+          background: map-get($color, grey-f);
         }
       }
     }
   }
-  .article-author {
+  .article-info {
     display: flex;
     align-items: center;
     color: map-get($color, grey-b);
     .author-img {
-      @include pxRem(width, 32);
-      @include pxRem(height, 32);
+      @include pxRem(width, 50);
+      @include pxRem(height, 50);
       @include pxRem(margin-right, 8);
+      border-radius: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+    .author-info {
+      text-align: left;
+      .align-items-center {
+        display: flex;
+        align-items: center;
+      }
     }
     .author-name {
-      color: map-get($color, black);
-    }
-    .article-tag {
-      @include pxRem(padding, 2);
-      border-radius: 5px;
-      background: map-get($color, warning);
-      color: map-get($color, white);
+      @include pxRem(max-width, 120);
+      display: inline-block;
+      font-size: map-get($font-size, sm);
+      color: map-get($color, primary);
     }
   }
   .article-body {
-    @include pxRem(padding, 0 10);
+    @include pxRem(height, 335);
+    letter-spacing: 0.2px;
     .article-title {
-      @include pxRem(height, 60);
+      @include pxRem(min-height, 56);
       @include line-clamp(2);
-      text-align: justify;
-      font-size: map-get($font-size, lg);
-      font-weight: 700;
+      text-align: left;
+      word-break: break-word;
+      font-size: map-get($font-size, xxl);
+      line-height: 1.2;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: map-get($color, black);
+    }
+    .article-content {
+      @include pxRem(height, 80);
+      @include line-clamp(3);
+      color: map-get($color, grey-b);
+      font-size: map-get($font-size, normal);
+      text-align: left;
       overflow: hidden;
       text-overflow: ellipsis;
     }
-    .article-content {
-      @include pxRem(height, 64);
-      @include line-clamp(3);
-      color: map-get($color, grey-b);
+    .read-more {
+      @include pxRem(padding, 4 0);
+      display: block;
+      text-align: left;
       font-size: map-get($font-size, sm);
-      text-align: justify;
+      color: map-get($color, primary);
+    }
+    .article-tags {
+      display: -webkit-box;
       overflow: hidden;
       text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      text-align: left;
     }
   }
   .article-interact {
-    @include pxRem(margin-top, 20);
     display: flex;
     color: map-get($color, grey-b);
     justify-content: space-between;
@@ -113,8 +141,16 @@
       font-size: map-get($font-size, normal);
       &.btn-read-more {
         @include pxRem(padding, 4 8);
-        background: map-get($color, primary);
-        color: map-get($color, white);
+        background: map-get($color, white);
+        border: 1px solid map-get($color, grey-b);
+        color: map-get($color, grey-b);
+        font-size: map-get($font-size, xs);
+        font-weight: 600;
+        &:hover {
+          background: map-get($color, primary);
+          border: none;
+          color: map-get($color, white);
+        }
       }
     }
   }

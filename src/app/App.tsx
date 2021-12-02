@@ -16,6 +16,8 @@ import appRoutes from './app.routes';
 //import appMiddleware from './app.middleware';
 import appReducer from './app.reducers';
 import { LoadingProvider } from '@app/shared/providers/LoadingProvider';
+import { DialogProvider } from './shared/providers/DialogProvider';
+import { AlertProvider } from './shared/providers/AlertProvider';
 
 
 //const middleware = createSagaMiddleware();
@@ -26,11 +28,15 @@ const store = createStore(
 
 ReactDOM.render(
   <LoadingProvider>
-    <Provider store={store}>
-      <BrowserRouter>
-        <RouterOutlet routes={appRoutes} />
-      </BrowserRouter>
-    </Provider>
+    <DialogProvider>
+      <AlertProvider>
+        <Provider store={store}>
+          <BrowserRouter>
+            <RouterOutlet routes={appRoutes} />
+          </BrowserRouter>
+        </Provider>
+      </AlertProvider>
+    </DialogProvider>
   </LoadingProvider>,
   document.getElementById('root')
 );

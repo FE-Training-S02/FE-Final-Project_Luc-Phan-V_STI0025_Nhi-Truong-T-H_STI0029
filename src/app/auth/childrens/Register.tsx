@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { signUp } from '../auth.middleware';
@@ -8,34 +8,51 @@ import Input from '@app/shared/components/partials/Input';
 import Select from '@app/shared/components/partials/Select';
 import ButtonGoogleLogin from '../partials/ButtonGoogleLogin';
 import { birthDayValidator, emailValidator, firstNameValidator, lastNameValidator, passwordValidator, phoneValidator, userNameValidator } from '@app/shared/validators/form.validator';
+import { useAlert } from '@app/shared/contexts/alert.context';
+import { useLoading } from '@app/shared/contexts/loading.context';
 
 const Register = () => {
   const {
     register,
     handleSubmit,
+    reset,
     watch,
-    formState: { errors }
-  } = useForm();
+    formState: { isValid, errors }
+  } = useForm({ mode: 'onChange' });
   const dispatch = useDispatch();
   const password = useRef({});
   password.current = watch('password', '');
-  const [errMessage, setErrMessage] = useState('');
-  const [messSuccess, setMessSuccess] = useState('');
+  const { setAlert } = useAlert();
+  const navigate = useNavigate();
+  const { setLoading } = useLoading();
   const onSubmit = (data: any) => {
+    setLoading(true);
     delete data.password_repeat;
     dispatch(signUp(data,
       (res) => {
-        setMessSuccess(res.data);
+        setAlert({
+          type: 'success',
+          mess: res
+        });
+        reset({
+          data: ''
+        });
+        navigate('/auth/login');
+        setLoading(false);
       },
       (error) => {
-        setErrMessage(error.response.data.errors);
-      }))
+        setAlert({
+          type: 'danger',
+          mess: error.response.data.errors
+        });
+        setLoading(false);
+      }));
   };
   const genderOptions = [
     { value: 'female', name: 'Female' },
     { value: 'male', name: 'Male' },
     { value: 'other', name: 'Other' }
-  ]
+  ];
   return (
     <>
       <div className="page-heading">
@@ -107,6 +124,7 @@ const Register = () => {
                   errors={errors.dob} />
               </div>
             </div>
+
             <Input
               type="text"
               placeholder="Phone"
@@ -116,9 +134,11 @@ const Register = () => {
             <div className="btn-group">
               <Button
                 className="btn btn-primary btn-block"
-                type='submit'>Sign up</Button>
-              {messSuccess && <span className="btn btn-block alert alert-success mt-4">{messSuccess}</span>}
-              {errMessage && <span className="btn btn-block alert alert-error mt-4">{errMessage}</span>}
+                type="submit"
+                disabled={!isValid}
+              >
+                Sign up
+              </Button>
               <p className="my-2">or</p>
               <ButtonGoogleLogin />
             </div>
@@ -127,7 +147,7 @@ const Register = () => {
         <div className="tips">
           <p>
             Already have an account?
-            <Link to="/auth/login"> Sign in</Link>
+            <Link to="/auth/login" className="text-link"> Sign in</Link>
           </p>
         </div>
       </div>
