@@ -4,6 +4,7 @@
     @include pxRem(width, 48);
     @include pxRem(height, 48);
     border-radius: 50%;
+    object-fit: cover;
   }
   .comment-body {
     @include pxRem(padding, 8);
@@ -18,7 +19,7 @@
         font-size: map-get($font-size, sm);
       }
       flex-direction: row;
-      justify-content: space-between
+      justify-content: space-between;
     }
     .comment-content {
       font-size: map-get($font-size, sm);

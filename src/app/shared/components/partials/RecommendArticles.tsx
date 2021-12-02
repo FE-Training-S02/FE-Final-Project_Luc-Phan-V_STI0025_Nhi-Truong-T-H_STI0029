@@ -34,5 +34,4 @@ const RecommendArticles = () => {
     </>
   );
 }
-
 export default RecommendArticles;
