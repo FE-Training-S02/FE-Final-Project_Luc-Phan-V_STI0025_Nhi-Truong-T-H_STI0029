@@ -1,13 +1,14 @@
 .sidebar {
   @include pxRem(padding-left, 30);
   .widget {
-    @include pxRem(margin-bottom, 40);
+    @include pxRem(margin-bottom, 35);
     .widget-title {
-      @include pxRem(padding, 15 25);
-      border-bottom: 1px solid #efefef;
+      @include pxRem(padding, 0 25);
     }
     .widget-content {
+      @include pxRem(padding, 15 25 30);
       font-style: italic;
+      border-bottom: 1px solid map-get($map: $color, $key: grey-e);
       text-align: center;
       .content-quote {
         @include pxRem(padding-bottom, 20);
@@ -18,20 +19,15 @@
       }
     }
     .categories-list {
+      @include pxRem(padding, 15 25 30);
+      border-bottom: 1px solid map-get($map: $color, $key: grey-e);
       overflow: hidden;
       .categorie-item {
-        @include pxRem(padding, 10 15 10 0);
+        @include pxRem(padding, 0 15 10 0);
         float: left;
-        width: 50%;
         a {
           color: map-get($map: $color, $key: grey-c);
           font-size: map-get($map: $font-size, $key: sm);
-        }
-        .categorie-item-qty {
-          float: right;
-          color: map-get($map: $color, $key: grey-b);
-          font-size: 10px;
-          line-height: 2.8;
         }
       }
     }
@@ -53,12 +49,12 @@
     }
     .popular-list {
       .popular-item {
-        @include pxRem(margin-bottom, 25);
-        @include pxRem(padding-bottom, 25);
+        @include pxRem(margin-bottom, 10);
+        @include pxRem(padding, 15 25 25);
         border-bottom: 1px solid map-get($map: $color, $key: grey-a);
         &:last-child {
           @include pxRem(margin, 0);
-          @include pxRem(padding, 0);
+          @include pxRem(padding, 15 25);
           border-bottom: none;
         }
         .wrap-popular-item {
@@ -101,6 +97,9 @@
         }
       }
     }
+  }
+  .list-follow {
+    @include pxRem(padding, 15 25 30);
   }
   .none-follower {
     font-size: map-get($font-size, sm);

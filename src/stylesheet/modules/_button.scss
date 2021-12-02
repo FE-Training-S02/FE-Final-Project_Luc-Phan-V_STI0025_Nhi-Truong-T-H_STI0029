@@ -1,6 +1,5 @@
 .btn {
   @include pxRem(padding, 10 15);
-  display: inline-block;
   border-radius: 5px;
   text-align: center;
   font-weight: bold;

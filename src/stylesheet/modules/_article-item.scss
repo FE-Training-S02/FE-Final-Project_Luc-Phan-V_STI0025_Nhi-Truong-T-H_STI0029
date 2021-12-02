@@ -3,10 +3,11 @@
   position: relative;
   .article-img {
     display: block;
-    @include pxRem(height, 250);
+    @include pxRem(height, 280);
     width: 100%;
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
+    object-fit: cover;
   }
   .dropdown {
     @include pxRem(top, 10);

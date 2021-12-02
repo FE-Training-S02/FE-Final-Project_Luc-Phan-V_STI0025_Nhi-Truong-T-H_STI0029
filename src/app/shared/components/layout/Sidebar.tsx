@@ -8,26 +8,48 @@ const Sidebar = () => {
     <>
       <aside className="col col-4 sidebar">
         <ul>
-          <li className="grid-box widget">
-            <h4 className="widget-title">Categories</h4>
-            <ul className="categories-list pd-5">
-              <li className="categorie-item"><Link to="/">Travel</Link><span className="categorie-item-qty">(7)</span></li>
-              <li className="categorie-item"><Link to="/">Food</Link><span className="categorie-item-qty">(17)</span></li>
-              <li className="categorie-item"><Link to="/">Lifestyle</Link><span className="categorie-item-qty">(8)</span></li>
-              <li className="categorie-item"><Link to="/">Shopping</Link><span className="categorie-item-qty">(2)</span></li>
-              <li className="categorie-item"><Link to="/">Fashion</Link><span className="categorie-item-qty">(4)</span></li>
+          <li className="widget">
+            <h4 className="widget-title">Tags</h4>
+            <ul className="categories-list">
+              <li className="categorie-item">
+                <Link to="/">
+                  <div className="article-tags">
+                    <span className="badge badge-tag-sidebar">Travel</span>
+                  </div>
+                </Link>
+              </li>
+              <li className="categorie-item">
+                <Link to="/">
+                  <span className="badge badge-tag-sidebar">Technology</span>
+                </Link>
+              </li>
+              <li className="categorie-item">
+                <Link to="/">
+                  <span className="badge badge-tag-sidebar">Business</span>
+                </Link>
+              </li>
+              <li className="categorie-item">
+                <Link to="/">
+                  <span className="badge badge-tag-sidebar">Art</span>
+                </Link>
+              </li>
+              <li className="categorie-item">
+                <Link to="/">
+                  <span className="badge badge-tag-sidebar">Food</span>
+                </Link>
+              </li>
             </ul>
           </li>
-          <li className="grid-box widget">
+          <li className="widget">
             <h4 className="widget-title">Quote of the day</h4>
-            <div className="widget-content pd-5">
+            <div className="widget-content">
               <div className="content-quote">
                 <blockquote>&quot;There are no #strangers here, only #friends that have not yet met.&quot;</blockquote >
               </div>
               <h5 className="byline">Theme Doe</h5>
             </div>
           </li>
-          <li className="grid-box widget">
+          <li className="widget">
             <RecommendArticles />
           </li>
         </ul>

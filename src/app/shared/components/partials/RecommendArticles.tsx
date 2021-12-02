@@ -21,8 +21,8 @@ const RecommendArticles = () => {
   }, []);
   return (
     <>
-      <h4 className="widget-title">Popular Articles</h4>
-      <ul className="popular-list pd-5">
+      <h4 className="widget-title">Recommended Articles</h4>
+      <ul className="popular-list">
         {articlesRecommend ?
           articlesRecommend.map((item) =>
             <li className="popular-item" key={item.id}>

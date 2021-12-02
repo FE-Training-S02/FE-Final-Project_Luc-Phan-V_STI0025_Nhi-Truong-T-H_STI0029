@@ -33,7 +33,6 @@ const Profile = () => {
       }
     ));
   }, [id]);
-  //useEffect(())
   const followUser = () => {
     const data = {
       'followingId': id
@@ -68,7 +67,7 @@ const Profile = () => {
             </div>
             {(curentUserId === id) ?
               <>
-                <Link to="/users/profile/edit-profile" className="btn btn-outline-secondary mr-2">Edit Profile</Link>
+                <Link to="/users/profile/edit-profile" className="btn btn-outline-primary mr-2">Edit Profile</Link>
                 <Link to="/users/profile/change-password" className="btn btn-primary">Change Password</Link>
               </>
               :
