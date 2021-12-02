@@ -54,7 +54,7 @@ const ArticleList = () => {
               </li>
             )}
           </ul>
-          {isLoadMore && <button className="btn-load-more" onClick={loadMore}>Load more</button>}
+          {isLoadMore && <button className="btn btn-primary" onClick={loadMore}>Load more</button>}
         </section>
         <Sidebar />
       </div>
