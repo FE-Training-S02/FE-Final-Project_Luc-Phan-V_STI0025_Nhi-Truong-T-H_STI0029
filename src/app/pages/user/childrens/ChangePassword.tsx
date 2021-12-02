@@ -14,7 +14,7 @@ const ChangePassword = () => {
     handleSubmit,
     reset,
     formState: { isValid, errors }
-  } = useForm({ mode: 'onChange', reValidateMode: 'onSubmit' });
+  } = useForm({ mode: 'onTouched', reValidateMode: 'onSubmit' });
   const dispatch = useDispatch();
   const { setAlert } = useAlert();
   const { setLoading } = useLoading();

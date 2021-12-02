@@ -17,7 +17,7 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { isValid, errors }
-  } = useForm({ mode: 'onChange' });
+  } = useForm({ mode: 'onTouched' });
   const authStorage = new AuthStorageService();
   const { setAlert } = useAlert();
   const navigate = useNavigate();
