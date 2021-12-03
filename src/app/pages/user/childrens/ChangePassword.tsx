@@ -7,6 +7,7 @@ import { changePassword } from '../user.middleware';
 import { passwordValidator } from '@app/shared/validators/form.validator';
 import Button from '@app/shared/components/partials/Button';
 import Input from '@app/shared/components/partials/Input';
+import { useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
   const {
@@ -16,6 +17,7 @@ const ChangePassword = () => {
     formState: { isValid, errors }
   } = useForm({ mode: 'onTouched', reValidateMode: 'onSubmit' });
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { setAlert } = useAlert();
   const { setLoading } = useLoading();
   const onSubmit = (data) => {
@@ -30,6 +32,7 @@ const ChangePassword = () => {
         reset({
           data: ''
         });
+        navigate('/users/profile');
       },
       (error) => {
         setLoading(false);

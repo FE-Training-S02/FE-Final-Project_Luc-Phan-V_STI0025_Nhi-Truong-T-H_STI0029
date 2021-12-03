@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import { getUserInfo, updateUserInfo, uploadImage } from '../user.middleware';
 import { useAlert } from '@app/shared/contexts/alert.context';
 import { saveUserInfo } from '@app/auth/auth.actions';
+import { useNavigate } from 'react-router-dom';
 
 const EditProfile = () => {
   const jwtHelper = new JwtHelper();
@@ -23,6 +24,7 @@ const EditProfile = () => {
   const { setLoading } = useLoading();
   const { setAlert } = useAlert();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [urlImage, setUrlImage] = useState();
   const genderOptions = [
     { value: 'female', name: 'Female' },
@@ -74,6 +76,7 @@ const EditProfile = () => {
           mess: 'Your profile has been updated successfully'
         });
         dispatch(saveUserInfo(res));
+        navigate('/users/profile');
       },
       (error) => {
         setLoading(false);
@@ -153,7 +156,7 @@ const EditProfile = () => {
                   className="btn btn-primary btn-block"
                   type='submit'
                   disabled={!isValid}
-                   >Update Profile</Button>
+                >Update Profile</Button>
               </div>
             </div>
           </div>

@@ -40,6 +40,9 @@
           .nav-link {
             color: map-get($map: $color, $key: white);
           }
+          &:hover {
+            background-color: map-get($map: $color, $key: green-a);
+          }
         }
         .nav-link {
           display: flex;
