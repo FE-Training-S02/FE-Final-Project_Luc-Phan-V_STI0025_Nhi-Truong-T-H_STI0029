@@ -2,13 +2,16 @@
   @include pxRem(padding-left, 30);
   .widget {
     @include pxRem(margin-bottom, 35);
+    border-bottom: 1px solid map-get($map: $color, $key: grey-e);
+    &:last-child {
+      border-bottom: none;
+    }
     .widget-title {
       @include pxRem(padding, 0 25);
     }
     .widget-content {
       @include pxRem(padding, 15 25 30);
       font-style: italic;
-      border-bottom: 1px solid map-get($map: $color, $key: grey-e);
       text-align: center;
       .content-quote {
         @include pxRem(padding-bottom, 20);
@@ -20,7 +23,6 @@
     }
     .categories-list {
       @include pxRem(padding, 15 25 30);
-      border-bottom: 1px solid map-get($map: $color, $key: grey-e);
       overflow: hidden;
       .categorie-item {
         @include pxRem(padding, 0 15 10 0);
