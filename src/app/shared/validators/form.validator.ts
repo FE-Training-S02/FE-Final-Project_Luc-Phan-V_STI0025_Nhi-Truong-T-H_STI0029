@@ -1,7 +1,7 @@
 export const PATTERN_EMAIL = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
 export const PATTERN_PASSWORD = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/;
 export const PATTERN_BIRTHDAY = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
-export const PATTERN_PHONE = /[0-9]{3}-[0-9]{3}-[0-9]{4}/;
+export const PATTERN_PHONE = /^[0]\d{9,9}$/;
 export const PASSWORD_MINLENGTH = 8;
 export const NAME_MAXLENGTH = 20;
 export const TITLE_MINLENGTH = 20;
@@ -88,7 +88,7 @@ export function phoneValidator(isRequired?: boolean) {
     },
     pattern: {
       value: PATTERN_PHONE,
-      message: 'Phone number is 10 digit with format xxx-xxx-xxxx'
+      message: 'Phone number is 10 digit with format 0xxxxxxxxx'
     }
   }
 }

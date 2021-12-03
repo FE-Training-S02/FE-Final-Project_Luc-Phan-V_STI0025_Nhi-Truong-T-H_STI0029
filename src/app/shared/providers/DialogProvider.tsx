@@ -36,7 +36,7 @@ export const DialogProvider = props => {
     setDialog(null);
   }, [setDialog]);
   return (
-    <DialogContext.Provider value={{ dialog, onClosed, setDialog }} {...props}>
+    <DialogContext.Provider value={{ dialog, onClosed, setDialog }}>
       {props.children}
       {dialog && <Dialog />}
     </DialogContext.Provider>
