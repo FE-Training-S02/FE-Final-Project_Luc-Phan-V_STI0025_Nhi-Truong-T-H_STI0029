@@ -54,8 +54,14 @@ export const uploadImage = (file, resolve, reject) => {
   return () => {
     apiService.get([`/signatures?type_upload=avatar&file_name=${file.name}&file_type=${file.type}`])
       .then((res: any) => {
-        axios.put(res.signedRequest, file);
-        resolve(res);
+        const url = res.url;
+        axios.put(res.signedRequest, file)
+        .then(()=>{
+          resolve(url)
+        })
+        .catch(error => {
+          reject(error);
+        });
       })
       .catch(error => {
         reject(error);

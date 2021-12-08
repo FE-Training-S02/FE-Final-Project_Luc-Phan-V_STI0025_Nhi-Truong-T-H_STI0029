@@ -35,11 +35,11 @@ const CreateArticle = () => {
     { value: 'private', name: 'Private' }
   ];
 
-  async function handleUploadImage(file, resolve, reject) {
-    await dispatch(uploadImage(file, resolve, reject));
+  function handleUploadImage(file, resolve, reject) {
+    dispatch(uploadImage(file, resolve, reject));
   };
-  const resolve = (res) => {
-    setUrlImage(res.url);
+  const resolve = (url) => {
+    setUrlImage(url);
     setLoading(false);
   };
   const reject = (error) => {
