@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { useAlert } from '@app/shared/contexts/alert.context';
@@ -14,14 +14,18 @@ const ChangePassword = () => {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { isValid, errors }
   } = useForm({ mode: 'onTouched', reValidateMode: 'onSubmit' });
+  const password = useRef({});
+  password.current = watch('newPassword', '');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { setAlert } = useAlert();
   const { setLoading } = useLoading();
   const onSubmit = (data) => {
     setLoading(true);
+    delete data.password_repeat;
     dispatch(changePassword(data,
       (res) => {
         setLoading(false);
@@ -63,6 +67,20 @@ const ChangePassword = () => {
                 type="password"
                 register={register('newPassword', passwordValidator())}
                 errors={errors.newPassword} />
+            </div>
+          </div>
+          <div className="row justify-content-center">
+            <div className="col-6">
+              <label className="col-form-label">Confirm Password</label>
+              <Input
+                type="password"
+                register={register('password_repeat',
+                  {
+                    required: 'This field is required',
+                    validate: value => value === password.current || "The passwords do not match"
+                  }
+                )}
+                errors={errors.password_repeat} />
             </div>
           </div>
           <div className="row form-btn-group">
