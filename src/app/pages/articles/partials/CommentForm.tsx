@@ -3,22 +3,19 @@ import { useForm } from 'react-hook-form';
 import Button from '@app/shared/components/partials/Button';
 import { useDispatch } from 'react-redux';
 import { postComment } from '../article.middleware';
-import { useDialog } from '@app/shared/contexts/dialog.context';
-import { useNavigate } from 'react-router';
 
 const CommentForm = (props) => {
-  const { id, submitComment, user } = props;
-  const navigate = useNavigate();
-  const { setDialog } = useDialog();
+  const { id, submitComment, user, handle } = props;
   const {
     register,
     handleSubmit,
     reset,
     formState: { isValid, errors }
   } = useForm({ mode: 'onChange', reValidateMode: 'onChange' });
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+  
   const onSubmit = (data: any) => {
-    if (user) {
+    const commentArticle = () => {
       dispatch(postComment(id, data,
         (res) => {
           reset();
@@ -29,23 +26,10 @@ const CommentForm = (props) => {
         }
       )
       )
-    } else { handleLogin() }
-  };
-  const handleLogin = () => {
-    setDialog({
-      type: 'primary',
-      data: {
-        title: 'Confirm',
-        content: 'Please login to continue',
-        accept: 'Login',
-        cancel: 'Cancel'
-      },
-      confirmDialog: () => confirmLogin()
-    });
+    }
+    handle(commentArticle);
   }
-  const confirmLogin = () => {
-    navigate('/auth/login');
-  };
+  
   return (
     <>
       <div className="page-content">

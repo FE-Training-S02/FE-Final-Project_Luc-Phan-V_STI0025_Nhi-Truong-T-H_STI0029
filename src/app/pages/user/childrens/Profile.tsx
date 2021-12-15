@@ -7,7 +7,9 @@ import ArticleList from '../partials/ArticleList';
 import { getUserInfo } from '../user.middleware';
 import { postFollow } from '@app/pages/articles/article.middleware';
 import { Follow } from '@app/pages/articles/partials/Follow';
+import WithCheckAuthentication from '@app/shared/hoc/WithCheckAuthentication';
 
+const HocFollow = WithCheckAuthentication(Follow);
 const Profile = () => {
   const jwtHelper = new JwtHelper();
   const curentUserId = jwtHelper.getUserInfo() ? jwtHelper.getUserInfo().userId : null;
@@ -56,7 +58,7 @@ const Profile = () => {
         <div className="col col-12">
           <div className="user-avatar">
             <img src={user?.picture || "./assets/images/user.png"} alt="avatar" className="avatar-img" />
-            {(curentUserId !== id) && <Follow user={user} followUser={followUser} />}
+            {(curentUserId !== id) && <HocFollow user={user} followUser={followUser} />}
           </div>
           <div className="mt-3">
             <h4 className="user-name">{user?.firstName} {user?.lastName}</h4>

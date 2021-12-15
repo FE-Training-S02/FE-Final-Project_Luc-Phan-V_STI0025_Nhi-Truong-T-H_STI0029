@@ -6,13 +6,18 @@ import { useLoading } from '@app/shared/contexts/loading.context';
 import { getArticleDetail, getCommentsList, postFollow, getAuthor } from '../article.middleware';
 import Sidebar from '@app/shared/components/layout/Sidebar';
 import CommentForm from '../partials/CommentForm';
-import { Like } from '../partials/Like';
+import Like from '../partials/Like';
+import WithCheckAuthentication from '../../../shared/hoc/WithCheckAuthentication';
 import { CommentsList } from '../partials/CommentList';
 import { useDialog } from '@app/shared/contexts/dialog.context';
 import { deleteArticle } from '../article.middleware';
 import { convertDate } from '@app/shared/pipes/convert-date';
 import { Follow } from '../partials/Follow';
 
+
+const HocLike =  WithCheckAuthentication(Like);
+const HocFollow = WithCheckAuthentication(Follow);
+const HocCommentForm = WithCheckAuthentication(CommentForm);
 const ArticleDetail = () => {
   const { id } = useParams();
   const [article, setArticle] = useState<any>({});
@@ -154,11 +159,11 @@ const ArticleDetail = () => {
                       </Link>
                       {currentUser ?
                         currentUser?.email !== user?.email ?
-                          (user?.isFollowed !== undefined) && <Follow user={article.user} followUser={followUser} />
+                          (user?.isFollowed !== undefined) && <HocFollow user={article.user} followUser={followUser} />
                           :
                           <></>
                         :
-                        <Follow />
+                        <HocFollow />
                       }
                     </div>
                     <p className="create-at">{convertDate(createdAt)}</p>
@@ -195,7 +200,7 @@ const ArticleDetail = () => {
               </div>
               <div className="article-footer-right">
                 <div className="interact">
-                  {likes && (<Like id={id} like={likes} liked={isLiked} user={currentUser} />)}
+                  {likes && (<HocLike id={id} like={likes} liked={isLiked} user={currentUser} />)}
                   <button className="btn-interact">
                     <i className="far fa-comment"></i>
                     <span>{comments}</span>
@@ -203,7 +208,7 @@ const ArticleDetail = () => {
                 </div>
               </div>
             </div>
-            <CommentForm id={id} submitComment={submitComment} user={currentUser} />
+            <HocCommentForm id={id} submitComment={submitComment} user={currentUser} />
             <CommentsList id={id} commentsList={commentsList} />
           </div>
         </main>

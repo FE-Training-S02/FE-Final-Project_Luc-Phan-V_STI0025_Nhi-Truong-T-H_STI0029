@@ -4,10 +4,12 @@ import { useDispatch } from 'react-redux';
 import JwtHelper from '@app/core/helpers/jwtHelper';
 import { useDialog } from '@app/shared/contexts/dialog.context';
 import { useLoading } from '@app/shared/contexts/loading.context';
-import { Like } from './Like';
+import Like from './Like';
+import WithCheckAuthentication from '../../../shared/hoc/WithCheckAuthentication';
 import { deleteArticle } from '../article.middleware';
 import { convertDate } from '@app/shared/pipes/convert-date';
 
+const HocLike = WithCheckAuthentication(Like);
 const ArticleItem = (props) => {
   const jwtHelper = new JwtHelper();
   const { setDialog, onClosed } = useDialog();
@@ -83,7 +85,7 @@ const ArticleItem = (props) => {
         </div>
         <div className="article-interact">
           <div className="list-icon-interact">
-            <Like key={id} id={id} like={likes} liked={isLiked} user={curentUserId} />
+            <HocLike key={id} id={id} like={likes} liked={isLiked} user={curentUserId} />
             <button className="btn-interact">
               <i className="far fa-comment"></i>
               <span>{comments}</span>
