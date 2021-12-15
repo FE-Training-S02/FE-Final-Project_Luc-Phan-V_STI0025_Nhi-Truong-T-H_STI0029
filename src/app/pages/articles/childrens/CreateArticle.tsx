@@ -12,6 +12,7 @@ import { uploadImage, getArticleDetail, createArticle, updateArticle } from '../
 import { useLoading } from '@app/shared/contexts/loading.context';
 import { useAlert } from '@app/shared/contexts/alert.context';
 import JwtHelper from '@app/core/helpers/jwtHelper';
+import TagsInput from '@app/shared/components/partials/TagsInput';
 
 const CreateArticle = () => {
   const { id } = useParams();
@@ -35,6 +36,17 @@ const CreateArticle = () => {
     { value: 'private', name: 'Private' }
   ];
 
+  const [tagData, setTagData] = useState<any>([]);
+  const handleAddTag = (event) => {
+    if (event.key === 'Enter' && event.target.value !== '') {
+      setTagData([...tagData, event.target.value]);
+      event.target.value = '';
+    }
+  }
+  const handleRemoveTagData = (indexRemove) => {
+    setTagData([...tagData].filter((tag, index) => index !== indexRemove));
+  }
+
   async function handleUploadImage(file, resolve, reject) {
     await dispatch(uploadImage(file, resolve, reject));
   };
@@ -51,10 +63,16 @@ const CreateArticle = () => {
     trigger('cover');
     handleUploadImage(file, resolve, reject);
   };
+
+  const handleKeyPress = (e) => {
+    if (e.key == "Enter") {
+      e.preventDefault();
+    }
+  };
   const onsubmit = async (data: any) => {
     const article = {
       ...data,
-      tags: [data.tags],
+      tags: tagData,
       cover: urlImage,
       content: content
     };
@@ -114,10 +132,9 @@ const CreateArticle = () => {
             setLoading(false);
           }
           else {
-            setValue('description', res.description, { shouldValidate: true });
             setValue('title', res.title, { shouldValidate: true });
             setValue('description', res.description, { shouldValidate: true });
-            setValue('tags', res.tags[0], { shouldValidate: true });
+            setTagData(res.tags);
             setValue('status', res.status, { shouldValidate: true });
             setContent(res.content);
             setArticle(res);
@@ -134,7 +151,7 @@ const CreateArticle = () => {
     <>
       <h2 className="page-title">{id ? 'Edit Article' : 'New Article'}</h2>
       <div className="form-wrapper">
-        <form onSubmit={handleSubmit(onsubmit)}>
+        <form onKeyPress={e => handleKeyPress(e)} onSubmit={handleSubmit(onsubmit)}>
           <div className="row justify-content-center">
             <div className="col-7">
               <label className="col-form-label">Title</label>
@@ -153,11 +170,37 @@ const CreateArticle = () => {
                 errors={errors.description} />
             </div>
           </div>
+          {/* <div className="row justify-content-center">
+            <div className="col-7">
+              <label className="col-form-label">Tags</label>
+              <TagsInput
+                type="text"
+                register={register('tags')}
+                placeholder="Press enter to add a tag"
+                errors={errors.tags}
+              />
+            </div>
+          </div> */}
           <div className="row justify-content-center">
             <div className="col-7">
               <label className="col-form-label">Tags</label>
-              <Input
-                type="text" register={register('tags')} />
+              <div className="tag-input">
+                <ul className="list-tags">
+                  {tagData.map((tag, index) => (
+                    <li key={index} className="item-tag">
+                      <span className="title-tag">{tag}</span>
+                      <span className="tag-close-icon" onClick={() => handleRemoveTagData(index)}>x</span>
+                    </li>
+                  ))}
+                </ul>
+                <input
+                  type="text"
+                  placeholder="Press enter to add a tag"
+                  {...register('tags')}
+                  onKeyUp={handleAddTag}
+                />
+              </div>
+              {errors?.tags && <span className="msg-error">{errors.tags.message}</span>}
             </div>
           </div>
           <div className="row justify-content-center">
@@ -204,7 +247,6 @@ const CreateArticle = () => {
               <CKEditor
                 editor={ClassicEditor}
                 data={content}
-
                 name="content"
                 onChange={(event, editor) => {
                   const data = editor.getData();

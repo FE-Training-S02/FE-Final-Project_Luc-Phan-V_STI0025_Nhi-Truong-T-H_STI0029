@@ -38,6 +38,7 @@
         opacity: 0;
         background-color: map-get($map: $color, $key: white);
       }
+
       .msg-error {
         @include pxRem(margin-top, 8);
         @include pxRem(padding, 0 10);

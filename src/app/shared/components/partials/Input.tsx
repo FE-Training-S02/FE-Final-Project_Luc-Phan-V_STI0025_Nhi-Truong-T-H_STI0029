@@ -18,7 +18,7 @@ const Input = ({ type, className, placeholder, name, value, errors, label, regis
       <div className="input-group">
         <input
           type={type}
-          className={`form-control ${className}`}
+          className={`form-control${className ? ' ' + className : ''}`}
           placeholder={placeholder}
           name={name}
           value={value}

@@ -1,7 +1,6 @@
 .header {
-  @include pxRem(height, 60);
-  @include pxRem(margin-bottom, 20);
-  @include pxRem(padding, 8 0);
+  @include pxRem(height, 80);
+  @include pxRem(padding, 18 0);
   position: fixed;
   width: 100%;
   z-index: 99;
