@@ -11,7 +11,7 @@ const ArticleList = () => {
   const [articles, setArticles] = useState<Post[]>([]);
   const [page, setPage] = useState(1);
   const [isLoadMore, setIsLoadMore] = useState(false);
-  const { setLoading } = useLoading();
+  const { loading, setLoading } = useLoading();
   const dispatch = useDispatch();
   const authStorage = new AuthStorageService();
   const token = authStorage.getToken();
@@ -62,7 +62,7 @@ const ArticleList = () => {
           <Sidebar />
         </div>
         :
-        <p className="none-articles mt-5">No articles yet!</p>
+        (!loading && <p className="none-articles mt-5">No articles yet!</p>)
       }
     </>
   );

@@ -53,8 +53,8 @@ const EditProfile = () => {
     const file = e.target.files[0];
     setLoading(true);
     dispatch(uploadImage(file,
-      (res) => {
-        setUrlImage(res.url);
+      (url) => {
+        setUrlImage(url);
         setLoading(false);
       },
       (error) => {

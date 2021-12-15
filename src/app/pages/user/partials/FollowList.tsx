@@ -7,7 +7,7 @@ const FollowList = (props) => {
   const { id, type } = props;
   const dispatch = useDispatch();
   const [followsList, setFollowsList] = useState([]);
-  const { setLoading } = useLoading();
+  const { loading, setLoading } = useLoading();
   useEffect(() => {
     setLoading(true);
     dispatch(getFollowingsList(
@@ -30,8 +30,8 @@ const FollowList = (props) => {
         )}
       </ul>
       :
-      <p className="none-follower pd-10">{type === 'followers' ? "Don't have any followers" : "Don't have any followings"}</p>
-  );
+      (!loading &&<p className="none-follower pd-10">{type === 'followers' ? "Don't have any followers" : "Don't have any followings"}</p>)
+    );
 };
 
 export default FollowList;
