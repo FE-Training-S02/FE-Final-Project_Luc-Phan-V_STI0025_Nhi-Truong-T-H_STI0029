@@ -188,8 +188,10 @@ const ArticleDetail = () => {
               <div className="article-footer-left">
                 {tags && <p className="txt-uppercase"><span>TAGS: </span>
                   {(tags.length && tags[0]) ?
-                    <span className="badge badge-tag">{tags[0]}</span>
-                    : <></>
+                    (tags.slice(0, 3)).map((x) =>
+                      <span key={x} className="badge badge-tag">{x}</span>
+                    ) :
+                    <></>
                   }
                 </p>}
               </div>

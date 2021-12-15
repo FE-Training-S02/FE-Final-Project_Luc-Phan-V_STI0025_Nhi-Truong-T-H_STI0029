@@ -1,7 +1,7 @@
 .profile {
   @include pxRem(padding, 0 100);
   .user-info {
-    @include pxRem(margin-top, -44);
+    @include pxRem(margin-top, -46);
     @include pxRem(padding, 32 0);
     border: 1px solid map-get($color, grey-e);
     text-align: center;

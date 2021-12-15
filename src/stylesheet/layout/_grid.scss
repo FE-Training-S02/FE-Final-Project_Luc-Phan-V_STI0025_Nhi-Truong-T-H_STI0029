@@ -1,6 +1,6 @@
 .page-container {
-  @include pxRem(padding, 100 0 300);
-  min-height: calc(100% - (65px + 190px));
+  @include pxRem(padding, 125 0 300);
+  min-height: calc(100% - (85px + 190px));
 }
 .container {
   max-width: 1172px;
